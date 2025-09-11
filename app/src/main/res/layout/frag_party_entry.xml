@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Fragment.Frag_Party_Entry">
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/resizeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="100dp"
+        android:contentDescription="TODO"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:backgroundTint="@color/green"
+        app:icon="@drawable/baseline_restart"
+        app:iconTint="@color/white"
+        app:tint="@color/white" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgSetOtherPartyImage"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/ic_baseline_account_circle"
+                    app:civ_border_color="#CCCCCC"
+                    app:civ_border_width="1dp" />
+
+
+                <ImageView
+                    android:id="@+id/imgAddOtherCover"
+                    android:layout_width="29dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginLeft="-30dp"
+                    android:layout_weight="0.1"
+                    android:onClick="clickEvent"
+                    android:src="@drawable/ic_baseline_camera" />
+
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/titan_theme_color"
+                    android:padding="3dp"
+                    android:text="Add party Information"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutOName"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+
+                            app:startIconDrawable="@drawable/ic_baseline_person_pin">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtONAme"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Name" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutOOccupation"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_work">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtOccupation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Occupation" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutOMo"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_phone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtOMobile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:hint="Mobile Number"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutNIDNum"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_id">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtNIDNum"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:hint="NID Number"
+                                android:inputType="phone"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutOAdd"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_address">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtOAdd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Address" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutOResPerson"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_co_present">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtOResPerson"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Responsible Person" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutOResPersonMo"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_phone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtOResPersonMo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:hint="Responsible Person's Mobile Number"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <!--                        //relation with howseowner spiner-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutOResPersonRtn"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Relation with H/W"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/hw_relation">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acOResPersonRtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/txtTSOtherArea"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSaveParty"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Save party"
+                            android:textColor="@color/titan_theme_color"
+                            app:cornerRadius="0dp"
+                            app:strokeColor="@color/titan_theme_color" />
+
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

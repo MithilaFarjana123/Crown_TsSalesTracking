@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="56dp"
+    android:background="@color/white"
+    tools:context=".UI.Fragment.Frag_Movement_Plan_Entry">
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="54dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/plan"/>
+
+            <!--            app:mcv_firstDayOfWeek="sunday"-->
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+                app:mcv_firstDayOfWeek="friday"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginTop="-40dp"
+                app:mcv_selectionColor="@color/crown_icon_color"
+                app:mcv_headerTextAppearance="@style/CalendarViewWeekDayTextAppearance"
+                app:mcv_dateTextAppearance="@style/CalendarViewTextAppearance"
+                />
+            <!--            app:mcv_weekDayTextAppearance="@style/CalendarViewWeekDayTextAppearance"-->
+            <!--            app:mcv_showOtherDates="all|decorated_disabled"-->
+            <!--            app:mcv_calendarMode="month"-->
+
+
+            <!--            <CalendarView-->
+            <!--                android:unfocusedMonthDateColor="@color/reject"-->
+            <!--                android:id="@+id/calender"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="350dp"-->
+            <!--                android:calendarViewShown="true"-->
+            <!--                android:dateTextAppearance="@style/CalendarViewTextAppearance"-->
+            <!--                android:firstDayOfWeek="7"-->
+            <!--                android:focusedMonthDateColor="@color/crown_icon_color"-->
+            <!--                android:weekDayTextAppearance="@style/CalendarViewWeekDayTextAppearance" />-->
+
+            <TextView
+                android:id="@+id/txtMovDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@color/titan_theme_color"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#CCCCCC" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMovement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                tools:listitem="@layout/movement_plan_list_item" />
+
+            <TextView
+                android:id="@+id/txtErMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="No movement plan found, yet"
+                android:textColor="@color/gray_two"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabAddMo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="15dp"
+        android:contentDescription="TODO"
+        android:text="Change Plan"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:backgroundTint="@color/crown_icon_color"
+        app:icon="@drawable/add_calendar"
+        app:iconTint="@color/white"
+        app:tint="@color/white" />
+
+
+
+
+</FrameLayout>

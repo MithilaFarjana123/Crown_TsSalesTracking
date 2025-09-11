@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:textSize="11sp"
+        android:id="@+id/txtPName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="Product" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.02"
+        android:background="#CCCCCC" />
+
+    <TextView
+        android:textSize="11sp"
+        android:id="@+id/txtPQty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="Quantity" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.02"
+        android:background="#CCCCCC" />
+
+    <TextView
+        android:textSize="11sp"
+        android:id="@+id/txtPDNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="Do No" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.02"
+        android:background="#CCCCCC" />
+
+    <TextView
+        android:textSize="11sp"
+        android:id="@+id/txtDelFro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="From" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.02"
+        android:background="#CCCCCC" />
+
+    <TextView
+        android:textSize="11sp"
+        android:id="@+id/txtDeliTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="To" />
+
+
+</LinearLayout>

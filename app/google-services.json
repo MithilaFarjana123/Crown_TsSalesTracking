@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "460563910291",
+    "project_id": "crown-technical-support-app",
+    "storage_bucket": "crown-technical-support-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460563910291:android:37229c3c007437f42d4766",
+        "android_client_info": {
+          "package_name": "com.crowncement.TsSalesTracking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfx4pH2nHYs3yjSAIe5dL4nIR3L-05NPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

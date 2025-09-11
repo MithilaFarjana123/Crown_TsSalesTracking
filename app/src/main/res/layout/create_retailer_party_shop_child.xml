@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="#CCCCCC"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:padding="5dp"
+            android:src="@drawable/ic_shop" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:padding="8dp"
+            android:text="Party Shop Info"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--Outlet category Type-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutOCategory"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Outlet Category"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_thana">
+
+        <AutoCompleteTextView
+            android:id="@+id/acOCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--SHOP AREA-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        android:id="@+id/layoutShopA"
+        app:startIconDrawable="@drawable/ic_baseline_align_vertical">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRShopArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:digits=".0123456789"
+            android:hint="Shop Area"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Market Point-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        android:id="@+id/layoutMarPo"
+        app:startIconDrawable="@drawable/ic_thana">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRMarketPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/transparent"
+            android:hint="Market Point" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--PARTY HOUSE 2-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_smartphone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRPartyPhone2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:digits="01234567890"
+            android:hint="Party Phone 2"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baselin_user_color">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRManagerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Manager Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_smartphone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRManagerPhone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:digits="01234567890"
+            android:hint="Manager Mobile 1"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_smartphone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRManagerPhone2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:digits="01234567890"
+            android:hint="Manager Mobile 2"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        android:id="@+id/layoutShopFLen"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_align_vertical">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRShopFront"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:digits=".01234567890"
+            android:hint="Shop Front Length"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>

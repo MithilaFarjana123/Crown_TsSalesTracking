@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="56dp"
+    tools:context=".UI.Fragment.Frag_Call_RecordEntry">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/titan_theme_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:drawableLeft="@drawable/ic_grid_white"
+                android:text="Party Code"/>
+
+            <TextView
+                android:id="@+id/directcall_partycode"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp"
+                android:gravity="end"
+                android:textColor="@color/white"
+                android:text=" "/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/call_head"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#979A9A"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Please Enter the following information"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCallMoveStatusType"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Movement Status"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/ic_grid_white">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/acCallMoveStatusType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCallEMP"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:endIconMode="clear_text"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/ic_empid">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/txtCallEMP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:hint="Visit with EMP" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+<!--                <TextView-->
+<!--                    android:drawableLeft="@drawable/ic_client_type_gray"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text=" Discussion Topic ( You can select multiple option )"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textStyle="bold"/>-->
+
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:id="@+id/layoutCallDisTopic"-->
+<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:hint="Complain Type"-->
+<!--                    android:background="@drawable/border_gray"-->
+<!--                    app:boxStrokeErrorColor="@color/orange"-->
+<!--                    app:errorIconTint="@color/orange"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_marginBottom="3dp"-->
+<!--                    app:errorTextColor="@color/orange">-->
+<!--                    &lt;!&ndash;                    app:startIconDrawable="@drawable/ic_sum"&ndash;&gt;-->
+
+<!--                    &lt;!&ndash;                    <AutoCompleteTextView&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:id="@+id/acComDisTopic"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:focusable="false" />&ndash;&gt;-->
+
+
+
+
+<!--                    <com.anurag.multiselectionspinner.MultiSpinner-->
+<!--                        android:background="@drawable/border_gray"-->
+<!--                        android:id="@+id/multiSelectSpinnerCallDis"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"/>-->
+
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCallDisTopic"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Discussion Topic"
+                    app:endIconMode="clear_text"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:errorIconTint="@color/orange"
+                    app:startIconDrawable="@drawable/ic_client_type_gray"
+                    app:errorTextColor="@color/orange">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:editable="false"
+                        android:id="@+id/txtCallDirectDisTopic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutSiteSiteAddTopic"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:endIconMode="clear_text"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/ic_reason">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtSiteAddTopic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Additional Topic" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/hideCallRecord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutCallNextVisit"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtCallNextVisit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:textSize="12sp"
+                            android:hint="Next visit Date" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/partyalladd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="#979A9A"
+                    android:layout_marginTop="20dp"
+                    android:text=""/>
+
+
+                <!--//for complain-->
+
+                <!--            <LinearLayout-->
+                <!--                android:id="@+id/hideSiteComplain"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="vertical">-->
+                <!--            <com.google.android.material.textfield.TextInputLayout-->
+                <!--                android:id="@+id/layoutCallComplainRecDate"-->
+                <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="10dp"-->
+                <!--                android:layout_marginRight="10dp"-->
+                <!--                app:endIconMode="clear_text"-->
+                <!--                app:startIconDrawable="@drawable/baseline_calendar_month_24">-->
+
+                <!--                <com.google.android.material.textfield.TextInputEditText-->
+                <!--                    android:id="@+id/txtCallComplainRecDate"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:focusable="false"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:hint="Complain Receive Date" />-->
+                <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+                <!--            <com.google.android.material.textfield.TextInputLayout-->
+                <!--                android:id="@+id/layoutCallConModOfAction"-->
+                <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="10dp"-->
+                <!--                android:layout_marginRight="10dp"-->
+                <!--                android:hint="Mode of Action"-->
+                <!--                app:boxStrokeErrorColor="@color/orange"-->
+                <!--                app:errorIconTint="@color/orange"-->
+                <!--                app:errorTextColor="@color/orange"-->
+                <!--                app:startIconDrawable="@drawable/ic_status">-->
+
+                <!--                <AutoCompleteTextView-->
+                <!--                    android:id="@+id/acCallConModOfAction"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:focusable="false" />-->
+
+                <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+                <!--            <com.google.android.material.textfield.TextInputLayout-->
+                <!--                android:id="@+id/layoutCallComSolveStatus"-->
+                <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="10dp"-->
+                <!--                android:layout_marginRight="10dp"-->
+                <!--                android:hint="Complain solve Status"-->
+                <!--                app:boxStrokeErrorColor="@color/orange"-->
+                <!--                app:errorIconTint="@color/orange"-->
+                <!--                app:errorTextColor="@color/orange"-->
+                <!--                app:startIconDrawable="@drawable/ic_status">-->
+
+                <!--                <AutoCompleteTextView-->
+                <!--                    android:id="@+id/acCallComSolveStatus"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:focusable="false" />-->
+
+                <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+                <!--            <com.google.android.material.textfield.TextInputLayout-->
+                <!--                android:id="@+id/layoutSiteComplainRemarks"-->
+                <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginLeft="10dp"-->
+                <!--                android:layout_marginRight="10dp"-->
+                <!--                app:boxStrokeErrorColor="@color/orange"-->
+                <!--                app:endIconMode="clear_text"-->
+                <!--                app:errorIconTint="@color/orange"-->
+                <!--                app:errorTextColor="@color/orange"-->
+                <!--                app:startIconDrawable="@drawable/ic_reason">-->
+
+                <!--                <com.google.android.material.textfield.TextInputEditText-->
+                <!--                    android:id="@+id/txtSiteComplainRemarks"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:hint="Remarks" />-->
+                <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+                <!--            </LinearLayout>-->
+
+                <!--end complain-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSavedemoCallRecord"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Submit Call Record"
+                    app:cornerRadius="0dp"
+                    android:textColor="@color/titan_theme_color"
+                    app:strokeColor="@color/titan_theme_color" />
+
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

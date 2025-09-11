@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.Fragment.Frag_Other_Partner">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgOtherCover"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/shop_banner" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-30dp"
+            android:layout_marginRight="20dp"
+
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+                <!--OtherName Name-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtOtherName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="Testing Engineers"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:gravity="end"
+                        android:text="Address:" />
+
+
+                    <!--Address 1-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtOtherAdd"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:text="East Goran, Khilgaon Dhaka 1219"
+                        android:textSize="13sp" />
+
+
+                </LinearLayout>
+
+
+                <!--Other  Mobile 1-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtOtherMobile1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:digits="0123456789"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:inputType="phone"
+
+                    android:text="Mobile: +8801234565443"
+                    android:textSize="12sp" />
+
+                <!--Other partner duration-->
+                <TextView
+                    android:id="@+id/txtOtherDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#15761A"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:text="ALMOST 3 YEARS, Months"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+                <!--Other Code-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtOtherCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:hint="Dealer Code"
+                    android:textSize="12sp" />
+
+                <!--Area info-->
+                <TextView
+                    android:id="@+id/txtOtherAreaInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Bangladesh > Dhaka > Dhaka > Khilgaon" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <!--Other DETAILS INFO-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    app:cardCornerRadius="8dp">
+
+                <include
+                    android:id="@+id/updateOtherDetailsInfoChild"
+                    layout="@layout/update_other_details_info_child" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/btnUpdateOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20sp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Update Info"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

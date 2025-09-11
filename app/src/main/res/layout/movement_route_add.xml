@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtMovCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@color/titan_theme_color"
+                android:drawableRight="@drawable/ic_baseline_cancel_white"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Select Your Movement Route"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:textColor="@color/crown_icon_color"
+                android:id="@+id/txtSelDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/routeChipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:animateLayoutChanges="true"
+                    app:singleLine="false"
+                    app:singleSelection="true" />
+
+            </androidx.core.widget.NestedScrollView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAdd"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="5dp"
+                android:text="Submit Movement Plan"
+                app:cornerRadius="0dp"
+                app:strokeColor="@color/crown_icon_color" />
+
+
+            <GridView
+                android:listSelector="#A5A1A1"
+                android:id="@+id/idGRV"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:numColumns="2"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="10dp"
+                tools:listitem="@layout/route_gridview_item" />
+
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>

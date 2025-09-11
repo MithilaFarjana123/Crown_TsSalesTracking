@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="8dp"
+            android:padding="2dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/late" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/late" />
+
+
+                <TextView
+                    android:id="@+id/txtLateDate"
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:textStyle="bold"
+                    android:textColor="#898583"
+                    android:text="Late on Wed 12, June 2022" />
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:background="@drawable/border_gray"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="In"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:text="00:00"
+                        android:id="@+id/txtIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/titan_theme_color"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_weight="0.01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#CCCCCC"/>
+
+
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Shift"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtShiftCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+
+<!--                 status-->
+<!--                <View-->
+<!--                    android:layout_weight="0.01"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:background="#CCCCCC"/>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Status"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textStyle="bold" />-->
+
+
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:id="@+id/txtOperation"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Open"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/white"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"/>&ndash;&gt;-->
+
+<!--                </LinearLayout>-->
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:drawableLeft="@drawable/ic_authority"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Approval Authority"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="10dp"
+                android:text="This is an sample text for the field"
+                android:id="@+id/txtLateAuth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <View
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="Application Status"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|start"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:background="@drawable/gray_curved"
+                    android:id="@+id/txtOperation"
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Open"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

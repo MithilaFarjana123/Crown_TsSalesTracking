@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="56dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.Fragment.Frag_Engineer_Worksum">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutFromDate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtFrDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:textSize="12sp"
+                            android:hint="From Date"/>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutToDate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtTDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:textSize="12sp"
+                            android:hint="To Date"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/imgUserName"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/party_banner"/>
+
+
+
+
+        <TextView
+            android:id="@+id/partyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name : "
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:background="#cac6cc"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:backgroundTint="#f5b7b1"
+                app:cardCornerRadius="8dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/engineer"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/sbp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        android:text="SBP ID : "/>
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:orientation="vertical">
+
+
+                <!--                card for sbp-->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#d6eaf8"
+                    android:layout_height="72dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/site_icon"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/numOfSite"
+                            android:layout_weight="0.7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:padding="10dp"
+                            android:text="Converted Site : "/>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:layout_height="5dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#ebdef0"
+                    android:layout_height="72dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_cement"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/deliveredbag"
+                            android:layout_weight="0.7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:padding="10dp"
+                            android:text="Delivered bag : "/>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="20dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/baseline_search_24"
+        app:backgroundTint="@color/titan_theme_color"
+        app:tint="@color/white" />
+
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/searchFab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="42dp"-->
+<!--        android:layout_gravity="end|bottom"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:contentDescription="TODO"-->
+<!--        android:src="@drawable/baseline_search_24"-->
+<!--        app:backgroundTint="@color/titan_theme_color"-->
+<!--        app:tint="@color/white" />-->
+
+</FrameLayout>

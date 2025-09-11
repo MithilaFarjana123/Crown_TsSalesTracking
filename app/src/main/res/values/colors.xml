@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#B10C0C</color>
+    <color name="purple_700">#B10C0C</color>
+    <color name="teal_200">#007D4C</color>
+    <color name="teal_700">#007D4C</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#F4F2F2</color>
+<!--    <color name="green">#00914C</color>-->
+
+    <color name="magenta">#FF00FF</color>
+
+    <color name="green">#007D4C</color>
+
+
+    <color name="yellow">#FFEB3B</color>
+    <color name="orange">#FC9E14</color>
+    <color name="red">#F44336</color>
+    <color name="transparent">#00000000</color>
+<!--    <color name="crown_icon_color">#00914C</color>-->
+    <color name="crown_icon_color">#007D4C</color>
+    <color name="base_light_super">#ECF0F8</color>
+
+    <color name="gray_two">#736C6C</color>
+    <color name="gray_three">#ebedef</color>
+    <color name="gray_four">#E4E6E8</color>
+
+    <color name="light_green">#a2d9ce</color>
+    <color name="blue">#2980b9</color>
+
+    <color name="pending">#F8D786</color>
+
+    <color name="light_orange"> #f5cba7</color>
+    <color name="reject">#DD2C1F</color>
+    <color name="message_red">#DC645B</color>
+
+    <color name="titan_theme_color">#B10C0C</color>
+    <color name="theme_light">#FBDBDB</color>
+    <color name="card_color">#F0F6FB</color>
+
+
+
+</resources>

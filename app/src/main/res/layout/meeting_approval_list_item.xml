@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="8dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:src="@drawable/ic_user"
+                app:civ_border_color="#CCCCCC"
+                app:civ_border_width="2dp"
+                app:civ_circle_background_color="@color/white" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"/>
+
+            <TextView
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="26"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="36sp"
+                android:textColor="@color/titan_theme_color"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mithila Farjana"
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Purpose : Meeting for Dreamapps "
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Room : Board Room"
+            android:layout_marginLeft="15dp"
+            android:textSize="17sp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/start_icon"/>
+
+
+                <TextView
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Start Time"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/green"
+                    android:textSize="11sp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+
+                <LinearLayout
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:background="@color/titan_theme_color"
+                        />
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="9:00 am"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/end_icon"/>
+
+
+                <TextView
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="End Time"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/titan_theme_color"
+                    android:textSize="11sp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+
+                <LinearLayout
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="11:00 am"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Accept"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/green"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#eaf5e8"
+
+                    />
+
+                <View
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+
+                <Button
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/titan_theme_color"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#f7dcd3"
+                    />
+
+                <View
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

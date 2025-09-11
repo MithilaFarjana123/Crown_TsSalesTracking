@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TecnicalSupport" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/gray_two</item>
+        <item name="colorPrimaryVariant">@color/titan_theme_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/titan_theme_color</item>
+        <item name="colorSecondaryVariant">@color/theme_light</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+<!--        <item name="android:statusBarColor">#00914C</item>-->
+        <item name="android:statusBarColor">@color/titan_theme_color</item>
+        <!-- Customize your theme here. -->
+
+
+    </style>
+
+
+    <style name="Theme.SalesForceApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
+

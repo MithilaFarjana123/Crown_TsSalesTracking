@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_marginBottom="56dp"
+    tools:context=".UI.Fragment.Frag_Attendance">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.35" />
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgSet"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/ic_user"
+                        app:civ_border_color="#CCCCCC"
+                        app:civ_border_width="1dp" />
+
+                    <!--            <ImageView-->
+                    <!--                android:id="@+id/imgUserName"-->
+                    <!--                android:layout_width="0dp"-->
+                    <!--                android:layout_height="150dp"-->
+                    <!--                android:layout_weight="0.5"-->
+                    <!--                android:scaleType="fitXY"-->
+                    <!--                android:src="@drawable/ic_user_gray" />-->
+
+                    <ImageView
+                        android:id="@+id/imgUser"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginLeft="-30dp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/baseline_camera_alt_24" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Take your Picture"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Today's Attendence"
+            android:textSize="13sp"
+            android:background="#ebedef"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_green"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In Time : "
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/green"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="08:58 Am"
+                android:layout_margin="10dp"
+                android:gravity="right"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/green"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_orange"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Out Time : "
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/orange"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="06:00 pm"
+                android:layout_margin="10dp"
+                android:gravity="right"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/orange"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

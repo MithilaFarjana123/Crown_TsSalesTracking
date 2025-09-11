@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#CCCCCC"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:padding="5dp"
+            android:src="@drawable/ic_retailer_details" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:padding="8dp"
+            android:text="Retailer details info"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--Party Address-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_baseline_home">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtAdd2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Party Address 2" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Contact Person-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_user_gray">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtContactPerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:hint="Contact Person" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Email-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_email_color">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtReEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Party Email" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_admin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtContactDesi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:hint="Contact Designation" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Dealer Code-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_number">
+
+        <AutoCompleteTextView
+            android:paddingTop="15dp"
+            android:textSize="16sp"
+            android:background="@android:color/transparent"
+            android:id="@+id/acDealer"
+            android:gravity="center_vertical|start"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:hint="Dealer Code" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Contact Person-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_outline_user">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtContactPer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Contact Person" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--SAP CODE-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/sap_code">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtSAPCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:digits="0123456789"
+            android:hint="SAP Code"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

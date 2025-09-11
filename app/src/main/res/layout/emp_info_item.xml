@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:id="@+id/layoutEmp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgEmp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:civ_border_color="#E4DFDF"
+            app:civ_border_width="1dp" />
+
+        <TextView
+            android:id="@+id/txtEmpN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Mithila Farjana"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtEmpI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="E00-005445"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+

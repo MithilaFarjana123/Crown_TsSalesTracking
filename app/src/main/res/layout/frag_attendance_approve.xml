@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="56dp"
+    tools:context=".UI.Fragment.Frag_Attendance_Approve">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:background="#FCFCFC"
+        android:orientation="vertical">
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/ic_calendar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtAppDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:focusable="false"
+                    android:hint="Attendance Date" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curved_transparent"
+            android:textCursorDrawable="@null"
+            android:visibility="gone"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@null"
+            app:queryHint="Search Employee" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rbBreadcram"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_att_approve_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_leave_approve_list" />
+
+                <include layout="@layout/shimmer_leave_approve_list" />
+
+                <include layout="@layout/shimmer_leave_approve_list" />
+
+                <include layout="@layout/shimmer_leave_approve_list" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAttendanceAuth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_attendance_approve" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/txtAttAuthNoData"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/no_data" />
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

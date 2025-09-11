@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="8dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/titan_theme_color"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/deliverydate"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Delivery Date : "
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/CallNum"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Record No : "
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/siteId"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Site Num : "
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"
+                android:textStyle="bold"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/titan_theme_color"
+                android:textStyle="bold"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/partyCode"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Conversion Status : "
+                android:textSize="14sp"
+                android:gravity="right"
+                android:textColor="@color/titan_theme_color"
+                android:textStyle="bold"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Submitted By "
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/submittedby"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text=" "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#f3f5f3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="IHBs Name"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/partyName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text=" "
+                android:gravity="end"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Delivery Qty "
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/deliveryQty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text=" "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#f3f5f3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/convStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text="  "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="IHBs Address "
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/partyadd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text=" "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#f3f5f3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/ihbsNum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text="  "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Site address"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/siteAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text=" "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#f3f5f3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Conversion Date "
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/convDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text="  "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/approvalStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Approval Status "
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/titan_theme_color"/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=" : "
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/titan_theme_color"/>
+
+
+            <TextView
+                android:id="@+id/appstat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:text=" "
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/divdisThana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text=""/>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/txtAttReject"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textSize="12sp"
+                    android:backgroundTint="@color/titan_theme_color"
+                    android:text="Reject"/>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txtAttReject"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:background="@drawable/border_red"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:textColor="@color/titan_theme_color"-->
+<!--                    android:text="Reject" />-->
+
+                <View
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:id="@+id/txtAttApprove"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Approve"
+                    android:textSize="12sp"
+                    android:backgroundTint="@color/green"
+                    />
+                
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txtAttApprove"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:background="@drawable/border_green"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:textColor="@color/green"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:text="Approve" />-->
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    
+
+</androidx.cardview.widget.CardView>

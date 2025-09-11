@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Fragment.Frag_User_Profile">
+
+    <LinearLayout
+     android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/crown_cemet" />
+
+
+                <ImageView
+                    android:id="@+id/imgProfileUser"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_user_profile" />
+
+                <TextView
+                    android:id="@+id/txtProfileName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Mithila Farjana"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/txtProfileDepartment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Department : Information Technology"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtEmpId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Employee ID : E00-005445"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:id="@+id/txtProfileLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Job Locatio : Head Office" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:id="@+id/txtProfileDesignation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Designation : Officer" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:id="@+id/txtProfileEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="Email : mithila.farjana@mi.com" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:id="@+id/txtProfileJoining"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Joining Date : 1st March,2023" />
+
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/crown_icon_color"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="26sp"
+                    android:background="@color/crown_icon_color"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/robotoslab_extra_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CROWN CEMENT PLC."/>
+
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+</FrameLayout>

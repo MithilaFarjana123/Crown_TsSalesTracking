@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginRight="10dp"
+                android:drawableRight="@drawable/ic_shop"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="Customer Information"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#CCCCCC" />
+
+            <TextView
+                android:id="@+id/txtCustomerTitleH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Customer Name" />
+
+            <TextView
+                android:textSize="12sp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/txtCusTypeH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Customer Type" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                android:id="@+id/layoutCusAddH"
+                app:startIconDrawable="@drawable/ic_division">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCallAddressH"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="Customer Address" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:paddingBottom="10dp"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                android:id="@+id/layoutCusOwnerH"
+                app:startIconDrawable="@drawable/ic_baseline_admin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCallOwnerH"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="Owner Name" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Visit Type-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutVisitTypeH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Visit Type"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_transport_type">
+
+        <AutoCompleteTextView
+            android:id="@+id/acVisitTypeH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Discuss Topic-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutDTopicH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Discuss Topic"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_dis_topic">
+
+        <AutoCompleteTextView
+            android:id="@+id/acDTopicH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Discuss Sub Topic-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutSubTopicH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_sub_topic">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtSubTopicH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Discuss Sub Topic" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Visiting Target(Bag)-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutVisitingTargetH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtTargetQtyH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789"
+            android:text="0"
+            android:hint="Today's visiting Target(Bag)"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--volume achieve BAG-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutVolumeAchievedH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_achivement">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtVolAchieveQtyH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits=".0123456789"
+            android:hint="Volume Achieve(Bag)"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+
+
+    <!--Reason for no Order-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutReasonH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Reason for No Achievement"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_warning">
+
+        <AutoCompleteTextView
+            android:id="@+id/acNoOrderH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Crown Last Delivery Date-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutCrLastDelDateH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_calendar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtLastDeliveryDateH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="Crown Last Delivery Date" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Crown last delivery volume-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutCrLastDelVolumeH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/last_del_volume">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtLDelVolumeH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789"
+            android:hint="Crown Last Delivery Volume"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Details for no Reason-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutReasonDetailsH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_details">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtNoAchievementDetailsH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Reason Details" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Outlet category Type-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutOutletCategoryH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Outlet Category"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_thana">
+
+        <AutoCompleteTextView
+            android:id="@+id/acOutletCategoryH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Selling Brand 1-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutSellingB1H"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand One"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_cement_sack">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrand1H"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 2-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutSellingB2H"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Two"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_cement_sack">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrand2H"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 3-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutSellingB3H"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Three"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_cement_sack">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrand3H"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 4-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutSellingB4H"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Four"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_cement_sack">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrand4H"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 5-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutSellingB5H"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Five"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_cement_sack">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrand5H"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--Sell By Ref-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutVisitRefH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Sell By Reference"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_reference">
+
+        <AutoCompleteTextView
+            android:id="@+id/acVisitReferenceH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <!--volume achieve-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutVolumeAchH"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_volume_achive">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtVolAchieveH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits=".0123456789"
+            android:hint="Volume Achieve"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Remarks-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_outline_doc">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCallRemarkH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Remarks" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--SAP CODE EXIST-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSAPCodeH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retailer's SAP Code Exists?"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#CCCCCC" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdNOH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="NO" />
+
+                <RadioButton
+                    android:id="@+id/rdYESH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="YES" />
+
+
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutShipToH"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_details">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtShipToH"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:hint="Ship To"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveCallRecordH"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Save Call Record"
+        app:cornerRadius="0dp"
+        app:strokeColor="@color/crown_icon_color" />
+
+
+</LinearLayout>

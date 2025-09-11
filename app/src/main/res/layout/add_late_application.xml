@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_cancel_red" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:gravity="center"
+        android:text="Late Application "
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="for"
+        android:gravity="center"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/txtLateApplicationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" 14 Jul 2022"
+        android:gravity="center"
+        android:textSize="14sp"
+         />
+
+
+
+
+
+
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutPurpose"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:boxStrokeErrorColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_calendar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPurpose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Purpose" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutRemarks"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:boxStrokeErrorColor="@color/orange"
+
+        app:startIconDrawable="@drawable/ic_baseline_remarks">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRemarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Remarks" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_weight="0.1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/admin_person"/>
+
+        <TextView
+            android:textSize="18sp"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Approve Hierarchy"
+            android:textColor="@color/black"/>
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/txtApproveBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+    <Button
+        android:id="@+id/btnLateApply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:backgroundTint="@color/titan_theme_color"
+        android:layout_marginBottom="20dp"
+        android:text="Apply" />
+
+
+</LinearLayout>

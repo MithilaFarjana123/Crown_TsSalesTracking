@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layout_marginTop="56dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.Fragment.Frag_Late_Approval">
+<!--    android:background="#FCFCFC"-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical">
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_late_approve"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_late_approve_list" />
+
+                <include layout="@layout/shimmer_late_approve_list" />
+
+                <include layout="@layout/shimmer_late_approve_list" />
+
+                <include layout="@layout/shimmer_late_approve_list" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLateAuth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            tools:listitem="@layout/late_approve_list_child" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/txtLateAuthNoData"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/no_data" />
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

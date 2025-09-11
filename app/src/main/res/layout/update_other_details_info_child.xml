@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="#CCCCCC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:padding="5dp"
+            android:src="@drawable/ic_retailer_details" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:text="Partner Details Info"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <!--Other City-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_city">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/txtOtherCity"
+            android:focusable="false"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Party's City" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <!--Other Zip    -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_postcode">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/txtOtherZip"
+            android:focusable="false"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Party's Zip-Code" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--Dealer country-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_country">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:focusable="false"
+            android:id="@+id/txtOtherCountry"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Party's Country" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Dealer Group-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_group">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:id="@+id/txtOtherGroup"
+            android:background="@android:color/transparent"
+            android:hint="Party Group" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Contact Person-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_user_gray">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:focusable="false"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtOtherContactPerson"
+            android:background="@android:color/transparent"
+            android:hint="Party Contact Person" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Email-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_email_color">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:focusable="false"
+            android:id="@+id/txtOtherEmail"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Party's Email" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

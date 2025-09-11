@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.Fragment.Frag_Mason_update">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="56dp">
+
+<!--    mason info-->
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E5E3E2 "
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/info_icon" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:padding="5dp"
+                        android:text="Mason Information"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/masonUPartycode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:padding="5dp"
+                        android:text=""
+                        android:layout_gravity="right"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/resizeImage"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_gravity="center|top"-->
+<!--                        android:layout_marginLeft="-20dp"-->
+<!--                        android:layout_weight="0.25"-->
+<!--                        android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                        android:src="@drawable/ic_restart" />-->
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_weight="0.3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imgUMason"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="0.8"
+                            android:src="@drawable/mason"
+                            app:civ_border_color="#CCCCCC"
+                            app:civ_border_width="1dp" />
+
+                        <ImageView
+                            android:id="@+id/takeUMImage"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginLeft="-20dp"
+                            android:layout_weight="0.25"
+                            android:src="@drawable/ic_baseline_add_a_photo" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="0.8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/txtUMasonRegDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Registration date : "
+                            android:layout_margin="10dp"
+                            android:textColor="@color/black"/>
+
+
+
+                        <!--party name-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutUMasonname"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_outline_user">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtUMasonname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:hint=" Name"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--party mobile-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutUMMobile"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_smartphone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtUMMobile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:digits="0123456789"
+                                android:hint="Mobile"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--Party email-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutUMEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_email_color">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtUMEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:hint="Party Email" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--Party NID-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutMUNIDNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_number">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtMUNIDNum"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:baselineAligned="false"
+                                android:hint="NID Card Number"
+                                android:inputType="number" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+        <!--            NID CARD-->
+
+    <androidx.cardview.widget.CardView
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E5E3E2 "
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/nid" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:padding="5dp"
+                    android:text="NID Upload"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/resizeNID"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_gravity="center|top"-->
+<!--                    android:layout_marginLeft="-20dp"-->
+<!--                    android:layout_weight="0.25"-->
+<!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                    android:src="@drawable/ic_restart" />-->
+
+
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtMNidFileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+
+            <ImageView
+                android:id="@+id/imgUMNidFile"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                 />
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:id="@+id/addUMNidCamera"
+                        android:layout_weight="0.3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="CAMERA"
+                        android:drawableLeft="@drawable/ic_camera_cover"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"/>
+
+<!--                    <View-->
+<!--                        android:layout_width="1dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:background="@color/black"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/pdfAddUMNID"-->
+<!--                        android:layout_weight="0.3"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="PDF"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:gravity="center"-->
+<!--                        android:drawableLeft="@drawable/ic_add_pdf"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textColor="@color/titan_theme_color"/>-->
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/imgUAddNID"
+                        android:layout_weight="0.3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="GALLERY"
+                        android:drawableLeft="@drawable/image_placeholder"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textColor="@color/green"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+<!--        mason address-->
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E5E3E2 "
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:src="@drawable/ic_address" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:padding="5dp"
+                android:text="Mason Address"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+
+
+
+
+        </LinearLayout>
+
+
+        <!--adderss-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutUMAdd"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:boxStrokeErrorColor="@color/orange"
+            app:endIconMode="clear_text"
+            app:errorIconTint="@color/orange"
+            app:errorTextColor="@color/orange"
+            app:startIconDrawable="@drawable/ic_baseline_home">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUMAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Address"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <!--CITY-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutUMCity"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_city">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtUMCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="Mason's City"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--            <View-->
+<!--                android:layout_weight="0.1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"/>-->
+
+
+            <!--Party ZIP-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutUMPartyZIP"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtUMPartyZIP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:digits="0123456789"
+                    android:hint="Mason's ZIP"
+                    android:inputType="number"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+<!--        contractor-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E5E3E2 "
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/ic_user" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:padding="5dp"
+                        android:text="Contractor Info"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+
+
+
+
+
+                </LinearLayout>
+
+
+                <!--ContractorCode-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTdeliveryContractorCode"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:endIconMode="clear_text"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/baseline_business_center_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:editable="false"
+                        android:id="@+id/txtTdeliveryQuantityContractorCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Contractor Code" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+                <!--                        nominiees information-->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#E5E3E2 "
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.1"
+                                android:src="@drawable/ic_nominiee" />
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.9"
+                                android:padding="5dp"
+                                android:text="Mason's Nominee Information  "
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+                        <!--nominee name-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutMUNName"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_user">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtMUNName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:hint="Nominee's Name "
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                        <!--nominee mobile number-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutMUNnum"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/mobile">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtMUNnum"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:hint="Nominee's Number"
+                                android:digits="0123456789"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <!--rltn with mason-->
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutMUNRltn"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Relation"
+                            android:textColor="#898583"
+                            app:startIconDrawable="@drawable/ic_relation">
+
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acMUNRltn"
+                                android:textColor="#898583"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <!--      Nominee's NID CARD-->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="0.2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#E5E3E2 "
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.1"
+                                android:src="@drawable/ic_nom_nid" />
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.9"
+                                android:padding="5dp"
+                                android:text="Nominee's NID Upload"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/resizeNomNID"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="40dp"-->
+<!--                                android:layout_gravity="center|top"-->
+<!--                                android:layout_marginLeft="-20dp"-->
+<!--                                android:layout_weight="0.25"-->
+<!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                                android:src="@drawable/ic_restart" />-->
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/txtMUNomNidFileName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center" />
+
+                        <!--            android:src="@drawable/upload_icon"-->
+
+
+                        <ImageView
+                            android:id="@+id/imgMUNomNidFile"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:drawableLeft="@drawable/ic_camera_cover"
+                            android:scaleType="fitXY" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/addMUNomNidCamera"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="0.3"
+                                    android:drawableLeft="@drawable/ic_camera_cover"
+                                    android:gravity="center"
+                                    android:text="CAMERA"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
+
+
+<!--                                <View-->
+<!--                                    android:layout_width="1dp"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:background="@color/black"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:id="@+id/pdfAddMUNomNID"-->
+<!--                                    android:layout_weight="0.3"-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:text="PDF"-->
+<!--                                    android:drawableLeft="@drawable/ic_add_pdf"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    android:gravity="center"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:textColor="@color/titan_theme_color"/>-->
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/black"/>
+
+                                <TextView
+                                    android:id="@+id/imgAddUNomNID"
+                                    android:layout_weight="0.3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="GALLERY"
+                                    android:drawableLeft="@drawable/image_placeholder"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/green"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpdatemason"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Update Mason"
+            android:textColor="@color/titan_theme_color"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/titan_theme_color" />
+
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Crown Titan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="dashboard">Dashboard</string>
+    <string name="attendance">Attendance</string>
+    <string name="attendance_report">Attendance report</string>
+    <string name="leave_list">Leave List</string>
+    <string name="pay_slip">Payslip</string>
+    <string name="late_application">Late Application</string>
+    <string name="notification">Notification</string>
+    <string name="user_profile">User profile</string>
+    <string name="leave_application_authorization">Leave application authorization</string>
+    <string name="settings">Settings</string>
+    <string name="late_approval">Late Approval</string>
+    <string name="leave_allocation">Leave allocation</string>
+    <string name="tour_bill">Tour Bill</string>
+    <string name="tour_approve_list">Tour approve list</string>
+    <string name="call_record">Call record</string>
+    <string name="tour_expense_claim">Tour Expense Claim</string>
+    <string name="tour_expense">Tour Expense</string>
+
+
+    <string name="provide_purpose">\"Please provide late purpose\"</string>
+    <string name="casual">Casual</string>
+    <string name="medical">Medical</string>
+    <string name="earn">Earn</string>
+    <string name="alternative">Alternative</string>
+    <string name="enjoyed"> - Enjoyed</string>
+    <string name="remain"> - Remain</string>
+    <string name="crown_cement">CROWN CEMENT IT</string>
+    <string name="developed_by">Developed By</string>
+    <string name="try_again">Try Again</string>
+
+    <string name="language_en_bn">Language En/Bn</string>
+    <string name="bn">Bn</string>
+    <string name="en">En</string>
+
+    <string name="department">Department: </string>
+    <string name="job_location">\nJob Location: </string>
+    <string name="base_project_name">Technical Support</string>
+
+    <string name="route">Route</string>
+    <string name="division">Division</string>
+    <string name="district">District</string>
+    <string name="thana">Thana</string>
+    <string name="client_type">Client Type</string>
+    <string name="noInternet_animation">https://lottie.host/f73fb075-82ec-409f-90ab-187987b39433/06wtgHRjJZ.json</string>
+
+
+</resources>

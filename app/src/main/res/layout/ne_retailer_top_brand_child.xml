@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CCCCCC"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:padding="5dp"
+            android:src="@drawable/ic_brand_brand" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:padding="8dp"
+            android:text="Top Selling Brand"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--Selling Brand 1-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand One"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_one">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrandOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 2-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Two"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_number_square_two">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrandTw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 3-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Three"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_number_three">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrandTh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 4-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Four"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_four">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrandFo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Selling Brand 5-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Selling Brand Five"
+        app:boxStrokeErrorColor="@color/orange"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        app:startIconDrawable="@drawable/ic_baseline_five">
+
+        <AutoCompleteTextView
+            android:id="@+id/acBrandFi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--Average Sell-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:boxStrokeErrorColor="@color/orange"
+        app:endIconMode="clear_text"
+        app:errorIconTint="@color/orange"
+        app:errorTextColor="@color/orange"
+        android:id="@+id/layoutMonthSale"
+        app:startIconDrawable="@drawable/ic_cement_sack">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtAverageSale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:digits="0123456789"
+            android:hint="Monthly Average Sell"
+            android:inputType="number"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>

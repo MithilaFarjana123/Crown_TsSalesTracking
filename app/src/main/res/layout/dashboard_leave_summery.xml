@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        app:cardCornerRadius="10dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="10dp"
+                android:text="Leave summary"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!--            total-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Casual "
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:padding="5dp">
+
+
+
+                    <ProgressBar
+                        android:id="@+id/progressBar_CL"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:indeterminate="false"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/progress_drawable_cl" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"/>
+
+                <TextView
+                    android:id="@+id/rd_CL"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/circle_green"
+                    android:gravity="center"
+                    android:text="8/10"
+                    android:textSize="11sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+
+            <!--            inside-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Medical "
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:padding="5dp">
+
+
+
+                    <ProgressBar
+                        android:id="@+id/progressBar_ML"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:indeterminate="false"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/progress_drawable_ml" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"/>
+
+                <TextView
+                    android:id="@+id/rd_ML"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/circle_red"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+
+            <!--     3rd floor       -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Earned "
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:padding="5dp">
+
+
+
+                    <ProgressBar
+                        android:id="@+id/progressBar_EL"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:indeterminate="false"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/progress_drawable_el" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"/>
+
+                <TextView
+                    android:id="@+id/rd_EL"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/circle_blue"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+
+            <!--     6th floor       -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Alternative"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:padding="5dp">
+
+
+                    <ProgressBar
+                        android:id="@+id/progressBar_AL"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:indeterminate="false"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/progress_drawable_al" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"/>
+
+                <TextView
+                    android:id="@+id/rd_AL"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/circle_orange"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</LinearLayout>

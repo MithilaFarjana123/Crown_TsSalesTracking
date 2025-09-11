@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.Activity.Act_Demo_Dashboard">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/titan_theme_color"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="Dashboard"
+            android:padding="15dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_titan"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/gray_four">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:gravity="start|center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:textColor="@color/gray_two"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.1"
+                            android:text="Welcome Back"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/txtProfileName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mr/Mrs Demo User"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:textColor="@color/gray_two"
+                            android:id="@+id/txtDesignation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="User's Designation"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgUserHomeImage1"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/ic_user_profile"
+                        android:translationZ="10dp"
+                        app:civ_circle_background_color="@color/white" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/basicInfo1"
+                layout="@layout/basic_info1" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include
+                            android:id="@+id/attSummaryChild"
+                            layout="@layout/att_summary_child" />
+
+
+                        <androidx.cardview.widget.CardView
+                            android:visibility="gone"
+                            android:id="@+id/cardReminder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardCornerRadius="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_weight="0.4"
+                                    android:gravity="center|start"
+                                    android:text="Reminder"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <!--            <com.airbnb.lottie.LottieAnimationView-->
+                                <!--                android:layout_width="match_parent"-->
+                                <!--                android:layout_height="100dp"-->
+                                <!--                app:lottie_autoPlay="true"-->
+                                <!--                app:lottie_loop="true"-->
+                                <!--                app:lottie_rawRes="@raw/announcement" />-->
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:paddingBottom="5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Late" />
+
+                                        <TextView
+                                            android:id="@+id/txtCountLate"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="-"
+                                            android:textSize="17sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.01"
+                                        android:background="#CCCCCC" />
+
+                                    <LinearLayout
+                                        android:paddingBottom="5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Absent" />
+
+                                        <TextView
+                                            android:id="@+id/txtCounAbsent"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="-"
+                                            android:textSize="17sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.01"
+                                        android:background="#CCCCCC" />
+
+                                    <LinearLayout
+                                        android:paddingBottom="5dp"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Movement Plan" />
+
+                                        <TextView
+                                            android:id="@+id/txtMovPlanStatus"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="N/A"
+                                            android:textSize="17sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/txtAnnouncement"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:singleLine="true"
+                                    android:text="সম্মানিত অ্যাপ ব্যাবহারকারীদের দৃষ্টি আকর্ষণ করা যাচ্ছে যে ,আপনাদের চলতি মাসের লেট, লিভ , ট্যুর/ট্র্যাভেল, মুভমেন্ট প্ল্যান অ্যাপ্রুভ এবং অ্যাটেনডেন্স স্ট্যাটাস চেক করার জন্য বিশেষভাবে অনুরোধ করা যাচ্ছে। ইতিমধ্যে যদি আপনার যেকোনো আবেদন না মঞ্জুর হয়ে থাকে, তাহলে আজই আপনার বসের সাথে যোগাযোগ করে তা মঞ্জুর করে নিন। রোস্টার সংক্রান্ত সমস্যার জন্য অবশ্যই সেলেস অ্যাডমিনের সাথে যোগাযোগ করবেন। বর্তমান মাসের ২৫ তারিখের পর এই সংক্রান্ত বিষয়ে কারও কোন সমস্যা থাকলে তা আর সমাধানের সুযোগ থাকবেনা "
+                                    android:textColor="@color/reject"
+                                    android:textSize="17sp" />
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <include
+                            android:id="@+id/dashboardMenu"
+                            layout="@layout/dashboard_menu" />
+
+                        <include
+                            android:id="@+id/dashbordNewVisitSummary"
+                            layout="@layout/dashbord_new_visit_summary" />
+
+
+                        <include
+                            android:id="@+id/dashboardSliderChild"
+                            layout="@layout/dashboard_slider_child"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:visibility="gone" />
+
+
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+
+
+
+</LinearLayout>

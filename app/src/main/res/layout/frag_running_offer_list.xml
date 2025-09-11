@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" tools:context=".ui.Fragment.Frag_Running_OfferList">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        android:orientation="vertical">
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout android:visibility="gone" android:id="@+id/shimmer_offer_container" android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <include layout="@layout/shimmer_offer_design"/>
+                <include layout="@layout/shimmer_offer_design"/>
+                <include layout="@layout/shimmer_offer_design"/>
+                <include layout="@layout/shimmer_offer_design"/>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvOffer"
+            tools:listitem="@layout/offeritem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/txtOfferNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Sorry, no data found"
+            android:textColor="@color/error_color"
+            android:visibility="gone"/>
+    </LinearLayout>
+</FrameLayout>

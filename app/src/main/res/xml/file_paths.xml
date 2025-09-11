@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+<!--    <external-files-path-->
+<!--        name="images"-->
+<!--        path="/"/>-->
+
+
+      <files-path name="internal_files" path="CrownTitanAttendance/" />
+
+
+
+     <!-- path="Android/data/com.crowncement.salesforceapp/files/Pictures"/>-->
+
+</paths>
+

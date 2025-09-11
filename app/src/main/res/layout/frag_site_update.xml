@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.Fragment.Frag_Site_Update">
+
+
+    <LinearLayout
+        android:layout_marginTop="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="56dp"
+            app:cardCornerRadius="10dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+                    <LinearLayout
+                        android:id="@+id/takeTsSiteimage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="0.1"
+                            android:src="@drawable/baseline_add_a_photo_24" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.7"
+                            android:text="Add photo"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/tsSiteImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/site" />
+
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="8dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#E5E3E2 "
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="24dp"
+                                    android:layout_weight="0.1"
+                                    android:src="@drawable/referredby" />
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.9"
+                                    android:padding="5dp"
+                                    android:text="Engineer/Contractor Tag"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutEngineerCode"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:endIconMode="clear_text"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/baseline_business_center_24">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/txtEngineerCode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Engineer Code" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutContractorCode"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:endIconMode="clear_text"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_mason">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/txtContractorCode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Contractor Code" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutTsPartSiteAdd"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:endIconMode="clear_text"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/ic_baseline_address">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtTsPartSiteAdd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Site Address" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <!--site info-->
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="8dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#E5E3E2 "
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="24dp"
+                                    android:layout_weight="0.1"
+                                    android:src="@drawable/icon_for_site" />
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.9"
+                                    android:padding="5dp"
+                                    android:text="Basic Site Info"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutTsSiteType"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="10dp"
+                                android:hint="Type"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_client_type">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTsSiteType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!--        for new-->
+                            <LinearLayout
+                                android:id="@+id/siteNew"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.5">
+
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            android:id="@+id/layoutTsSiteArea"
+                                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_marginRight="10dp"
+                                            app:boxStrokeErrorColor="@color/orange"
+                                            app:endIconMode="clear_text"
+                                            app:errorIconTint="@color/orange"
+                                            app:errorTextColor="@color/orange"
+                                            app:startIconDrawable="@drawable/ic_area">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/txtTsSiteArea"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:hint="Area( sq ft )"
+                                                android:inputType="number" />
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.5">
+
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            android:id="@+id/layoutTsPlanedSiteStored"
+                                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_marginRight="10dp"
+                                            app:boxStrokeErrorColor="@color/orange"
+                                            app:endIconMode="clear_text"
+                                            app:errorIconTint="@color/orange"
+                                            app:errorTextColor="@color/orange"
+                                            app:startIconDrawable="@drawable/ic_grid_white">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/txtTsPlanedSiteStored"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:hint="Planned storied"
+                                                android:digits="0123456789"
+                                                android:inputType="number" />
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/layoutTsSiteAproxCemAmount"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:boxStrokeErrorColor="@color/orange"
+                                    app:endIconMode="clear_text"
+                                    app:errorIconTint="@color/orange"
+                                    app:errorTextColor="@color/orange"
+                                    app:startIconDrawable="@drawable/ic_sum">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/txtTsSiteAproxCemAmount"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Approximate cement consumption"
+                                        android:digits="0123456789"
+                                        android:inputType="number" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </LinearLayout>
+
+                            <!--for running-->
+                            <LinearLayout
+                                android:id="@+id/siteRunning"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/layoutTsSiteCemBrand"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:hint="Currently using Brand"
+                                    app:boxStrokeErrorColor="@color/orange"
+                                    app:errorIconTint="@color/orange"
+                                    app:errorTextColor="@color/orange"
+                                    app:startIconDrawable="@drawable/ic_grid_white">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acSiteBrand"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="false" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/layoutTsSiteComPrice"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:boxStrokeErrorColor="@color/orange"
+                                    app:endIconMode="clear_text"
+                                    app:errorIconTint="@color/orange"
+                                    app:errorTextColor="@color/orange"
+                                    app:startIconDrawable="@drawable/ic_money">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/txtTsSiteComPrice"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Brand Price"
+                                        android:inputType="number" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/layoutTsProjectSiteStatus"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:hint="Present Site Status"
+                                    app:boxStrokeErrorColor="@color/orange"
+                                    app:errorIconTint="@color/orange"
+                                    app:errorTextColor="@color/orange"
+                                    app:startIconDrawable="@drawable/ic_status">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/acTsProjectSiteStatus"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="false" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/layoutTsSiteStored"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:boxStrokeErrorColor="@color/orange"
+                                    app:endIconMode="clear_text"
+                                    app:errorIconTint="@color/orange"
+                                    app:errorTextColor="@color/orange"
+                                    app:startIconDrawable="@drawable/ic_grid_white">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/txtTsSiteStored"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:digits="0123456789"
+                                        android:hint="Current number of storied "
+                                        android:inputType="number" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/layoutTsPriPartSiteCemCon"
+                                    android:visibility="gone"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    app:boxStrokeErrorColor="@color/orange"
+                                    app:endIconMode="clear_text"
+                                    app:errorIconTint="@color/orange"
+                                    app:errorTextColor="@color/orange"
+                                    app:startIconDrawable="@drawable/ic_sum">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/txtTsPriPartSiteCemCon"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="13sp"
+                                        android:focusable="false"
+                                        android:hint="Approximate remaining cement consumption"
+                                        android:inputType="number" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutTCallConSiteStatus"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:hint="Site Status"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_building">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTCallSiteStatus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="41dp"
+                                    android:focusable="false" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutTCallConStatus"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:hint="Convertion Status"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_status">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTCallConversionStatus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="8dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#E5E3E2 "
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="24dp"
+                                    android:layout_weight="0.1"
+                                    android:src="@drawable/referredby" />
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.9"
+                                    android:padding="5dp"
+                                    android:text="Site Referred By"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutTsSiteReferredby"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:hint="Site referred by"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_convertion_status">
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/acTsTsSiteReferredby"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <!--for self/trade/corporate/TS-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutTsPartSiteReferredEmp"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:endIconMode="clear_text"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_user">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/txtTsPartSiteReferredEmp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="EMP ID" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <TextView
+                                android:id="@+id/txtRefferedPartiesID"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:id="@+id/txtTSOtherArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaveSite"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Update Site"
+                        app:cornerRadius="0dp"
+                        android:textColor="@color/titan_theme_color"
+                        app:strokeColor="@color/titan_theme_color" />
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</FrameLayout>

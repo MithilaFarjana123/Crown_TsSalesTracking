@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="56dp"
+    tools:context=".UI.Fragment.Frag_Car_Booking">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <include
+            layout="@layout/car_slider_child"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            >
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f7faff"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date and Time "
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCarfdate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight=".5"
+                    app:endIconMode="clear_text"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtCarfdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:textSize="12sp"
+                        android:hint="From Date"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCarTodate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0.5"
+                    app:endIconMode="clear_text"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtCarTodate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:textSize="12sp"
+                        android:hint="To Date"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCarSTime"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:hint="Start Time"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0.5"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/ic_grid_white">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/acCarSTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:focusable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCarETime"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:hint="End Time"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0.5"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/ic_grid_white">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/acCarETime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:focusable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f7faff"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Required Info "
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
+
+<!--           pick up location-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCarPickupLoction"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/location">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCarPickupLoction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:hint="Pick up location"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--   destination location-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCardestination"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/location">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCardestination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:hint="Your destination"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--person-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCarNumOfUser"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_user">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCarNumOfUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:hint="Total number of person"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--person-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCarUserMobile"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/mobile">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCarUserMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:hint="Mobile Number "
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            car type-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Car Type"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_margin="10dp"/>
+
+
+            <!--                radio button-->
+            <RadioGroup
+                android:id="@+id/CarTradioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/CarTradioButton1"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Private Car" />
+
+                <RadioButton
+                    android:id="@+id/CarTradioButton2"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"                        android:layout_height="wrap_content"
+                    android:text="Micro bus" />
+
+                <!-- Add more radio buttons as needed -->
+
+            </RadioGroup>
+
+
+            <!--                        purpose-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCarPurpose"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/purpose">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCarPurpose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:hint="Purpose"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--                        remarks-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutCarRemarks"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_agenda">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCarRemarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:hint="Remarks"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f7faff"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveCar"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Book car"
+                app:cornerRadius="0dp"
+                android:textColor="@color/titan_theme_color"
+                app:strokeColor="@color/titan_theme_color" />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+        </ScrollView>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+</FrameLayout>

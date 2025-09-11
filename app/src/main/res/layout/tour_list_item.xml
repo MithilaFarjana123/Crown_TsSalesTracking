@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_two"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTourNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:drawableLeft="@drawable/ic_serial"
+                android:padding="5dp"
+                android:textSize="12sp"
+                android:text=" TR:023456"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/txtTourAppliedOn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:drawableRight="@drawable/ic_clockwhite"
+                android:gravity="center|end"
+                android:padding="5dp"
+                android:text="Applied On: Mon 24 Dec 2023 "
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtTourPurpose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="5dp"
+            android:textSize="16sp"
+            android:text="Purpose : Official"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:textStyle="bold"
+                android:drawableLeft="@drawable/ic_calendar_gray"
+                android:gravity="center|start"
+                android:text="  Tour Date"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/txtTourFrom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="center|end"
+                android:padding="5dp"
+                android:text="14 May 2024 - 15 May 2024"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+
+
+
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_authority_gray"
+            android:gravity="center|start"
+            android:textStyle="bold"
+            android:text="  Approve Authority : "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:id="@+id/txtTrApprove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Md. Chistiya Chowdhury > Minhaj Alam " />
+
+        <LinearLayout
+            android:id="@+id/layoutTrPending"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:drawableLeft="@drawable/ic_user_gray"
+                android:text="  Pending To : "
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTrPendingTo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="@color/black"
+                android:gravity="end"
+                android:text="Md. Chistiya Chowdhury > Minhaj Alam " />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layStatys"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F7F7F7"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTotalTourDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.35"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtAppliedTourStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.65"
+                android:gravity="center|end"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgTrStatus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="0.05" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtExpense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="@color/gray_two"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Claim Expense"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/txtStop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="@color/orange"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Stop"
+                android:textColor="@color/white"
+                tools:ignore="TextContrastCheck" />
+
+
+            <TextView
+                android:id="@+id/txtStart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="#5766B5"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Click here to start your tour"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/txtRunning"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="@drawable/border_green"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Running" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/imgRunning"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:padding="-5dp"
+                android:visibility="gone"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/live" />
+
+            <TextView
+                android:id="@+id/txtTourComplete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="#6945AA"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Tour finished"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/txtFinishExpense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="#FF5722"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Finish Expense"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/txtCompleted"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="#009688"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="This Tour is already completed"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

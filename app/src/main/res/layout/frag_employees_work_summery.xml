@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="56dp"
+    tools:context=".UI.Fragment.Frag_Employees_WorkSummery">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curved_transparent"
+            android:textCursorDrawable="@null"
+            android:visibility="gone"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@null"
+            app:queryHint="Search Employee" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rbBreadcram"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEmp"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginRight="5dp"
+            tools:listitem="@layout/emp_info_item" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/empWorkSumly"
+            layout="@layout/item_emp_work_summery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        </ScrollView>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/txtAttAuthNoData"
+            android:layout_width="160dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/no_data" />
+
+
+
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/baseline_search_24"
+        app:backgroundTint="@color/titan_theme_color"
+        app:tint="@color/white" />
+
+
+</FrameLayout>

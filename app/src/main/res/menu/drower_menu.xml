@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/title_one"
+        android:checkableBehavior="none">
+
+        <item
+            android:icon="@drawable/home_menu"
+            android:checkable="false"
+            android:enabled="false"
+            android:title="Home" />
+
+
+    </group>
+
+
+    <group
+        android:id="@+id/menu1"
+        android:checkableBehavior="single">
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_dashboard"
+            android:title="Dashboard" />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_user_profile"
+            android:title="Profile" />
+
+
+
+        <!--        <item-->
+        <!--            android:icon="@drawable/ic_expense_claim"-->
+        <!--            android:title="@string/expense_claim" />-->
+
+    </group>
+
+
+    <group
+        android:id="@+id/title_Att"
+        android:checkable="false"
+        android:checkableBehavior="none"
+        android:enabled="false">
+
+        <item
+            android:icon="@drawable/ic_att_approve"
+            android:title="Daily Attendance" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/menu_attendance"
+        android:checkableBehavior="single">
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_Live_Attendance"
+            android:title="Attendance Check Out" />
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_att_approve"
+            android:title="Attendance Approve" />
+
+        <!--        <item-->
+        <!--            android:icon="@drawable/ic_expense_claim"-->
+        <!--            android:title="@string/expense_claim" />-->
+
+    </group>
+
+
+
+
+    <!--SALES PORTAL-->
+
+    <group
+        android:checkable="false"
+        android:checkableBehavior="none"
+        android:enabled="false">
+
+        <item
+            android:icon="@drawable/mode_of_action_gray"
+            android:title="Daily Activity" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/menuSales"
+        android:checkableBehavior="single">
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_retiler_list"
+            android:title="Call Record" />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_call_approve"
+            android:title="Delivery bag approval" />
+
+
+
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_deliveryBagEntry"
+            android:title="Delivery Bag Entry" />
+
+
+
+
+        <!--        <item-->
+        <!--            android:icon="@drawable/ic_store_add"-->
+        <!--            android:title="@string/add_new_retailer" />-->
+
+        <!--        <item-->
+        <!--            android:icon="@drawable/ic_sales_order"-->
+        <!--            android:title="@string/sales_order" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_retiler_list"-->
+<!--            android:title="Distributor/Retailer visit" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_att_approve"-->
+<!--            android:title="Attendance Approve" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_cur_movement_plan_list"-->
+<!--            android:title="Current Movement Plan List" />-->
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_engineer_database"
+            android:title="Engineer Database" />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_contractor_database"
+            android:title="Contractor Database" />
+
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_mason_database"
+            android:title="Mason Database" />
+
+<!--        <item-->
+<!--            android:icon="@drawable/baseline_arrow_forward_gray"-->
+<!--            android:id="@+id/nav_mason_update"-->
+<!--            android:title="Mason update" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_push_message"-->
+<!--            android:title="Push Message" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_message_list"-->
+<!--            android:title="Message History" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_change_ac_move_plan"-->
+<!--            android:title="Urgent Plan Entry" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_collection_auth"-->
+<!--            android:title="Collection Approval" />-->
+
+        <!--        <item-->
+        <!--            android:icon="@drawable/ic_payment"-->
+        <!--            android:title="@string/sales_collection" />-->
+
+    </group>
+
+
+
+
+    <group
+        android:id="@+id/title_Move"
+        android:checkable="false"
+        android:checkableBehavior="none"
+        android:enabled="false">
+
+        <item
+            android:icon="@drawable/move_status_gray"
+            android:title="Movement Plan" />
+
+
+    </group>
+
+
+    <group
+        android:id="@+id/menuMovement"
+        android:checkableBehavior="single">
+
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_movement_plan"
+            android:title="Movement Plan Entry" />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_movement_plan_list"
+            android:title="Submit Movement Plan" />
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_app_movement_plan"
+            android:title="Approve Movement Plan" />
+ </group>
+
+
+    <!--    //Reports-->
+    <group
+        android:id="@+id/title_two"
+        android:checkable="false"
+        android:checkableBehavior="none"
+        android:enabled="false">
+        <item
+            android:icon="@drawable/ic_att_report"
+            android:title="Reports" />
+
+    </group>
+
+
+
+    <group
+        android:id="@+id/menu3"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_attendance_report"
+            android:title="Attendance Report" />
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_emp_work_sum"
+            android:title="Employee's Work Summary " />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_tour_bill_list"
+            android:title="Tour Bill status" />
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_runningOfferList"
+            android:title="Offer/Benefits/FAQ" />
+
+
+
+
+<!--        <item-->
+<!--            android:id="@+id/nav_leave_allocation"-->
+<!--            android:title="Leave Allocation" />-->
+
+
+    </group>
+
+    <group
+        android:id="@+id/title_three"
+        android:checkable="false"
+        android:checkableBehavior="none"
+        android:enabled="false">
+
+        <item
+            android:icon="@drawable/ic_details"
+            android:title="Others" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu4"
+        android:checkableBehavior="single">
+
+
+
+<!--        <item-->
+<!--            android:icon="@drawable/baseline_arrow_forward_gray"-->
+<!--            android:id="@+id/nav_meeting_room_booking"-->
+<!--            android:title="Meeting Room Booking" />-->
+
+<!--        <item-->
+<!--            android:icon="@drawable/baseline_arrow_forward_gray"-->
+<!--            android:id="@+id/nav_meeting_room_booking_list"-->
+<!--            android:title="Meeting Room Booking List" />-->
+
+<!--        <item-->
+<!--            android:icon="@drawable/baseline_arrow_forward_gray"-->
+<!--            android:id="@+id/nav_car_booking"-->
+<!--            android:title="Car Booking" />-->
+
+<!--        <item-->
+<!--            android:icon="@drawable/baseline_arrow_forward_gray"-->
+<!--            android:id="@+id/nav_car_booking_List"-->
+<!--            android:title="Car Booking List" />-->
+
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_settings"
+            android:title="Settings" />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_logout"
+            android:title="Logout" />
+
+    </group>
+
+
+</menu>

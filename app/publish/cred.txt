@@ -1,0 +1,2 @@
+alias:crown_titan
+pass:123456

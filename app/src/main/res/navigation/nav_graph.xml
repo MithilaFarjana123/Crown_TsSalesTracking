@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_dashboard"
+        android:label="@string/dashboard"
+        tools:layout="@layout/frag_dashboard">
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_retiler_list"
+            app:destination="@id/nav_retiler_list" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_engineer_database"
+            app:destination="@id/nav_engineer_database" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_contractor_database"
+            app:destination="@id/nav_contractor_database" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_mason_database"
+            app:destination="@id/nav_mason_database" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_taged_Call_Record_Entry"
+            app:destination="@id/nav_taged_Call_Record_Entry" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_Live_Attendance"
+            app:destination="@id/nav_Live_Attendance" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_attendance_report"
+            app:destination="@id/nav_attendance_report" />
+
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_att_approve"
+            app:destination="@id/nav_att_approve" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_movement_plan"
+            app:destination="@id/nav_movement_plan" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_app_movement_plan"
+            app:destination="@id/nav_app_movement_plan" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_movement_plan_list"
+            app:destination="@id/nav_movement_plan_list" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_travel_list"
+            app:destination="@id/nav_travel_list" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_Late_Application"
+            app:destination="@id/nav_Late_Application" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_meal_application"
+            app:destination="@id/nav_meal_application" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_meal_cost_report"
+            app:destination="@id/nav_meal_cost_report" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_paypin"
+            app:destination="@id/nav_paypin" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_calender"
+            app:destination="@id/nav_calender" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_Leave_List"
+            app:destination="@id/nav_Leave_List" />
+
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_Live_Attendance"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.frag_Live_Attendance1"
+        android:label="@string/attendance"
+        tools:layout="@layout/frag_live_attendance1" />
+
+    <fragment
+        android:id="@+id/nav_party_update"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Party_Update"
+        android:label="Party Update"
+        tools:layout="@layout/frag_party_update"/>
+
+    <fragment
+        android:id="@+id/nav_att_approve"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Attendance_Approve"
+        android:label="Attendance approve"
+        tools:layout="@layout/frag_attendance_approve"/>
+
+    <fragment
+        android:id="@+id/nav_expense_claim"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Expense_Claim"
+        android:label="Expense Claim"
+        tools:layout="@layout/frag_expense_claim" />
+
+
+    <fragment
+        android:id="@+id/nav_attendance_report"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_AttendenceReport"
+        android:label="@string/attendance_report"
+        tools:layout="@layout/frag_attendence_report" />
+
+
+
+
+    <fragment
+        android:id="@+id/nav_Leave_List"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_leave_list"
+        android:label="@string/leave_list"
+        tools:layout="@layout/frag_leave_list"/>
+
+    <fragment
+        android:id="@+id/nav_Pay_slip"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Payslip"
+        android:label="@string/pay_slip"
+        tools:layout="@layout/frag_payslip" />
+
+
+
+    <fragment
+        android:id="@+id/nav_Late_Application"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Late_Application"
+        android:label="@string/late_application"
+        tools:layout="@layout/frag_late_application" />
+
+    <fragment
+        android:id="@+id/nav_paypin"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_PaySlipPin"
+        android:label="Pin For Payslip"
+        tools:layout="@layout/frag_pay_slip_pin" />
+
+    <fragment
+        android:id="@+id/nav_notification_menu"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Notification_Menu"
+        android:label="@string/notification"
+        tools:layout="@layout/frag_notification_menu" />
+
+    <fragment
+        android:id="@+id/nav_travel_list"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Travel_List"
+        android:label="Travel List"
+        tools:layout="@layout/frag_travel_list" />
+
+    <fragment
+        android:id="@+id/nav_calender"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Calender"
+        android:label="Monthly Calendar"
+        tools:layout="@layout/frag_calender"/>
+
+    <fragment
+        android:id="@+id/nav_user_profile"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_User_Profile"
+        android:label="@string/user_profile"
+        tools:layout="@layout/frag_user_profile" />
+
+    <fragment
+        android:id="@+id/nav_leave_app_auth"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Leave_App_Auth"
+        android:label="@string/leave_application_authorization"
+        tools:layout="@layout/frag_leave_application_authorization" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_settings"
+        android:label="@string/settings"
+        tools:layout="@layout/frag_settings" />
+
+    <fragment
+        android:id="@+id/nav_late_approve"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Late_Approval"
+        android:label="@string/late_approval"
+        tools:layout="@layout/frag_late_approval" />
+
+
+    <fragment
+        android:id="@+id/nav_leave_allocation"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Leave_Allocation"
+        android:label="@string/leave_allocation"
+        tools:layout="@layout/frag_leave_allocation" />
+
+    <fragment
+        android:id="@+id/nav_tour_bill_list"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Tour_Bill_List"
+        android:label="@string/tour_bill"
+        tools:layout="@layout/frag_tour_bill"/>
+
+
+
+    <fragment
+        android:id="@+id/nav_tour_approve"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Tour_Approve_List"
+        android:label="@string/tour_approve_list"
+        tools:layout="@layout/frag_tour_approve_list" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_call_record"-->
+<!--        android:name="com.crowncement.tecnicalsupport.UI.Fragment.Frag_Call_Record"-->
+<!--        android:label="@string/call_record"-->
+<!--        tools:layout="@layout/frag_call_record" />-->
+
+
+
+    <fragment
+        android:id="@+id/nav_tour_expense"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Tour_Expense_Claim"
+        android:label="@string/tour_expense_claim"
+        tools:layout="@layout/frag_tour_expense_claim"/>
+
+    <fragment
+        android:id="@+id/nav_tour_expense_list"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Tour_Expense_Claim_List"
+        android:label="@string/tour_expense"
+        tools:layout="@layout/frag_tour_expense_claim_list"/>
+
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_tour_expense_list"-->
+<!--        android:name="com.crowncement.tecnicalsupport.UI.Fragment.Frag_Tour_Expense_Claim_List"-->
+<!--        android:label="Tour Expenses"-->
+<!--        tools:layout="@layout/frag_tour_expense_claim_list">-->
+<!--        <action-->
+<!--            android:id="@+id/action_nav_tour_expense_list_to_nav_tour_expense"-->
+<!--            app:destination="@id/nav_tour_expense" />-->
+<!--    </fragment>-->
+
+
+    <fragment
+        android:id="@+id/nav_retiler_list"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Customer_List"
+        android:label="Customer Information"
+        tools:layout="@layout/frag_retailer_list" >
+        <action
+            android:id="@+id/action_nav_retiler_list_to_nav_demo_customerHome"
+            app:destination="@id/nav_demo_customerHome" />
+
+        <action
+            android:id="@+id/action_nav_retiler_list_to_nav_party_entry"
+            app:destination="@id/nav_party_entry" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_retiler_home"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Customer_Home"
+        android:label="Customer home"
+        tools:layout="@layout/frag_customer_home" >
+<!--        <action-->
+<!--            android:id="@+id/action_nav_retiler_home_to_nav_retailer_details"-->
+<!--            app:destination="@id/nav_retailer_details" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_nav_retiler_home_to_nav_dealer_details"-->
+<!--            app:destination="@id/nav_dealer_details" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_nav_retiler_home_to_nav_other_details"-->
+<!--            app:destination="@id/nav_other_details" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_nav_retiler_home_to_nav_call_record"-->
+<!--            app:destination="@id/nav_call_record" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_nav_retiler_home_to_nav_payment_list"-->
+<!--            app:destination="@id/nav_payment_list" />-->
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_other_details"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Other_Partner"
+        android:label="Party Details"
+        tools:layout="@layout/frag_other_partner_update" />
+
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_dealer_details"-->
+<!--        android:name="com.crowncement.tecnicalsupport.UI.Fragment.Frag_Dealer_Update"-->
+<!--        android:label="Dealer Details"-->
+<!--        tools:layout="@layout/frag_dealer_update" />-->
+
+
+
+    <fragment
+        android:id="@+id/nav_payment_save"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Paymen_Collection_Save"
+        android:label="Collection Entry"
+        tools:layout="@layout/frag_paymen_collection_save" />
+
+
+
+    <fragment
+        android:id="@+id/nav_payment_list"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Payment_Collection_List"
+        android:label="Collection List"
+        tools:layout="@layout/frag_payment_collection_list">
+<!--        <action-->
+<!--            android:id="@+id/action_nav_payment_list_to_nav_payment_save"-->
+<!--            app:destination="@id/nav_payment_save" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_meal_application"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Apply_Meal"
+        android:label="Apply tomorrow's Meal"
+        tools:layout="@layout/frag_apply_meal" />
+
+
+    <fragment
+        android:id="@+id/nav_meal_cost_report"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Meal_Cost_Report"
+        android:label="Meal Cost"
+        tools:layout="@layout/frag_meal_cost_report" />
+
+
+    <fragment
+        android:id="@+id/nav_movement_plan"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Movement_Plan_Entry"
+        android:label="Movement plan entry"
+        tools:layout="@layout/frag_movement_plan"/>
+
+    <fragment
+        android:id="@+id/nav_app_movement_plan"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Approve_Movement_Plan"
+        android:label="Movement Plan Approve"
+        tools:layout="@layout/frag_approve_movement_plan"/>
+
+
+    <fragment
+        android:id="@+id/nav_movement_plan_list"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Movement_Plan_List"
+        android:label="Movement Plan List"
+        tools:layout="@layout/frag_movement_plan_list"/>
+
+    <fragment
+        android:id="@+id/nav_retailer_details"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Update_Retailer"
+        android:label="Customer Details"
+        tools:layout="@layout/frag_update_retailer" />
+
+    <fragment
+        android:id="@+id/nav_party_entry"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Party_Entry"
+        android:label="Party Entry "
+        tools:layout="@layout/frag_party_entry" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_add_new_customer"-->
+<!--        android:name="com.crowncement.tecnicalsupport.UI.Fragment.Frag_Add_New_Customer"-->
+<!--        android:label="Create New Customer"-->
+<!--        tools:layout="@layout/frag_add_new_customer"/>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_call_record_home"-->
+<!--        android:name="com.crowncement.tecnicalsupport.UI.Fragment.Frag_Call_Record_Home"-->
+<!--        android:label="Call Record"-->
+<!--        tools:layout="@layout/frag_call_record_home"/>-->
+
+    <fragment
+        android:id="@+id/nav_delivery_program"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Delivery_Program"
+        android:label="Delivery Program"
+        tools:layout="@layout/frag_delivery_program"/>
+
+    <fragment
+        android:id="@+id/nav_demo_customerHome"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Demo_Customer_Home"
+        android:label="Customer Home"
+        tools:layout="@layout/frag_demo_customer_home">
+
+        <action
+            android:id="@+id/action_nav_demo_customerHome_to_nav_demo_allSiteList"
+            app:destination="@id/nav_demo_allSiteList" />
+
+        <action
+            android:id="@+id/action_nav_demo_customerHome_to_nav_direct_callrecord"
+            app:destination="@id/nav_direct_callrecord" />
+
+        <action
+            android:id="@+id/action_nav_demo_customerHome_to_nav_Frag_SiteTag"
+            app:destination="@id/nav_Frag_SiteTag" />
+
+
+        <action
+            android:id="@+id/action_nav_demo_customerHome_to_nav_demo_masonEntry"
+            app:destination="@id/nav_demo_masonEntry" />
+
+
+        <action
+            android:id="@+id/action_nav_demo_customerHome_to_nav_derictcomplain"
+            app:destination="@id/nav_derictcomplain" />
+
+        <action
+            android:id="@+id/action_nav_demo_customerHome_to_nav_teamlead_Visit"
+            app:destination="@id/nav_teamlead_Visit" />
+
+
+
+
+    </fragment>
+
+
+
+
+    <fragment
+        android:id="@+id/nav_demo_siteentry"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Site_Entry"
+        android:label="Site Entry"
+        tools:layout="@layout/frag_site_entry"/>
+
+    <fragment
+        android:id="@+id/nav_direct_callrecord"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Call_RecordEntry"
+        android:label="Call Record"
+        tools:layout="@layout/frag_call_recordentry"/>
+
+    <fragment
+        android:id="@+id/nav_demo_allSiteList"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_All_Site"
+        android:label="All Site"
+        tools:layout="@layout/frag_all_site">
+
+        <action
+            android:id="@+id/action_nav_demo_allSiteList_to_nav_demo_siteentry"
+            app:destination="@id/nav_demo_siteentry" />
+
+        <action
+            android:id="@+id/action_nav_demo_allSiteList_to_nav_demo_Site_Home"
+            app:destination="@id/nav_demo_Site_Home" />
+
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_Frag_SiteTag"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_SiteTag"
+        android:label="Site Tag"
+        tools:layout="@layout/frag_site_tag"/>
+
+    <fragment
+        android:id="@+id/nav_taged_Call_Record_Entry"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Taged_Call_Record_Entry"
+        android:label="Call Record"
+        tools:layout="@layout/frag_taged_call__record_entry"/>
+
+    <fragment
+        android:id="@+id/nav_demo_Site_Home"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Demo_Site_Home"
+        android:label="Site Home"
+        tools:layout="@layout/frag_demo_site_home"/>
+
+    <fragment
+        android:id="@+id/nav_emp_work_sum"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Employees_WorkSummery"
+        android:label="Employee's Work Summary"
+        tools:layout="@layout/frag_employees_work_summery"/>
+
+    <fragment
+        android:id="@+id/nav_Site_Summery"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Site_Summery"
+        android:label="Site Summary"
+        tools:layout="@layout/frag_site_summery"/>
+
+
+    <fragment
+        android:id="@+id/nav_derictcomplain"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Complain"
+        android:label="Complain Entry"
+        tools:layout="@layout/frag_complain" />
+
+    <fragment
+        android:id="@+id/nav_sitecomplain"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Site_Complain"
+        android:label="Site complain Entry"
+        tools:layout="@layout/frag_site_complain" />
+
+
+    <fragment
+        android:id="@+id/nav_demo_masonEntry"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Mason_Add"
+        android:label="Mason Entry"
+        tools:layout="@layout/frag_mason_add" />
+
+    <fragment
+        android:id="@+id/nav_demo_masonList"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_MasonList"
+        android:label="Mason List"
+        tools:layout="@layout/frag_mason_list" />
+
+
+
+
+    <fragment
+        android:id="@+id/nav_ref_callrecord"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Refference_CallRecord"
+        android:label="Follow Up Call Record Entry"
+        tools:layout="@layout/frag_refference_call_record" />
+
+    <fragment
+        android:id="@+id/nav_engineer_database"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Engineer_Database"
+        android:label="Engineer Database"
+        tools:layout="@layout/frag_engineer_database">
+        <action
+            android:id="@+id/action_nav_engineer_database_to_nav_engineer_add_update"
+            app:destination="@id/nav_engineer_add_update" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_engineer_add_update"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Engineer_Add_Update"
+        android:label="Engineer Information"
+        tools:layout="@layout/frag_engineer_add_update"/>
+
+    <fragment
+        android:id="@+id/nav_contractor_database"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Contractor_Database"
+        android:label="Contractor Database"
+        tools:layout="@layout/frag_contractor_database">
+        <action
+            android:id="@+id/action_nav_contractor_database_to_nav_contractor_add_update"
+            app:destination="@id/nav_contractor_add_update" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_contractor_add_update"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Contractor_Add_Update"
+        android:label="Contractor Add Update"
+        tools:layout="@layout/frag_contractor_add_update"/>
+
+    <fragment
+        android:id="@+id/nav_meeting_room_booking"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_MeetingRoom_Booking"
+        android:label="Meeting Room Booking"
+        tools:layout="@layout/frag_meeting_room_booking"/>
+
+    <fragment
+        android:id="@+id/nav_meeting_room_booking_list"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Meeting_Room_List"
+        android:label="Meeting Room Booking"
+        tools:layout="@layout/frag_meeting_room_list"/>
+
+
+    <fragment
+        android:id="@+id/nav_car_booking"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Car_Booking"
+        android:label="Meeting Room Booking"
+        tools:layout="@layout/frag_car_booking"/>
+
+    <fragment
+        android:id="@+id/nav_car_booking_List"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Farg_CarBooking_List"
+        android:label="Car Booking List"
+        tools:layout="@layout/farg_car_booking_list"/>
+
+    <fragment
+        android:id="@+id/nav_mason_database"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_MasonDatabase"
+        android:label="Mason Database"
+        tools:layout="@layout/frag_mason_database">
+        <action
+            android:id="@+id/action_nav_mason_database_to_nav_mason_update"
+            app:destination="@id/nav_mason_update" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_mason_update"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Mason_update"
+        android:label="Mason Update"
+        tools:layout="@layout/frag_mason_update"/>
+
+    <fragment
+        android:id="@+id/nav_site_update"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Site_Update"
+        android:label="Site Update"
+        tools:layout="@layout/frag_site_update"/>
+
+    <fragment
+        android:id="@+id/nav_site_progress"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Site_Progress"
+        android:label="Site Progress"
+        tools:layout="@layout/frag_site_progress"/>
+
+    <fragment
+        android:id="@+id/nav_masonWorkSum"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Mason_Worksum"
+        android:label="Mason work summery"
+        tools:layout="@layout/frag_mason_worksum" />
+
+
+    <fragment
+        android:id="@+id/nav_engWorkSum"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Engineer_Worksum"
+        android:label="Engineer work summery"
+        tools:layout="@layout/frag_engineer_worksum" />
+    <fragment
+        android:id="@+id/nav_conWorkSum"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Contractor_Worksum"
+        android:label="Contractor work summery"
+        tools:layout="@layout/frag_contractor_worksum" />
+
+    <fragment
+        android:id="@+id/nav_deliveryBagEntry"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_delivery_Bag_Entry"
+        android:label="Delivery Site List"
+        tools:layout="@layout/frag_delivery_bag_entry" />
+
+    <fragment
+        android:id="@+id/nav_deliveryBagEntryChild"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_delivery_Bag_Entry_Child"
+        android:label="Delivery Bag Entry"
+        tools:layout="@layout/frag_delivery_bag_entry_child" />
+
+
+    <fragment
+        android:id="@+id/nav_runningOfferList"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Running_OfferList"
+        android:label="Offer/Benefits/FAQ"
+        tools:layout="@layout/frag_running_offer_list" />
+
+    <fragment
+        android:id="@+id/nav_call_approve"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_CallRecord_Approval"
+        android:label="Delivery bag approval"
+        tools:layout="@layout/frag_call_record_approval"/>
+
+    <fragment
+        android:id="@+id/nav_teamlead_Visit"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_TeamLead_CallRecord"
+        android:label="Site Verification"
+        tools:layout="@layout/frag_team_lead_call_record"/>
+
+</navigation>

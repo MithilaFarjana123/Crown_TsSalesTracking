@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTotalDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:paddingLeft="4dp"
+                android:text="2 Days Application" />
+
+            <TextView
+                android:id="@+id/txtLeaveStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:textSize="11sp"
+                android:padding="3dp"
+                android:text="Pending" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtLeaveFromDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="Wed, 6 June"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <TextView
+              android:paddingLeft="4dp"
+              android:id="@+id/txtReason"
+              android:textSize="11sp"
+              android:layout_width="0dp"
+              android:gravity="center_vertical"
+              android:layout_height="wrap_content"
+              android:layout_weight="0.7"/>
+
+          <TextView
+              android:id="@+id/txtLeaveType"
+              android:layout_width="0dp"
+              android:layout_weight="0.3"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="3dp"
+              android:gravity="center"
+              android:padding="5dp"
+              android:textSize="11sp"
+              android:text="Medical"
+              android:textStyle="bold" />
+
+
+<!--          android:background="?android:attr/selectableItemBackground"-->
+<!--          android:drawableRight="@drawable/ic_arrow_right"-->
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:background="@color/titan_theme_color">
+
+    <LinearLayout
+        android:layout_weight="0.2"
+        android:layout_width="0dp"
+        android:layout_gravity="center"
+        android:layout_height="50dp">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgUserHomeImage"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_user_profile"
+            android:translationZ="10dp"
+            app:civ_circle_background_color="@color/white" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_weight="0.8"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Mithila Farjana"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="center|start"/>
+
+
+
+
+
+
+
+
+</LinearLayout>

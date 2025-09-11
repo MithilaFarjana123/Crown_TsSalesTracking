@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.Fragment.Frag_Site_Complain"
+    android:layout_marginTop="56dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutComTSiteType"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="Site Type"
+                app:boxStrokeErrorColor="@color/orange"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_grid_white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/acComTSiteType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F8F6F5"
+                android:orientation="horizontal">
+
+                <!--            <TextView-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="match_parent"-->
+                <!--                android:layout_weight="0.5"-->
+                <!--                android:gravity="center"-->
+                <!--                android:padding="5dp"-->
+                <!--                android:text="Please enter the following fields to submit complain"-->
+                <!--                android:textColor="@color/black"-->
+                <!--                android:textStyle="bold" />-->
+
+
+            </LinearLayout>
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTDisTopic"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Complain Topic"
+                        app:endIconMode="clear_text"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:errorIconTint="@color/orange"
+                        app:startIconDrawable="@drawable/ic_client_type_gray"
+                        app:errorTextColor="@color/orange">
+
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:editable="false"
+                            android:id="@+id/txtComTDisTopic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTSiteAddTopic"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:endIconMode="clear_text"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/ic_reason">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtComTAddTopic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Complain Details" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTVisType"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Visit Type"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/ic_grid_white">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/acComTlVistype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTMovStatus"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Movement Status"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/move_status">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/acComTMovStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTInformedBy"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Complain informed by"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/ic_user">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/acComTInformedBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTinformedID"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:endIconMode="clear_text"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/ic_user_profile">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtComTinformedID"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Employee  Id" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/informedpersonIdComT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Complainer ID :"
+                        android:padding="5dp"
+                        android:layout_margin="10dp"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTComplainRecDate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtComTComplainRecDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="Complain Receive Date" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTConModOfAction"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Mode of Action"
+                        app:endIconMode="clear_text"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:errorIconTint="@color/orange"
+                        app:startIconDrawable="@drawable/ic_client_type_gray"
+                        app:errorTextColor="@color/orange">
+
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:editable="false"
+                            android:id="@+id/txtComTConModOfAction"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTSolveStatus"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Complain solve status"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/ic_status">
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Resolve Status"
+                        android:padding="5dp"
+                        android:layout_margin="10dp"/>
+
+
+                    <!--                radio button-->
+                    <RadioGroup
+                        android:id="@+id/TradioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/TradioButton1"
+                            android:layout_weight="0.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Yes" />
+
+                        <RadioButton
+                            android:id="@+id/TradioButton2"
+                            android:layout_weight="0.5"
+                            android:layout_width="0dp"                        android:layout_height="wrap_content"
+                            android:text="No" />
+
+                        <!-- Add more radio buttons as needed -->
+
+                    </RadioGroup>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTNoReason"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:endIconMode="clear_text"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/ic_reason">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtComNoTReason"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Reason " />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTResolveReq"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Requirements"
+                        app:boxStrokeErrorColor="@color/orange"
+                        app:errorIconTint="@color/orange"
+                        app:errorTextColor="@color/orange"
+                        app:startIconDrawable="@drawable/baseline_all_out_24">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/acComTResolveReq"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutComTComplainResolveDate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtComTComplainResolveDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:hint="Tentative resolve Date" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#E5E3E2"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"/>
+
+                                <ImageView
+                                    android:id="@+id/takeComTTsComimage"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="0.1"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end|center"
+                                    android:src="@drawable/add_a_photo" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/tsComTComplainImage"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/problem" />
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!--end complain-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaveComTdemoComRecord"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Submit Complain"
+                        app:cornerRadius="0dp"
+                        android:textColor="@color/titan_theme_color"
+                        app:strokeColor="@color/titan_theme_color" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/acComTSolveStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false" />
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</FrameLayout>

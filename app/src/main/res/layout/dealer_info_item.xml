@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="3dp">
+
+    <LinearLayout
+        android:id="@+id/layout_Dealer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtDealerTypeName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:background="#F5F5F5"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:id="@+id/txtDealerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name: Khorshed Alom Talukder"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/hind_siliguri_light_egular"
+                android:id="@+id/txtDealerMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mobile:+8801765432343"/>
+
+            <TextView
+                android:textSize="12sp"
+                android:fontFamily="@font/hind_siliguri_light_egular"
+                android:id="@+id/txtDealerAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address:123 South Bashabo,Dhaka" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

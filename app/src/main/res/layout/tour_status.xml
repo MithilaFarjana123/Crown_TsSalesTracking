@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cancelT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/titan_theme_color"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_baseline_cancel_white" />
+
+        <TextView
+            android:id="@+id/txtTour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+           android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Tour No:"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/travel"/>
+
+        <TextView
+            android:id="@+id/txtInfo"
+            android:text="Your travel is running....."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

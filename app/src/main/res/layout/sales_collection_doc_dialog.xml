@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtDocCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/titan_theme_color"
+            android:drawableRight="@drawable/ic_baseline_cancel_white"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtPaymentDocument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Payment Attached Document"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.95"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/imgShowDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/noDoc"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:lottie_autoPlay="true"
+            android:visibility="gone"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/no_doc" />
+
+        <LinearLayout
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:src="@drawable/baseline_turn_left"
+                android:id="@+id/imgLeft"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:src="@drawable/baseline_turn_right"
+                android:id="@+id/imgRight"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOK"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="OKAY"
+            app:cornerRadius="0dp"
+            app:strokeColor="@color/crown_icon_color" />
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="56dp"
+    tools:context=".UI.Fragment.Frag_Mason_Worksum">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgUserName"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_user_profile"
+            app:civ_border_color="#CCCCCC"
+            app:civ_border_width="1dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name : "
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:backgroundTint="#f5b7b1"
+                app:cardCornerRadius="8dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/mason"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/sbp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        android:text="SBP ID : "/>
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:orientation="vertical">
+
+
+                <!--                card for sbp-->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#d6eaf8"
+                    android:layout_height="72dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/site_icon"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/numOfSite"
+                            android:layout_weight="0.7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:padding="10dp"
+                            android:text="Converted Site : "/>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_weight="0.1"
+                    android:layout_width="0dp"
+                    android:layout_height="5dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#ebdef0"
+                    android:layout_height="72dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_cement"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/deliveredbag"
+                            android:layout_weight="0.7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:padding="10dp"
+                            android:text="Delivered bag : "/>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

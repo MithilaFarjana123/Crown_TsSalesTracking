@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/txtLeaveTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Leave Allocation Summary"
+        android:gravity="center"
+        android:background="#F7F7F7"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--Ui component for our pie chart-->
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
+            android:layout_weight="0.7"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:layout_below="@id/txtLeaveTitle"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <LinearLayout
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/pieChart"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:textColor="#898583"
+                android:drawableLeft="@drawable/ic_circle"
+                android:drawableTint="@color/blue"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="Allocation"
+                android:textAlignment="center"
+                 />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_circle"
+                android:drawableTint="@color/light_green"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="Remain"
+                android:textAlignment="center"
+                android:textColor="#898583"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_circle"
+                android:drawableTint="@color/light_orange"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="Enjoyed"
+                android:textAlignment="center"
+                android:textColor="#898583"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="0.1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/txtAllocation"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:drawableTint="@color/blue"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="14"
+                android:textAlignment="center"
+                android:textColor="#898583"
+                />
+
+            <TextView
+                android:id="@+id/txtRem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:drawableTint="@color/light_green"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="10"
+                android:textAlignment="center"
+                android:textColor="#898583"
+                />
+
+            <TextView
+                android:id="@+id/txtEnjoyed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:drawableTint="@color/light_orange"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="4"
+                android:textAlignment="center"
+                android:textColor="#898583"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <com.github.mikephil.charting.charts.PieChart-->
+<!--        android:id="@+id/pieChart"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp" />-->
+
+
+<!--</LinearLayout>-->

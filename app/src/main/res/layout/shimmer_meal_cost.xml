@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:padding="5dp">
+
+        <View
+            android:layout_weight="0.05"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/crown_icon_color"/>
+
+        <TextView
+            android:id="@+id/txtMealDate"
+            android:textColor="@color/green"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:background="#f7f9f9"
+            android:text=" "/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#CCCCCC"/>
+
+        <ImageView
+            android:id="@+id/txtMealStatus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:gravity="center" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#CCCCCC"/>
+
+        <TextView
+            android:id="@+id/txtMeal"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:background="#e5e7e9"
+            android:text=" " />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#CCCCCC"/>
+
+        <TextView
+            android:id="@+id/txtRate"
+            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#f7f9f9"
+            android:text=" " />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="#CCCCCC"/>
+
+        <TextView
+            android:id="@+id/txtOverhead"
+            android:textColor=" #ec0939"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#ebedef"
+            android:text=" " />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

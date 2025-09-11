@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="56dp"
+    tools:context=".UI.Fragment.Frag_Site_Summery">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutFromDate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtFrDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:textSize="12sp"
+                            android:hint="From Date"/>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutToDate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtTDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:textSize="12sp"
+                            android:hint="To Date"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <ImageView
+        android:id="@+id/tsSiteImage"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/site_information" />
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:background="@color/gray_three"
+                    android:text="Site Information "/>
+
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_weight="0.2"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:padding="2dp"
+                android:src="@drawable/site_icon"/>
+
+
+
+
+
+
+            <TextView
+                android:layout_weight="0.7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text="Site ID  "/>
+
+            <TextView
+                android:layout_weight="0.05"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text=" : "/>
+
+
+            <TextView
+                android:id="@+id/siteID"
+                android:layout_weight="0.4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text=" "/>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/date_icon"/>
+
+
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="First delivery date  "/>
+
+                <TextView
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" : "/>
+
+
+
+                <TextView
+                    android:id="@+id/firstDelDate"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" "/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_delivery"/>
+
+
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="First delivery Quantity  "/>
+
+                <TextView
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" : "/>
+
+
+
+                <TextView
+                    android:id="@+id/firstDelQty"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" "/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/date_icon"/>
+
+
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="Last delivery date  "/>
+
+                <TextView
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" : "/>
+
+
+
+                <TextView
+                    android:id="@+id/lastDelDate"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" "/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_delivery"/>
+
+
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="Last delivery Quantity  "/>
+
+                <TextView
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" : "/>
+
+
+
+                <TextView
+                    android:id="@+id/lastDelQty"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" "/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_sum"/>
+
+
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="Total Bag Quantity  "/>
+
+
+                <TextView
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" : "/>
+
+
+                <TextView
+                    android:id="@+id/totalNumDelivary"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" "/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ref_call"/>
+
+
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="Reference Call Record  "/>
+
+                <TextView
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" : "/>
+
+
+                <TextView
+                    android:id="@+id/refCall"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" "/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_weight="0.2"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:src="@drawable/site_complain"/>
+
+
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" Number of Entry  "/>
+
+                <TextView
+                    android:layout_weight="0.05"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" : "/>
+
+
+                <TextView
+                    android:id="@+id/comNum"
+                    android:layout_weight="0.4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text=" "/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+    </ScrollView>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:visibility="gone"
+            android:id="@+id/searchFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/baseline_search_24"
+            app:backgroundTint="@color/titan_theme_color"
+            app:tint="@color/white" />
+
+    </LinearLayout>
+
+</FrameLayout>

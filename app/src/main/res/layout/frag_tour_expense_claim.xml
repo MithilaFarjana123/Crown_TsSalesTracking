@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Fragment.Frag_Tour_Expense_Claim">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical"
+                        android:paddingTop="20dp">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:enabled="false"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_calendar">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtDateExpen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="Expense Date" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <!--Expense type-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutTExpenseType"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Expense Type"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_type">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acTExpense"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--Expense  sub type-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutAcSubType"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Expense Sub-Type"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_type">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acSubType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                        <!--Accomo-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutAcoType"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Accommodation Type"
+                            android:visibility="gone"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_home">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acACType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--Mode of transport-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutModeOfTransport"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Mode of Transport"
+                            android:visibility="gone"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_transport_type">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acModeOfTransport"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--From-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutFrom"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="gone"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/default_selected_dot">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtFrom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="From" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--  TO-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutTo"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="gone"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/default_selected_dot">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtTo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="To" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--Food Mode-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutFood"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Food Category"
+                            android:visibility="gone"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_food">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acFoodCategory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--Payment Mode-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutPaymentMode"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Payment Mode"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_taka">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acPaymentMode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--Amount-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutAmount"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_taka_bd">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtAmountT"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="01234567890"
+                                android:hint="Amount"
+                                android:inputType="number" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Remarks-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="5dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_outline_doc">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtRemark"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Remarks" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--Attached Doc-->
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_margin="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#d0cecd"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.8"
+                                        android:padding="5dp"
+                                        android:text="Required Documents"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+
+                                    <ImageView
+                                        android:id="@+id/adPDF"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.1"
+                                        android:clickable="true"
+                                        android:src="@drawable/ic_add_pdf" />
+
+                                    <ImageView
+                                        android:id="@+id/imgAddExpenseImages"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.1"
+                                        android:clickable="true"
+                                        android:src="@drawable/add_image" />
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/attachedDoc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="170dp"
+                                    android:scaleType="fitXY" />
+
+                                <TextView
+                                    android:id="@+id/txtFileName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnExpenseSubmit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Submit Expense" />
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="56dp"
+    tools:context=".UI.Fragment.Frag_Contractor_Add_Update">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="#CCCCCC"
+            android:orientation="horizontal">
+
+
+
+            <TextView
+                android:id="@+id/conSbp"
+                android:layout_weight="0.4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:text="SBP "/>
+
+
+            <TextView
+                android:id="@+id/createDate"
+                android:layout_weight="0.6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:gravity="right"
+                android:text="date "/>
+
+
+        </LinearLayout>
+
+        <!--PROFILE-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3" />
+
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/resizeImage"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_gravity="center|top"-->
+<!--                    android:layout_marginLeft="-20dp"-->
+<!--                    android:layout_weight="0.25"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                    android:src="@drawable/ic_restart" />-->
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgCoProfile"
+                    android:layout_width="185dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/ic_user_profile"
+                    app:civ_border_color="#CCCCCC"
+                    app:civ_border_width="1dp" />
+
+                <ImageView
+                    android:id="@+id/imgSelectProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_weight="0.25"
+                    android:src="@drawable/ic_baseline_add_a_photo" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <!--NAME ,Address-->
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_marginTop="-50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/half_curved"
+            android:orientation="vertical">
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutConName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_user_gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtConName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:hint="Contractor Name  (as per NID)" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutConPresentAdd"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_baseline_home">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtPreAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:hint="Present Address" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutNIDNUm"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeErrorColor="@color/orange"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@color/orange"
+                app:errorTextColor="@color/orange"
+                app:startIconDrawable="@drawable/ic_id">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNIDNUm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:hint="NID Number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="7dp"
+                android:text=""
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+
+<!--        <androidx.core.widget.NestedScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:cardCornerRadius="8dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="#CCCCCC"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_user_gray" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.9"
+                                android:padding="8dp"
+                                android:text="Contractor Information"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <!--Per address-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutPerAddress"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_business">
+
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtPerAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:hint="Permanant Address"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--mobile1-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutCMo1"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_smartphone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtMobile1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:digits="0123456789"
+                                android:hint="Mobile"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--party mobile 2-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutC2Mo"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_smartphone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtMobile2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:digits="0123456789"
+                                android:hint="Alternative Mobile"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--Party experience-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutConExperience"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_stars_color">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtConExperience"
+                                android:inputType="number"
+                                android:digits="0123456789"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:hint="Total Year Of Work Experience" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--DOB-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutCDOB"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_calendar">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtConDOB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:focusable="false"
+                                android:hint="Date of birth"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--age-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutCAge"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_number">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtConAge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:focusable="false"
+                                android:hint="Age"
+                                android:singleLine="true" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <!-- ongoing|crown site-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal">
+                            <!--ongoing site-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutCOngoing"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:endIconMode="clear_text"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_number">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/txtConOngoing"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/transparent"
+                                    android:digits="0123456789"
+                                    android:hint="Ongoing Site"
+                                    android:inputType="number"
+                                    android:singleLine="true" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.01"
+                                android:background="#CCCCCC" />
+
+                            <!--crown site-->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/layoutCCrown"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:boxStrokeErrorColor="@color/orange"
+                                app:endIconMode="clear_text"
+                                app:errorIconTint="@color/orange"
+                                app:errorTextColor="@color/orange"
+                                app:startIconDrawable="@drawable/ic_number">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/txtConCrown"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/transparent"
+                                    android:digits="0123456789"
+                                    android:hint="Crown Site"
+                                    android:inputType="number"
+                                    android:singleLine="true" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+
+                        <!--Num laber-->
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutNumLabo"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:endIconMode="clear_text"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_mason">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtConLabour"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:digits="0123456789"
+                                android:hint="Number of Mason/Labor"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <!--Category-->
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutConProg"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Participated program Category"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_outline_doc">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acConProgram"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#CCCCCC" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center"
+                            android:text="Top Three Recommended Brand"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#CCCCCC" />
+
+                        <!--BRAND1-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutTop1"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Recommended Brand One"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_baseline_one_gray">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/txtConBrand1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:focusable="false"
+                                android:gravity="center"
+                                android:padding="15dp"
+                                android:textColorHint="#787171"
+                                android:textSize="12sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--BRAND2-->
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutTop2"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Recommended Brand Two"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_two_gray">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/txtConBrand2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:focusable="false"
+                                android:gravity="center"
+                                android:padding="15dp"
+                                android:textColorHint="#787171"
+                                android:textSize="12sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!--BRAND3-->
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutTop3"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="Recommended Brand Three"
+                            app:boxStrokeErrorColor="@color/orange"
+                            app:errorIconTint="@color/orange"
+                            app:errorTextColor="@color/orange"
+                            app:startIconDrawable="@drawable/ic_number_three_gray">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/txtConBrand3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:focusable="false"
+                                android:gravity="center"
+                                android:padding="15dp"
+                                android:textColorHint="#787171"
+                                android:textSize="12sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <!--was Remarks-->
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+<!--                Nominees info-->
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    app:cardCornerRadius="8dp"-->
+<!--                    app:cardElevation="8dp">-->
+
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:orientation="vertical">-->
+
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="#E5E3E2 "-->
+<!--                            android:orientation="horizontal">-->
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="24dp"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_weight="0.1"-->
+<!--                                android:src="@drawable/ic_nominiee" />-->
+
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="0.9"-->
+<!--                                android:padding="5dp"-->
+<!--                                android:text="Contractor's Nominee Information  "-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textStyle="bold" />-->
+
+
+
+
+
+
+<!--                        </LinearLayout>-->
+
+
+<!--                        &lt;!&ndash;nominee name&ndash;&gt;-->
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/layoutConNName"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_marginRight="10dp"-->
+<!--                            app:boxStrokeErrorColor="@color/orange"-->
+<!--                            app:endIconMode="clear_text"-->
+<!--                            app:errorIconTint="@color/orange"-->
+<!--                            app:errorTextColor="@color/orange"-->
+<!--                            app:startIconDrawable="@drawable/ic_user">-->
+
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:id="@+id/txtConNName"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:background="@color/transparent"-->
+<!--                                android:hint="Nominee's Name "-->
+<!--                                android:singleLine="true" />-->
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+<!--                        &lt;!&ndash;nominee mobile number&ndash;&gt;-->
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/layoutConNnum"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_marginRight="10dp"-->
+<!--                            app:boxStrokeErrorColor="@color/orange"-->
+<!--                            app:endIconMode="clear_text"-->
+<!--                            app:errorIconTint="@color/orange"-->
+<!--                            app:errorTextColor="@color/orange"-->
+<!--                            app:startIconDrawable="@drawable/mobile">-->
+
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:id="@+id/txtConNnum"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:background="@color/transparent"-->
+<!--                                android:hint="Nominee's Number"-->
+<!--                                android:singleLine="true" />-->
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
+
+
+<!--                        &lt;!&ndash;rltn with mason&ndash;&gt;-->
+
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/layoutConNRltn"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:layout_marginRight="10dp"-->
+<!--                            android:hint="Relation"-->
+<!--                            android:textColor="#898583"-->
+<!--                            app:startIconDrawable="@drawable/ic_relation">-->
+
+
+<!--                            <AutoCompleteTextView-->
+<!--                                android:id="@+id/acConNRltn"-->
+<!--                                android:textColor="#898583"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:focusable="false" />-->
+
+
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+
+                <!--      Nominee's NID CARD-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    app:cardCornerRadius="8dp"-->
+<!--                    app:cardElevation="8dp">-->
+
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="#E5E3E2 "-->
+<!--                            android:orientation="horizontal">-->
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="24dp"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_weight="0.1"-->
+<!--                                android:src="@drawable/ic_nom_nid" />-->
+
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="0.9"-->
+<!--                                android:padding="5dp"-->
+<!--                                android:text="Nominee's NID Upload"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textStyle="bold" />-->
+
+
+
+<!--                        </LinearLayout>-->
+
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtConNomNidFileName"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center" />-->
+
+<!--                        &lt;!&ndash;            android:src="@drawable/upload_icon"&ndash;&gt;-->
+
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/imgConNomNidFile"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="120dp"-->
+<!--                            android:drawableLeft="@drawable/ic_camera_cover"-->
+<!--                            android:scaleType="fitXY" />-->
+
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:cardCornerRadius="20dp"-->
+<!--                            android:layout_marginRight="20dp"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:layout_marginTop="10dp"-->
+<!--                            android:layout_marginBottom="10dp">-->
+
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:padding="5dp"-->
+<!--                                android:orientation="horizontal">-->
+
+<!--                                <TextView-->
+<!--                                    android:id="@+id/addConNomNidCamera"-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="14dp"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_weight="0.3"-->
+<!--                                    android:drawableLeft="@drawable/ic_camera_cover"-->
+<!--                                    android:gravity="center"-->
+<!--                                    android:text="CAMERA"-->
+<!--                                    android:textColor="@color/black"-->
+<!--                                    android:textStyle="bold" />-->
+
+<!--                                <View-->
+<!--                                    android:layout_width="1dp"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:background="@color/black"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:id="@+id/pdfAddConNomNID"-->
+<!--                                    android:layout_weight="0.3"-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:text="PDF"-->
+<!--                                    android:drawableLeft="@drawable/ic_add_pdf"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    android:gravity="center"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:textColor="@color/titan_theme_color"/>-->
+
+<!--                                <View-->
+<!--                                    android:layout_width="1dp"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:background="@color/black"/>-->
+
+<!--                                <TextView-->
+<!--                                    android:id="@+id/imgAddConNomNID"-->
+<!--                                    android:layout_weight="0.3"-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:text="GALLERY"-->
+<!--                                    android:drawableLeft="@drawable/image_placeholder"-->
+<!--                                    android:textStyle="bold"-->
+<!--                                    android:gravity="center"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:textColor="@color/green"/>-->
+
+<!--                            </LinearLayout>-->
+
+<!--                        </androidx.cardview.widget.CardView>-->
+
+
+
+
+
+
+
+<!--                    </LinearLayout>-->
+
+
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+
+
+                <!--NID Image Front-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="#CCCCCC"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imgNIDPreview"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:padding="5dp"
+                                android:src="@drawable/image_placeholder" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:padding="8dp"
+                                android:text="Add NID Card"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/resizeNidCard"-->
+<!--                                android:layout_width="29dp"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:layout_weight="0.1"-->
+<!--                                android:padding="5dp"-->
+<!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                                android:src="@drawable/ic_restart" />-->
+
+
+
+
+                            <ImageView
+                                android:id="@+id/imgAddNID"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:padding="5dp"
+                                android:src="@drawable/add_image"/>
+<!--                                android:src="@drawable/ic_add_pdf"-->
+
+
+
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imgNidFile"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitXY" />
+
+                        <TextView
+                            android:id="@+id/txtNidFileName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <!--Card Image-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="#CCCCCC"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:padding="5dp"
+                                android:src="@drawable/image_placeholder" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:padding="8dp"
+                                android:text="Add Visiting Card"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/resizeVisitingCard"-->
+<!--                                android:layout_width="29dp"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:layout_weight="0.1"-->
+<!--                                android:padding="5dp"-->
+<!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                                android:src="@drawable/ic_restart" />-->
+
+
+                            <ImageView
+                                android:id="@+id/imgAddVCard"
+                                android:layout_width="29dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_baseline_photo_camera" />
+
+                        </LinearLayout>
+
+
+                        <ImageView
+                            android:id="@+id/imgConVisitingCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitXY" />
+
+                        <TextView
+                            android:id="@+id/cvtxtPdfName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddContractor"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Submit"
+                    android:textColor="@color/titan_theme_color"
+                    app:cornerRadius="0dp"
+                    app:strokeColor="@color/titan_theme_color" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

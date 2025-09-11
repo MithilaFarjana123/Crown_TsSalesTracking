@@ -1,0 +1,43 @@
+package com.crowncement.TsSalesTracking.data.Model
+
+import com.google.gson.annotations.SerializedName
+
+data class GetSalesMoveCallChild(
+    @SerializedName("ent_time"          ) var entTime         : String? = "",
+    @SerializedName("last_upd_time"     ) var lastUpdTime     : String? = "",
+    @SerializedName("trn_no"            ) var trnNo           : String? = "",
+    @SerializedName("ent_date"          ) var entDate         : String? = "",
+    @SerializedName("party_id"          ) var partyId         : String? = "",
+    @SerializedName("visit_type"        ) var visitType       : String? = "",
+    @SerializedName("site_id"           ) var siteId          : String? = "",
+    @SerializedName("entry_user"        ) var entryUser       : String? = "",
+    @SerializedName("last_upd_user"     ) var lastUpdUser     : String? = "",
+    @SerializedName("ent_usr_emp"       ) var entUsrEmp       : String? = "",
+    @SerializedName("resp_off"          ) var respOff         : String? = "",
+    @SerializedName("geo_hrc1"          ) var geoHrc1         : String? = "",
+    @SerializedName("geo_hrc2"          ) var geoHrc2         : String? = "",
+    @SerializedName("geo_hrc3"          ) var geoHrc3         : String? = "",
+    @SerializedName("geo_hrc4"          ) var geoHrc4         : String? = "",
+    @SerializedName("discuss_top"       ) var discussTop      : String? = "",
+    @SerializedName("site_ref_by"       ) var siteRefBy       : String? = "",
+    @SerializedName("cem_type"          ) var cemType         : String? = "",
+    @SerializedName("del_date"          ) var delDate         : String? = "",
+    @SerializedName("del_qty"           ) var delQty          : Int?    = 0,
+    @SerializedName("party_contact"     ) var partyContact    : String? = "",
+    @SerializedName("res_no_achv"       ) var resNoAchv       : String? = "",
+    @SerializedName("site_conv_stat"    ) var siteConvStat    : String? = "",
+    @SerializedName("site_lat"          ) var siteLat         : Double? = 0.0,
+    @SerializedName("site_lon"          ) var siteLon         : Double? = 0.0,
+    @SerializedName("next_vis_date"     ) var nextVisDate     : String? = "",
+    @SerializedName("site_add"          ) var siteAdd         : String? = "",
+    @SerializedName("site_vis_with"     ) var siteVisWith     : String? = "",
+    @SerializedName("discuss_sub_topic" ) var discussSubTopic : String? = "",
+    @SerializedName("reason_dt"         ) var reasonDt        : String? = "",
+    @SerializedName("party_type"        ) var partyType       : String? = "",
+    @SerializedName("party_name"        ) var partyName       : String? = "",
+    @SerializedName("party_mobile"      ) var partyMobile     : String? = "",
+    @SerializedName("mov_status"        ) var movStatus       : String? = "",
+    @SerializedName("dealer_id"         ) var dealerId        : String? = "",
+    @SerializedName("retailer_id"       ) var retailerId      : String? = "",
+    @SerializedName("site_curr_status"  ) var siteCurrStatus  : String? = ""
+)

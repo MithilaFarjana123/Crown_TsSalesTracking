@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtLocationTrackingCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/titan_theme_color"
+            android:drawableRight="@drawable/ic_baseline_cancel_white"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/location_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location Tracking"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/txtTrackingLocationMessage"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/tracking_map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.google.android.gms.maps.MapView>
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
