@@ -750,19 +750,27 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
                     loadUI(R.id.nav_retiler_list)
                 }
 
-
+/*
                 R.id.nav_retiler_home -> {
                     loadUI(R.id.nav_retiler_home)
                 }
+
+ */
                 R.id.nav_other_details -> {
                     loadUI(R.id.nav_other_details)
                 }
+                /*
                 R.id.nav_payment_save -> {
                     loadUI(R.id.nav_payment_save)
                 }
+
+                 */
+                /*
                 R.id.nav_payment_list -> {
                     loadUI(R.id.nav_payment_list)
                 }
+
+                 */
                 R.id.nav_meal_application -> {
                     loadUI(R.id.nav_meal_application)
                 }
@@ -778,15 +786,18 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
                 R.id.nav_movement_plan_list -> {
                     loadUI(R.id.nav_movement_plan_list)
                 }
-                R.id.nav_retailer_details -> {
-                    loadUI(R.id.nav_retailer_details)
-                }
+//                R.id.nav_retailer_details -> {
+//                    loadUI(R.id.nav_retailer_details)
+//                }
                 R.id.nav_party_entry -> {
                     loadUI(R.id.nav_party_entry)
                 }
+                /*
                 R.id.nav_delivery_program -> {
                     loadUI(R.id.nav_delivery_program)
                 }
+
+                 */
                 R.id.nav_demo_customerHome -> {
                     loadUI(R.id.nav_demo_customerHome)
                 }

@@ -975,7 +975,7 @@ class Frag_Mason_update : Fragment() {
         currentPhotoIDPath = imageFile!!.absolutePath
         val imageUri = FileProvider.getUriForFile(
             requireActivity(),
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         Utility.storeKeyValue(requireActivity(),"currentPhotoNomIDPath",currentPhotoIDPath)
@@ -2288,7 +2288,7 @@ class Frag_Mason_update : Fragment() {
             currentPhotoPath = imageFile!!.absolutePath
             val imageUri = FileProvider.getUriForFile(
                 requireActivity(),
-                "com.crowncement.tecnicalsupport.fileprovider",
+                "com.crowncement.TsSalesTracking.fileprovider",
                 imageFile
             )
             Utility.storeKeyValue(requireActivity(),"masonUpdateImg",currentPhotoPath)
@@ -2323,7 +2323,7 @@ class Frag_Mason_update : Fragment() {
         currentPhotoIDPath = imageFile!!.absolutePath
         val imageUri = FileProvider.getUriForFile(
             requireActivity(),
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         Utility.storeKeyValue(requireActivity(),"currentPhotoIDPathUpdate",currentPhotoIDPath)
@@ -3551,7 +3551,7 @@ class Frag_Mason_update : Fragment() {
 
                         val photoURI: Uri = FileProvider.getUriForFile(
                             requireContext(),
-                            "com.crowncement.tecnicalsupport.fileprovider",
+                            "com.crowncement.TsSalesTracking.fileprovider",
                             it
                         )
 

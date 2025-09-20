@@ -260,28 +260,7 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/nav_retiler_home"
-        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Customer_Home"
-        android:label="Customer home"
-        tools:layout="@layout/frag_customer_home" >
-<!--        <action-->
-<!--            android:id="@+id/action_nav_retiler_home_to_nav_retailer_details"-->
-<!--            app:destination="@id/nav_retailer_details" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_nav_retiler_home_to_nav_dealer_details"-->
-<!--            app:destination="@id/nav_dealer_details" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_nav_retiler_home_to_nav_other_details"-->
-<!--            app:destination="@id/nav_other_details" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_nav_retiler_home_to_nav_call_record"-->
-<!--            app:destination="@id/nav_call_record" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_nav_retiler_home_to_nav_payment_list"-->
-<!--            app:destination="@id/nav_payment_list" />-->
 
-    </fragment>
 
 
     <fragment
@@ -299,23 +278,18 @@
 
 
 
-    <fragment
-        android:id="@+id/nav_payment_save"
-        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Paymen_Collection_Save"
-        android:label="Collection Entry"
-        tools:layout="@layout/frag_paymen_collection_save" />
 
 
 
-    <fragment
-        android:id="@+id/nav_payment_list"
-        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Payment_Collection_List"
-        android:label="Collection List"
-        tools:layout="@layout/frag_payment_collection_list">
-<!--        <action-->
-<!--            android:id="@+id/action_nav_payment_list_to_nav_payment_save"-->
-<!--            app:destination="@id/nav_payment_save" />-->
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/nav_payment_list"-->
+<!--        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Payment_Collection_List"-->
+<!--        android:label="Collection List"-->
+<!--        tools:layout="@layout/frag_payment_collection_list">-->
+<!--&lt;!&ndash;        <action&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/action_nav_payment_list_to_nav_payment_save"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:destination="@id/nav_payment_save" />&ndash;&gt;-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/nav_meal_application"
@@ -350,11 +324,11 @@
         android:label="Movement Plan List"
         tools:layout="@layout/frag_movement_plan_list"/>
 
-    <fragment
-        android:id="@+id/nav_retailer_details"
-        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Update_Retailer"
-        android:label="Customer Details"
-        tools:layout="@layout/frag_update_retailer" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_retailer_details"-->
+<!--        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Update_Retailer"-->
+<!--        android:label="Customer Details"-->
+<!--        tools:layout="@layout/frag_update_retailer" />-->
 
     <fragment
         android:id="@+id/nav_party_entry"
@@ -374,11 +348,7 @@
 <!--        android:label="Call Record"-->
 <!--        tools:layout="@layout/frag_call_record_home"/>-->
 
-    <fragment
-        android:id="@+id/nav_delivery_program"
-        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Delivery_Program"
-        android:label="Delivery Program"
-        tools:layout="@layout/frag_delivery_program"/>
+
 
     <fragment
         android:id="@+id/nav_demo_customerHome"

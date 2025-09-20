@@ -144,6 +144,7 @@ class Frag_Customer_List : Fragment() {
 
 
         return binding.root
+
     }
 
 
@@ -159,12 +160,7 @@ class Frag_Customer_List : Fragment() {
             "P l e a s e    w a i t"
         )
 
-
-
-
-
         loadClientType(binding.acClient)
-
 
         RetailerViewModelFactory()
         setupViewModel()
@@ -373,8 +369,11 @@ class Frag_Customer_List : Fragment() {
                             R.drawable.error_white,
                             0
                         )
+
                     }
+
                 }
+
             }
 
 

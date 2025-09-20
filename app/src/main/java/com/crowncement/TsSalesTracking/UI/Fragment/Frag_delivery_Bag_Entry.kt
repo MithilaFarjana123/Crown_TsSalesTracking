@@ -28,6 +28,7 @@ import com.crowncement.TsSalesTracking.common.Utility.storeKeyValue
 import com.crowncement.TsSalesTracking.data.Adapter.SiteItemAdapter
 import com.crowncement.TsSalesTracking.data.Model.DistrictChild
 import com.crowncement.TsSalesTracking.data.Model.DivisionChild
+import com.crowncement.TsSalesTracking.data.Model.GetBPSiteInfoResponceChild
 import com.crowncement.TsSalesTracking.data.Model.GetTSSiteInfoChild
 import com.crowncement.TsSalesTracking.data.Model.ProfileForSiteTag
 import com.crowncement.TsSalesTracking.data.Model.RouteChild
@@ -445,7 +446,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
                         thanaList = res.data
                         _binding?.let { binding ->
                             loadThana(binding.acThana, res.data)
-                        //    loadThana(binding.acThana, res.data,empthanaList)
+                            //    loadThana(binding.acThana, res.data,empthanaList)
                         }
 
 
@@ -567,37 +568,37 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
 
 
-/*
-    private fun loadRoute(
-        acRoute: AutoCompleteTextView?,
-        data: ArrayList<RouteChild>,
-        emprouteList: ArrayList<String>
-    ) {
-        // Extract routeName strings, filter to only those in emprouteList
-        val filteredList = data
-            .map { it.routeName.toString() }
-            .filter { it in emprouteList }
-            .toMutableList()
+    /*
+        private fun loadRoute(
+            acRoute: AutoCompleteTextView?,
+            data: ArrayList<RouteChild>,
+            emprouteList: ArrayList<String>
+        ) {
+            // Extract routeName strings, filter to only those in emprouteList
+            val filteredList = data
+                .map { it.routeName.toString() }
+                .filter { it in emprouteList }
+                .toMutableList()
 
-        // Ensure the prompt is always first
-        filteredList.add(0, "Select Route")
+            // Ensure the prompt is always first
+            filteredList.add(0, "Select Route")
 
-        // Create adapter with filtered values
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            filteredList
-        )
-        acRoute?.setAdapter(adapter)
+            // Create adapter with filtered values
+            val adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_dropdown_item_1line,
+                filteredList
+            )
+            acRoute?.setAdapter(adapter)
 
-        // Optionally, set the prompt as default text (won’t filter)
-        acRoute?.setText("Select Route", false)
+            // Optionally, set the prompt as default text (won’t filter)
+            acRoute?.setText("Select Route", false)
 
-        adapter.notifyDataSetChanged()
-    }
+            adapter.notifyDataSetChanged()
+        }
 
 
- */
+     */
 
 
 //////////////////////////////////
@@ -633,7 +634,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
                         divisionList = res.data
 
                         _binding?.let { binding ->
-                         //   loadDivision(binding.acDivision, res.data)
+                            //   loadDivision(binding.acDivision, res.data)
                             loadDivision(binding.acDivision, res.data,empdivisionList)
 
                         }
@@ -717,16 +718,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
                         item.siteNumber!!.lowercase(Locale.getDefault())
                             .contains(text.lowercase(Locale.getDefault())) ||
                         item.siteAdd!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.partyMobile!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.partyName!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.contactPerson!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.contactPhone!!.lowercase(Locale.getDefault())
                             .contains(text.lowercase(Locale.getDefault()))
-
                     ) {
                         filteredlist.add(item)
                     }
@@ -807,14 +799,14 @@ class Frag_delivery_Bag_Entry : Fragment() {
                                 otherCustomerLists = otherCustomerList
 
 
-                                    for (values in otherCustomerLists) {
+                                for (values in otherCustomerLists) {
 
-                                        if ((values.conversionStatus.equals("Yes"))||
-                                            (values.conversionStatus.equals("Already converted site"))
-                                        ){
-                                            yesAlreadySortedLists.add(values)
-                                        }
+                                    if ((values.conversionStatus.equals("Yes"))||
+                                        (values.conversionStatus.equals("Already converted site"))
+                                    ){
+                                        yesAlreadySortedLists.add(values)
                                     }
+                                }
 
 
                                 _binding?.let { binding ->
@@ -883,9 +875,9 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
 
 
-                    //    confirmationDialog(items[position].siteNumber.toString())
-                           val navController = requireActivity().findNavController(R.id.nav_host_fragment)
-                         navController.navigate(R.id.nav_deliveryBagEntryChild)
+                        //    confirmationDialog(items[position].siteNumber.toString())
+                        val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+                        navController.navigate(R.id.nav_deliveryBagEntryChild)
                     }
                 })
             }

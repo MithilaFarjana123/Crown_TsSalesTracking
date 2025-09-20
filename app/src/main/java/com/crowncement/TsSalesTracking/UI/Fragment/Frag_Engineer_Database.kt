@@ -572,6 +572,7 @@ class Frag_Engineer_Database : Fragment() {
                         _binding?.let { binding ->
 
                             loadDistrict(binding.acDistrict1, res.data,empdistrictList)
+
                         }
                     }
                 }
@@ -580,9 +581,13 @@ class Frag_Engineer_Database : Fragment() {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
 
                 }
+
             }
+
         }
+
     }
+
 /*
     private fun loadDistrict(acDistrict: AutoCompleteTextView?, data: ArrayList<DistrictChild>) {
 
@@ -602,6 +607,7 @@ class Frag_Engineer_Database : Fragment() {
 
 
  */
+
     private fun getThanaList(country: String, division: String, district: String) {
         if (isAdded) {
             retailerViewModel.getThanaInfo(country, division, district).observe(requireActivity()) {
@@ -631,6 +637,7 @@ class Frag_Engineer_Database : Fragment() {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
 
                     }
+
                 }
             }
         }
@@ -836,8 +843,8 @@ class Frag_Engineer_Database : Fragment() {
                         binding.acClient1.text.toString()
                     )
                     prepareRetailerObject(items[position], requireActivity())
-                    val navController = requireActivity().findNavController(R.id.nav_host_fragment)
-                    navController.navigate(R.id.nav_retiler_home)
+                  //  val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+                  //  navController.navigate(R.id.nav_retiler_home)
                 }
             })
         }else{}
@@ -866,8 +873,8 @@ class Frag_Engineer_Database : Fragment() {
                         binding.acClient1.text.toString()
                     )
                     prepareDealerObject(items[position], requireActivity())
-                    val navController = requireActivity().findNavController(R.id.nav_host_fragment)
-                    navController.navigate(R.id.nav_retiler_home)
+                 //   val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+                 //   navController.navigate(R.id.nav_retiler_home)
                 }
             })
         } else {

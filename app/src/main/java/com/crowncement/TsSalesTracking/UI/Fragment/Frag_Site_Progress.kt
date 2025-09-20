@@ -397,7 +397,7 @@ class Frag_Site_Progress : Fragment() {
             photoFile?.also {
                 val photoURI: Uri = FileProvider.getUriForFile(
                     requireContext(),
-                    "com.crowncement.tecnicalsupport.fileprovider",
+                    "com.crowncement.TsSalesTracking.fileprovider",
                     it
                 )
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -425,7 +425,7 @@ class Frag_Site_Progress : Fragment() {
 
                         val photoURI: Uri = FileProvider.getUriForFile(
                             requireContext(),
-                            "com.crowncement.tecnicalsupport.fileprovider",
+                            "com.crowncement.TsSalesTracking.fileprovider",
                             it
                         )
 

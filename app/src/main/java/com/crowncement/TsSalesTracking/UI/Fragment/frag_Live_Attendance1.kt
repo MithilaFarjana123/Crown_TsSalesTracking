@@ -505,7 +505,7 @@ class frag_Live_Attendance1 : Fragment() {
         currentPhotoPath = imageFile!!.absolutePath
         val imageUri = FileProvider.getUriForFile(
             requireActivity(),
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
@@ -812,7 +812,7 @@ class frag_Live_Attendance1 : Fragment() {
 
                 val photoURI: Uri = FileProvider.getUriForFile(
                     requireContext(),
-                    "com.crowncement.tecnicalsupport.fileprovider",
+                    "com.crowncement.TsSalesTracking.fileprovider",
                     it
                 )
 
@@ -846,7 +846,7 @@ class frag_Live_Attendance1 : Fragment() {
 
                             val photoURI: Uri = FileProvider.getUriForFile(
                                 requireContext(),
-                                "com.crowncement.tecnicalsupport.fileprovider",
+                                "com.crowncement.TsSalesTracking.fileprovider",
                                 it
                             )
 

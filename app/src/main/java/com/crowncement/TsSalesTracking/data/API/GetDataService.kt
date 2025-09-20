@@ -803,6 +803,8 @@ fun CarReqEntList(
 
     //TODO-------------------------------------------------------------------------Save Sales collection
 
+
+    /*
     @Multipart
     @POST("CollectionEntry")
     fun saveSalesCollection(
@@ -824,9 +826,11 @@ fun CarReqEntList(
         @Part all_images: MultipartBody.Part
     ): Flowable<CommonSaveResponse>?
 
+     */
+
 
     //TODO------------------------------------------------------------------------------------> Sales Collection List
-
+/*
     @Multipart
     @POST("CollectionRecord")
     fun getSalesCollection(
@@ -837,6 +841,8 @@ fun CarReqEntList(
     ): Flowable<SalesCollectionResponse>?
 
 
+ */
+/*
     @Multipart
     @POST("CollectionRecord4SV")
     fun getSalesCollectionListForApprove(
@@ -844,6 +850,8 @@ fun CarReqEntList(
         @Part("dep_fdate")  dep_fdate: RequestBody,
         @Part("dep_tdate")  dep_tdate: RequestBody
     ): Flowable<PaymentCollectionResponse>?
+
+ */
 
     @Multipart
     @POST("AppCollection4SV")

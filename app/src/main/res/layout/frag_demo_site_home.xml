@@ -469,6 +469,8 @@
                         android:layout_gravity="center"
                         android:text=" Site Summary   " />
 
+
+
                     <ImageView
                         android:padding="6dp"
                         android:layout_width="0dp"

@@ -734,7 +734,7 @@ class Frag_Engineer_Add_Update : Fragment() {
         }
         if (photoFile != null) {
             val photoURI = FileProvider.getUriForFile(
-                requireContext(), "com.crowncement.tecnicalsupport.fileprovider",
+                requireContext(), "com.crowncement.TsSalesTracking.fileprovider",
                 photoFile
             )
             currentPhotoPath = photoFile.absolutePath
@@ -770,7 +770,7 @@ class Frag_Engineer_Add_Update : Fragment() {
             currentPhotoPath = imageFile!!.absolutePath
             val imageUri = FileProvider.getUriForFile(
                 requireActivity(),
-                "com.crowncement.tecnicalsupport.fileprovider",
+                "com.crowncement.TsSalesTracking.fileprovider",
                 imageFile
             )
             Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
@@ -843,7 +843,7 @@ class Frag_Engineer_Add_Update : Fragment() {
         currentPhotoIDPath = imageFile!!.absolutePath
         val imageUri = FileProvider.getUriForFile(
             requireActivity(),
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         Utility.storeKeyValue(requireActivity(),"VisCardcurrentPhotoIDPath",currentPhotoIDPath)
@@ -2034,7 +2034,7 @@ class Frag_Engineer_Add_Update : Fragment() {
 
                         val photoURI: Uri = FileProvider.getUriForFile(
                             requireContext(),
-                            "com.crowncement.tecnicalsupport.fileprovider",
+                            "com.crowncement.TsSalesTracking.fileprovider",
                             it
                         )
 

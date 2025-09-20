@@ -753,7 +753,7 @@ class Frag_Party_Update : Fragment() {
         var storePath = Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
         val imageUri = FileProvider.getUriForFile(
             requireActivity(),
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -1176,7 +1176,7 @@ class Frag_Party_Update : Fragment() {
             photoFile?.also {
                 val photoURI: Uri = FileProvider.getUriForFile(
                     requireContext(),
-                    "com.crowncement.tecnicalsupport.fileprovider",
+                    "com.crowncement.TsSalesTracking.fileprovider",
                     it
                 )
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)

@@ -658,7 +658,7 @@ class Frag_Demo_Customer_Home : Fragment() {
         var storePath = Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
 
         val imageUri = FileProvider.getUriForFile(
-            requireActivity(), "com.crowncement.tecnicalsupport.fileprovider", imageFile
+            requireActivity(), "com.crowncement.TsSalesTracking.fileprovider", imageFile
         )
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         // intent.putExtra("android.intent.extras.CAMERA_FACING", 1)
@@ -888,7 +888,7 @@ class Frag_Demo_Customer_Home : Fragment() {
 
                         val photoURI: Uri = FileProvider.getUriForFile(
                             requireContext(),
-                            "com.crowncement.tecnicalsupport.fileprovider",
+                            "com.crowncement.TsSalesTracking.fileprovider",
                             it
                         )
 

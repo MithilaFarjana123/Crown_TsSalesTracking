@@ -1024,7 +1024,7 @@ class Frag_Site_Entry : Fragment() {
 
                     val photoURI: Uri = FileProvider.getUriForFile(
                         requireContext(),
-                        "com.crowncement.tecnicalsupport.fileprovider",
+                        "com.crowncement.TsSalesTracking.fileprovider",
                         it
                     )
 
@@ -1058,7 +1058,7 @@ class Frag_Site_Entry : Fragment() {
 
                             val photoURI: Uri = FileProvider.getUriForFile(
                                 requireContext(),
-                                "com.crowncement.tecnicalsupport.fileprovider",
+                                "com.crowncement.TsSalesTracking.fileprovider",
                                 it
                             )
 

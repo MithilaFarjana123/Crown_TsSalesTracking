@@ -159,9 +159,9 @@ class Frag_Late_Application : Fragment() {
         dialog.show()
 
 
-        binding.btnClose.setOnClickListener { dialog.hide() }
+        binding.btnClose.setOnClickListener { dialog.dismiss() }
 
-        binding.btnGotIt.setOnClickListener { dialog.hide() }
+        binding.btnGotIt.setOnClickListener { dialog.dismiss() }
 
 
     }
@@ -185,7 +185,7 @@ class Frag_Late_Application : Fragment() {
             changeDateFormat(late.lt_date, "yyyy-MM-dd", "EEE, dd MMM yyyy")
 
         // Set onClickListeners
-        binding.imgClose.setOnClickListener { dialog.hide() }
+        binding.imgClose.setOnClickListener { dialog.dismiss() }
 
         binding.btnLateApply.setOnClickListener {
             if (lateApplyValidation(binding)) {
@@ -307,6 +307,7 @@ class Frag_Late_Application : Fragment() {
         return res
     }
 */
+
     private fun getLateList(empId: String, lateDate: String) {
 
             lateViewModel.getLateList(empId, lateDate)
@@ -384,7 +385,7 @@ class Frag_Late_Application : Fragment() {
         dialog.setContentView(v)
         dialog.setCancelable(true)
         dialog.show()
-        txtListClose.setOnClickListener { view1: View? -> dialog.hide() }
+        txtListClose.setOnClickListener { view1: View? -> dialog.dismiss() }
     }
 
     private fun getAppliedLateList(
@@ -534,6 +535,7 @@ class Frag_Late_Application : Fragment() {
 
                     }
                     Status.LOADING -> {
+
 
                     }
                     Status.ERROR -> {

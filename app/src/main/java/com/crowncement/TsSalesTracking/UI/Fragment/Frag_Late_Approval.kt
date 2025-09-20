@@ -395,7 +395,9 @@ class Frag_Late_Approval : Fragment() {
                                     2
                                 )
                             }
+
                         }
+
                     }
                     Status.LOADING -> {
 
@@ -403,6 +405,7 @@ class Frag_Late_Approval : Fragment() {
                     Status.ERROR -> {
 
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+
                     }
                 }
             }
@@ -433,6 +436,7 @@ class Frag_Late_Approval : Fragment() {
                                 getLateApprovalList(user)
 
                             } else {
+
                                 getBaseMessage(
                                     requireActivity(),
                                     "Failed",
@@ -440,8 +444,11 @@ class Frag_Late_Approval : Fragment() {
                                     R.drawable.error_white,
                                     2
                                 )
+
                             }
+                            
                         }
+
                     }
                     Status.LOADING -> {
 
@@ -449,9 +456,14 @@ class Frag_Late_Approval : Fragment() {
                     Status.ERROR -> {
 
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+
                     }
+
                 }
+
             }
+
     }
+
 
 }

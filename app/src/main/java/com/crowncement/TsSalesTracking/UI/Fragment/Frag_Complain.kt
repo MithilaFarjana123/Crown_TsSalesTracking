@@ -205,7 +205,9 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
       //  rootView = inflater.inflate(R.layout.frag_complain, container, false)
 
         _binding = FragComplainBinding.inflate(inflater, container, false)
-/*
+
+
+        /*
 
         RetailerViewModelFactory()
         setupViewModel()
@@ -879,7 +881,7 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
 
         val imageUri = FileProvider.getUriForFile(
             requireActivity(),
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -928,6 +930,8 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
 
 
  */
+
+
     fun getRealPathFromURI(contentUri: Uri?): String? {
         val proj = arrayOf(MediaStore.Images.Media.DATA)
         val cursor: Cursor =
@@ -1311,6 +1315,7 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
             }
     }
 
+
     private fun prepareOtherCustomerCompSiteData(): String {
         var emp = Utility.getValueByKey(requireActivity(), "username").toString()
 
@@ -1388,12 +1393,14 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
         return gson.toJson(OtherCustomerdirectcallinfo)
     }
 
+
     private fun setupViewModel() {
 
         retailerViewModel =
             ViewModelProviders.of(this.requireActivity(), RetailerViewModelFactory())
                 .get(RetailerViewModel::class.java)
     }
+
 
     fun prepare_spinner(){
         prepareVisitType(binding.acComplVistype)
@@ -1486,9 +1493,6 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
     }
 
 
-
-
-
     //todo conversion status
 
 
@@ -1499,6 +1503,7 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
 
         ModOfActionList = ArrayList()
         ModOfActionList.add("Mode of Action")
+
 //        ModOfActionList.add("Schimdt Rebound Hammer Test")
 //        ModOfActionList.add("Concrete Compressive Strength (Cylinder)")
 //        ModOfActionList.add("Slump Test")
@@ -1514,8 +1519,8 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
             val pos = ModOfActionList.indexOf(item)
             ac.setText(ModOfActionList[pos])
             // break
-
         }
+
         ac.setText(ModOfActionList[0])
         val adapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, ModOfActionList)
@@ -2583,6 +2588,7 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
 
 
     //todo new capture img
+
     fun captureImage() {
         when {
             ContextCompat.checkSelfPermission(
@@ -2602,7 +2608,6 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
             }
         }
     }
-
 
 
 
@@ -2631,7 +2636,7 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
 
                     val photoURI: Uri = FileProvider.getUriForFile(
                         requireContext(),
-                        "com.crowncement.tecnicalsupport.fileprovider",
+                        "com.crowncement.TsSalesTracking.fileprovider",
                         it
                     )
 
@@ -2665,7 +2670,7 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
 
                             val photoURI: Uri = FileProvider.getUriForFile(
                                 requireContext(),
-                                "com.crowncement.tecnicalsupport.fileprovider",
+                                "com.crowncement.TsSalesTracking.fileprovider",
                                 it
                             )
 

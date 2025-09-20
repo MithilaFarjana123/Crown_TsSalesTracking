@@ -278,7 +278,7 @@ class Frag_dashboard : Fragment() {
             ) as ArrayList<OfflineQuickVisit>
         return qVisit
     }
-
+/*
     private fun convertOfflineVisit() {
 
         val v: View = layoutInflater.inflate(R.layout.convert_quick_visit, null)
@@ -303,6 +303,10 @@ class Frag_dashboard : Fragment() {
 
     }
 
+ */
+
+    /*
+
     private fun loadQuickVisit(quickVisits: ArrayList<OfflineQuickVisit>, v: View) {
 
         val txtQNoData: TextView = v.findViewById(R.id.txtQNoData)
@@ -321,6 +325,8 @@ class Frag_dashboard : Fragment() {
         shimmer_container.stopShimmer()
     }
 
+
+     */
 
     private fun prepareDataList(items: ArrayList<OfflineQuickVisit>, rv: RecyclerView) {
         val itemAdapter = OfflineQuickVisitAdapter(items)

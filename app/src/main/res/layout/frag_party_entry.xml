@@ -126,14 +126,15 @@
                             app:endIconMode="clear_text"
                             app:errorIconTint="@color/orange"
                             app:errorTextColor="@color/orange"
-
                             app:startIconDrawable="@drawable/ic_baseline_person_pin">
+
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/txtONAme"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Name" />
+
 
                         </com.google.android.material.textfield.TextInputLayout>
 

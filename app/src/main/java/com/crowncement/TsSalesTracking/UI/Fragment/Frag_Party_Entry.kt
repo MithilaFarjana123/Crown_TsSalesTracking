@@ -199,6 +199,7 @@ class Frag_Party_Entry : Fragment() {
     }
 
 
+
     fun focus() {
         binding.txtONAme.requestFocus()
         binding.txtOccupation.requestFocus()
@@ -461,6 +462,7 @@ class Frag_Party_Entry : Fragment() {
         binding.layoutOMo.error = null
         binding.layoutOAdd.isErrorEnabled = false
         binding.layoutOAdd.error = null
+
 /*
         if (finalFile.isFile) {
             finalFileInKB = finalFile.length() / 1024.0
@@ -797,7 +799,7 @@ class Frag_Party_Entry : Fragment() {
             Utility.storeKeyValue(requireActivity(), "currentPhotoPath", currentPhotoPath)
         val imageUri = FileProvider.getUriForFile(
             requireActivity(),
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -1203,7 +1205,7 @@ class Frag_Party_Entry : Fragment() {
 
                 val photoURI: Uri = FileProvider.getUriForFile(
                     requireContext(),
-                    "com.crowncement.tecnicalsupport.fileprovider",
+                    "com.crowncement.TsSalesTracking.fileprovider",
                     it
                 )
 
@@ -1237,7 +1239,7 @@ class Frag_Party_Entry : Fragment() {
 
                         val photoURI: Uri = FileProvider.getUriForFile(
                             requireContext(),
-                            "com.crowncement.tecnicalsupport.fileprovider",
+                            "com.crowncement.TsSalesTracking.fileprovider",
                             it
                         )
 
