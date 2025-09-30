@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/imgSiteImg"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
             android:scaleType="fitXY"
             android:src="@drawable/tagged_call_record" />
 
@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
 
 
                 <!--                <com.google.android.material.textfield.TextInputLayout-->
@@ -53,6 +54,8 @@
                 <!--                        android:focusable="false" />-->
 
                 <!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutCallTMoveStatusType"
