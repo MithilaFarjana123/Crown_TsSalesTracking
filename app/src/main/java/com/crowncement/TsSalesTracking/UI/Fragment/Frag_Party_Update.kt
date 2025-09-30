@@ -316,18 +316,18 @@ class Frag_Party_Update : Fragment() {
         val cancel: TextView = v.findViewById(R.id.cancelR)
         val txtCDialogTitle: TextView = v.findViewById(R.id.txtCDialogTitle)
         val txtBody: TextView = v.findViewById(R.id.txtBody)
-
+        txtCDialogTitle.setText("Party Update")
 
         dialog.setContentView(v)
         dialog.setCancelable(true)
         dialog.show()
 
         cancel.setOnClickListener {
-            dialog.hide()
+            dialog.dismiss()
         }
 
         btnCancelR.setOnClickListener {
-            dialog.hide()
+            dialog.dismiss()
         }
 
         btnConfirmR.setOnClickListener {
@@ -341,7 +341,7 @@ class Frag_Party_Update : Fragment() {
 
             val otherCusData = prepareOtherPartyUpdateData1()
             updateOtherParty(empI, other.partyCode.toString(),otherCusData)
-            dialog.hide()
+            dialog.dismiss()
 
         }
 

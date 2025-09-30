@@ -334,9 +334,9 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
                             savedCalldata = res.data
                             if(savedCalldata.size>0){
                                 binding.basicSiteInfo.visibility=View.VISIBLE
-                                binding.siteCode.setText("Party Code : "+savedCalldata.get(0).siteId.toString())
-                                binding.partyCode.setText("Site Code : "+savedCalldata.get(0).partyId.toString())
-                                binding.ConversionStatus.setText("Convesion Status : "+savedCalldata.get(0).siteConvStat.toString())
+                                binding.siteCode.setText("Site Code : "+savedCalldata.get(0).siteId.toString())
+                                binding.partyCode.setText("Party Code : "+savedCalldata.get(0).partyId.toString())
+                                binding.ConversionStatus.setText("Conversion Status : "+savedCalldata.get(0).siteConvStat.toString())
                              //   binding.contact.setText("Contact : "+savedCalldata.get(0).partyContact.toString())
                             }else{
 

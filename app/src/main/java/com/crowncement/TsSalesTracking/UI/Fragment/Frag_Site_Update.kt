@@ -225,6 +225,7 @@ class Frag_Site_Update : Fragment() {
             binding.layoutTsPartSiteReferredEmp.visibility = View.VISIBLE
 
         }
+        binding.conEngCard.visibility = View.GONE
         setSavedSiteInfo()
         getRetailerSetupInfo()
         type = Utility.getValueByKey(requireActivity(), "slected_party_type").toString()
@@ -306,6 +307,8 @@ class Frag_Site_Update : Fragment() {
         binding.txtTsSiteComPrice.setText(siteinfo.brandPrice.toString())
         binding.acTsProjectSiteStatus.setText(siteinfo.status.toString())
         binding.txtTsSiteStored.setText(siteinfo.noOfStory.toString())
+
+
         if(siteinfo.conversionStatus!!.isNotEmpty()){
             binding.layoutTCallConStatus.visibility = View.VISIBLE
             binding.acTCallConversionStatus.setText(siteinfo.conversionStatus.toString())

@@ -59,6 +59,7 @@ class CallRecordApproveListAdapter (private val attList: ArrayList<GetSalesCallA
         holder.binding.convStatus.text =attInfo.convStatus.toString()
         holder.binding.partyadd.text = attInfo.partyAdd.toString()
         holder.binding.submittedby.text = attInfo.entUser.toString()
+     //   holder.binding.enteredBy.text = attInfo.entUser.toString()
 
         holder.binding.siteAdd.text = attInfo.projAdd.toString()
         var convdate = Utility.changeDateFormat(

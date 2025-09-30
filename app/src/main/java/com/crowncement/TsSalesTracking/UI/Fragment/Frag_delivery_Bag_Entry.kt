@@ -3,7 +3,9 @@ package com.crowncement.TsSalesTracking.UI.Fragment
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,15 +22,16 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.crowncement.TsSalesTracking.R
+import com.crowncement.TsSalesTracking.UI.Activity.Act_Splash_Screen
 import com.crowncement.TsSalesTracking.UI.viewmodel.RetailerViewModel
 import com.crowncement.TsSalesTracking.UI.viewmodelfactory.RetailerViewModelFactory
 import com.crowncement.TsSalesTracking.common.Status
 import com.crowncement.TsSalesTracking.common.Utility
+import com.crowncement.TsSalesTracking.common.Utility.getValueByKey
 import com.crowncement.TsSalesTracking.common.Utility.storeKeyValue
 import com.crowncement.TsSalesTracking.data.Adapter.SiteItemAdapter
 import com.crowncement.TsSalesTracking.data.Model.DistrictChild
 import com.crowncement.TsSalesTracking.data.Model.DivisionChild
-import com.crowncement.TsSalesTracking.data.Model.GetBPSiteInfoResponceChild
 import com.crowncement.TsSalesTracking.data.Model.GetTSSiteInfoChild
 import com.crowncement.TsSalesTracking.data.Model.ProfileForSiteTag
 import com.crowncement.TsSalesTracking.data.Model.RouteChild
@@ -68,6 +71,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
     var district = ""
     var thana = ""
     var sitenum = ""
+    var firstTime = 0
     lateinit var retailerViewModel: RetailerViewModel
     lateinit var otherCustomerLists: ArrayList<GetTSSiteInfoChild>
     lateinit var yesAlreadySortedLists : ArrayList<GetTSSiteInfoChild>
@@ -89,7 +93,9 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
 
         return binding.root
+
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -158,7 +164,6 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
 
 
-
     fun empDisDisthanasetUp(){
         empdivisionList = ArrayList()
         empdistrictList = ArrayList()
@@ -175,8 +180,8 @@ class Frag_delivery_Bag_Entry : Fragment() {
         empthanaList = parseToArrayList(than)
         emprouteList = parseToArrayList(rou)
 
-
     }
+
 
     fun parseToArrayList(input: String): ArrayList<String> {
         //return ArrayList(parseItems(input))
@@ -186,7 +191,6 @@ class Frag_delivery_Bag_Entry : Fragment() {
             .filter(String::isNotEmpty)
             .toCollection(ArrayList())
 
-
         return items
 
     }
@@ -194,8 +198,6 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
     }
 
@@ -614,9 +616,36 @@ class Frag_delivery_Bag_Entry : Fragment() {
             clientTypes
         )
 
-        ac.setText(clientTypes[0])
+        if (firstTime == 0) {
+            ac.setText(clientTypes[0])
+        }
+
+        else{
+            //storeKeyValue(requireActivity(), "acCustomer", clientTypes[position])
+            //   getValueByKey(requireActivity(), "acCustomer")
+            val searchString = getValueByKey(requireActivity(), "acCustomer")
+
+
+            // Get the index of the string in the ArrayList
+            val position = clientTypes.indexOf(searchString)
+            var typepos = 0
+            // Check if the string is found
+            if (position != -1) {
+                typepos = position
+                ac.setText(clientTypes[typepos])
+                //  println("The string '$searchString' is found at position: $position")
+            }
+
+
+        }
+
         ac.setAdapter(adapter)
         adapter.notifyDataSetChanged()
+        firstTime = 1
+
+//        ac.setText(clientTypes[0])
+//        ac.setAdapter(adapter)
+//        adapter.notifyDataSetChanged()
     }
 
     private fun getDivisionList(value: String) {
@@ -718,10 +747,20 @@ class Frag_delivery_Bag_Entry : Fragment() {
                         item.siteNumber!!.lowercase(Locale.getDefault())
                             .contains(text.lowercase(Locale.getDefault())) ||
                         item.siteAdd!!.lowercase(Locale.getDefault())
+                            .contains(text.lowercase(Locale.getDefault())) ||
+                        item.partyMobile!!.lowercase(Locale.getDefault())
+                            .contains(text.lowercase(Locale.getDefault())) ||
+                        item.partyName!!.lowercase(Locale.getDefault())
+                            .contains(text.lowercase(Locale.getDefault())) ||
+                        item.contactPerson!!.lowercase(Locale.getDefault())
+                            .contains(text.lowercase(Locale.getDefault())) ||
+                        item.contactPhone!!.lowercase(Locale.getDefault())
                             .contains(text.lowercase(Locale.getDefault()))
+
                     ) {
                         filteredlist.add(item)
                     }
+
                 }
                 if (filteredlist.isEmpty()) {
                     Utility.getBaseMessage(
@@ -733,6 +772,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
                     )
                     binding.rdDemoAllSite.adapter = null
                 } else {
+
                     prepareOtherList(binding.rdDemoAllSite, filteredlist, selectedCustomer)
 
 
@@ -771,7 +811,6 @@ class Frag_delivery_Bag_Entry : Fragment() {
         division = Utility.getValueByKey(requireActivity(), "selectedDivision").toString()
         district = Utility.getValueByKey(requireActivity(), "selectedDistrict").toString()
         thana = Utility.getValueByKey(requireActivity(), "selectedThana").toString()
-
 
     }
 
@@ -1008,6 +1047,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
                             navController.navigate(R.id.nav_dashboard)
 
                         }
+
 //                        else if(res.code == "500"){
 //                            Utility.getBaseMessage(
 //                                requireActivity(),
@@ -1017,6 +1057,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
 //                                0
 //                            )
 //                        }
+
                         else {
                             loadingAnim.dismiss()
 
@@ -1040,4 +1081,137 @@ class Frag_delivery_Bag_Entry : Fragment() {
     }
 
 
+
+    override fun onResume() {
+
+
+        Handler().post {
+            var intent = requireActivity().intent
+            if (intent.equals(null)) {
+                intent = Intent(requireActivity(), Act_Splash_Screen::class.java)
+                intent.addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                            or Intent.FLAG_ACTIVITY_NO_ANIMATION
+                )
+                requireActivity().overridePendingTransition(0, 0)
+                requireActivity().finish()
+                requireActivity().overridePendingTransition(0, 0)
+                startActivity(intent)
+            }
+            else {
+                loadClientType(binding.acClient)
+                if (firstTime != 0) {
+                    loadPreviouslySelectedCustomer()
+                }
+            }
+
+
+        }
+        super.onResume()
+    }
+
+
+    private fun loadPreviouslySelectedCustomer() {
+        val selectedCustomerType = getValueByKey(requireActivity(), "acCustomer").toString()
+        //  loadClientType(rootView.acClient)
+        for (items in clientTypes) {
+            //if(clientTypes.contains(selectedCustomerType)){
+            if (items == selectedCustomerType) {
+                // binding.acClient.setSelection(clientTypes.indexOf(items))
+                var position = clientTypes.indexOf(items)
+                //  binding.acClient.setSelection(clientTypes.indexOf(items))
+                //todo this was here
+                //  binding.acClient.setSelection(clientTypes.indexOf(items))
+
+            }
+
+        }
+
+
+        when (getValueByKey(requireActivity(), "acCustomer").toString()) {
+
+
+            "Dealer" -> {
+                getDivisionList("Bangladesh")
+                binding.acDivision.setText(getValueByKey(requireActivity(), "selectedDivision").toString())
+                getDistrictList(
+                    "Bangladesh",
+                    getValueByKey(requireActivity(), "selectedDivision").toString()
+                )
+
+                /*
+                getDealerList(
+                    "Bangladesh",
+                    getValueByKey(requireActivity(), "selectedDivision").toString(),
+                    getValueByKey(requireActivity(), "selectedDistrict").toString()
+                )
+
+                 */
+
+            }
+
+
+
+            "Retailer" -> {
+
+
+                binding.layoutThana.visibility = View.VISIBLE
+                binding.layoutRoute.visibility = View.VISIBLE
+
+                /*
+                getRetailerList(
+                    "Bangladesh",
+                    getValueByKey(requireActivity(), "selectedDivision").toString(),
+                    getValueByKey(requireActivity(), "selectedDistrict").toString(),
+                    getValueByKey(requireActivity(), "selectedThana").toString(),
+                    getValueByKey(requireActivity(), "selectedRoute").toString()
+                )
+
+                 */
+
+            }
+
+
+            else -> {
+
+
+                binding.layoutThana.visibility = View.VISIBLE
+
+
+//                rootView.acClient.setText(
+//                    getValueByKey(requireActivity(), "acCustomer").toString()
+//                )
+
+
+
+                binding.acDivision.setText(
+                    getValueByKey(requireActivity(), "selectedDivision").toString()
+                )
+
+                binding.acDistrict.setText(
+                    getValueByKey(requireActivity(), "selectedDistrict").toString()
+                )
+
+                binding.acThana.setText(
+                    getValueByKey(requireActivity(), "selectedThana").toString()
+                )
+
+                getOtherCustomerList(
+                    "Bangladesh",
+                    getValueByKey(requireActivity(), "selectedDivision").toString(),
+                    getValueByKey(requireActivity(), "selectedDistrict").toString(),
+                    getValueByKey(requireActivity(), "selectedThana").toString(),
+                    getValueByKey(requireActivity(), "acCustomer").toString()
+                )
+
+
+            }
+
+        }
+
+    }
+
+
+
 }
+

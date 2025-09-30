@@ -650,8 +650,6 @@ class Frag_Customer_List : Fragment() {
                 )
 
 
-
-
                 getOtherCustomerList(
                     "Bangladesh",
                     getValueByKey(requireActivity(), "selectedDivision").toString(),

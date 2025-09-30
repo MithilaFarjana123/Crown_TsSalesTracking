@@ -25,6 +25,7 @@ import com.crowncement.TsSalesTracking.common.Utility
 import com.crowncement.TsSalesTracking.data.Adapter.CallRecordApproveListAdapter
 import com.crowncement.TsSalesTracking.data.Model.GetSalesCallAppResponce
 import com.crowncement.TsSalesTracking.data.Model.GetSalesCallAppResponceChild
+import com.crowncement.TsSalesTracking.data.Model.GetTSSiteInfoChild
 import com.crowncement.TsSalesTracking.databinding.FragCallRecordApprovalBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
@@ -44,6 +45,7 @@ class Frag_CallRecord_Approval : Fragment() {
     lateinit var itemAdapter: CallRecordApproveListAdapter
     lateinit var retailerViewModel: RetailerViewModel
     var approveList: ArrayList<GetSalesCallAppResponceChild> = ArrayList()
+    var sortedapproveList :  ArrayList<GetSalesCallAppResponceChild> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -233,7 +235,10 @@ class Frag_CallRecord_Approval : Fragment() {
                             if (res.code == "200" && res.data.size > 0) {
 
                                 approveList = ArrayList()
+                                sortedapproveList = ArrayList()
                                 approveList = res.data
+
+
 
                                 successApprovalList(
                                     res,
@@ -283,15 +288,34 @@ class Frag_CallRecord_Approval : Fragment() {
         if (res.code.equals("200") && (res.data.size > 0)) {
             noData.visibility = View.GONE
             rv.visibility = View.VISIBLE
-            prepareAttAuthList(rv, res.data)
+          //  prepareAttAuthList(rv, res.data)
+
+
+            val otherCustomerList: ArrayList<GetSalesCallAppResponceChild> = res.data
+            approveList = otherCustomerList
+
+
+            for (values in approveList) {
+
+                if (values.delQty != 0 )
+                {
+                    sortedapproveList.add(values)
+                }
+            }
+
+            approveList = sortedapproveList
+
+            prepareAttAuthList(rv, sortedapproveList)
+
 
         } else {
             noData.visibility = View.VISIBLE
             rv.visibility = View.GONE
         }
 
-    //    binding.shimmerAttApproveContainer.visibility = View.GONE
-     //   binding.shimmerAttApproveContainer.stopShimmer()
+        //    binding.shimmerAttApproveContainer.visibility = View.GONE
+        //   binding.shimmerAttApproveContainer.stopShimmer()
+
     }
 
 

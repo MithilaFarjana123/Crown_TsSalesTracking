@@ -673,6 +673,8 @@ class Frag_Demo_Site_Home : Fragment() {
         }
 
 
+        binding.carddemoSiteVerfication.visibility = View.GONE
+
         binding.carddemoSiteVerfication.setOnClickListener {
             val userInfo: Data = Utility.getUserInfo(requireActivity())!!
 

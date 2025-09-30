@@ -481,7 +481,7 @@ class Frag_Engineer_Add_Update : Fragment() {
             openGalleryForImages()
         }
         binding.addCamera.setOnClickListener {
-            openCameraVisitingCard()
+          //  openCameraVisitingCard()
 
             captureImage(VCARD_PIC_CAMERA_REQ_CODE)
         }
@@ -1778,11 +1778,15 @@ class Frag_Engineer_Add_Update : Fragment() {
             result = false
             Utility.getBaseMessage(
                 requireActivity(),
-                "Engineer Image size exceed expected max file size 200 KB ",
+                "Engineer image required ",
+                "Please attach engineer's  image  ",
+                /*
                 "After compression your file size is   " + String.format(
                     "%.2f",
                     finalFileInKB
                 ) + " KB",
+
+                 */
                 R.drawable.error_white,
                 0
             )
@@ -1791,11 +1795,15 @@ class Frag_Engineer_Add_Update : Fragment() {
             result = false
             Utility.getBaseMessage(
                 requireActivity(),
-                "Engineer visiting card size exceed expected max file size 200 KB",
+                "Engineer visiting card required",
+                "Please attach engineer's  visiting card  ",
+                /*
                 "After compression your file size is   " + String.format(
                     "%.2f",
                     cardFileInKB
                 ) + " KB",
+
+                 */
                 R.drawable.error_white,
                 0
             )
@@ -1909,8 +1917,13 @@ class Frag_Engineer_Add_Update : Fragment() {
                 result = false
                 Utility.getBaseMessage(
                     requireActivity(),
+                    "Engineer image required ",
+                    "Please attach engineer's  image  ",
+                    /*
                     "Engineer image size exceed expected max file size 200 KB",
-                    "After compression your file size is   " +String.format("%.2f", fileSizeInMB) +" KB",                         R.drawable.error_white,
+                    "After compression your file size is   " +String.format("%.2f", fileSizeInMB) +" KB",
+                      */
+                    R.drawable.error_white,
                     2
                 )
             }
@@ -1918,11 +1931,8 @@ class Frag_Engineer_Add_Update : Fragment() {
                 result = false
                 Utility.getBaseMessage(
                     requireActivity(),
-                    "Engineer visiting card size exceed expected max file size 200 KB",
-                    "After compression your file size is   " + String.format(
-                        "%.2f",
-                        cardFileInKB
-                    ) + " KB",
+                    "Engineer visiting card required",
+                    "Please attach engineer's  visiting card  ",
                     R.drawable.error_white,
                     0
                 )
