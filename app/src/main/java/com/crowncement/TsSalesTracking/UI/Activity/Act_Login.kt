@@ -73,7 +73,7 @@ class Act_Login : AppCompatActivity() {
                 Utility.storeKeyValue(this, "username", binding.txtEMPID.text.toString())
                 if (binding.cbRemember.isChecked) {
                     val pass = binding.txtPass.text.toString()
-                    val device = getAndroidDeviceId()
+                    val device = getAndroidDeviceId() + " "+ getDeviceName()
 
                     Utility.storeKeyValue(this, "pass", pass)
                     Utility.storeKeyValue(this, "deviceId", device)
@@ -84,7 +84,7 @@ class Act_Login : AppCompatActivity() {
                     getUserLogin(
                         binding.txtEMPID.text.toString(),
                         binding.txtPass.text.toString(),
-                        getAndroidDeviceId(),
+                        getAndroidDeviceId()+" "+ getE00-000691(),
                         fcmToken
                     )
                 }
@@ -153,6 +153,18 @@ class Act_Login : AppCompatActivity() {
     private fun getAndroidDeviceId(): String {
         return Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
     }
+
+
+    fun getDeviceName(): String {
+        val manufacturer = Build.MANUFACTURER.capitalize()
+        val model = Build.MODEL
+        return if (model.startsWith(manufacturer)) {
+            model
+        } else {
+            "$manufacturer $model"
+        }
+    }
+
 
     private fun setupViewModel() {
         viewModel =

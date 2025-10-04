@@ -78,9 +78,9 @@
 
                         <ImageView
                             android:id="@+id/callIcon"
-                            android:layout_weight="0.2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
                             android:gravity="center"
                             android:src="@drawable/call"
                             android:textSize="16sp"
@@ -88,26 +88,30 @@
 
                         <TextView
                             android:id="@+id/txtPartyMobile"
-                            android:layout_weight="0.8"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
                             android:gravity="center"
                             android:text="Party Mobile"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2" />
 
 
                         <ImageView
                             android:id="@+id/ConversionIcion"
-                            android:layout_weight="0.2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
                             android:gravity="center"
                             android:src="@drawable/converted_icon"
                             android:textSize="16sp"
-                            android:visibility="gone"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -118,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Testing Site"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
 
@@ -130,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Address: East Goran, Khilgaon Dhaka 1219"
-                        android:textSize="12sp"  />
+                        android:textSize="16sp"  />
 
                     <TextView
                         android:id="@+id/txtsiteType"
@@ -138,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Site Type : | Total Area :"
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
 
                     <TextView
@@ -147,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Code: Re-123455"
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
 
                     <TextView
@@ -156,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="  "
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txtContractorCodeCode"
@@ -164,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="   "
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
 
 
 
