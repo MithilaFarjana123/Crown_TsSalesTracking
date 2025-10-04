@@ -84,7 +84,7 @@ class Act_Login : AppCompatActivity() {
                     getUserLogin(
                         binding.txtEMPID.text.toString(),
                         binding.txtPass.text.toString(),
-                        getAndroidDeviceId()+" "+ getE00-000691(),
+                        getAndroidDeviceId()+" "+ getDeviceName(),
                         fcmToken
                     )
                 }
