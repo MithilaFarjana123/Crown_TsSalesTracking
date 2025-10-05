@@ -18,12 +18,14 @@ android {
         applicationId "com.crowncement.TsSalesTracking"
         minSdk 23
         targetSdk 35
-        versionCode 15
-        versionName "1.0.20"
+        versionCode 16
+        versionName "1.0.21"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+
     }
+
 
 
     buildTypes {

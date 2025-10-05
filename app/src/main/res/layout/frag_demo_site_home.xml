@@ -15,6 +15,16 @@
         android:orientation="vertical">
 
 
+        <LinearLayout
+            android:layout_weight="0.4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            >
+
+
+
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/locationStatus"
             android:layout_width="30dp"
@@ -31,7 +41,7 @@
         <ImageView
             android:id="@+id/imgSiteHomeCover"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/constactionsite" />
 
@@ -41,14 +51,16 @@
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_marginTop="-80dp"
-            android:layout_marginBottom="50dp"
             android:clickable="true"
             android:src="@drawable/ic_camera_cover"
             tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,TouchTargetSizeCheck" />
 
+        </LinearLayout>
+
         <androidx.cardview.widget.CardView
+            android:layout_weight="0.25"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-30dp"
             android:layout_marginRight="20dp"
@@ -188,6 +200,9 @@
 
         </androidx.cardview.widget.CardView>
 
+
+
+
 <!--        <LinearLayout-->
 <!--            android:id="@+id/mapClick"-->
 <!--            android:layout_width="match_parent"-->
@@ -196,11 +211,20 @@
         <fragment
             class="com.google.android.gms.maps.SupportMapFragment"
             android:id="@+id/map_fragment"
+            android:layout_weight="0.2"
             android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
-            android:layout_height="150dp" />
+            android:layout_height="0dp" />
 
 <!--        </LinearLayout>-->
+
+
+
+    <LinearLayout
+        android:layout_weight="0.45"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -601,6 +625,8 @@
         </LinearLayout>
 
         </ScrollView>
+
+    </LinearLayout>
 
     </LinearLayout>
 

@@ -367,9 +367,9 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
         } catch (e: Exception) {
 
             val error = e.message
+
         }
     }
-
 
 
 
