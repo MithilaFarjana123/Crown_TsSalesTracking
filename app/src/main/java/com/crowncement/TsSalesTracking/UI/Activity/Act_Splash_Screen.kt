@@ -63,6 +63,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessaging
+import java.text.SimpleDateFormat
 
 
 import java.util.*
@@ -103,7 +104,7 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
     private lateinit var currentLocation: LatLng
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
-
+    lateinit var device : String
     private lateinit var splashViewModel: SplashViewModel
 
     lateinit var mDatabase: DatabaseReference
@@ -128,6 +129,25 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
 
 
         noInternetBinding = LayoutNoInternetBinding.inflate(LayoutInflater.from(this))
+
+       /* device = Utility.getValueByKey(this,"deviceId").toString()
+        if(device.isEmpty()){
+            device = getAndroidDeviceId() + " "+ getDeviceName() + " " + getCurrentDateTime()
+            Utility.storeKeyValue(this, "deviceId", device)
+        }else{
+            device = ""
+            Utility.storeKeyValue(this, "deviceId", device)
+        }
+
+        */
+
+        device = Utility.getValueByKey(this, "deviceId").toString()
+
+        if (device.isEmpty()) {
+            device = getAndroidDeviceId() + " " + getDeviceName() + " " + getCurrentDateTime()
+            Utility.storeKeyValue(this, "deviceId", device)
+        }
+
 
 
         // setContentView(R.layout.act_splash_screen)
@@ -971,6 +991,29 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
                 true
             } else false
         }
+    }
+
+
+    private fun getAndroidDeviceId(): String {
+        return Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+    }
+
+
+    fun getDeviceName(): String {
+        val manufacturer = Build.MANUFACTURER.capitalize()
+        val model = Build.MODEL
+        return if (model.startsWith(manufacturer)) {
+            model
+        } else {
+            "$manufacturer $model"
+        }
+    }
+
+
+
+    fun getCurrentDateTime(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
+        return dateFormat.format(Date())
     }
 
 }

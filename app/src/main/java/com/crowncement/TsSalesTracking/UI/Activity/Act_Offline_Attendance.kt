@@ -2,6 +2,7 @@ package com.crowncement.TsSalesTracking.UI.Activity
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.ContextWrapper
@@ -19,6 +20,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -42,7 +44,10 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import java.text.SimpleDateFormat
 import java.time.LocalTime
+import java.util.Date
+import java.util.Locale
 import java.util.UUID
 
 
@@ -56,6 +61,7 @@ class Act_Offline_Attendance : AppCompatActivity() {
 
     private lateinit var binding: ActOfflineAttendanceBinding
 
+    private val REQUEST_IMAGE_CAPTURE = 1
 
     var currentPhotoPath = ""
 
@@ -143,7 +149,7 @@ class Act_Offline_Attendance : AppCompatActivity() {
         currentPhotoPath = imageFile!!.absolutePath
         val imageUri = FileProvider.getUriForFile(
             this.applicationContext,
-            "com.crowncement.tecnicalsupport.fileprovider",
+            "com.crowncement.TsSalesTracking.fileprovider",
             imageFile
         )
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -163,7 +169,8 @@ class Act_Offline_Attendance : AppCompatActivity() {
 
                 try {
                     loadingAnim.show()
-
+                    currentPhotoPath = Utility.getValueByKey(this,
+                        "currentPhotoPath").toString()
                     val selectedImage = BitmapFactory.decodeFile(currentPhotoPath)
 
                     if (currentPhotoPath != "") {
@@ -387,7 +394,9 @@ class Act_Offline_Attendance : AppCompatActivity() {
         if (isLocationEnabled() && location != null) {
             latitude = location.latitude
             longitude = location.longitude
-            openCamera()
+           // openCamera()
+
+            captureImage()
             val address = locationHelper.getAddress(latitude, longitude)
             if (address != null) {
                 val addressLine = address.getAddressLine(0)
@@ -511,6 +520,211 @@ class Act_Offline_Attendance : AppCompatActivity() {
             } else false
         }
     }
+
+
+
+
+    //
+    //todo new camera
+    fun captureImage() {
+        when {
+            ContextCompat.checkSelfPermission(
+                this, Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                dispatchTakePictureIntent()
+            }
+
+            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
+                showCameraPermissionRationale()
+            }
+
+            else -> {
+                requestPermissions()
+            }
+        }
+    }
+
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                Manifest.permission.CAMERA,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ),
+            PERMISSION_ALL
+        )
+    }
+
+
+    private fun showCameraPermissionRationale() {
+        AlertDialog.Builder(this).setTitle("Camera Permission Needed")
+            .setMessage("This app needs the Camera permission to take pictures.")
+            .setPositiveButton("OK") { _, _ ->
+
+            }.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }.create().show()
+    }
+
+
+    /*
+        private fun dispatchTakePictureIntent() {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (takePictureIntent.resolveActivity(requireContext().packageManager) != null) {
+                // Create the File where the photo should go
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    // Handle error
+                    null
+                }
+
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        requireContext(),
+                        "com.crowncement.tecnicalsupport.fileprovider",
+                        it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            } else {
+                // Handle the case where no camera app is available
+            }
+        }
+
+     */
+
+
+
+    //todo works for every device except 15
+
+    private fun dispatchTakePictureIntent() {
+        if(Build.VERSION.SDK_INT >= 15){
+            try {
+
+
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    null
+                }
+
+                photoFile?.also {
+
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        this,
+                        "com.crowncement.TsSalesTracking.fileprovider",
+                        it
+                    )
+
+                    //  takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    //  startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+
+                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+                }
+
+            } catch (e: Exception) {
+
+                Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+
+
+            }
+
+        }
+        else{
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                this?.let {
+                    takePictureIntent.resolveActivity(it.packageManager)?.also {
+                        val photoFile: File? = try {
+                            createImageFile()
+                        } catch (ex: IOException) {
+                            null
+                        }
+
+                        photoFile?.also {
+
+                            val photoURI: Uri = FileProvider.getUriForFile(
+                                this,
+                                "com.crowncement.TsSalesTracking.fileprovider",
+                                it
+                            )
+
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+    }
+
+
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String =
+            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File = getOutputDirectory()
+
+        return File.createTempFile(
+            "JPEG_${timeStamp}_bill_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+            Utility.storeKeyValue(this@Act_Offline_Attendance,"currentPhotoPath",currentPhotoPath)
+
+        }
+    }
+
+
+
+    /*
+     @Throws(IOException::class)
+     private fun createImageFile(): File {
+         // Create an image file name
+         val timeStamp: String =
+             SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+         val storageDir: File = getOutputDirectory()
+
+         return File.createTempFile(
+             "JPEG_${timeStamp}_bill_", /* prefix */
+             ".jpg", /* suffix */
+             storageDir /* directory */
+         ).apply {
+             // Save a file: path for use with ACTION_VIEW intents
+             currentPhotoPath = absolutePath
+             Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
+
+         }
+     }
+
+
+     */
+
+
+    private fun getOutputDirectory(): File {
+        val mediaDir = File(this.filesDir, "CrownTitanAttendance").apply {
+            mkdirs()
+        }
+        return if (mediaDir.exists()) mediaDir else this.filesDir
+    }
+
+
+
+
+
+
 
 
 

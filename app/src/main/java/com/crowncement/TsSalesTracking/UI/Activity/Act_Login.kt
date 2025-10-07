@@ -20,6 +20,9 @@ import com.crowncement.TsSalesTracking.common.Utility.baseLoadingAnimation
 import com.crowncement.TsSalesTracking.common.Utility.saveUserInfo
 import com.crowncement.TsSalesTracking.data.Model.Data
 import com.crowncement.TsSalesTracking.databinding.ActivityLoginBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class Act_Login : AppCompatActivity() {
@@ -73,20 +76,24 @@ class Act_Login : AppCompatActivity() {
                 Utility.storeKeyValue(this, "username", binding.txtEMPID.text.toString())
                 if (binding.cbRemember.isChecked) {
                     val pass = binding.txtPass.text.toString()
-                    val device = getAndroidDeviceId() + " "+ getDeviceName()
+                  //  val device = getAndroidDeviceId() + " "+ getDeviceName() + " " + getCurrentDateTime()
 
                     Utility.storeKeyValue(this, "pass", pass)
-                    Utility.storeKeyValue(this, "deviceId", device)
+                   // Utility.storeKeyValue(this, "deviceId", device)
 
                 }
                 if (loginUIValidation()) {
                     loadingAnim.show()
-                    getUserLogin(
-                        binding.txtEMPID.text.toString(),
-                        binding.txtPass.text.toString(),
-                        getAndroidDeviceId()+" "+ getDeviceName(),
-                        fcmToken
-                    )
+                    var deviceID = Utility.getValueByKey(this,"deviceId")
+                    if (deviceID != null) {
+                        getUserLogin(
+                            binding.txtEMPID.text.toString(),
+                            binding.txtPass.text.toString(),
+                            deviceID,
+                            //getAndroidDeviceId()+" "+ getDeviceName() +" "+ getCurrentDateTime(),
+                            fcmToken
+                        )
+                    }
                 }
             }
         }
@@ -165,6 +172,17 @@ class Act_Login : AppCompatActivity() {
         }
     }
 
+
+
+    fun getCurrentDateTime(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
+        return dateFormat.format(Date())
+    }
+
+    fun main() {
+        val currentTime = getCurrentDateTime()
+        println(currentTime)  // Example: 2025-10-06 09:32:27.000
+    }
 
     private fun setupViewModel() {
         viewModel =
