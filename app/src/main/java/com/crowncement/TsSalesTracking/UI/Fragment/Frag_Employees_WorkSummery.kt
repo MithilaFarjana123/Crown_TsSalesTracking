@@ -19,9 +19,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.crowncement.TsSalesTracking.R
 import com.crowncement.TsSalesTracking.UI.viewmodel.AttendanceViewModel
+import com.crowncement.TsSalesTracking.UI.viewmodel.LeaveViewModel
 import com.crowncement.TsSalesTracking.UI.viewmodel.MovementViewModel
+import com.crowncement.TsSalesTracking.UI.viewmodel.RetailerViewModel
 import com.crowncement.TsSalesTracking.UI.viewmodelfactory.AttendanceViewModelFactory
+import com.crowncement.TsSalesTracking.UI.viewmodelfactory.LeaveViewModelFactory
 import com.crowncement.TsSalesTracking.UI.viewmodelfactory.MovementViewModelFactory
+import com.crowncement.TsSalesTracking.UI.viewmodelfactory.RetailerViewModelFactory
 import com.crowncement.TsSalesTracking.common.Status
 import com.crowncement.TsSalesTracking.common.Utility
 import com.crowncement.TsSalesTracking.common.Utility.getCurrentDate
@@ -31,6 +35,7 @@ import com.crowncement.TsSalesTracking.data.Model.AttApproveResponseChild
 import com.crowncement.TsSalesTracking.data.Model.EmpInfo
 import com.crowncement.TsSalesTracking.data.Model.GetEmpEntSumResponce
 import com.crowncement.TsSalesTracking.data.Model.GetEmpEntSumResponceChild
+import com.crowncement.TsSalesTracking.data.Model.GetTSCallTagResponceChild
 import com.crowncement.TsSalesTracking.databinding.FragEmployeesWorkSummeryBinding
 import com.crowncement.TsSalesTracking.databinding.ItemEmpWorkSummeryBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -39,6 +44,7 @@ import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import java.util.Objects
 import java.util.concurrent.TimeUnit
 
@@ -48,13 +54,14 @@ class Frag_Employees_WorkSummery : Fragment() {
     private var _binding: FragEmployeesWorkSummeryBinding? = null
     private val binding get() = _binding!!
     lateinit var atteViewModel: AttendanceViewModel
+
     private lateinit var picker: DatePickerDialog
     lateinit var fromDate: String
     lateinit var toDate: String
     lateinit var user: String
     val breadCramList: ArrayList<String> = ArrayList()
     lateinit var loadingAnim: Dialog
-    var approveList: ArrayList<AttApproveResponseChild> = ArrayList()
+    var allvisitlist = ArrayList<GetTSCallTagResponceChild>()
 
     lateinit var empList: ArrayList<EmpInfo>
 
@@ -64,9 +71,12 @@ class Frag_Employees_WorkSummery : Fragment() {
     lateinit var itemAdapter: EmployeeWorkAdapter
     lateinit var attApproveDate: String
     lateinit var movementViewModel: MovementViewModel
+    lateinit var retailerViewModel: RetailerViewModel
 
     var idForBreadCram = ""
     var clickckeck = ""
+
+    var siteVisitCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +94,7 @@ class Frag_Employees_WorkSummery : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         AttendanceViewModelFactory()
         MovementViewModelFactory()
+        RetailerViewModelFactory()
 
         setupViewModel()
         loadingAnim = Utility.baseLoadingAnimation(
@@ -100,7 +111,7 @@ class Frag_Employees_WorkSummery : Fragment() {
       //  fromDate = timePeriod[0]
       //  toDate = timePeriod[1]
 
-
+        allvisitlist =  ArrayList()
 
         val cldr = Calendar.getInstance()
         val day = cldr[Calendar.DAY_OF_MONTH]
@@ -109,9 +120,10 @@ class Frag_Employees_WorkSummery : Fragment() {
         var lastdayofMonth =  getDaysInMonth(year.toInt(),month.toInt())
         fromDate = "$year-$month-01"
         toDate = "$year-$month-$lastdayofMonth"
+
+
         getSiteSummeryInfo(user, fromDate,toDate)
 
-        
 
     //    getSiteSummeryInfo(user, timePeriod[0], timePeriod[1])
         //   attApproveList(user, Utility.getCurrentDate("yyyy-MM-dd").toString())
@@ -146,6 +158,10 @@ class Frag_Employees_WorkSummery : Fragment() {
         movementViewModel = ViewModelProviders.of(
             this.requireActivity(), MovementViewModelFactory()
         )[MovementViewModel::class.java]
+        retailerViewModel =
+            ViewModelProviders.of(this.requireActivity(), RetailerViewModelFactory())
+                .get(RetailerViewModel::class.java)
+
     }
 
     override fun onDestroyView() {
@@ -565,13 +581,27 @@ class Frag_Employees_WorkSummery : Fragment() {
 
             layout.noEngineerVis.setText(res.data.get(0).noOfEngrVisit.toString())
             layout.noContractorVis.setText(res.data.get(0).noOfContVisit.toString())
-            layout.noSiteVis.setText(res.data.get(0).noOfSitesVisit.toString())
+            //todo old
+          //  layout.noSiteVis.setText(res.data.get(0).noOfSitesVisit.toString())
 
+            //todo new
+        //    getSalesVisitSummary(user, getCurrentDate("yyyy-MM-dd").toString())
+
+          //  getSalesVisitSummary(user, getCurrentDate("yyyy-MM-dd").toString(),layout.noSiteVis)
+          //  var visitCountOfSite = main(fromDate,toDate)
+
+           val visitCountOfSite = calculateTotalSize(fromDate, toDate,layout.noSiteVis)
+
+
+          //  layout.noSiteVis.setText(allvisitlist.size.toString())
+            //will change by quick visit data
 
             layout.totalengRefcall.setText(res.data.get(0).noOfEngrRefCall.toString())
             layout.totalconRefcall.setText(res.data.get(0).noOfContRefCall.toString())
             layout.totalIhbsRefcall.setText(res.data.get(0).noOfIhbRefCall.toString())
 
+            layout.engSiteVisit.visibility = View.GONE
+            layout.conSiteVisit.visibility = View.GONE
 
             //   prepareWorkSumList(rv, res.data)
 
@@ -600,6 +630,132 @@ class Frag_Employees_WorkSummery : Fragment() {
             }
         }
         return res
+    }
+
+
+
+    /*
+
+    //todo visit summery
+    private fun getSalesVisitSummary(userName: String, dateTime: String) :Int {
+
+        retailerViewModel.GetTSCallTag(userName, dateTime)
+            .observe(requireActivity()) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+
+
+                        it.responseData?.let { res ->
+                            if (res.code == "200" && res.data.size > 0) {
+                                siteVisitCount = res.data.size
+                                sizeofList = res.data.size
+                                allvisitlist.addAll(res.data)
+
+                            // var a = siteVisitCount
+                            //    noSiteVis.setText(siteVisitCount.toString())
+                            //  binding.layoutVisit.visibility = View.VISIBLE
+                            //  prepareVisitSummary(res.data)
+
+                            }
+                        }
+                    }
+                    Status.LOADING -> {
+
+
+                    }
+                    Status.ERROR -> {
+                     //   binding.layoutVisit.visibility = View.GONE
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        return sizeofList
+    }
+
+
+
+
+     */
+
+    //from date to date
+
+
+    fun calculateTotalSize(fromDate: String, toDate: String,visText: TextView): Int {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val start = sdf.parse(fromDate)
+        val end = sdf.parse(toDate)
+
+        val calendar = Calendar.getInstance()
+        calendar.time = start
+
+        var totalSize = 0
+
+        while (!calendar.time.after(end)) {
+            val currentDate = sdf.format(calendar.time)
+          //  val size = exampleMethod(currentDate)  // Your custom method
+            val size = getSalesVisitSummary(user,currentDate,visText)  // Your custom method
+
+            totalSize = allvisitlist.size
+         //   totalSize += size
+
+            // Move to next day
+            calendar.add(Calendar.DATE, 1)
+        }
+
+        return totalSize
+    }
+
+    // Example placeholder method — replace with your real logic
+//    fun exampleMethod(date: String): Int {
+//
+//        var size = getSalesVisitSummary(user, date)
+//      //  getSalesVisitSummary(user, getCurrentDate("yyyy-MM-dd").toString(),layout.noSiteVis)
+//
+//        return size
+//    }
+
+    // Example usage
+    /*
+    fun main(fromDate: String,toDate: String) : Int{
+        val total = calculateTotalSize(fromDate, toDate)
+
+        return total
+        println("Total Size: $total")
+    }
+
+     */
+
+
+
+
+    private fun getSalesVisitSummary(userName: String, dateTime: String,siteVisNum :TextView) {
+        retailerViewModel.GetTSCallTag(userName, dateTime)
+            .observe(requireActivity()) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+
+
+                        it.responseData?.let { res ->
+                            if (res.code == "200" && res.data.size > 0) {
+                                allvisitlist = ArrayList()
+                                allvisitlist.addAll(res.data)
+                                siteVisNum.setText(allvisitlist.size.toString())
+                              //  binding.layoutVisit.visibility = View.VISIBLE
+                               // prepareVisitSummary(res.data)
+
+                            }
+                        }
+                    }
+                    Status.LOADING -> {
+
+
+                    }
+                    Status.ERROR -> {
+                     //   binding.layoutVisit.visibility = View.GONE
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
     }
 
 
