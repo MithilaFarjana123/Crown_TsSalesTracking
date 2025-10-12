@@ -2,7 +2,9 @@ package com.crowncement.TsSalesTracking.UI.Fragment
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,6 +45,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -78,6 +84,12 @@ class Frag_Employees_WorkSummery : Fragment() {
 
     var siteVisitCount = 0
 
+    var dateList = ArrayList<String>()
+
+
+    var check = ""
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -90,6 +102,7 @@ class Frag_Employees_WorkSummery : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         AttendanceViewModelFactory()
@@ -106,6 +119,7 @@ class Frag_Employees_WorkSummery : Fragment() {
         attApproveDate = Utility.getCurrentDate("yyyy-MM-dd").toString()
 
         user = Utility.getValueByKey(requireActivity(), "username").toString()
+        check = "monthlyData"
         idForBreadCram = user
        // var timePeriod = Utility.getAttendancePeriod().split(",")
       //  fromDate = timePeriod[0]
@@ -125,7 +139,7 @@ class Frag_Employees_WorkSummery : Fragment() {
         getSiteSummeryInfo(user, fromDate,toDate)
 
 
-    //    getSiteSummeryInfo(user, timePeriod[0], timePeriod[1])
+         //   getSiteSummeryInfo(user, timePeriod[0], timePeriod[1])
         //   attApproveList(user, Utility.getCurrentDate("yyyy-MM-dd").toString())
 
         zonalJuniorList(user, getCurrentDate("yyyy-MM-dd HH:mm:ss").toString())
@@ -232,6 +246,7 @@ class Frag_Employees_WorkSummery : Fragment() {
                 EmployeeWorkAdapter.OnAdapterItemClickListener {
 
 
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun onClickItem(v: View?, position: Int) {
                     //
 
@@ -272,6 +287,7 @@ class Frag_Employees_WorkSummery : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun searchDate() {
         val v: View = layoutInflater.inflate(R.layout.search_date_dialog, null)
         val dialog = BottomSheetDialog(requireActivity())
@@ -296,7 +312,6 @@ class Frag_Employees_WorkSummery : Fragment() {
         dialog.show()
 
         imgClosesSearch.setOnClickListener { dialog.hide() }
-
 
 
         txtFrSearchDate.setOnClickListener {
@@ -345,6 +360,7 @@ class Frag_Employees_WorkSummery : Fragment() {
                             "yyyy-MM-dd",
                             "dd-MMM-yyyy"
                         ))
+
                     /*
                     if (isGraterThan30Days(fromDate, toDate)) {
                         txtErrorSearch.visibility = View.VISIBLE
@@ -363,8 +379,9 @@ class Frag_Employees_WorkSummery : Fragment() {
 
 
                      */
-
+                    check = "searchByDate"
                 }, year, month, day
+
             )
             picker.show()
         }
@@ -434,6 +451,7 @@ class Frag_Employees_WorkSummery : Fragment() {
 
                 BreadCramAdapter.OnAdapterItemClickListener {
 
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun OnClick(v: View?, position: Int) {
 
 
@@ -478,6 +496,7 @@ class Frag_Employees_WorkSummery : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getSiteSummeryInfo(
         id: String,
         fromDate: String,
@@ -539,6 +558,7 @@ class Frag_Employees_WorkSummery : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun successWorkList(
         res: GetEmpEntSumResponce,
         layout: ItemEmpWorkSummeryBinding,
@@ -546,7 +566,7 @@ class Frag_Employees_WorkSummery : Fragment() {
         noData: LottieAnimationView
 
     ) {
-
+     //   loadingAnim.show()
         if (res.code.equals("200") && (res.data.size > 0)) {
             noData.visibility = View.GONE
             binding.empWorkSumly.root.visibility = View.VISIBLE
@@ -590,9 +610,13 @@ class Frag_Employees_WorkSummery : Fragment() {
           //  getSalesVisitSummary(user, getCurrentDate("yyyy-MM-dd").toString(),layout.noSiteVis)
           //  var visitCountOfSite = main(fromDate,toDate)
 
-           val visitCountOfSite = calculateTotalSize(fromDate, toDate,layout.noSiteVis)
-
-
+       //    val visitCountOfSite = calculateTotalSize(fromDate, toDate,layout.noSiteVis)
+            if(check=="monthlyData"){
+                callsitesum(layout.noSiteVis)
+            }else if(check=="searchByDate"){
+                //todo for search date by date
+                searchCallSiteSum(layout.noSiteVis)
+            }
           //  layout.noSiteVis.setText(allvisitlist.size.toString())
             //will change by quick visit data
 
@@ -602,6 +626,7 @@ class Frag_Employees_WorkSummery : Fragment() {
 
             layout.engSiteVisit.visibility = View.GONE
             layout.conSiteVisit.visibility = View.GONE
+
 
             //   prepareWorkSumList(rv, res.data)
 
@@ -616,6 +641,7 @@ class Frag_Employees_WorkSummery : Fragment() {
 
         //   binding.shimmerAttApproveContainer.visibility = View.GONE
         //   binding.shimmerAttApproveContainer.stopShimmer()
+
     }
 
 
@@ -629,122 +655,58 @@ class Frag_Employees_WorkSummery : Fragment() {
                 res = false
             }
         }
+
         return res
     }
 
 
 
-    /*
 
-    //todo visit summery
-    private fun getSalesVisitSummary(userName: String, dateTime: String) :Int {
-
-        retailerViewModel.GetTSCallTag(userName, dateTime)
-            .observe(requireActivity()) {
-                when (it.status) {
-                    Status.SUCCESS -> {
-
-
-                        it.responseData?.let { res ->
-                            if (res.code == "200" && res.data.size > 0) {
-                                siteVisitCount = res.data.size
-                                sizeofList = res.data.size
-                                allvisitlist.addAll(res.data)
-
-                            // var a = siteVisitCount
-                            //    noSiteVis.setText(siteVisitCount.toString())
-                            //  binding.layoutVisit.visibility = View.VISIBLE
-                            //  prepareVisitSummary(res.data)
-
-                            }
-                        }
-                    }
-                    Status.LOADING -> {
-
-
-                    }
-                    Status.ERROR -> {
-                     //   binding.layoutVisit.visibility = View.GONE
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
-        return sizeofList
-    }
-
-
-
-
-     */
 
     //from date to date
-
-
-    fun calculateTotalSize(fromDate: String, toDate: String,visText: TextView): Int {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val start = sdf.parse(fromDate)
-        val end = sdf.parse(toDate)
-
-        val calendar = Calendar.getInstance()
-        calendar.time = start
-
-        var totalSize = 0
-
-        while (!calendar.time.after(end)) {
-            val currentDate = sdf.format(calendar.time)
-          //  val size = exampleMethod(currentDate)  // Your custom method
-            val size = getSalesVisitSummary(user,currentDate,visText)  // Your custom method
-
-            totalSize = allvisitlist.size
-         //   totalSize += size
-
-            // Move to next day
-            calendar.add(Calendar.DATE, 1)
-        }
-
-        return totalSize
-    }
-
-    // Example placeholder method — replace with your real logic
-//    fun exampleMethod(date: String): Int {
-//
-//        var size = getSalesVisitSummary(user, date)
-//      //  getSalesVisitSummary(user, getCurrentDate("yyyy-MM-dd").toString(),layout.noSiteVis)
-//
-//        return size
-//    }
-
-    // Example usage
-    /*
-    fun main(fromDate: String,toDate: String) : Int{
-        val total = calculateTotalSize(fromDate, toDate)
-
-        return total
-        println("Total Size: $total")
-    }
-
-     */
 
 
 
 
     private fun getSalesVisitSummary(userName: String, dateTime: String,siteVisNum :TextView) {
+        loadingAnim.show()
         retailerViewModel.GetTSCallTag(userName, dateTime)
             .observe(requireActivity()) {
                 when (it.status) {
                     Status.SUCCESS -> {
-
-
                         it.responseData?.let { res ->
+
                             if (res.code == "200" && res.data.size > 0) {
-                                allvisitlist = ArrayList()
-                                allvisitlist.addAll(res.data)
-                                siteVisNum.setText(allvisitlist.size.toString())
-                              //  binding.layoutVisit.visibility = View.VISIBLE
-                               // prepareVisitSummary(res.data)
+                              //  allvisitlist = ArrayList()
+                                if (res.data.get(0).moveStat!!.isNotEmpty()){
+                                    allvisitlist.addAll(res.data)
+
+                                }
+                              //  siteVisNum.setText(allvisitlist.size.toString())
+                            }
+
+
+                            else{
+                                Log.e("Error", res.message.toString() )
+                            }
+
+                            if(dateList.size>0){
+                                dateList.removeAt(0)
+                                if(dateList.size>0){
+                                    // CALL API
+                                    getSalesVisitSummary(user,dateList[0],siteVisNum)
+                                } else {
+                                    siteVisNum.setText(allvisitlist.size.toString())
+                                    loadingAnim.dismiss()
+                                }
+                            } else {
+
+                                loadingAnim.dismiss()
 
                             }
                         }
+                   //     loadingAnim.dismiss()
+
                     }
                     Status.LOADING -> {
 
@@ -752,10 +714,94 @@ class Frag_Employees_WorkSummery : Fragment() {
                     }
                     Status.ERROR -> {
                      //   binding.layoutVisit.visibility = View.GONE
+                        loadingAnim.dismiss()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
                 }
             }
+    }
+
+
+
+    //todo new
+
+    /*
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAllDatesInCurrentMonth(): ArrayList<String> {
+        val currentDate = LocalDate.now()
+        val yearMonth = YearMonth.from(currentDate)
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        // Loop from the 1st to the last day of the current month
+        for (day in 1..yearMonth.lengthOfMonth()) {
+            val date = LocalDate.of(yearMonth.year, yearMonth.month, day)
+            dateList.add(date.format(formatter))
+        }
+
+        return dateList
+    }
+
+     */
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAllDatesInCurrentMonth(): ArrayList<String> {
+     //   val dateList = ArrayList<String>() // make sure it's initialized
+        val currentDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        // Loop from the 1st day of the month to today's date
+        for (day in 1..currentDate.dayOfMonth) {
+            val date = LocalDate.of(currentDate.year, currentDate.month, day)
+            dateList.add(date.format(formatter))
+        }
+
+        return dateList
+
+    }
+
+
+    //todo customesearchdateList
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAllDatesBetween(fromDate: String, toDate: String): ArrayList<String> {
+        //val dateList = ArrayList<String>()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        // Convert string to LocalDate
+        val start = LocalDate.parse(fromDate, formatter)
+        val end = LocalDate.parse(toDate, formatter)
+
+        // Loop from start to end date (inclusive)
+        var date = start
+        while (!date.isAfter(end)) {
+            dateList.add(date.format(formatter))
+            date = date.plusDays(1)
+        }
+
+        return dateList
+    }
+
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun callsitesum(visText : TextView){
+
+        var Datelist = getAllDatesInCurrentMonth()
+
+        getSalesVisitSummary(user,dateList[0],visText)
+
+
+
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun searchCallSiteSum(visText : TextView){
+        dateList = ArrayList()
+        allvisitlist = ArrayList()
+        var Datelist = getAllDatesBetween(fromDate,toDate)
+
+        getSalesVisitSummary(user,dateList[0],visText)
+
     }
 
 

@@ -218,7 +218,8 @@
             <ImageView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="center|top" android:src="@drawable/ic_baseline_remove"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
                 <include
-                    android:id="@+id/layoutSiteQuickVisit" layout="@layout/layout_site_quick_visit"/>
+                    android:id="@+id/layoutSiteQuickVisit"
+                    layout="@layout/layout_site_quick_visit"/>
             </LinearLayout>
 
 

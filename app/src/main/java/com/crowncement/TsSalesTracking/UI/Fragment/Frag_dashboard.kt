@@ -278,6 +278,8 @@ class Frag_dashboard : Fragment() {
             ) as ArrayList<OfflineQuickVisit>
         return qVisit
     }
+
+
 /*
     private fun convertOfflineVisit() {
 
@@ -1546,8 +1548,6 @@ class Frag_dashboard : Fragment() {
 
 
 
-
-
     private fun getSalesVisitSummary(userName: String, dateTime: String) {
         retailerViewModel.GetTSCallTag(userName, dateTime)
             .observe(requireActivity()) {
@@ -2291,7 +2291,6 @@ class Frag_dashboard : Fragment() {
 
 
 
-
         /*
                 rootView.cardAtt.setOnClickListener {
                     val navController = requireActivity().findNavController(R.id.nav_host_fragment)
@@ -2568,11 +2567,6 @@ class Frag_dashboard : Fragment() {
 
 
      */
-
-
-
-
-
 
 
 
