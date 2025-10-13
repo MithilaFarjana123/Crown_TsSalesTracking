@@ -144,7 +144,10 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
         device = Utility.getValueByKey(this, "deviceId").toString()
 
         if (device.isEmpty()) {
-            device = getAndroidDeviceId() + " " + getDeviceName() + " " + getCurrentDateTime()
+            val androidVersion = android.os.Build.VERSION.RELEASE
+
+            device = getAndroidDeviceId() + " " + getDeviceName() + "" +
+                    "| AV: "+androidVersion +" | " +getCurrentDateTime() + "-CrownTitan"
             Utility.storeKeyValue(this, "deviceId", device)
         }
 

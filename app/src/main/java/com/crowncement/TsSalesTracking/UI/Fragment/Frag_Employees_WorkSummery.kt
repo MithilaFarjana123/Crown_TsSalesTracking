@@ -326,7 +326,8 @@ class Frag_Employees_WorkSummery : Fragment() {
                 { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
                     val monthNumber = monthOfYear + 1
                     val selectedDate = "$year1-$monthNumber-$dayOfMonth"
-                    fromDate = selectedDate
+                    fromDate = String.format("%04d-%02d-%02d", year1, monthNumber, dayOfMonth)
+                   // fromDate = selectedDate
                     txtFrSearchDate.setText(
                         Utility.changeDateFormat(
                             selectedDate,
@@ -353,7 +354,8 @@ class Frag_Employees_WorkSummery : Fragment() {
                 { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
                     val monthNumber = monthOfYear + 1
                     val selectedDate = "$year1-$monthNumber-$dayOfMonth"
-                    toDate = selectedDate
+                 //   toDate = selectedDate
+                    toDate = String.format("%04d-%02d-%02d", year1, monthNumber, dayOfMonth)
                     txtTSearchDate.setText(
                         Utility.changeDateFormat(
                             selectedDate,
@@ -761,6 +763,7 @@ class Frag_Employees_WorkSummery : Fragment() {
 
 
     //todo customesearchdateList
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllDatesBetween(fromDate: String, toDate: String): ArrayList<String> {
         //val dateList = ArrayList<String>()
@@ -779,6 +782,8 @@ class Frag_Employees_WorkSummery : Fragment() {
 
         return dateList
     }
+
+
 
 
 
