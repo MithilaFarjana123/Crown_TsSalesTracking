@@ -270,6 +270,7 @@ class Frag_Demo_Site_Home : Fragment() {
             dialog.dismiss()
 
         }
+        
     }
 
 
@@ -303,14 +304,15 @@ class Frag_Demo_Site_Home : Fragment() {
 
              }
          }else{
+
              Utility.getBaseMessage(requireActivity(),
                  "Warning ",
                  "Please add site image first then try to verify. ",
                  R.drawable.error_white,
                  0
              )
-         }
 
+         }
 
      }
 
@@ -332,6 +334,7 @@ class Frag_Demo_Site_Home : Fragment() {
 
                 //addQuickVisit(selectedCustomer)
             }
+
             else{
                 binding.txtDestination.visibility=View.VISIBLE
                 val mess="Your are $disInMeter meter away from the destination current location is $latitude,$longitude, please go to the $selectedCustomer ($SiteCode) closest location within ${profile.fence_distance} meter and try again"
@@ -340,17 +343,21 @@ class Frag_Demo_Site_Home : Fragment() {
                 showDialog.show()
 
             }
+
         }else{
+
             Utility.getBaseMessage(requireActivity(),
                 "Warning ",
-                "Please add site image frist then try to give quick visit. ",
+                "Please add site image first then try to give quick visit. ",
                 R.drawable.error_white,
                 0
             )
+
         }
 
 
     }
+
 
     fun distanceWarning(activity: Activity, dialog: Dialog, mess: String): Dialog {
         val inflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -1983,8 +1990,9 @@ class Frag_Demo_Site_Home : Fragment() {
     }
 
 
-
 }
+
+
 }
 
 

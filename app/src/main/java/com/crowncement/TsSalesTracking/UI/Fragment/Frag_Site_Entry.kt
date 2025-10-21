@@ -105,8 +105,6 @@ class Frag_Site_Entry : Fragment() {
     private  val TAG = "Frag_Site_Entry"
 
 
-
-
     var division = ""
     var district = ""
     var thana = ""
@@ -148,11 +146,7 @@ class Frag_Site_Entry : Fragment() {
     var finalFileInKB: Double = 0.0
 
 
-
-
     lateinit var loadingAnim: Dialog
-
-
     lateinit var finalFile: File
 
 
@@ -192,7 +186,7 @@ class Frag_Site_Entry : Fragment() {
     var storiedRunning = 0
     var cementConsumptionNew =0
     var cementConsumptionRunning = 0
-    var brand =""
+    var brand = ""
     var brandPrice = 0.0
     var siteStatus = ""
     var siteRefBy =""
@@ -213,20 +207,10 @@ class Frag_Site_Entry : Fragment() {
     private val REQUEST_IMAGE_CAPTURE = 1
 
 
-
-
-
-
     lateinit var empdivisionList: ArrayList<String>
     lateinit var empdistrictList: ArrayList<String>
     lateinit var empthanaList : ArrayList<String>
     lateinit var emprouteList : ArrayList<String>
-
-
-
-
-
-
 
 
 
@@ -276,11 +260,9 @@ class Frag_Site_Entry : Fragment() {
         getRetailerSetupInfo()
         type = Utility.getValueByKey(requireActivity(), "slected_party_type").toString()
 
-
         if (type=="Engineer"){
             binding.layoutEngineerCode.visibility = View.GONE
             binding.layoutContractorCode.visibility = View.VISIBLE
-
 
         }else if(type=="Contractor"){
             binding.layoutEngineerCode.visibility = View.VISIBLE
@@ -302,12 +284,7 @@ class Frag_Site_Entry : Fragment() {
         binding.layoutTsSiteStored.visibility = View.GONE
 
 
-
-
         onClickListener()
-
-
-
 
     }
 
@@ -2109,7 +2086,6 @@ class Frag_Site_Entry : Fragment() {
 
 
                 return
-
 
             } else {
 
