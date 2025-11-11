@@ -748,6 +748,7 @@ class frag_Live_Attendance1 : Fragment() {
             showCameraPermissionRationale()
         }
 
+
         else -> {
             requestPermissions()
         }
@@ -762,6 +763,7 @@ class frag_Live_Attendance1 : Fragment() {
 
             }.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }.create().show()
     }
+
 
 
 /*

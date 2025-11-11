@@ -412,6 +412,7 @@ class Frag_dashboard : Fragment() {
                     true
                 }
 
+
                 googleMap.addCircle(
                     CircleOptions()
                         .center(currentLocation)
@@ -426,6 +427,7 @@ class Frag_dashboard : Fragment() {
         txtLocationCancel.setOnClickListener {
             dialog.dismiss()
         }
+
 
     }
 
@@ -452,6 +454,7 @@ class Frag_dashboard : Fragment() {
         actualMovDialog.setContentView(v)
         actualMovDialog.setCancelable(true)
         actualMovDialog.show()
+
 
 
         btnAdd.setOnClickListener {
@@ -508,6 +511,7 @@ class Frag_dashboard : Fragment() {
                         if (res.code.toString() == "200" && res.data.size > 0) {
 
                             empRouteList = ArrayList()
+
                             for (item in res.data) {
                                 val prePlanListItem =
                                     item.routeNo + ":" + item.routeName + ":" + item.routeCode
@@ -518,6 +522,7 @@ class Frag_dashboard : Fragment() {
                             loadRoute(idGRV, context, chips, dataList)
 
                         } else {
+
                             commonToast(
                                 requireActivity(),
                                 "Route not set up yet",
@@ -694,6 +699,7 @@ class Frag_dashboard : Fragment() {
 //                            )
 //                        }
                         // loadingAnim.dismiss()
+
                     }
                 }
 
@@ -870,11 +876,15 @@ class Frag_dashboard : Fragment() {
             for (item in selectedRouteList) {
                 val res = item.trim().split(":")[2]
                 processedRouteList.add(res)
+
             }
+
             citiesCommaSeparated = java.lang.String.join(",", processedRouteList)
 
         }
+
         return citiesCommaSeparated
+
     }
 
     private fun saveActualMovementPlan(

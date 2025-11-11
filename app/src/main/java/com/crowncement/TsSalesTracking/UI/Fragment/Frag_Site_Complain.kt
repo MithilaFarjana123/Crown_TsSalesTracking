@@ -1780,6 +1780,7 @@ class Frag_Site_Complain : Fragment() {
         task.addOnSuccessListener {
 
             requestPermissions()
+
         }
 
         task.addOnFailureListener { exception ->
@@ -1850,6 +1851,7 @@ class Frag_Site_Complain : Fragment() {
         }
     }
 
+    
     private fun requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ActivityCompat.requestPermissions(
@@ -1882,6 +1884,7 @@ class Frag_Site_Complain : Fragment() {
         return bestLocation
     }
 
+
     //for spinnner of complainer id
     private fun siteReferenceDialog(partyType:String) {
         val v: View = layoutInflater.inflate(R.layout.site_ref_dialog, null)
@@ -1896,7 +1899,7 @@ class Frag_Site_Complain : Fragment() {
         val acThana = v.findViewById<AutoCompleteTextView>(R.id.acThana)
         val acRoute = v.findViewById<AutoCompleteTextView>(R.id.acRoute)
         val search_customer = v.findViewById<SearchView>(R.id.search_customer)
-
+       // search_customer.visibility = View.GONE
 
 
         val layoutThana = v.findViewById<TextInputLayout>(R.id.layoutThana)
@@ -1935,6 +1938,7 @@ class Frag_Site_Complain : Fragment() {
                 layoutRoute.visibility = View.GONE
                 layoutThana.visibility = View.VISIBLE
             }
+
         }
         txtRetailerType.text = partyType+ " Information"
 
@@ -2063,6 +2067,8 @@ class Frag_Site_Complain : Fragment() {
                 selectedRoute = ""
             }
         }
+      //  otherCustomerLists = ArrayList()
+
 
         search_customer.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -2211,6 +2217,7 @@ class Frag_Site_Complain : Fragment() {
                         thanaList = res.data
                         loadThana(acThana, res.data)
                     }
+
                 }
                 Status.ERROR -> {
 
@@ -2278,6 +2285,7 @@ class Frag_Site_Complain : Fragment() {
         acRoute!!.setAdapter(adapter)
         adapter.notifyDataSetChanged()
     }
+
 
     private fun getDealerList(country: String, division: String, district: String,rdRetailer:RecyclerView,txtNoDealerInfo:TextView,dialog: Dialog) {
         retailerViewModel.getDealerList(country, division, district)
@@ -2392,6 +2400,7 @@ class Frag_Site_Complain : Fragment() {
 
         if (text.isNotEmpty()) {
             when {
+
                 acClient.text.toString() == "Dealer" -> {
 
                     if (dealerLists.size > 0) {

@@ -38,9 +38,11 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.GridView
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity.RESULT_OK
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
@@ -1753,8 +1755,9 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
     val acDistrict = v.findViewById<AutoCompleteTextView>(R.id.acDistrict)
     val acThana = v.findViewById<AutoCompleteTextView>(R.id.acThana)
     val acRoute = v.findViewById<AutoCompleteTextView>(R.id.acRoute)
+    val tc_Cancle =  v.findViewById<ImageView>(R.id.tc_Cancle)
     val search_customer = v.findViewById<SearchView>(R.id.search_customer)
-
+   // search_customer.isEnabled = true
 
 
     val layoutThana = v.findViewById<TextInputLayout>(R.id.layoutThana)
@@ -1797,15 +1800,9 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
     txtRetailerType.text = partyType+ " Information"
 
 
-
-
-
-
-
-
-
-
-
+    tc_Cancle.setOnClickListener { view1: View? ->
+         dialog.dismiss()
+    }
 
 
     btnRefSubmit.setOnClickListener { view1: View? ->
@@ -1921,6 +1918,7 @@ class Frag_Complain : Fragment() , MultiSelectionSpinnerDialog.OnMultiSpinnerSel
             selectedRoute = ""
         }
     }
+
 
     search_customer.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 

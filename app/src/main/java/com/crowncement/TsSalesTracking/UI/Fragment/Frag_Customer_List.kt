@@ -511,6 +511,7 @@ class Frag_Customer_List : Fragment() {
                         "selectedDivision",
                         binding.acDivision.text.toString()
                     )
+
                     storeKeyValue(
                         requireActivity(),
                         "selectedDistrict",
@@ -533,6 +534,7 @@ class Frag_Customer_List : Fragment() {
                         binding.acClient.text.toString()
                     )
                     loadingAnim.show()
+
                     getOtherCustomerList(
                         "Bangladesh",
                         binding.acDivision.text.toString(),
@@ -540,6 +542,7 @@ class Frag_Customer_List : Fragment() {
                         binding.acThana.text.toString(),
                         binding.acClient.text.toString()
                     )
+
                 }
 
 
@@ -1556,7 +1559,6 @@ class Frag_Customer_List : Fragment() {
                             item.partyPhone!!.lowercase(Locale.getDefault())
                                 .contains(text.lowercase(Locale.getDefault()))
 
-
                              */
 
 
@@ -1594,7 +1596,6 @@ class Frag_Customer_List : Fragment() {
                             2
                         )
                     }
-
 
                     /*
                     if (otherCustomerLists.size > 0) {
@@ -1646,9 +1647,9 @@ class Frag_Customer_List : Fragment() {
 
                      */
 
-
                 }
             }
+
         } else {
             Utility.getBaseMessage(
                 requireActivity(),
@@ -1658,9 +1659,6 @@ class Frag_Customer_List : Fragment() {
                 0
             )
         }
-
-
-
 
     }
 

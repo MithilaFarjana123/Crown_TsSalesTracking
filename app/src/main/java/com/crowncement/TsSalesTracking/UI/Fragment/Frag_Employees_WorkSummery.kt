@@ -313,7 +313,6 @@ class Frag_Employees_WorkSummery : Fragment() {
 
         imgClosesSearch.setOnClickListener { dialog.hide() }
 
-
         txtFrSearchDate.setOnClickListener {
             layoutSearchF.isErrorEnabled = false
             layoutSearchT.isErrorEnabled = false
@@ -363,6 +362,7 @@ class Frag_Employees_WorkSummery : Fragment() {
                             "dd-MMM-yyyy"
                         ))
 
+
                     /*
                     if (isGraterThan30Days(fromDate, toDate)) {
                         txtErrorSearch.visibility = View.VISIBLE
@@ -387,7 +387,9 @@ class Frag_Employees_WorkSummery : Fragment() {
                 }, year, month, day
 
             )
+
             picker.show()
+
         }
 
         btnSearchAtt.setOnClickListener {

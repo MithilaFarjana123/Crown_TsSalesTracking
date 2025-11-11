@@ -1392,20 +1392,62 @@ class Frag_Demo_Site_Home : Fragment() {
 
                                     }else if(index.partyType.toString()=="Contractor"){
                                         _binding?.txtContractorCodeCode?.setText("Contractor : "+index.partyName+" ( "+index.partyCode+" ) ")
-                                        Utility.storeKeyValue(requireActivity(),"conCode",index.partyCode)
-                                        Utility.storeKeyValue(requireActivity(),"conName",index.partyName)
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "conCode", index.partyCode)
+                                        }
+                                         //   Utility.storeKeyValue(requireActivity(),"conCode",index.partyCode)
+
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "conName", index.partyName)
+                                        }
+                                        /*
+                                        if(index.partyName!!.isNotEmpty()) {
+                                            Utility.storeKeyValue(
+                                                requireActivity(),
+                                                "conName",
+                                                index.partyName
+                                            )
+                                        }
+
+                                         */
 
                                     }else if(index.partyType.toString()=="Engineer"){
                                         _binding?.txtEngineerCode?.setText("Engineer : "+index.partyName+" ( "+index.partyCode+" ) ")
-                                        Utility.storeKeyValue(requireActivity(),"engCode",index.partyCode)
-                                        Utility.storeKeyValue(requireActivity(),"engName",index.partyName)
 
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "engCode", index.partyCode)
+                                        }
+                                        /*
+                                        if(index.partyCode!!.isNotEmpty()) {
+                                            Utility.storeKeyValue(
+                                                requireActivity(),
+                                                "engCode",
+                                                index.partyCode
+                                            )
+                                        }
+                                         */
+
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "engName", index.partyName)
+                                        }
+
+                                        /*
+                                        if(index.partyName!!.isNotEmpty()) {
+                                            Utility.storeKeyValue(
+                                                requireActivity(),
+                                                "engName",
+                                                index.partyName
+                                            )
+                                        }
+
+                                         */
                                     }else{
 
 
                                     }
 
                                     //println("Item at $index is ${items[index]}")
+
                                 }
 
                             }
@@ -1416,10 +1458,13 @@ class Frag_Demo_Site_Home : Fragment() {
 
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                             loadingAnim.dismiss()
+
                         }
 
                     }
+
                 }
+
         }
 
     }

@@ -102,7 +102,8 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
 
             Utility.sendActivity(this, "Act_Login")
 
-        } else {
+        }
+        else {
 
 
             // setSupportActionBar(appBarMainBinding.toolbar)
@@ -188,6 +189,7 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
             if (notificationClick != null && userInfo.userId.toString() != "") {
 
                 when (notificationClick) {
+
                     "Leave" -> {
                         replaceFragment(R.id.nav_leave_app_auth)
                     }
@@ -220,8 +222,9 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
 
             hideDrawerItem()
 
-            transferfragment()
         }
+
+        transferfragment()
 
 
     }
@@ -303,7 +306,6 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
 
         if (profile.att_status.toString() == "No") {
 
-
             navMenu.findItem(R.id.nav_Live_Attendance).isVisible = false
 
         }
@@ -311,6 +313,7 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
 //  userDrawerMenuPermission(navMenu)
 
         menuPermission(navMenu, Utility.getUserInfo(this)!!.user_access.toString())
+
     }
 
     private fun menuPermission(menu: Menu, featurePermission: String) {
@@ -428,7 +431,7 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
         dialog.show()
         btnNo.setOnClickListener {
 
-            dialog.hide()
+            dialog.dismiss()
         }
         btnYes.setOnClickListener {
             super.onBackPressed()
@@ -499,6 +502,7 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
         }
 
 //todo for android 14
+
     /*
     override fun onRequestPermissionsResult(
         requestCode: Int,
