@@ -593,7 +593,6 @@ class Frag_Employees_WorkSummery : Fragment() {
 
             layout.dateofData.setText("From Date : "+f +"    |    To Date : "+t)
 
-
             layout.SiteNo.setText(res.data.get(0).noOfSite.toString())
             layout.ibhsNo.setText(res.data.get(0).noOfIhbEntry.toString())
             layout.engineerNo.setText(res.data.get(0).noOfEngineer.toString())

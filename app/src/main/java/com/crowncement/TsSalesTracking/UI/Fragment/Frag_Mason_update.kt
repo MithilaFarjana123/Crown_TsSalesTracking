@@ -152,8 +152,6 @@ class Frag_Mason_update : Fragment() {
     var selectedRouteName=""
 
 
-
-
     var nomfileType = ""
     var Nom_Attach_REQUEST_CODE =201
     lateinit var nomCardFile : ArrayList<File>
@@ -803,6 +801,8 @@ class Frag_Mason_update : Fragment() {
 
                 Glide
                     .with(this)
+                   // .load("34.242.207.144:8787/da/docs/mason/nid/" + other.partyCode)
+
                     .load(EndPoint.IMAGE_BASE_URL + other.partyImage)
                     .error(R.drawable.default_user_image)
                     .fitCenter()
@@ -829,6 +829,7 @@ class Frag_Mason_update : Fragment() {
                     Glide
                         .with(this)
                         .load(EndPoint.IMAGE_BASE_URL + other.nidImg)
+                      //  .load(EndPoint.IMAGE_BASE_URL + other.nidImg)
                         .error(R.drawable.ic_baseline_broken_image)
                         .fitCenter()
                         .skipMemoryCache(true)
@@ -837,7 +838,20 @@ class Frag_Mason_update : Fragment() {
                 }
 
             }
-
+            
+            else {
+                Glide
+                    .with(this)
+                   // .load("http://34.142.207.144:8787/")
+                    .load("http://34.142.207.144:8787/da/docs/x880022/Mason/nid/" + other.partyCode+".jpg")
+                    //  .load(EndPoint.IMAGE_BASE_URL + other.nidImg)
+                  //  .load("http://34.142.207.144:8787/da/docs/x880022/Mason/nid/SBP-175964.jpg")
+                    .error(R.drawable.ic_baseline_broken_image)
+                    .fitCenter()
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(binding.imgUMNidFile)
+            }
 
             if (other.nomNidImg != "") {
 
@@ -850,7 +864,6 @@ class Frag_Mason_update : Fragment() {
                     binding.imgMUNomNidFile.scaleType = ImageView.ScaleType.FIT_CENTER
 
                 } else {
-
 
                     Glide
                         .with(this)
@@ -3585,6 +3598,7 @@ class Frag_Mason_update : Fragment() {
                 nomcurrentPhotoIDPath = absolutePath
 
             }else if (requestCode==NID_CAMERA_REQ_CODE){
+                fileType = "CAMERAID"
                 currentPhotoIDPath = absolutePath
             }
         }
@@ -3857,6 +3871,152 @@ class Frag_Mason_update : Fragment() {
                     NID_CAMERA_REQ_CODE -> {
                         try {
                             if (fileType == "CAMERAID") {
+
+
+                                //  val selectedImage = BitmapFactory.decodeFile(currentPhotoIDPath)
+                                val nidimgFile = compressImage(currentPhotoIDPath)
+
+                                if (nidimgFile.exists()) {
+                                    val nidimageSize = (nidimgFile.length() / 1024.0)
+                                    // Toast.makeText(requireActivity(), imageSize.toString(), Toast.LENGTH_LONG).show()
+                                    //  finalFile.add(imgFile)
+                                    nidfinalFile = nidimgFile
+                                }
+
+                                cardFile.add(nidfinalFile)
+
+                                val nidbitmap = BitmapFactory.decodeFile(nidfinalFile.absolutePath)
+                                binding.imgUMNidFile.setImageBitmap(nidbitmap)
+                                /*
+                                nidselectedImage = BitmapFactory.decodeFile(currentPhotoIDPath)
+                                val emp =
+                                    Utility.getValueByKey(requireActivity(), "username").toString()
+                                // val imName = emp + Utility.getCurrentDate("yyyyMMdd").toString()
+                                val resizedImage = resizeBitmap(nidselectedImage!!, 800, 800)
+                                //  val tempUri = saveImageToGallery(requireContext(), resizedImage, emp)
+
+                                val tempUri = getImageUri(requireContext(), nidselectedImage!!, emp)
+                                niduri = tempUri!!
+                                Log.e("realPath", getRealPathFromURI(tempUri)!!)
+                                //     realPath = getRealPathFromURI(tempUri)!!
+                                //     nidfinalFile = File(getRealPathFromURI(tempUri)!!)
+                                nidfinalFileInMB =
+                                    currentPhotoIDPath.length.toDouble() / (1024 * 1024)
+
+
+                                nidSelectionType = "camera"
+
+                                var imguri = ImagePathUtils.getRealPath(requireContext(), tempUri)
+                                val imgFile = compressImage(imguri.toString())
+                                nidfinalFile = imgFile
+
+
+
+
+                                cardFile.add(nidfinalFile)
+                                extension = "jpg"
+                                // binding.txtMNidFileName.text = ""
+                                // binding.imgMNidFile.setImageDrawable(null)
+                                Glide
+                                    .with(this)
+                                    .load(nidfinalFile)
+                                    // .error(R.drawable.default_user_image)
+                                    .fitCenter()
+                                    .skipMemoryCache(true)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .into(binding.imgMNidFile)
+                                // binding.imgMNidFile.setImageBitmap(selectedImage)
+                                */
+                                //  fileType = ""
+
+                            }
+                            else {
+                                //  fileType = ""
+                                Utility.getBaseMessage(
+                                    requireActivity(),
+                                    "Failed",
+                                    "Failed to capture nid card",
+                                    R.drawable.error_white,
+                                    2
+                                )
+                            }
+                        } catch (e: Error) {
+
+                            /*
+                            if (fileType == "CAMERAID") {
+                                currentPhotoIDPath =
+                                    Utility.getValueByKey(requireActivity(), "currentPhotoIDPath")
+                                        .toString()
+                                //  val selectedImage = BitmapFactory.decodeFile(currentPhotoIDPath)
+                                nidselectedImage = BitmapFactory.decodeFile(currentPhotoIDPath)
+                                val emp =
+                                    Utility.getValueByKey(requireActivity(), "username").toString()
+                                val imName = emp + Utility.getCurrentDate("yyyyMMdd")
+                                val resizedImage = resizeBitmap(selectedImage!!, 800, 800)
+                                val tempUri =
+                                    saveImageToGallery(requireContext(), resizedImage, imName)
+                                niduri = tempUri!!
+
+                                // val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                                nidfinalFile = File(getRealPathFromURI(tempUri)!!)
+                                nidfinalFileInMB =
+                                    currentPhotoIDPath.length.toDouble() / (1024 * 1024)
+                                nidSelectionType = "camera"
+
+                                var imguri = ImagePathUtils.getRealPath(requireContext(), tempUri)
+                                val imgFile = compressImage(imguri.toString())
+                                nidfinalFile = imgFile
+
+                                /*
+                                                                GlobalScope.launch {
+                                                                    nidfinalFile =
+                                                                        Compressor.compress(requireContext(), nidfinalFile) {
+                                                                            resolution(1280, 720)
+                                                                            quality(80)
+                                                                            format(Bitmap.CompressFormat.JPEG)
+                                                                            size(204_800) // 200 KB
+                                                                        }
+                                                                    // nidfinalFile= Compressor.compress(requireContext(), nidfinalFile)
+                                                                }
+
+                                 */
+
+                                cardFile.add(nidfinalFile)
+
+                                extension = "jpg"
+                                //  _binding?.txtMNidFileName?.text = ""
+                                // binding.imgMNidFile.setImageDrawable(null)
+                                Glide
+                                    .with(this)
+                                    .load(nidfinalFile)
+                                    // .error(R.drawable.default_user_image)
+                                    .fitCenter()
+                                    .skipMemoryCache(true)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .into(binding.imgMNidFile)
+                                //   binding.imgMNidFile.setImageBitmap(selectedImage)
+                                fileType = ""
+
+                            }
+                            else {
+                                fileType = ""
+                                Utility.getBaseMessage(
+                                    requireActivity(),
+                                    "Failed",
+                                    "Failed to capture visiting card",
+                                    R.drawable.error_white,
+                                    2
+                                )
+                            }
+                            */
+
+
+                        }
+
+                        ////////////////////////////////////////////////////////////
+/*
+                        try {
+                            if (fileType == "CAMERAID") {
                                 //  val selectedImage = BitmapFactory.decodeFile(currentPhotoIDPath)
 
                                 nidselectedImage = BitmapFactory.decodeFile(currentPhotoIDPath)
@@ -3909,7 +4069,8 @@ class Frag_Mason_update : Fragment() {
                                     2
                                 )
                             }
-                        } catch (e: Error) {
+                        }
+                        catch (e: Error) {
                             if (fileType == "CAMERAID") {
                                 currentPhotoIDPath =
                                     Utility.getValueByKey(requireActivity(), "currentPhotoIDPath")
@@ -3975,6 +4136,8 @@ class Frag_Mason_update : Fragment() {
                                 )
                             }
                         }
+
+ */
 
                     }
 

@@ -71,9 +71,6 @@ class Frag_Customer_List : Fragment() {
     lateinit var emprouteList : ArrayList<String>
 
 
-
-
-
     private var selectedDivision: String = ""
     private var selectedDistrict: String = ""
     private var selectedThana: String = ""
@@ -171,10 +168,6 @@ class Frag_Customer_List : Fragment() {
         empDisDisthanasetUp()
 
         onClickEventListener()
-
-
-
-
 
     }
 
@@ -404,7 +397,7 @@ class Frag_Customer_List : Fragment() {
 
                     clientTypes[position] == "Contractor" -> {
                         binding.layoutThana.visibility = View.VISIBLE
-                    binding.fabAddRetailer.visibility = View.GONE
+                        binding.fabAddRetailer.visibility = View.GONE
                     }
                     clientTypes[position] == "Engineer" -> {
                         binding.layoutThana.visibility = View.VISIBLE
@@ -444,7 +437,7 @@ class Frag_Customer_List : Fragment() {
                 selectedDivision = parent.getItemAtPosition(position).toString()
 
 
-                 getDistrictList("Bangladesh", selectedDivision)
+                getDistrictList("Bangladesh", selectedDivision)
             } else {
                 selectedDivision = ""
             }
@@ -504,6 +497,7 @@ class Frag_Customer_List : Fragment() {
                 )
 
 
+
                 if (binding.acClient.text.toString() != "Dealer" && binding.acClient.text.toString() != "Retailer") {
 
                     storeKeyValue(
@@ -533,6 +527,7 @@ class Frag_Customer_List : Fragment() {
                         "acCustomer",
                         binding.acClient.text.toString()
                     )
+
                     loadingAnim.show()
 
                     getOtherCustomerList(
@@ -587,9 +582,9 @@ class Frag_Customer_List : Fragment() {
         for (items in clientTypes) {
             //if(clientTypes.contains(selectedCustomerType)){
             if (items == selectedCustomerType) {
-               // binding.acClient.setSelection(clientTypes.indexOf(items))
+                // binding.acClient.setSelection(clientTypes.indexOf(items))
                 var position = clientTypes.indexOf(items)
-              //  binding.acClient.setSelection(clientTypes.indexOf(items))
+                //  binding.acClient.setSelection(clientTypes.indexOf(items))
                 //todo this was here
                 //  binding.acClient.setSelection(clientTypes.indexOf(items))
 
@@ -768,32 +763,32 @@ class Frag_Customer_List : Fragment() {
         }
     }
 
-/*
-    private fun loadDivision(ac: AutoCompleteTextView, lists: ArrayList<DivisionChild>) {
+    /*
+        private fun loadDivision(ac: AutoCompleteTextView, lists: ArrayList<DivisionChild>) {
 
 
-        val items: ArrayList<String> = ArrayList()
-        items.add("Select Division")
-        for (item in lists) {
-            items.add(item.divName.toString())
+            val items: ArrayList<String> = ArrayList()
+            items.add("Select Division")
+            for (item in lists) {
+                items.add(item.divName.toString())
+            }
+
+
+            val adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_dropdown_item_1line,
+                items
+            )
+
+
+            ac.setAdapter(adapter)
+            adapter.notifyDataSetChanged()
+
+
         }
 
 
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            items
-        )
-
-
-        ac.setAdapter(adapter)
-        adapter.notifyDataSetChanged()
-
-
-    }
-
-
- */
+     */
 
     private fun loadDivision(
         ac: AutoCompleteTextView,
@@ -864,26 +859,26 @@ class Frag_Customer_List : Fragment() {
         }
     }
 
-/*
-    private fun loadDistrict(acDistrict: AutoCompleteTextView?, data: ArrayList<DistrictChild>) {
+    /*
+        private fun loadDistrict(acDistrict: AutoCompleteTextView?, data: ArrayList<DistrictChild>) {
 
 
-        val items: ArrayList<String> = ArrayList()
-        items.add("Select District")
-        for (item in data) {
-            items.add(item.disName.toString())
+            val items: ArrayList<String> = ArrayList()
+            items.add("Select District")
+            for (item in data) {
+                items.add(item.disName.toString())
+            }
+            val adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_dropdown_item_1line,
+                items
+            )
+            acDistrict!!.setAdapter(adapter)
+            adapter.notifyDataSetChanged()
         }
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            items
-        )
-        acDistrict!!.setAdapter(adapter)
-        adapter.notifyDataSetChanged()
-    }
 
 
- */
+     */
 
 
     private fun loadDistrict(
@@ -937,7 +932,7 @@ class Frag_Customer_List : Fragment() {
                             loadThana(binding.acThana, res.data)
 
 
-                          //  loadThana(binding.acThana, res.data,empthanaList)
+                            //  loadThana(binding.acThana, res.data,empthanaList)
                         }
 
 
@@ -1073,36 +1068,36 @@ class Frag_Customer_List : Fragment() {
 
 
 
- /*
-    private fun loadRoute(
-        acRoute: AutoCompleteTextView?,
-        data: ArrayList<RouteChild>,
-        emprouteList: ArrayList<String>
-    ) {
-        // Extract routeName strings, filter to only those in emprouteList
-        val filteredList = data
-            .map { it.routeName.toString() }
-            .filter { it in emprouteList }
-            .toMutableList()
+    /*
+       private fun loadRoute(
+           acRoute: AutoCompleteTextView?,
+           data: ArrayList<RouteChild>,
+           emprouteList: ArrayList<String>
+       ) {
+           // Extract routeName strings, filter to only those in emprouteList
+           val filteredList = data
+               .map { it.routeName.toString() }
+               .filter { it in emprouteList }
+               .toMutableList()
 
-        // Ensure the prompt is always first
-        filteredList.add(0, "Select Route")
+           // Ensure the prompt is always first
+           filteredList.add(0, "Select Route")
 
-        // Create adapter with filtered values
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            filteredList
-        )
-        acRoute?.setAdapter(adapter)
+           // Create adapter with filtered values
+           val adapter = ArrayAdapter(
+               requireContext(),
+               android.R.layout.simple_dropdown_item_1line,
+               filteredList
+           )
+           acRoute?.setAdapter(adapter)
 
-        // Optionally, set the prompt as default text (won’t filter)
-        acRoute?.setText("Select Route", false)
+           // Optionally, set the prompt as default text (won’t filter)
+           acRoute?.setText("Select Route", false)
 
-        adapter.notifyDataSetChanged()
-    }
+           adapter.notifyDataSetChanged()
+       }
 
-  */
+     */
 
 
 

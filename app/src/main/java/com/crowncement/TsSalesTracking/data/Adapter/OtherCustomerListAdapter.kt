@@ -31,8 +31,8 @@ class OtherCustomerListAdapter(
 
     interface OnAdapterItemClickListener {
         fun OnClick(v: View?, position: Int)
-      //  fun OnEngineerClick(v: View?, position: Int)
-      //  fun OnContractorClick(v: View?, position: Int)
+        //  fun OnEngineerClick(v: View?, position: Int)
+        //  fun OnContractorClick(v: View?, position: Int)
     }
 
 
@@ -70,7 +70,7 @@ class OtherCustomerListAdapter(
         }else{
             saveFieldValue(holder.binding.txtOtherMobile, otherInfo.contactPerson+" | "+otherInfo.partyPhone.toString())
             saveFieldValue(holder.binding.txtOtherName, otherInfo.partyName.toString()+" | "+otherInfo.partyMobile.toString() )
-           //added new
+            //added new
             holder.binding.txtOtherTypeName.visibility = View.VISIBLE
             holder.binding.txtOtherTypeImg.visibility = View.GONE
 
@@ -81,7 +81,7 @@ class OtherCustomerListAdapter(
 
         saveFieldValue(holder.binding.txtOtherTypeName, type.toCharArray()[0].toString())
 
-      //  saveFieldValue(holder.itemView.txtOtherAddress, otherInfo.geoHrc4.toString()+", "+otherInfo.geoHrc3.toString()+", "+otherInfo.geoHrc2.toString())
+        //  saveFieldValue(holder.itemView.txtOtherAddress, otherInfo.geoHrc4.toString()+", "+otherInfo.geoHrc3.toString()+", "+otherInfo.geoHrc2.toString())
         saveFieldValue(holder.binding.txtOtherAddress, otherInfo.partyAdd1.toString()+","+otherInfo.geoHrc4.toString()+", "+otherInfo.geoHrc3.toString())
 
 
@@ -107,8 +107,8 @@ class OtherCustomerListAdapter(
 
             binding.layoutOther.setOnClickListener {
                 listener.OnClick(itemView, adapterPosition)
-               // listener.OnEngineerClick(itemView, adapterPosition)
-              //  listener.OnContractorClick(itemView, adapterPosition)
+                // listener.OnEngineerClick(itemView, adapterPosition)
+                //  listener.OnContractorClick(itemView, adapterPosition)
 
             }
         }

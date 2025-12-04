@@ -2959,7 +2959,6 @@ class Frag_Contractor_Add_Update : Fragment() {
 
                     PRO_PIC_CAMERA_REQ_CODE -> {
 
-
                         val imgFile = compressImage(currentPhotoPath)
 
                         if (imgFile.exists()) {
@@ -3169,7 +3168,6 @@ class Frag_Contractor_Add_Update : Fragment() {
 
                                   //  var imguri = ImagePathUtils.getRealPath(requireContext(), imageUri)
                                   //  val imgFile = compressImage(imguri.toString())
-
 
                                    // nidfinalFile = imgFile
 

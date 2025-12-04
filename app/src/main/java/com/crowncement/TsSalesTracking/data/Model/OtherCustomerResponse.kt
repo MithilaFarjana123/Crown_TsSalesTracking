@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class OtherCustomerResponse(
 
-    @SerializedName("code"    ) var code    : String?                               = null,
-    @SerializedName("message" ) var message : String?                               = null,
+    @SerializedName("code"    ) var code    : String?                               = "",
+    @SerializedName("message" ) var message : String?                               = "",
     @SerializedName("data"    ) var data    : ArrayList<OtherCustomerChild>         = arrayListOf()
 
 )
