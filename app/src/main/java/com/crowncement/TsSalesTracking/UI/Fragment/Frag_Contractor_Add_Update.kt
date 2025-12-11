@@ -1017,6 +1017,7 @@ class Frag_Contractor_Add_Update : Fragment() {
             setError(binding.layoutCCrown, "Provide no of crown site")
         } else if (!picFile.isFile || picFileInKB > 200) {
             result = false
+            if(picFileInKB > 200){
             Utility.getBaseMessage(
                 requireActivity(),
                 "Contractor Image size exceed expected max file size 200 KB ",
@@ -1026,12 +1027,21 @@ class Frag_Contractor_Add_Update : Fragment() {
                 ) + " KB",
                 R.drawable.error_white,
                 2
-            )
+            )}
+            else if(!picFile.isFile){
+                Utility.getBaseMessage(
+                    requireActivity(),
+                    "Contractor Image is required ",
+                    "Please add contractor image",
+                    R.drawable.error_white,
+                    2
+                )
+            }
         } else if (!nidfinalFile.isFile || nidfinalFileInKB > 200) {
             result = false
+            if(nidfinalFileInKB > 200){
             Utility.getBaseMessage(
                 requireActivity(),
-
                 "Contractor nid card size exceed expected max file size 200 KB ",
                 "After compression your file size is   " + String.format(
                     "%.2f",
@@ -1039,7 +1049,15 @@ class Frag_Contractor_Add_Update : Fragment() {
                 ) + " KB",
                 R.drawable.error_white,
                 2
-            )
+            )}else if(!nidfinalFile.isFile){
+                Utility.getBaseMessage(
+                    requireActivity(),
+                    "Contractor nid is required ",
+                    "Please add contractor nid ",
+                    R.drawable.error_white,
+                    2
+                )
+            }
         } else if (vCardFile.isFile && vCardFileInKB > 200) {
             result = false
             Utility.getBaseMessage(
@@ -1470,14 +1488,14 @@ class Frag_Contractor_Add_Update : Fragment() {
                             }
                             else if ((nidFile.size > 0) && (other.nidImg == "")) {
                                 nidfinalFileInKB = nidFile.get(0).length() / 1024.0
-
+                                nidExtension = "jpg"
                                 //nid
                                 uploadCustomerDoc(
                                     user,
                                     party_code,
                                     "Contractor",
                                     "nid",
-                                    nidExtension,
+                                    "jpg",
                                     nidFile,
                                     loadingAnim,
                                     "" + "nid"
@@ -1559,10 +1577,10 @@ class Frag_Contractor_Add_Update : Fragment() {
                                             party_code,
                                             "Contractor",
                                             "nid",
-                                            nidExtension,
+                                            "jpg",
                                             nidFile,
-                                            loading, "" +
-                                                    "nid"
+                                            loading,
+                                            "" + "nid"
                                         )
                                     }
                                     else if (cardFile.size > 0) {
@@ -1869,6 +1887,19 @@ class Frag_Contractor_Add_Update : Fragment() {
                 binding.txtNidFileName.text = other.nidImg.toString().split("/").last()
                 binding.imgNidFile.setBackgroundResource(R.drawable.ic_attached_pdf)
                 binding.imgNidFile.scaleType = ImageView.ScaleType.FIT_CENTER
+            }else if (other.nidImg == "") {
+             //todo ////////////////////////
+
+              //  C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\da\docs\x880022\Contractor\nid
+                Glide
+                    .with(this)
+                   // .load(EndPoint.IMAGE_BASE_URL + other.nidImg)
+                    .load("http://34.142.207.144:8787/da/docs/x880022/Contractor/nid/" +other.partyCode+".jpg")
+                    .error(R.drawable.ic_baseline_broken_image)
+                    .fitCenter()
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(binding.imgNidFile)
             }
 
 
@@ -2791,10 +2822,14 @@ class Frag_Contractor_Add_Update : Fragment() {
 
     //todo new capture img
     fun captureImage(requestCode: Int ) {
+//        when {
+//            ContextCompat.checkSelfPermission(
+//                requireContext(), Manifest.permission.CAMERA
+//            ) == PackageManager.PERMISSION_GRANTED -> {
+//                dispatchTakePictureIntent(requestCode)
+//            }
         when {
-            ContextCompat.checkSelfPermission(
-                requireContext(), Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED -> {
+            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
                 dispatchTakePictureIntent(requestCode)
             }
 
@@ -2817,7 +2852,9 @@ class Frag_Contractor_Add_Update : Fragment() {
             }.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }.create().show()
     }
 
+/*
     private fun dispatchTakePictureIntent(requestCode: Int) {
+
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             context?.let {
                 takePictureIntent.resolveActivity(it.packageManager)?.also {
@@ -2843,6 +2880,75 @@ class Frag_Contractor_Add_Update : Fragment() {
         }
     }
 
+ */
+
+
+    private fun dispatchTakePictureIntent(requestCode: Int) {
+
+        if(Build.VERSION.SDK_INT >= 15){
+            try {
+
+                val photoFile: File? = try {
+                    createImageFile(requestCode)
+                } catch (ex: IOException) {
+                    null
+                }
+
+                photoFile?.also {
+
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        requireContext(),
+                        "com.crowncement.TsSalesTracking.fileprovider",
+                        it
+                    )
+
+                    //  takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    //  startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+
+                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(intent, requestCode)
+                }
+
+            } catch (e: Exception) {
+
+                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        }
+        else{
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                context?.let {
+                    takePictureIntent.resolveActivity(it.packageManager)?.also {
+                        val photoFile: File? = try {
+                            createImageFile(requestCode)
+                        } catch (ex: IOException) {
+                            null
+                        }
+
+                        photoFile?.also {
+
+                            val photoURI: Uri = FileProvider.getUriForFile(
+                                requireContext(),
+                                "com.crowncement.TsSalesTracking.fileprovider",
+                                it
+                            )
+
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                            startActivityForResult(takePictureIntent, requestCode)
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+
+
+
+
     @Throws(IOException::class)
     private fun createImageFile(requestCode: Int): File {
         // Create an image file name
@@ -2865,6 +2971,8 @@ class Frag_Contractor_Add_Update : Fragment() {
             }
         }
     }
+
+
 
     private fun getOutputDirectory(): File {
         val mediaDir = File(requireContext().filesDir, "CrownTitanAttendance").apply {

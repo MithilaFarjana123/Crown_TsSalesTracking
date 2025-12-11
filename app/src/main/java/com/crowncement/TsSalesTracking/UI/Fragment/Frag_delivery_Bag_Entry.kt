@@ -939,7 +939,6 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
     private fun confirmationDialog(siteCode : String) {
 
-
         val v: View = layoutInflater.inflate(R.layout.site_tag_dialouge, null)
         val dialog = BottomSheetDialog(requireContext())
         Objects.requireNonNull(dialog.window)

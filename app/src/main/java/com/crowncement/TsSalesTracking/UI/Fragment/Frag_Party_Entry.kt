@@ -1251,10 +1251,7 @@ class Frag_Party_Entry : Fragment() {
         }
     }
 
-
-
-
-}
+    }
 
 
 

@@ -49,10 +49,11 @@ class EmployeeWorkAdapter (private val attList: ArrayList<EmpInfo>) :
 
 
         holder.binding.txtEmpN.setText(attInfo.empName.toString())
-        holder.binding.txtEmpI.setText(attInfo.empName.toString())
+        holder.binding.txtEmpI.setText(attInfo.empId.toString())
 
 
     }
+
 
     override fun getItemCount(): Int {
         return attList.size

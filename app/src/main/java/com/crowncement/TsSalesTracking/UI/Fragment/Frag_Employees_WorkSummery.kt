@@ -544,6 +544,7 @@ class Frag_Employees_WorkSummery : Fragment() {
                                 )
                             }
 
+
                             loadingAnim.dismiss()
 
                         }
@@ -622,7 +623,8 @@ class Frag_Employees_WorkSummery : Fragment() {
                 //todo for search date by date
                 searchCallSiteSum(layout.noSiteVis)
             }
-          //  layout.noSiteVis.setText(allvisitlist.size.toString())
+
+            //  layout.noSiteVis.setText(allvisitlist.size.toString())
             //will change by quick visit data
 
             layout.totalengRefcall.setText(res.data.get(0).noOfEngrRefCall.toString())
@@ -643,6 +645,7 @@ class Frag_Employees_WorkSummery : Fragment() {
             noData.visibility = View.VISIBLE
 
         }
+
 
         //   binding.shimmerAttApproveContainer.visibility = View.GONE
         //   binding.shimmerAttApproveContainer.stopShimmer()
@@ -685,7 +688,6 @@ class Frag_Employees_WorkSummery : Fragment() {
                               //  allvisitlist = ArrayList()
                                 if (res.data.get(0).moveStat!!.isNotEmpty()){
                                     allvisitlist.addAll(res.data)
-
                                 }
                               //  siteVisNum.setText(allvisitlist.size.toString())
                             }
@@ -710,13 +712,16 @@ class Frag_Employees_WorkSummery : Fragment() {
 
                             }
                         }
+
                    //     loadingAnim.dismiss()
 
                     }
+
                     Status.LOADING -> {
 
 
                     }
+
                     Status.ERROR -> {
                      //   binding.layoutVisit.visibility = View.GONE
                         loadingAnim.dismiss()
@@ -797,9 +802,8 @@ class Frag_Employees_WorkSummery : Fragment() {
 
         getSalesVisitSummary(user,dateList[0],visText)
 
-
-
     }
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)
