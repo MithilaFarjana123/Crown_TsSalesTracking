@@ -540,9 +540,10 @@ class Frag_Customer_List : Fragment() {
 
                 }
 
-
             } else {
+
                 selectedThana = ""
+
             }
         }
 

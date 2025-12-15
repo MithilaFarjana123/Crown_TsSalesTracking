@@ -544,7 +544,6 @@ class Frag_Employees_WorkSummery : Fragment() {
                                 )
                             }
 
-
                             loadingAnim.dismiss()
 
                         }
@@ -608,21 +607,21 @@ class Frag_Employees_WorkSummery : Fragment() {
             layout.noEngineerVis.setText(res.data.get(0).noOfEngrVisit.toString())
             layout.noContractorVis.setText(res.data.get(0).noOfContVisit.toString())
             //todo old
-          //  layout.noSiteVis.setText(res.data.get(0).noOfSitesVisit.toString())
+            layout.noSiteVis.setText(res.data.get(0).noOfSitesVisit.toString())
 
             //todo new
-        //    getSalesVisitSummary(user, getCurrentDate("yyyy-MM-dd").toString())
 
-          //  getSalesVisitSummary(user, getCurrentDate("yyyy-MM-dd").toString(),layout.noSiteVis)
-          //  var visitCountOfSite = main(fromDate,toDate)
-
-       //    val visitCountOfSite = calculateTotalSize(fromDate, toDate,layout.noSiteVis)
+/*
             if(check=="monthlyData"){
                 callsitesum(layout.noSiteVis)
             }else if(check=="searchByDate"){
                 //todo for search date by date
                 searchCallSiteSum(layout.noSiteVis)
             }
+
+ */
+
+
 
             //  layout.noSiteVis.setText(allvisitlist.size.toString())
             //will change by quick visit data

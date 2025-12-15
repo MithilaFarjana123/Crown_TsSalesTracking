@@ -1005,6 +1005,7 @@ fun CarReqEntList(
 
         ): Flowable<TSQuickVisitSaveResponce>?
 
+
 //todo for sitetag
 @Multipart
 @POST("SaleBPSiteTag")
@@ -1036,6 +1037,7 @@ fun SaleBPSiteTag(
     ): Flowable<TSCallMove4TagResponce>?
 
 
+
     //todo for getting quick visit list GetTSCallTag
 
     @Multipart
@@ -1046,7 +1048,7 @@ fun SaleBPSiteTag(
     ): Flowable<GetTSCallTagResponce>?
 
 
-    //for gettopic
+    //todo for gettopic
     @Multipart
     @POST("GetCodeType")
     fun GetCodeType(
@@ -1104,7 +1106,7 @@ fun SaleBPSiteTag(
         @Part("to_date")       to_date: RequestBody
     ): Flowable<GetEmpEntSumResponce>?
 
-//todo eng work sum
+    //todo eng work sum
 
     @Multipart
     @POST("GetEngrEntSum")
@@ -1113,6 +1115,7 @@ fun SaleBPSiteTag(
         @Part("from_date")     from_date: RequestBody,
         @Part("to_date")       to_date: RequestBody
     ): Flowable<EngWorkSum>?
+
 
     //todo con worksum
     @Multipart
