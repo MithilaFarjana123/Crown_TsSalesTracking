@@ -633,6 +633,7 @@ class Frag_Employees_WorkSummery : Fragment() {
             layout.engSiteVisit.visibility = View.GONE
             layout.conSiteVisit.visibility = View.GONE
 
+            
 
             //   prepareWorkSumList(rv, res.data)
 
