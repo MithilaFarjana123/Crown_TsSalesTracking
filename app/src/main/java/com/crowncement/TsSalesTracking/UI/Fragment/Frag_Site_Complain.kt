@@ -1345,17 +1345,11 @@ class Frag_Site_Complain : Fragment() {
             binding.txtComNoTReason.text.toString(),
             "",
             ResolveDate,
-
             complainrecieveDate,
-
             binding.acComTSiteType.text.toString(),
-
             SELECTED_PARTY_ID,
-
             selectedComplain,
-
             binding.txtComTAddTopic.text.toString(),
-
             selectedModeOfAction,
 
 

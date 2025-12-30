@@ -1379,9 +1379,6 @@ class Frag_Customer_List : Fragment() {
                         storeKeyValue(requireActivity(), "partyCode", items[position].partyCode)
                         //
 
-
-
-
                         prepareOtherObject(items[position], requireActivity())
 
 

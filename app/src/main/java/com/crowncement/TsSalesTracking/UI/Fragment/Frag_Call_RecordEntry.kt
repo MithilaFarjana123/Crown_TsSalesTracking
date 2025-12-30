@@ -121,8 +121,9 @@ class  Frag_Call_RecordEntry : Fragment() , MultiSelectionSpinnerDialog.OnMultiS
         //rootView = inflater.inflate(R.layout.frag_call_recordentry, container, false)
 
         _binding = FragCallRecordentryBinding.inflate(inflater, container, false)
-/*
 
+
+        /*
         RetailerViewModelFactory()
         setupViewModel()
         loadingAnim = Utility.baseLoadingAnimation(
@@ -164,11 +165,14 @@ class  Frag_Call_RecordEntry : Fragment() , MultiSelectionSpinnerDialog.OnMultiS
         onclickListener()
 */
 
+
         return binding.root
+
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
 
         // Use binding safely
@@ -178,6 +182,7 @@ class  Frag_Call_RecordEntry : Fragment() , MultiSelectionSpinnerDialog.OnMultiS
         loadingAnim = Utility.baseLoadingAnimation(
             requireActivity(), Dialog(requireActivity()), "P l e a s e    w a i t"
         )
+
         var emp = Utility.getValueByKey(requireActivity(), "username").toString()
 
         val cldr = Calendar.getInstance()

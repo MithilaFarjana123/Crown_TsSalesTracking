@@ -1133,6 +1133,17 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
             binding.layoutTCallFollowUp.error = "Follow up reason is required"
 
         }
+//
+        else if(
+
+            (binding.txtTBdeliveryQuantity.text.toString().isNotEmpty()
+                    && binding.txtTBdeliveryQuantity.text.toString().toInt()<50)
+        ){
+            result = false
+            binding.layoutTdeliveryQuantity.isErrorEnabled = true
+            binding.layoutTdeliveryQuantity.error = "Delivery order quantity is must be greater than 50"
+        }
+        //
         else if(binding.txtTBeforeCondate.text.toString().isEmpty()
             &&
             (binding.txtTBdeliveryQuantity.text.toString().isNotEmpty()

@@ -2158,7 +2158,14 @@ class Frag_Refference_CallRecord : Fragment(),
 
         //todo changed
 
-        if((SELECTED_DEALER_ID=="")
+        if(binding.txtRdeliveryQuantity.text.toString().isNotEmpty()
+            && binding.txtRdeliveryQuantity.text.toString().toInt()<50){
+            result = false
+            binding.layoutRdeliveryQuantity.isErrorEnabled = true
+            binding.layoutRdeliveryQuantity.error = "Delivery order quantity is must be greater than 50"
+        }
+
+        else if((SELECTED_DEALER_ID=="")
             &&
             (binding.txtRdeliveryQuantity.text.toString().isNotEmpty()
                     && binding.txtRdeliveryQuantity.text.toString().toInt()>0)
@@ -2212,6 +2219,7 @@ class Frag_Refference_CallRecord : Fragment(),
 
 
         return result
+
     }
 
 
