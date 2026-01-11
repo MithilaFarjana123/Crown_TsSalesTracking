@@ -140,6 +140,8 @@ class Frag_Customer_List : Fragment() {
         */
 
 
+
+
         return binding.root
 
     }

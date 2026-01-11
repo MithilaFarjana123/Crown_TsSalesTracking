@@ -346,7 +346,6 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
         }
 
 
-
         if ("nav_message_list" !in featurePermission) {
             //  menu.findItem(R.id.nav_message_list).isVisible = false
         }

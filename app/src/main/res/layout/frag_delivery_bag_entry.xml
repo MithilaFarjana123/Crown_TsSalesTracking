@@ -181,13 +181,24 @@
             android:id="@+id/rdDemoAllSite"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
             android:baselineAligned="false"
             android:scrollbars="none"
             tools:listitem="@layout/demo_site_item" />
 
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="20dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/baseline_search_24"
+        app:backgroundTint="@color/titan_theme_color"
+        app:tint="@color/white" />
+
 
 
 </FrameLayout>

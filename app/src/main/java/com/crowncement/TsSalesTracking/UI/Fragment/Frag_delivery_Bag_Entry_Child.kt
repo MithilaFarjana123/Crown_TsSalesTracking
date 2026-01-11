@@ -327,29 +327,49 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
                     Status.SUCCESS -> {
 
                         it.responseData?.let { res ->
-                            savedCalldata = ArrayList()
+
+                            /////////
+                            if (res.code == "200") {
+
+
+                                savedCalldata = ArrayList()
 
 
 
-                            savedCalldata = res.data
-                            if(savedCalldata.size>0){
-                                binding.basicSiteInfo.visibility=View.VISIBLE
-                                binding.siteCode.setText("Site Code : "+savedCalldata.get(0).siteId.toString())
-                                binding.partyCode.setText("Party Code : "+savedCalldata.get(0).partyId.toString())
-                                binding.ConversionStatus.setText("Conversion Status : "+savedCalldata.get(0).siteConvStat.toString())
-                             //   binding.contact.setText("Contact : "+savedCalldata.get(0).partyContact.toString())
-                            }else{
+                                savedCalldata = res.data
+                                if (savedCalldata.size > 0) {
+                                    binding.basicSiteInfo.visibility = View.VISIBLE
+                                    binding.siteCode.setText("Site Code : " + savedCalldata.get(0).siteId.toString())
+                                    binding.partyCode.setText("Party Code : " + savedCalldata.get(0).partyId.toString())
+                                    binding.ConversionStatus.setText(
+                                        "Conversion Status : " + savedCalldata.get(
+                                            0
+                                        ).siteConvStat.toString()
+                                    )
+                                    //   binding.contact.setText("Contact : "+savedCalldata.get(0).partyContact.toString())
+                                } else {
 
-                                binding.basicSiteInfo.visibility=View.GONE
+                                    binding.basicSiteInfo.visibility = View.GONE
+
+                                }
 
                             }
+
 
                         }
                         loadingAnim.dismiss()
                     }
                     Status.ERROR -> {
-
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        if(it.message=="500") {
+                            Utility.getBaseMessage(
+                                requireActivity(),
+                                "Warning",
+                                "Please check any delivery bag is pending to your reporting boss",
+                                R.drawable.ic_checked_green,
+                                1
+                            )
+                        }
                         loadingAnim.dismiss()
 
                     }

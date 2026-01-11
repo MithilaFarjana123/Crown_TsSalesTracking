@@ -1,6 +1,7 @@
 package com.crowncement.TsSalesTracking.UI.Fragment
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -13,6 +14,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -38,9 +41,15 @@ import com.crowncement.TsSalesTracking.data.Model.RouteChild
 import com.crowncement.TsSalesTracking.data.Model.ThanaChild
 import com.crowncement.TsSalesTracking.databinding.FragDeliveryBagEntryBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.Objects
+import java.util.concurrent.TimeUnit
 
 
 class Frag_delivery_Bag_Entry : Fragment() {
@@ -158,9 +167,142 @@ class Frag_delivery_Bag_Entry : Fragment() {
                 }
                 return false
             }
+
+
+
         })
 
+
+        binding.searchFab.setOnClickListener {
+
+            searchDate()
+        }
+
     }
+
+
+    private fun searchDate() {
+        val v: View = layoutInflater.inflate(R.layout.search_date_dialog, null)
+        val dialog = BottomSheetDialog(requireActivity())
+        var picker: DatePickerDialog
+        Objects.requireNonNull(dialog.window)
+            ?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+
+        val imgClosesSearch = v.findViewById<ImageView>(R.id.imgClosesSearch)
+        val txtFrSearchDate = v.findViewById<TextInputEditText>(R.id.txtFrSearchDate)
+        val txtTSearchDate  = v.findViewById<TextInputEditText>(R.id.txtTSearchDate)
+        val btnSearchAtt    = v.findViewById<Button>(R.id.btnSearchAtt)
+        val layoutSearchF   = v.findViewById<TextInputLayout>(R.id.layoutSearchF)
+        val layoutSearchT   = v.findViewById<TextInputLayout>(R.id.layoutSearchT)
+        val txtErrorSearch  = v.findViewById<TextView>(R.id.txtErrorSearch)
+
+        var fromDate = ""
+        var toDate = ""
+        btnSearchAtt.setText("Search Converted Site")
+
+        dialog.setContentView(v)
+        dialog.setCancelable(true)
+        dialog.show()
+
+        imgClosesSearch.setOnClickListener { dialog.hide() }
+
+
+
+        txtFrSearchDate.setOnClickListener {
+            layoutSearchF.isErrorEnabled = false
+            layoutSearchT.isErrorEnabled = false
+            val cldr = Calendar.getInstance()
+            val day = cldr[Calendar.DAY_OF_MONTH]
+            val month = cldr[Calendar.MONTH]
+            val year = cldr[Calendar.YEAR]
+            picker = DatePickerDialog(
+                requireContext(),
+                { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
+                    val monthNumber = monthOfYear + 1
+                    val selectedDate = "$year1-$monthNumber-$dayOfMonth"
+                    fromDate = selectedDate
+                    txtFrSearchDate.setText(
+                        Utility.changeDateFormat(
+                            selectedDate,
+                            "yyyy-MM-dd",
+                            "dd-MMM-yyyy"
+                        )
+                    )
+                }, year, month, day
+            )
+            picker.show()
+        }
+
+        txtTSearchDate.setOnClickListener {
+
+            layoutSearchF.isErrorEnabled = false
+            layoutSearchT.isErrorEnabled = false
+
+            val cldr = Calendar.getInstance()
+            val day = cldr[Calendar.DAY_OF_MONTH]
+            val month = cldr[Calendar.MONTH]
+            val year = cldr[Calendar.YEAR]
+            picker = DatePickerDialog(
+                requireContext(),
+                { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
+                    val monthNumber = monthOfYear + 1
+                    val selectedDate = "$year1-$monthNumber-$dayOfMonth"
+                    toDate = selectedDate
+                    if (isGraterThan30Days(fromDate, toDate)) {
+                        txtErrorSearch.visibility = View.VISIBLE
+                        txtFrSearchDate.setText("")
+                        txtTSearchDate.setText("")
+                    } else {
+                        txtErrorSearch.visibility = View.GONE
+                        txtTSearchDate.setText(
+                            Utility.changeDateFormat(
+                                selectedDate,
+                                "yyyy-MM-dd",
+                                "dd-MMM-yyyy"
+                            )
+                        )
+                    }
+
+
+                }, year, month, day
+            )
+            picker.show()
+        }
+
+        btnSearchAtt.setOnClickListener {
+
+            if ((fromDate != "") && (toDate != "")) {
+             //   getUserAttList(user, fromDate, toDate)
+
+                dialog.dismiss()
+            } else {
+                when {
+                    txtFrSearchDate.text.isNullOrBlank() -> {
+                        layoutSearchF.error = "Select from date"
+                        layoutSearchF.isErrorEnabled = true
+                        layoutSearchF.setErrorIconDrawable(R.drawable.ic_baseline_error_orange)
+                    }
+                    txtTSearchDate.text.isNullOrBlank() -> {
+                        layoutSearchT.error = "Select to date"
+                        layoutSearchT.isErrorEnabled = true
+                        layoutSearchT.setErrorIconDrawable(R.drawable.ic_baseline_error_orange)
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    private fun isGraterThan30Days(from: String, to: String): Boolean {
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val fDate: Date = sdf.parse(from)!!
+        val tDate: Date = sdf.parse(to)!!
+        val diff: Long = tDate.time - fDate.time
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) > 30
+
+    }
+
 
 
 
@@ -1126,9 +1268,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
         }
 
-
         when (getValueByKey(requireActivity(), "acCustomer").toString()) {
-
 
             "Dealer" -> {
                 getDivisionList("Bangladesh")
@@ -1138,6 +1278,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
                     getValueByKey(requireActivity(), "selectedDivision").toString()
                 )
 
+
                 /*
                 getDealerList(
                     "Bangladesh",
@@ -1146,6 +1287,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
                 )
 
                  */
+
 
             }
 
