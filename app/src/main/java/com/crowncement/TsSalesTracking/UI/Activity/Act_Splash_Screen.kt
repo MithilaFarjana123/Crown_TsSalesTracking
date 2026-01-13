@@ -569,6 +569,9 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
 
     }
 
+
+
+
     private fun getAppVersion(): String {
         val pInfo: PackageInfo = this.packageManager.getPackageInfo(packageName, 0)
         return pInfo.versionName

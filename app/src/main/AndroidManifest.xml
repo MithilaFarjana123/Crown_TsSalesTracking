@@ -30,7 +30,7 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" /> <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/> -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- <uses-permission -->
 
-<!--    <uses-permission android:name="android.permission.CALL_PHONE"/>-->
+    <!--    <uses-permission android:name="android.permission.CALL_PHONE"/>-->
 
 
     <!-- android:name="android.permission.QUERY_ALL_PACKAGES" -->
@@ -100,7 +100,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBB6nFpptC7tMKzj9RniBj5E0UJx-NGR3w" />
 
-<!--        android:value="AIzaSyAfQTPXpU_DW33-qBGyBFENBEqV2yEXsFc"/>-->
+        <!--        android:value="AIzaSyAfQTPXpU_DW33-qBGyBFENBEqV2yEXsFc"/>-->
 
         <meta-data
             android:name="com.google.android.gms.version"

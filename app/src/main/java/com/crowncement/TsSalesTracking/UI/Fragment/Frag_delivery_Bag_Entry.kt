@@ -5,10 +5,14 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -19,6 +23,7 @@ import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -45,6 +50,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -106,8 +113,10 @@ class Frag_delivery_Bag_Entry : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    //    setHasOptionsMenu(true)
 
         RetailerViewModelFactory()
         setupViewModel()
@@ -181,6 +190,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun searchDate() {
         val v: View = layoutInflater.inflate(R.layout.search_date_dialog, null)
         val dialog = BottomSheetDialog(requireActivity())
@@ -272,7 +282,27 @@ class Frag_delivery_Bag_Entry : Fragment() {
         btnSearchAtt.setOnClickListener {
 
             if ((fromDate != "") && (toDate != "")) {
-             //   getUserAttList(user, fromDate, toDate)
+               // getUserAttList(user, fromDate, toDate)
+               // yesAlreadySortedLists
+
+                val result = yesAlreadySortedLists.filterByDateRange(
+                    fromDate,
+                    toDate
+                )
+
+                var xcode = binding.acClient.text.toString()
+                prepareOtherList(
+                    binding.rdDemoAllSite,
+                    result as ArrayList<GetTSSiteInfoChild>,
+                    xcode
+                )
+
+                //////////////
+
+
+
+                ////////////////////////
+
 
                 dialog.dismiss()
             } else {
@@ -291,6 +321,32 @@ class Frag_delivery_Bag_Entry : Fragment() {
             }
         }
 
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun List<GetTSSiteInfoChild>.filterByDateRange(
+        from: String,
+        to: String
+    ): List<GetTSSiteInfoChild> {
+        val parts = from.split("-")
+        val formatted = "${parts[0]}-${parts[1].padStart(2, '0')}-${parts[2].padStart(2, '0')}"
+        val fdate = LocalDate.parse(formatted).toString()
+//changing date formate from if that is not 2 digit
+        val tparts = from.split("-")
+        val tformatted = "${tparts[0]}-${tparts[1].padStart(2, '0')}-${tparts[2].padStart(2, '0')}"
+        val tdate = LocalDate.parse(tformatted).toString()
+//changing date formate from if that is not 2 digit
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val fromDate = LocalDate.parse(fdate, formatter)
+        val toDate = LocalDate.parse(tdate, formatter)
+
+        return filter {
+            it.firstDelDate?.let { date ->
+                val d = LocalDate.parse(date, formatter)
+                !d.isBefore(fromDate) && !d.isAfter(toDate)
+            } ?: false
+        }
     }
 
 
@@ -1352,7 +1408,29 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
     }
 
+//toolbar home
+//override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//    setHasOptionsMenu(true)
+//}
+/*
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+              //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                val navController =
+                    requireActivity().findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_dashboard)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+ */
 
 }
 

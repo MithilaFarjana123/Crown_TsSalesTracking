@@ -38,7 +38,8 @@ data class GetTSSiteInfoChild(
 
 
     ///this was added
-    @SerializedName("site_visit_status" ) var siteVisitStatus : String? = ""
+    @SerializedName("site_visit_status" ) var siteVisitStatus : String? = "",
+    @SerializedName("first_del_date"    ) var firstDelDate     : String? = ""
 
 
 

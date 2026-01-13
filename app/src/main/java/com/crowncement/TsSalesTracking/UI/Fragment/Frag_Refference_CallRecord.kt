@@ -273,7 +273,7 @@ class Frag_Refference_CallRecord : Fragment(),
 
  */
     }
-
+/*
     fun empTextSetUp(){
         if (binding.txtRPartSiteResPerson.text.isNullOrEmpty()) {
             binding.txtRPartSiteResPerson.setText("E")
@@ -304,6 +304,48 @@ class Frag_Refference_CallRecord : Fragment(),
             }
         })
     }
+
+ */
+
+    fun empTextSetUp() {
+
+        val editText = binding.txtRPartSiteResPerson
+
+        if (editText.text.isNullOrEmpty()) {
+            editText.setText("E")
+            editText.setSelection(editText.length())
+        }
+
+        val watcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s == null) return
+
+                editText.removeTextChangedListener(this)
+
+                val text = s.toString()
+
+                // Always keep prefix E
+                if (!text.startsWith("E")) {
+                    editText.setText("E")
+                    editText.setSelection(editText.length())
+                }
+                // Auto add dash after E00
+                else if (text.length == 3 && !text.contains("-")) {
+                    editText.setText("$text-")
+                    editText.setSelection(editText.length())
+                }
+
+                editText.addTextChangedListener(this)
+            }
+        }
+
+        editText.addTextChangedListener(watcher)
+    }
+
 
 
     override fun onDestroyView() {
@@ -1658,7 +1700,6 @@ class Frag_Refference_CallRecord : Fragment(),
             "",
             "",
             binding.acRCallSiteStatus.text.toString()
-
         )
 
         val gson = Gson()

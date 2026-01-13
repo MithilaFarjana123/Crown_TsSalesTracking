@@ -32,6 +32,9 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -2638,6 +2641,7 @@ class Frag_dashboard : Fragment() {
     //added for back pressed
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+     //   setHasOptionsMenu(true)
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -2765,7 +2769,27 @@ class Frag_dashboard : Fragment() {
         }
     }
 
+//toolbar home
+//override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//    setHasOptionsMenu(true)
+//}
+/*
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+                Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+ */
 
 }
 

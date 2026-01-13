@@ -78,11 +78,11 @@
                         android:digits="E-0123456789"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="EMPID"
                         android:textColor="#4E4C4C"
                         android:inputType="number"
                         android:maxLength="11"
                         android:singleLine="true"
+                        android:hint="EMPID"
                         />
                     <!--        android:textColorHint="@color/white"-->
                 </com.google.android.material.textfield.TextInputLayout>
