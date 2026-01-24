@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -79,6 +80,7 @@ class Frag_Late_Approval : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
         // Use binding safely
 
@@ -307,7 +309,7 @@ class Frag_Late_Approval : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-
+        inflater.inflate(R.menu.toolbar_menu, menu)
         inflater.inflate(R.menu.late_approve_list_search, menu)
         val searchView = menu.findItem(R.id.lateEmpSearch).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -465,5 +467,27 @@ class Frag_Late_Approval : Fragment() {
 
     }
 
+
+
+    //toolbar home
+    /*
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
+
+     */
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+                //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                val navController =
+                    requireActivity().findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_dashboard)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 }

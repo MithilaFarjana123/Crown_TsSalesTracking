@@ -10,6 +10,9 @@ import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -150,6 +153,7 @@ class Frag_Customer_List : Fragment() {
     //todo added
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
 
         // Use binding safely
@@ -1431,6 +1435,7 @@ class Frag_Customer_List : Fragment() {
 
 
         if (text.isNotEmpty()) {
+
             when {
                 binding.acClient.text.toString() == "Dealer" -> {
 
@@ -1510,8 +1515,8 @@ class Frag_Customer_List : Fragment() {
                             binding.rdRetailer.adapter = null
                         } else {
 
-
                             prepareRetailerList(binding.rdRetailer, filteredlist, "R")
+
                         }
 
 
@@ -1657,6 +1662,24 @@ class Frag_Customer_List : Fragment() {
 
     }
 
+
+    //toolbar home
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+                //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                val navController =
+                    requireActivity().findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_dashboard)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 
 

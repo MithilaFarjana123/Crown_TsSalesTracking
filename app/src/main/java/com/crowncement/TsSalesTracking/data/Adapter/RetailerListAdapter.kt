@@ -51,16 +51,16 @@ class RetailerListAdapter(private val retailerList: ArrayList<RetailerChild>, pr
 //Proprietor
         saveFieldValue(holder.binding.txtRetailerOwner, "Proprietor: " +retailerInfo.ownerName.toString())
 
- //LEFT type name
+        //LEFT type name
         //todo need to add image
-   //     saveFieldValue(holder.itemView.txtTypeName, type)
+        //     saveFieldValue(holder.itemView.txtTypeName, type)
 
 //MOBILE
         saveFieldValue(holder.binding.txtRetailerMobile, retailerInfo.partyMobile.toString())
 
         //Address
         saveFieldValue(
-           // holder.itemView.txtRetailerAddress, retailerInfo.marketPoint.toString() + ", " + retailerInfo.geoHrc4.toString() + ", " + retailerInfo.geoHrc3.toString() + ", " + retailerInfo.geoHrc2.toString())
+            // holder.itemView.txtRetailerAddress, retailerInfo.marketPoint.toString() + ", " + retailerInfo.geoHrc4.toString() + ", " + retailerInfo.geoHrc3.toString() + ", " + retailerInfo.geoHrc2.toString())
             holder.binding.txtRetailerAddress,retailerInfo.partyAdd1.toString() + ", " + retailerInfo.geoHrc4.toString() + ", " + retailerInfo.geoHrc3.toString() )
 
     }

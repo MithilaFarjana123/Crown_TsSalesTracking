@@ -27,6 +27,9 @@ import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -257,6 +260,7 @@ class Frag_Site_Complain : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
         // Use binding safely
 
@@ -2953,6 +2957,22 @@ class Frag_Site_Complain : Fragment() {
 
     }
 
+    //toolbar home
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+                //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                val navController =
+                    requireActivity().findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_dashboard)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 }

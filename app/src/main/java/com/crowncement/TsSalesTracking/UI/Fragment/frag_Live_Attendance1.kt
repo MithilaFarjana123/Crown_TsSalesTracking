@@ -26,6 +26,9 @@ import android.provider.Settings
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -36,6 +39,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.crowncement.TsSalesTracking.R
 import com.crowncement.TsSalesTracking.UI.Activity.Act_Splash_Screen
 import com.crowncement.TsSalesTracking.UI.viewmodel.AttendanceViewModel
@@ -117,6 +121,7 @@ class frag_Live_Attendance1 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
         // Use binding safely
 
@@ -1198,5 +1203,22 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
+    //toolbar home
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+                //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                val navController =
+                    requireActivity().findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_dashboard)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 }

@@ -116,7 +116,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    //    setHasOptionsMenu(true)
+        setHasOptionsMenu(true)
 
         RetailerViewModelFactory()
         setupViewModel()
@@ -205,6 +205,9 @@ class Frag_delivery_Bag_Entry : Fragment() {
         val layoutSearchF   = v.findViewById<TextInputLayout>(R.id.layoutSearchF)
         val layoutSearchT   = v.findViewById<TextInputLayout>(R.id.layoutSearchT)
         val txtErrorSearch  = v.findViewById<TextView>(R.id.txtErrorSearch)
+        val heading  = v.findViewById<TextView>(R.id.heading)
+
+        heading.setText("Select Conversion Date")
 
         var fromDate = ""
         var toDate = ""
@@ -215,7 +218,6 @@ class Frag_delivery_Bag_Entry : Fragment() {
         dialog.show()
 
         imgClosesSearch.setOnClickListener { dialog.hide() }
-
 
 
         txtFrSearchDate.setOnClickListener {
@@ -1412,7 +1414,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
 //override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //    setHasOptionsMenu(true)
 //}
-/*
+//toolbar home
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
     }
@@ -1430,7 +1432,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
         }
     }
 
- */
+
 
 }
 

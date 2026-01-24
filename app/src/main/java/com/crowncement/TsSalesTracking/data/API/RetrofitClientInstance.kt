@@ -68,6 +68,7 @@ object RetrofitClientInstance {
             return retrofit
         }
 
+    
 
     val retrofitInstanceTS: Retrofit
         get() {
@@ -80,6 +81,7 @@ object RetrofitClientInstance {
                 .connectTimeout(180, TimeUnit.SECONDS)
                 .addInterceptor(loggingInterceptor)
                 .build()
+
 
             retrofit = Retrofit.Builder()
                 .baseUrl(EndPoint.BASE_URL_TS)

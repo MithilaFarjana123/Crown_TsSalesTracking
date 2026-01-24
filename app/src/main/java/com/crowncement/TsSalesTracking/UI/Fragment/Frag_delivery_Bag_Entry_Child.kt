@@ -4,16 +4,21 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.crowncement.TsSalesTracking.R
@@ -22,6 +27,7 @@ import com.crowncement.TsSalesTracking.UI.viewmodelfactory.RetailerViewModelFact
 import com.crowncement.TsSalesTracking.common.Status
 import com.crowncement.TsSalesTracking.common.Utility
 import com.crowncement.TsSalesTracking.data.Model.GetSalesMoveCallChild
+import com.crowncement.TsSalesTracking.data.Model.GetSiteSumInfoChild
 import com.crowncement.TsSalesTracking.data.Model.GetTSSiteInfoChild
 import com.crowncement.TsSalesTracking.data.Model.OtherCustomerdirectcallinfo
 import com.crowncement.TsSalesTracking.databinding.FragDeliveryBagEntryChildBinding
@@ -30,6 +36,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.gson.Gson
 import java.util.Calendar
 import java.util.Objects
+import java.util.jar.Manifest
 
 
 class Frag_delivery_Bag_Entry_Child : Fragment() {
@@ -44,6 +51,7 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
 
     lateinit var loadingAnim: Dialog
     var selectedDate = ""
+    lateinit var siteInfoLists: ArrayList<GetSiteSumInfoChild>
 
     lateinit var savedCalldata: ArrayList<GetSalesMoveCallChild>
 
@@ -63,6 +71,7 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
 
         RetailerViewModelFactory()
@@ -80,6 +89,9 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
         other = convertOtherInfo(requireActivity())!!
         getSalesMoveCall(other.siteNumber.toString())
 
+        getSiteSummeryInfo( other.siteNumber.toString(),"","")
+
+
         binding.btnSavedemoRCallRecord.setOnClickListener {
             if (delValidation()) {
                 if(savedCalldata.size>0) {
@@ -96,6 +108,61 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
     }
 
 
+    private fun getSiteSummeryInfo(siteId: String, fDate: String, tDate: String) {
+        retailerViewModel.getSiteSumInfo(siteId, fDate, tDate)
+            .observe(requireActivity()) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        it.responseData?.let { res ->
+
+                            if (res.code == "200") {
+
+                                siteInfoLists = res.data
+                                var sitedata = siteInfoLists.get(0)
+                            //    binding.siteID.setText(sitedata.siteId.toString())
+
+
+                                if(sitedata.lastDelDate.toString().equals("2999-12-31")){
+                                    binding.lDeldate.setText("Last delivery date :  ")
+                                }else{
+                                    var lastdate =  Utility.changeDateFormat(
+                                        sitedata.lastDelDate.toString(),
+                                        "yyyy-MM-dd",
+                                        "MMM, dd yyyy"
+                                    )
+                                    binding.lDeldate.setText("Last delivery date : "+lastdate)
+
+                                }
+
+
+                                binding.lDelQty.setText("Last Delivery quantity : "+sitedata.noOfLastDel.toString())
+
+                              //  binding.totalNumDelivary.setText(sitedata.noOfDel.toString())
+
+
+                            } else {
+                                //  binding.siteID.setText("0")
+                                binding.lDeldate.setText("Last delivery date : ")
+
+                                binding.lDelQty.setText("Last Delivery quantity : "+"0")
+
+
+                                // binding.rvMealList.visibility = View.GONE
+                            }
+
+
+                        }
+                    }
+                    Status.LOADING -> {
+
+                    }
+                    Status.ERROR -> {
+
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+    }
 
 
     private fun showConditionalDatePicker() {
@@ -456,22 +523,60 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
     }
 
 
-
     private fun getLastKnownLocation(): Location? {
-        val mLocationManager: LocationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val providers: List<String> = mLocationManager.getProviders(true)
-        var bestLocation: Location? = null
-        for (provider in providers) {
-            val location = mLocationManager!!.getLastKnownLocation(provider) ?: continue
-            if (bestLocation == null || location.accuracy < bestLocation.accuracy) {
-                bestLocation = location
+        return try {
+            val locationManager =
+                requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+            var bestLocation: Location? = null
+            for (provider in locationManager.getProviders(true)) {
+                val location = locationManager.getLastKnownLocation(provider) ?: continue
+                if (bestLocation == null || location.accuracy < bestLocation.accuracy) {
+                    bestLocation = location
+                }
             }
+            bestLocation
+        } catch (e: SecurityException) {
+            null
         }
-        return bestLocation
     }
 
 
 
+    /*
+        private fun getLastKnownLocation(): Location? {
+            val mLocationManager: LocationManager =
+                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val providers: List<String> = mLocationManager.getProviders(true)
+            var bestLocation: Location? = null
+            for (provider in providers) {
+                val location = mLocationManager!!.getLastKnownLocation(provider) ?: continue
+                if (bestLocation == null || location.accuracy < bestLocation.accuracy) {
+                    bestLocation = location
+                }
+            }
+            return bestLocation
+        }
+        
+     */
+
+
+    //toolbar home
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+                //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                val navController =
+                    requireActivity().findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_dashboard)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 }
