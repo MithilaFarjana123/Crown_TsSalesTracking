@@ -16,10 +16,11 @@ import com.crowncement.TsSalesTracking.databinding.OtherCustomerInfoItemBinding
 
 class OtherCustomerListAdapter(
     private val otherList: ArrayList<OtherCustomerChild>,
-    private val type: String
+    private var type: String
 ) :
 
     RecyclerView.Adapter<OtherCustomerListAdapter.ViewHolder>() {
+
 
     var listSize: ArrayList<OtherCustomerChild> = java.util.ArrayList()
 
@@ -40,6 +41,16 @@ class OtherCustomerListAdapter(
         onClickListener = listener
     }
 
+
+    fun updateList(
+        newItems: ArrayList<OtherCustomerChild>,
+        type: String
+    ) {
+        this.otherList.clear()
+        this.otherList.addAll(newItems)
+        this.type = type
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Use ViewBinding to inflate the layout

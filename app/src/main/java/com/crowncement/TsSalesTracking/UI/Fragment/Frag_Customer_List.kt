@@ -1538,6 +1538,7 @@ class Frag_Customer_List : Fragment() {
                     if (otherCustomerLists.size > 0)
                     {
                         val filteredlist = java.util.ArrayList<OtherCustomerChild>()
+
                         for (item in otherCustomerLists) {
                             if (item.contactPerson!!.lowercase(Locale.getDefault())
                                     .contains(text.lowercase(Locale.getDefault())) ||
@@ -1677,10 +1678,10 @@ class Frag_Customer_List : Fragment() {
                 navController.navigate(R.id.nav_dashboard)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
 
 }

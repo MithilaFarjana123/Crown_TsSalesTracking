@@ -375,6 +375,8 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
 //        if ("nav_leave_allocation" !in featurePermission) {
 //            menu.findItem(R.id.nav_leave_allocation).isVisible = false
 //        }
+
+
 //Others
         if ("nav_settings" !in featurePermission) {
             menu.findItem(R.id.nav_settings).isVisible = false
@@ -383,6 +385,7 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
         if ("nav_contractor_database" !in featurePermission) {
             menu.findItem(R.id.nav_contractor_database).isVisible = false
         }
+
 //todo for mason menu permission
 
 

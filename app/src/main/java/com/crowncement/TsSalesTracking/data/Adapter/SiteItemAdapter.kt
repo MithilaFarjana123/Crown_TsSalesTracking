@@ -1,5 +1,6 @@
 package com.crowncement.TsSalesTracking.data.Adapter
 
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,21 +15,28 @@ import com.crowncement.TsSalesTracking.data.Model.GetTSSiteInfoChild
 import com.crowncement.TsSalesTracking.databinding.DemoSiteItemBinding
 
 
+
+
 class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private val type: String) :
     RecyclerView.Adapter<SiteItemAdapter.ViewHolder>()  {
+
 
     private lateinit var onClickListener: OnAdapterItemClickListener
     lateinit var mContext: Context
 
+
     var listSize: ArrayList<GetTSSiteInfoChild> = java.util.ArrayList()
+
 
     interface OnAdapterItemClickListener {
         fun OnClick(v: View?, position: Int)
     }
 
+
     fun setOnItemClickListener(listener: OnAdapterItemClickListener) {
         onClickListener = listener
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Use ViewBinding to inflate the layout
@@ -37,17 +45,23 @@ class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private v
     }
 
 
+
+
     fun extractTextInParentheses(input: String): String? {
         val regex = "\\(([^)]*)\\)".toRegex()
         return regex.find(input)?.groupValues?.get(1)?.trim()
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         mContext = holder.itemView.context
         val SiteInfo = siteList[position]
 
 
+
+
         if (SiteInfo.partyName.toString().isNotEmpty()){
+
 
             val input = SiteInfo.partyName.toString()
             val result = extractTextInParentheses(input)
@@ -58,7 +72,10 @@ class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private v
         }
 
 
+
+
         holder.binding.SiteName.text = "Site Number : "+SiteInfo.siteNumber.toString()
+
 
         if(SiteInfo.partyMobile.toString().isNotEmpty()){
             holder.binding.SiteNumber.visibility = View.VISIBLE
@@ -66,6 +83,7 @@ class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private v
         }else{
             holder.binding.SiteNumber.visibility = View.GONE
         }
+
 
         if (SiteInfo.partyName.toString().isNotEmpty() && type == "IHBs"){
             val input = SiteInfo.partyName.toString()
@@ -85,10 +103,14 @@ class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private v
         }
 
 
+
+
         else {
             holder.binding.partyName.visibility = View.GONE
 
+
         }
+
 
         if(SiteInfo.siteAdd.toString().isNotEmpty()){
             holder.binding.SiteAddress.visibility = View.VISIBLE
@@ -97,21 +119,27 @@ class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private v
             holder.binding.SiteAddress.visibility = View.GONE
         }
 
+
         if((SiteInfo.conversionStatus=="Yes")||
             (SiteInfo.conversionStatus=="Already converted site")){
             holder.binding.ConversionIcon.visibility = View.VISIBLE
-         //   holder.binding.ConversionText.setText("Converted")
+            //   holder.binding.ConversionText.setText("Converted")
+
+
 
 
         }else{
             holder.binding.ConversionIcon.visibility = View.GONE
         }
 
+
         if(SiteInfo.conversionStatus!!.isNotEmpty()){
+
 
             holder.binding.ConversionStatus.text =
                 "Status : " + SiteInfo.conversionStatus.toString()
         }
+
 
 
         if (SiteInfo.siteImage != "") {
@@ -128,15 +156,21 @@ class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private v
         }
 
 
+
+
         //holder.bindData(listSize[position])
     }
+
 
     override fun getItemCount(): Int {
         return siteList.size
     }
 
+
     class ViewHolder(val binding: DemoSiteItemBinding, listener: OnAdapterItemClickListener) : RecyclerView.ViewHolder(binding.root) {
         private val textView: TextView = itemView.findViewById(R.id.SiteName)
+
+
 
 
         init {
@@ -146,4 +180,6 @@ class SiteItemAdapter (private val siteList: List<GetTSSiteInfoChild>, private v
         }
     }
 
+
 }
+

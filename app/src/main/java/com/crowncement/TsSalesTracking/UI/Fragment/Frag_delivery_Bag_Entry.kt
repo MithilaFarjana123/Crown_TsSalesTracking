@@ -493,6 +493,8 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
         }
 
+        /*
+
         binding.acThana.setOnItemClickListener { parent, arg1, position, arg3 ->
             if (position > 0) {
                 selectedThana = parent.getItemAtPosition(position).toString()
@@ -544,6 +546,30 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
             } else {
                 selectedThana = ""
+            }
+        }
+
+         */
+        binding.acThana.setOnItemClickListener { parent, _, position, _ ->
+
+            if (position > 0) {
+
+                selectedThana = parent.getItemAtPosition(position).toString()
+
+                // 🔥 CLEAR EVERYTHING BEFORE NEW SEARCH
+                yesAlreadySortedLists.clear()
+                otherCustomerLists.clear()
+                binding.rdDemoAllSite.adapter = null
+
+                loadingAnim.show()
+
+                getOtherCustomerList(
+                    "Bangladesh",
+                    binding.acDivision.text.toString(),
+                    binding.acDistrict.text.toString(),
+                    selectedThana,
+                    binding.acClient.text.toString()
+                )
             }
         }
 
@@ -934,68 +960,116 @@ class Frag_delivery_Bag_Entry : Fragment() {
     }
 
 
-
-
     private fun filter(text: String) {
 
-        if (text.isNotEmpty()) {
+        if (text.isEmpty()) return
 
-            if (yesAlreadySortedLists.size > 0) {
-                val filteredlist = java.util.ArrayList<GetTSSiteInfoChild>()
-                for (item in yesAlreadySortedLists) {
-                    if (
-                        item.siteNumber!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.siteAdd!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.partyMobile!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.partyName!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.contactPerson!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault())) ||
-                        item.contactPhone!!.lowercase(Locale.getDefault())
-                            .contains(text.lowercase(Locale.getDefault()))
+        if (yesAlreadySortedLists.isEmpty()) {
+            Utility.getBaseMessage(
+                requireActivity(),
+                "Sorry",
+                "No data found",
+                R.drawable.error_white,
+                2
+            )
+            return
+        }
 
-                    ) {
-                        filteredlist.add(item)
+        val filteredList = ArrayList<GetTSSiteInfoChild>()
+
+        for (item in yesAlreadySortedLists) {
+            if (
+                item.siteNumber?.contains(text, true) == true ||
+                item.siteAdd?.contains(text, true) == true ||
+                item.partyMobile?.contains(text, true) == true ||
+                item.partyName?.contains(text, true) == true ||
+                item.contactPerson?.contains(text, true) == true ||
+                item.contactPhone?.contains(text, true) == true
+            ) {
+                filteredList.add(item)
+            }
+        }
+
+        if (filteredList.isEmpty()) {
+            binding.rdDemoAllSite.adapter = null
+            Utility.getBaseMessage(
+                requireActivity(),
+                "Sorry",
+                "No site found",
+                R.drawable.error_white,
+                0
+            )
+        } else {
+            prepareOtherList(binding.rdDemoAllSite, filteredList, selectedCustomer)
+        }
+    }
+
+
+    /*
+
+        private fun filter(text: String) {
+
+            if (text.isNotEmpty()) {
+
+                if (yesAlreadySortedLists.size > 0) {
+                    var filteredlist = java.util.ArrayList<GetTSSiteInfoChild>()
+                    filteredlist= ArrayList()
+                    for (item in yesAlreadySortedLists) {
+                        if (
+                            item.siteNumber!!.lowercase(Locale.getDefault())
+                                .contains(text.lowercase(Locale.getDefault())) ||
+                            item.siteAdd!!.lowercase(Locale.getDefault())
+                                .contains(text.lowercase(Locale.getDefault())) ||
+                            item.partyMobile!!.lowercase(Locale.getDefault())
+                                .contains(text.lowercase(Locale.getDefault())) ||
+                            item.partyName!!.lowercase(Locale.getDefault())
+                                .contains(text.lowercase(Locale.getDefault())) ||
+                            item.contactPerson!!.lowercase(Locale.getDefault())
+                                .contains(text.lowercase(Locale.getDefault())) ||
+                            item.contactPhone!!.lowercase(Locale.getDefault())
+                                .contains(text.lowercase(Locale.getDefault()))
+
+                        ) {
+                            filteredlist.add(item)
+                        }
+
+                    }
+                    if (filteredlist.isEmpty()) {
+                        Utility.getBaseMessage(
+                            requireActivity(),
+                            "Sorry",
+                            "No site found",
+                            R.drawable.error_white,
+                            0
+                        )
+                        binding.rdDemoAllSite.adapter = null
+                    } else {
+
+                        prepareOtherList(binding.rdDemoAllSite, filteredlist, selectedCustomer)
+
+
                     }
 
+
                 }
-                if (filteredlist.isEmpty()) {
+                else {
                     Utility.getBaseMessage(
                         requireActivity(),
                         "Sorry",
-                        "No site found",
+                        "No data found",
                         R.drawable.error_white,
-                        0
+                        2
                     )
-                    binding.rdDemoAllSite.adapter = null
-                } else {
-
-                    prepareOtherList(binding.rdDemoAllSite, filteredlist, selectedCustomer)
-
-
                 }
 
 
-            }
-            else {
-                Utility.getBaseMessage(
-                    requireActivity(),
-                    "Sorry",
-                    "No data found",
-                    R.drawable.error_white,
-                    2
-                )
             }
 
 
         }
 
 
-    }
-
+     */
 
 
     private fun setupViewModel() {
@@ -1014,6 +1088,70 @@ class Frag_delivery_Bag_Entry : Fragment() {
 
     }
 
+
+
+    private fun getOtherCustomerList(
+        country: String,
+        division: String,
+        district: String,
+        thana: String,
+        xCode: String
+    ) {
+        if (isAdded) {
+
+            // 🔥 CLEAR OLD DATA EVERY TIME
+            yesAlreadySortedLists.clear()
+            otherCustomerLists.clear()
+
+            // 🔥 CLEAR RECYCLERVIEW
+            binding.rdDemoAllSite.adapter = null
+
+            loadingAnim.show()
+
+            retailerViewModel.getSavedSiteList(country, division, district, thana)
+                .observe(requireActivity()) {
+                    when (it.status) {
+
+                        Status.LOADING -> {}
+
+                        Status.SUCCESS -> {
+                            it.responseData?.let { res ->
+
+                                otherCustomerLists = res.data
+
+                                for (values in otherCustomerLists) {
+                                    if (
+                                        values.conversionStatus == "Yes" ||
+                                        values.conversionStatus == "Already converted site"
+                                    ) {
+                                        yesAlreadySortedLists.add(values)
+                                    }
+                                }
+
+                                prepareOtherList(
+                                    binding.rdDemoAllSite,
+                                    yesAlreadySortedLists,
+                                    xCode
+                                )
+                            }
+                            loadingAnim.dismiss()
+                        }
+
+                        Status.ERROR -> {
+                            loadingAnim.dismiss()
+                            Toast.makeText(
+                                requireContext(),
+                                it.message,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+        }
+    }
+
+
+    /*
     private fun getOtherCustomerList(
         country: String,
         division: String,
@@ -1068,6 +1206,8 @@ class Frag_delivery_Bag_Entry : Fragment() {
                 }
         }
     }
+
+     */
 
 
     private fun prepareOtherList(

@@ -68,7 +68,7 @@ object RetrofitClientInstance {
             return retrofit
         }
 
-    
+
 
     val retrofitInstanceTS: Retrofit
         get() {
