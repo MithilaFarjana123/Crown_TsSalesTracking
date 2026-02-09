@@ -458,7 +458,7 @@ class Frag_Customer_List : Fragment() {
         })
     }
 
-    private fun loadPreviouslySelectedCustomer() {
+    fun loadPreviouslySelectedCustomer() {
         val selectedCustomerType = getValueByKey(requireActivity(), "acCustomer").toString()
 
         for (items in clientTypes) {
@@ -992,10 +992,11 @@ class Frag_Customer_List : Fragment() {
                     )
 
                     Utility.storeKeyValue(requireActivity(), "slected_party_type", binding.acClient.text.toString())
-                    storeKeyValue(requireActivity(), "partyCode", otherCustomerLists[position].partyCode)
+                  //  storeKeyValue(requireActivity(), "partyCode", otherCustomerLists[position].partyCode)
+                      storeKeyValue(requireActivity(), "partyCode", items[position].partyCode)
 
-                    prepareOtherObject(otherCustomerLists[position], requireActivity())
-
+                 //   prepareOtherObject(otherCustomerLists[position], requireActivity())
+                    prepareOtherObject(items[position], requireActivity())
                     val navController = requireActivity().findNavController(R.id.nav_host_fragment)
                     navController.navigate(R.id.nav_demo_customerHome)
                 }
@@ -1119,6 +1120,7 @@ class Frag_Customer_List : Fragment() {
                                 filteredlist,
                                 binding.acClient.text.toString()
                             )
+
                         }
                     }
                 }
@@ -1146,9 +1148,10 @@ class Frag_Customer_List : Fragment() {
     override fun onResume() {
         super.onResume()
         restoreClientUIState()
+        if (firstTime != 0) {
+            loadPreviouslySelectedCustomer()
+        }
     }
-
-
 
     private fun restoreClientUIState() {
         val savedClient = getValueByKey(requireActivity(), "acCustomer").toString()
@@ -1181,5 +1184,8 @@ class Frag_Customer_List : Fragment() {
             }
         }
     }
+
+
+
 
 }

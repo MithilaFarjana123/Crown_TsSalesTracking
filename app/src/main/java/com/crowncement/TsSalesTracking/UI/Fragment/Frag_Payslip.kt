@@ -275,6 +275,7 @@ class Frag_Payslip : Fragment() {
         binding.deLvPanel.text = value.lvpnDed.toString()
         binding.txtXMotor.text = value.exMob.toString()
         binding.txtLunch.text = value.lunch.toString()
+        binding.txttabDeduction.text = value.tabDec.toString()
         binding.txtExpenseOther.text = formatAmount(value.othDed!!.toDouble())
         binding.txtTotalDeduction.text = "৳  " + formatAmount(value.totDed!!.toDouble())
         binding.txtDeduction.text = "৳  " + formatAmount(value.totDed!!.toDouble())

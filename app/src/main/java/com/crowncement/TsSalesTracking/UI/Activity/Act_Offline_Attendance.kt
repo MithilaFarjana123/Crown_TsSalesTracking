@@ -238,6 +238,7 @@ class Act_Offline_Attendance : AppCompatActivity() {
                         }
 
                          */
+
                     } else {
                         Utility.getBaseMessage(
                             this,
@@ -383,6 +384,7 @@ class Act_Offline_Attendance : AppCompatActivity() {
             )
         }
     }
+
 
     private fun getImageUri(inContext: Context, inImage: Bitmap, imageName: String): Uri? {
         val path = MediaStore.Images.Media.insertImage(

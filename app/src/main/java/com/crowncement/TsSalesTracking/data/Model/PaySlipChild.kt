@@ -28,6 +28,7 @@ data class PaySlipChild(
     @SerializedName("ex_mob"   ) var exMob   : Int?    = null,
     @SerializedName("lunch"    ) var lunch   : Int?    = null,
     @SerializedName("oth_ded"  ) var othDed  : Int?    = null,
+    @SerializedName("tab_dec"  ) var tabDec  : Int?    = null,
     @SerializedName("tot_earn" ) var totEarn : Int?    = null,
     @SerializedName("tot_ded"  ) var totDed  : Int?    = null,
     @SerializedName("tot_net"  ) var totNet  : Int?    = null
