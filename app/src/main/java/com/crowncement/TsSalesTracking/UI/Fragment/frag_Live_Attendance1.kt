@@ -1,6 +1,8 @@
 package com.crowncement.TsSalesTracking.UI.Fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.ActivityManager
 import android.app.AlertDialog
 import android.app.Dialog
@@ -24,6 +26,7 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
+import android.view.Gravity
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.Menu
@@ -31,6 +34,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatActivity.RESULT_OK
@@ -52,6 +59,7 @@ import com.crowncement.TsSalesTracking.common.Utility.getValueByKey
 import com.crowncement.TsSalesTracking.common.Utility.storeKeyValue
 import com.crowncement.TsSalesTracking.data.Model.Att
 import com.crowncement.TsSalesTracking.data.Model.AttendanceResponse
+import com.crowncement.TsSalesTracking.data.Model.Data
 import com.crowncement.TsSalesTracking.databinding.FragLiveAttendance1Binding
 import com.crowncement.TsSalesTracking.services.locationTracking.TrackingService
 import com.google.android.gms.common.api.ResolvableApiException
@@ -73,7 +81,13 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.Objects
 import java.util.UUID
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 
 class frag_Live_Attendance1 : Fragment() {
@@ -1083,8 +1097,17 @@ class frag_Live_Attendance1 : Fragment() {
               //  val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
              //   finalFile = File(getRealPathFromURI(tempUri)!!)
                // binding.imgSetPic.setImageBitmap(selectedImage)
+//todo here will check the lat lon with the login lat lon
+                val loginlat = Utility.getUserInfo(requireActivity())!!.attLat
+                val loginlon = Utility.getUserInfo(requireActivity())!!.attLon
 
+                if (loginlat != null) {
+                    if (loginlon != null) {
+                        exactLocationRestriction(loginlat,loginlon)
+                    }
+                }
 
+/*
                 attendanceEntry(
                     empI!!,
                     getCurrentDate("yyyy-MM-dd").toString(),
@@ -1095,6 +1118,8 @@ class frag_Live_Attendance1 : Fragment() {
                     latitude.toString(),
                     longitude.toString()
                 )
+
+ */
             }
 
         }
@@ -1221,4 +1246,126 @@ class frag_Live_Attendance1 : Fragment() {
         }
     }
 
-}
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //todo for 150m check
+
+    @SuppressLint("SuspiciousIndentation")
+    fun exactLocationRestriction(destinationLat:Double, destinationLon:Double){
+       // getLastLocations()
+
+        if (latitude == 0.0) {
+            latitude = getLastKnownLocation()!!.latitude
+            longitude = getLastKnownLocation()!!.longitude
+
+            //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
+        }
+        val distance=getDistance(destinationLat,destinationLon,latitude,longitude)
+        val disInMeter= String.format("%.2f", distance)
+
+        val empI = getValueByKey(requireActivity(), "username")
+        val imName = empI + getCurrentDate("yyyyMMdd") + "in"
+        val fence_distance = Utility.getUserInfo(requireActivity())!!.fence_distance
+
+       // val loginlon = Utility.getUserInfo(requireActivity())!!.attLat
+       // if(siteinfo.siteImage.toString()!=""){
+            if(distance>=1000){
+            //    binding.txtDestination.visibility=View.GONE
+
+              //  QuickVisitDialog()
+
+                attendanceEntry(
+                    empI!!,
+                    getCurrentDate("yyyy-MM-dd").toString(),
+                    getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                    att.shift_no.toString(),
+                    att.shift.toString(),
+                    File(finalFile.toString()),
+                    latitude.toString(),
+                    longitude.toString()
+                )
+
+
+                //addQuickVisit(selectedCustomer)
+            }
+
+            else{
+                val mess="Your are $disInMeter meter away from your residence .Now your current location is $latitude,$longitude  & your residence's location is" +
+                        "$destinationLat,$destinationLon , please go to 1 kilometre  away from your residence & try again."
+              //  binding.txtDefaultMessage1.text= mess
+                val showDialog:Dialog= distanceWarning(requireActivity(),Dialog(requireContext()),mess)
+                showDialog.show()
+           // val showDialog:Dialog= distanceWarning(requireActivity(),Dialog(requireContext()),"mess")
+                showDialog.show()
+
+            }
+
+        }
+
+        /*
+        else{
+
+            Utility.getBaseMessage(requireActivity(),
+                "Warning ",
+                "Please add site image first then try to give quick visit. ",
+                R.drawable.error_white,
+                0
+            )
+
+        }
+
+         */
+
+
+    fun distanceWarning(activity: Activity, dialog: Dialog, mess: String): Dialog {
+        val inflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val mView: View = inflater.inflate(R.layout.attdistance_warning_dialog, null, false)
+        activity.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val message = mView.findViewById<TextView>(R.id.txtDefaultMessage1)
+        val try_again = mView.findViewById<Button>(R.id.try_again)
+
+        message.text = mess
+        dialog.setContentView(mView)
+        dialog.setCanceledOnTouchOutside(true)
+        val window = dialog.window
+        Objects.requireNonNull(window)!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        try_again.setOnClickListener{
+            captureImage()
+            // dialog.dismiss()
+        }
+        window!!.setBackgroundDrawableResource(R.color.transparent)
+        window.setGravity(Gravity.CENTER)
+        //dialog.show();
+        return dialog
+    }
+
+
+    fun getDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val R = 6371e3 // radius of Earth in meters
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+        val a = sin(dLat / 2).pow(2.0) +
+                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) *
+                sin(dLon / 2).pow(2.0)
+        val c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        return R * c
+    }
+
+    }
+
+
+
+
+
+
+
+

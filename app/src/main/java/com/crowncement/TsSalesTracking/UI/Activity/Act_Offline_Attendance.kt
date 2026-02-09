@@ -1,6 +1,7 @@
 package com.crowncement.TsSalesTracking.UI.Activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
@@ -18,8 +19,14 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
+import android.view.Gravity
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +36,9 @@ import androidx.core.content.FileProvider
 import com.crowncement.TsSalesTracking.R
 import com.crowncement.TsSalesTracking.common.LocationHelper
 import com.crowncement.TsSalesTracking.common.Utility
+import com.crowncement.TsSalesTracking.common.Utility.getCurrentDate
 import com.crowncement.TsSalesTracking.common.Utility.getDeviceTimeZone
+import com.crowncement.TsSalesTracking.common.Utility.getValueByKey
 import com.crowncement.TsSalesTracking.data.InternalDB.AppRoomDatabase
 import com.crowncement.TsSalesTracking.data.InternalDB.DatabaseSingleton
 import com.crowncement.TsSalesTracking.data.Model.OfflineAttendance
@@ -48,7 +57,13 @@ import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.util.Date
 import java.util.Locale
+import java.util.Objects
 import java.util.UUID
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 
 class Act_Offline_Attendance : AppCompatActivity() {
@@ -104,6 +119,8 @@ class Act_Offline_Attendance : AppCompatActivity() {
     private fun offlineAttendanceData(attInfo: OfflineAttendance) {
         val attPhoto = BitmapFactory.decodeFile(attInfo.AttImagePath)
         binding.imgOfflineAtt.setImageBitmap(attPhoto)
+//todo set this data after location check
+        /*
 
         val inTime = Utility.changeDateFormat(attInfo.AttTime, "yyyy-MM-dd HH:mm:ss", "hh:mm a")
         binding.txtOfflineTime.text = inTime.toString()
@@ -127,6 +144,10 @@ class Act_Offline_Attendance : AppCompatActivity() {
                 binding.txtOffAttStatus.setTextColor(Color.parseColor("#00914C"))
             }
         }
+
+         */
+
+
     }
 
     private fun getTodayAttendance(activity: Activity): OfflineAttendance {
@@ -184,7 +205,8 @@ class Act_Offline_Attendance : AppCompatActivity() {
 
                         binding.imgOfflineAtt.setImageBitmap(selectedImage)
 
-
+                        //todo set this time after attdendence saved and location check
+                        /*
                         val currentTime = Utility.getCurrentDate("HH:mm:ss")
 
                         binding.txtOfflineTime.text = Utility.getCurrentDate("hh:mm a").toString()
@@ -209,7 +231,13 @@ class Act_Offline_Attendance : AppCompatActivity() {
                                 binding.txtOffAttStatus.setTextColor(Color.parseColor("#00914C"))
 
                             }
+
+
+
+
                         }
+
+                         */
                     } else {
                         Utility.getBaseMessage(
                             this,
@@ -233,8 +261,26 @@ class Act_Offline_Attendance : AppCompatActivity() {
                     if(!isTimeAutomatic(this)||!getDeviceTimeZone(this)){
                         timeWarningDialog()
                     }else{
-                        saveAttIntoInternalDb(offlineData)
-                        loadingAnim.dismiss()
+                        //todo check distance for 1km
+                        val loginlat = Utility.getUserInfo(this)!!.attLat
+                        val loginlon = Utility.getUserInfo(this)!!.attLon
+                        if (loginlat != null) {
+                            if (loginlon != null) {
+                                exactLocationRestriction(loginlat!!,loginlon!!,offlineData,loadingAnim)
+                            }
+                        }
+                        /*
+                        if(loginlat!=0.0 && loginlon!=0.0){
+                                exactLocationRestriction(loginlat!!,loginlon!!,offlineData,loadingAnim)
+                            }
+                        else {
+                            loadingAnim.dismiss()
+                            Utility.commonToast(this, "Failed", "Offline attendance failed for unrecognized residence location ", 0)
+
+                        }
+
+                         */
+                    //    saveAttIntoInternalDb(offlineData)
                     }
 
 
@@ -723,8 +769,143 @@ class Act_Offline_Attendance : AppCompatActivity() {
 
 
 
+//todo attdendence location check 1km
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SuspiciousIndentation")
+    fun exactLocationRestriction(destinationLat:Double, destinationLon:Double,
+                                 offlineData:OfflineAttendance,loadingAnim:Dialog){
+        // getLastLocations()
+/*
+        if (latitude == 0.0) {
+            latitude = getLastKnownLocation()!!.latitude
+            longitude = getLastKnownLocation()!!.longitude
+
+            //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
+        }
 
 
+ */
+        //  loadingAnim.dismiss()
+        val distance=getDistance(destinationLat,destinationLon,latitude,longitude)
+        val disInMeter= String.format("%.2f", distance)
+
+        val empI = getValueByKey(this, "username")
+        val imName = empI + getCurrentDate("yyyyMMdd") + "in"
+        val fence_distance = Utility.getUserInfo(this)!!.fence_distance
+
+        // val loginlon = Utility.getUserInfo(requireActivity())!!.attLat
+        // if(siteinfo.siteImage.toString()!=""){
+        if(distance>=1000) {
+            saveAttIntoInternalDb(offlineData)
+            loadingAnim.dismiss()
+
+
+            //todo set this data after location check
+
+            val attInfo: OfflineAttendance = getTodayAttendance(this)
+            if (attInfo != null && attInfo.Latitude!!.toDouble() > 0) {
+
+                val inTime = Utility.changeDateFormat(attInfo.AttTime, "yyyy-MM-dd HH:mm:ss", "hh:mm a")
+                binding.txtOfflineTime.text = inTime.toString()
+                binding.txtAttDate.text = Utility.getCurrentDate("dd").toString()
+                binding.txtAttMonthYear.text = Utility.getCurrentDate("MMM-yyyy").toString()
+                binding.txtAttDay.text = Utility.getCurrentDate("EEE").toString()
+
+                val time1 = LocalTime.parse(Utility.changeDateFormat(inTime, "hh:mm a", "HH:mm:ss"))
+                val time2 = LocalTime.parse("09:16:00")
+                val comparisonResult = time1.compareTo(time2)
+                when {
+                    comparisonResult < 0 -> {
+                        println("$time1 is earlier than $time2")
+                        binding.txtOffAttStatus.setTextColor(Color.parseColor("#00914C"))
+                    }
+
+                    comparisonResult > 0 -> {
+                        println("$time1 is later than $time2")
+                        binding.txtOffAttStatus.setTextColor(Color.parseColor("#FC9E14"))
+                    }
+
+                    else -> {
+                        binding.txtOffAttStatus.setTextColor(Color.parseColor("#00914C"))
+                    }
+                }
+
+            }
+
+
+
+        }
+
+        else{
+            loadingAnim.dismiss()
+
+            val mess="Your are $disInMeter metre away from your residence .Now your current location is $latitude,$longitude  & your residence's location is " +
+                    "$destinationLat,$destinationLon , please go to 1 kilometre  away from your residence & try again."
+            //  binding.txtDefaultMessage1.text= mess
+            val showDialog:Dialog= distanceWarning(this,Dialog(this),mess)
+            showDialog.show()
+            // val showDialog:Dialog= distanceWarning(requireActivity(),Dialog(requireContext()),"mess")
+             //   showDialog.show()
+
+        }
+
+    }
+
+    /*
+    else{
+
+        Utility.getBaseMessage(requireActivity(),
+            "Warning ",
+            "Please add site image first then try to give quick visit. ",
+            R.drawable.error_white,
+            0
+        )
+
+    }
+
+     */
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun distanceWarning(activity: Activity, dialog: Dialog, mess: String): Dialog {
+        val inflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val mView: View = inflater.inflate(R.layout.attdistance_warning_dialog, null, false)
+        activity.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val message = mView.findViewById<TextView>(R.id.txtDefaultMessage1)
+        message.text = mess
+        val try_again = mView.findViewById<Button>(R.id.try_again)
+        dialog.setContentView(mView)
+        dialog.setCanceledOnTouchOutside(true)
+        val window = dialog.window
+        Objects.requireNonNull(window)!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        window!!.setBackgroundDrawableResource(R.color.transparent)
+        window.setGravity(Gravity.CENTER)
+
+        try_again.setOnClickListener{
+            regularTask()
+           // dialog.dismiss()
+        }
+        //dialog.show();
+        return dialog
+    }
+
+
+    fun getDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val R = 6371e3 // radius of Earth in meters
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+        val a = sin(dLat / 2).pow(2.0) +
+                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) *
+                sin(dLon / 2).pow(2.0)
+        val c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        return R * c
+    }
 
 
 

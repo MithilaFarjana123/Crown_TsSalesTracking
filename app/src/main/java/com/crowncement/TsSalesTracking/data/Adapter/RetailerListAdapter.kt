@@ -32,6 +32,9 @@ class RetailerListAdapter(private val retailerList: ArrayList<RetailerChild>, pr
         onClickListener = listener
     }
 
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Use ViewBinding to inflate the layout
         val binding = RetailerInfoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

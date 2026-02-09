@@ -1039,7 +1039,9 @@ class Frag_dashboard : Fragment() {
                     val imageFile = imgFile
 
                     loadingAnim.dismiss()
+                    //todo location check
                     if (imageFile.isFile) {
+
                         attendanceEntry(
                             user,
                             offlineAttData.CreateDate.toString(),
@@ -2790,6 +2792,9 @@ class Frag_dashboard : Fragment() {
 
 
  */
+
+
+
 
 }
 

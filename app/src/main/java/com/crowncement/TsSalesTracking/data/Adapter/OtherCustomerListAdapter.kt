@@ -54,7 +54,8 @@ class OtherCustomerListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Use ViewBinding to inflate the layout
-        val binding = OtherCustomerInfoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            OtherCustomerInfoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding, onClickListener)
     }
 
@@ -66,9 +67,16 @@ class OtherCustomerListAdapter(
 
         val otherInfo = otherList[position]
 
-        if(type.equals("Contractor")||type.equals("Engineer")||type.equals("Local Government Contractor")){
-            saveFieldValue(holder.binding.txtOtherName, otherInfo.contactPerson.toString()+" | "+otherInfo.partyPhone.toString())
-            saveFieldValue(holder.binding.txtOtherMobile, otherInfo.partyName+" | "+otherInfo.partyMobile.toString())
+        if (type.equals("Contractor") || type.equals("Engineer") || type.equals("Local Government Contractor"))
+        {
+            setFieldValue(
+                holder.binding.txtOtherName,
+                otherInfo.contactPerson.toString() + " | " + otherInfo.partyPhone.toString()
+            )
+            setFieldValue(
+                holder.binding.txtOtherMobile,
+                otherInfo.partyName + " | " + otherInfo.partyMobile.toString()
+            )
             //added new
             holder.binding.txtOtherTypeName.visibility = View.GONE
             holder.binding.txtOtherTypeImg.visibility = View.VISIBLE
@@ -78,9 +86,16 @@ class OtherCustomerListAdapter(
                 // .placeholder(R.drawable.shop_banner)
                 .into(holder.binding.txtOtherTypeImg)
 
-        }else{
-            saveFieldValue(holder.binding.txtOtherMobile, otherInfo.contactPerson+" | "+otherInfo.partyPhone.toString())
-            saveFieldValue(holder.binding.txtOtherName, otherInfo.partyName.toString()+" | "+otherInfo.partyMobile.toString() )
+        }
+        else {
+            setFieldValue(
+                holder.binding.txtOtherMobile,
+                otherInfo.contactPerson + " | " + otherInfo.partyPhone.toString()
+            )
+            setFieldValue(
+                holder.binding.txtOtherName,
+                otherInfo.partyName.toString() + " | " + otherInfo.partyMobile.toString()
+            )
             //added new
             holder.binding.txtOtherTypeName.visibility = View.VISIBLE
             holder.binding.txtOtherTypeImg.visibility = View.GONE
@@ -90,15 +105,18 @@ class OtherCustomerListAdapter(
 
 
 
-        saveFieldValue(holder.binding.txtOtherTypeName, type.toCharArray()[0].toString())
+        setFieldValue(holder.binding.txtOtherTypeName, type.toCharArray()[0].toString())
 
         //  saveFieldValue(holder.itemView.txtOtherAddress, otherInfo.geoHrc4.toString()+", "+otherInfo.geoHrc3.toString()+", "+otherInfo.geoHrc2.toString())
-        saveFieldValue(holder.binding.txtOtherAddress, otherInfo.partyAdd1.toString()+","+otherInfo.geoHrc4.toString()+", "+otherInfo.geoHrc3.toString())
+        setFieldValue(
+            holder.binding.txtOtherAddress,
+            otherInfo.partyAdd1.toString() + "," + otherInfo.geoHrc4.toString() + ", " + otherInfo.geoHrc3.toString()
+        )
 
 
     }
 
-    private fun saveFieldValue(v: TextView, value: String) {
+    private fun setFieldValue(v: TextView, value: String) {
         if (value.isNotEmpty()) {
             v.text = value
         } else {
@@ -111,7 +129,10 @@ class OtherCustomerListAdapter(
     }
 
 
-    class ViewHolder(val binding: OtherCustomerInfoItemBinding, listener: OnAdapterItemClickListener) :
+    class ViewHolder(
+        val binding: OtherCustomerInfoItemBinding,
+        listener: OnAdapterItemClickListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
