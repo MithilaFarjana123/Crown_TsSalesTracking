@@ -683,9 +683,11 @@ class Frag_Party_Entry : Fragment() {
                                     finalFile,
                                     loadingAnim
                                 )
+                                Utility.storeKeyValue(requireActivity(),"selectedCustomer",retailerSetupInfo.split(",")[0])
 
                             } else {
                                 loadingAnim.dismiss()
+                                Utility.storeKeyValue(requireActivity(),"selectedCustomer",retailerSetupInfo.split(",")[0])
 
                                 Utility.getBaseMessage(
                                     requireActivity(),
@@ -700,6 +702,7 @@ class Frag_Party_Entry : Fragment() {
 
                     Status.ERROR -> {
                         loadingAnim.dismiss()
+                        Utility.storeKeyValue(requireActivity(),"selectedCustomer",retailerSetupInfo.split(",")[0])
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
                 }

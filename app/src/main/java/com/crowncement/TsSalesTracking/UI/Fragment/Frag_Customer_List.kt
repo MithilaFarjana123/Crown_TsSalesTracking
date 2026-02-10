@@ -1151,7 +1151,12 @@ class Frag_Customer_List : Fragment() {
         if (firstTime != 0) {
             loadPreviouslySelectedCustomer()
         }
+
+        loadClientType(binding.acClient)
+
+
     }
+
 
     private fun restoreClientUIState() {
         val savedClient = getValueByKey(requireActivity(), "acCustomer").toString()

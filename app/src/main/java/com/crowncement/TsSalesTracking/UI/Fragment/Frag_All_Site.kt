@@ -127,8 +127,11 @@ class Frag_All_Site : Fragment() {
         // loadingAnim.show()
         if(selectedCustomer=="IHBs"){
             binding.fabAddNewSite.visibility = View.VISIBLE
+          //  binding.fabAddNewSite.setText("ADD NEW")
         }else{
             binding.fabAddNewSite.visibility = View.GONE
+           // binding.fabAddNewSite.setText("ADD NEW")
+
         }
 
         //todo
