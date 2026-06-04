@@ -1,5 +1,8 @@
 package com.crowncement.TsSalesTracking.UI.Fragment
 
+
+
+
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -8,6 +11,9 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.ContextWrapper
+
+
+
 
 import android.content.Intent
 import android.content.IntentSender
@@ -90,11 +96,26 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 
+
+
+
+
+
+
 class frag_Live_Attendance1 : Fragment() {
+
+
+
 
     private var _binding: FragLiveAttendance1Binding? = null
     private val binding get() = _binding!!
     private val REQUEST_IMAGE_CAPTURE = 1
+
+
+
+
+
+
 
 
     private lateinit var atteViewModel: AttendanceViewModel
@@ -107,9 +128,15 @@ class frag_Live_Attendance1 : Fragment() {
     var PERMISSION_ALL = 1
     private lateinit var finalFile: File
 
+
+
+
     private lateinit var att: Att
     private lateinit var loadingAnim: Dialog
     var currentPhotoPath = ""
+
+
+
 
     var PERMISSIONS = arrayOf(
         Manifest.permission.CAMERA,
@@ -117,7 +144,16 @@ class frag_Live_Attendance1 : Fragment() {
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
+
+
+
     private val TAG = "Frag_Live_Attendance"
+
+
+
+
+
+
 
 
     override fun onCreateView(
@@ -130,22 +166,55 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
+
         return binding.root
     }
+
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
+
+
+
         // Use binding safely
+
+
+
 
         initiateUI()
 
+
+
+
         disableButton()
+
+
+
 
         onButtonClickListener()
 
+
+
+
     }
+
+
+
+
+
+
 
 
     override fun onDestroyView() {
@@ -155,15 +224,30 @@ class frag_Live_Attendance1 : Fragment() {
     }
 
 
+
+
+
+
+
+
     private fun initiateUI() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+
+
 
         //appPermission()
         getLastLocation()
         AttendanceViewModelFactory()
         setupViewModel()
 
+
+
+
         att = getAttInfo(requireActivity())!!
+
+
+
 
         loadingAnim = Utility.baseLoadingAnimation(
             requireActivity(),
@@ -171,13 +255,22 @@ class frag_Live_Attendance1 : Fragment() {
             "P l e a s e    w a i t"
         )
 
+
+
+
         setIntimeIfExist()
     }
+
+
+
 
     private fun setIntimeIfExist() {
         if (att.intime != null && att.intime!!.isNotEmpty()) {
             binding.btnSubmitCheckout.visibility = View.VISIBLE
             binding.btnSubmitCheckout.text = "Check Out"
+
+
+
 
             binding.txtInTime.text = Utility.changeDateFormat(
                 att.intime,
@@ -185,22 +278,37 @@ class frag_Live_Attendance1 : Fragment() {
                 "EEE dd MMM yyyy hh:mm:ss a"
             )
 
+
+
+
         } else {
-          //  openCamera()
+            //  openCamera()
             captureImage()
         }
     }
+
+
+
+
+
+
 
 
     private fun onButtonClickListener() {
         binding.btnSubmitCheckout.setOnClickListener {
-          //  openCamera()
+            //  openCamera()
             captureImage()
         }
     }
 
+
+
+
     private fun disableButton() {
         if (att.intime != "" && att.outtime != "" && !(att.outtime!!.contains("1900-01-01"))) {
+
+
+
 
             binding.txtOutTime.text = Utility.changeDateFormat(
                 att.outtime,
@@ -211,10 +319,16 @@ class frag_Live_Attendance1 : Fragment() {
         }
     }
 
+
+
+
     private fun setupViewModel() {
         atteViewModel = ViewModelProviders.of(this.requireActivity(), AttendanceViewModelFactory())
             .get(AttendanceViewModel::class.java)
     }
+
+
+
 
     private fun prepareLocation() {
         val ai: ApplicationInfo = requireContext().packageManager.getApplicationInfo(
@@ -224,11 +338,20 @@ class frag_Live_Attendance1 : Fragment() {
         val apiKey = value.toString()
 
 
+
+
+
+
+
+
         // Initializing Map
         // val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         //  mapFragment.getMapAsync(this)
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
+
+
+
 
     private fun isLocationEnabled(): Boolean {
         val locationManager: LocationManager =
@@ -238,6 +361,9 @@ class frag_Live_Attendance1 : Fragment() {
         )
     }
 
+
+
+
     private fun requestNewLocationData() {
         val mLocationRequest = LocationRequest()
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
@@ -245,10 +371,16 @@ class frag_Live_Attendance1 : Fragment() {
         mLocationRequest.fastestInterval = 0
         mLocationRequest.numUpdates = 1
 
+
+
+
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED &&
+
+
+
 
             ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -268,6 +400,12 @@ class frag_Live_Attendance1 : Fragment() {
     }
 
 
+
+
+
+
+
+
     private val mLocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation: Location = locationResult.lastLocation!!
@@ -277,6 +415,15 @@ class frag_Live_Attendance1 : Fragment() {
             Log.d(TAG, "onLocationResult: $latitude | $longitude")
         }
     }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -295,6 +442,18 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -305,8 +464,14 @@ class frag_Live_Attendance1 : Fragment() {
         }
     }
 
+
+
+
     override fun onResume() {
         super.onResume()
+
+
+
 
         Handler().post {
             var intent = requireActivity().intent
@@ -322,13 +487,22 @@ class frag_Live_Attendance1 : Fragment() {
                 startActivity(intent)
             } else {
 
+
+
+
                 if (!isLocationEnabled()) {
                     requestDeviceLocationSettings()
                 }
             }
 
+
+
+
         }
     }
+
+
+
 
     private fun requestDeviceLocationSettings() {
         val locationRequest = LocationRequest.create().apply {
@@ -337,14 +511,29 @@ class frag_Live_Attendance1 : Fragment() {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
 
+
+
+
         val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+
+
+
 
         val client: SettingsClient = LocationServices.getSettingsClient(requireActivity())
         val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
 
+
+
+
         task.addOnSuccessListener { locationSettingsResponse ->
 
+
+
+
         }
+
+
+
 
         task.addOnFailureListener { exception ->
             if (exception is ResolvableApiException) {
@@ -364,84 +553,126 @@ class frag_Live_Attendance1 : Fragment() {
             }
         }
     }
-/*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != Activity.RESULT_CANCELED) {
-
-            //   if (resultCode == RESULT_OK && data != null) {
-            if (resultCode == Activity.RESULT_OK) {
-              //  if(isTimeAutomatic(requireActivity())==true) {
-                if(isTimeAutomatic(requireContext())==true||getDeviceTimeZone(requireContext())==true) {
-
-                    try {
-                        loadingAnim.show()
-                        //  val selectedImage = data.extras!!["data"] as Bitmap?
-                   val path=   getValueByKey(requireActivity(),"currentPhotoPath")
-                        val selectedImage = BitmapFactory.decodeFile(path)
-
-                        if (latitude == 0.0) {
-                            latitude = getLastKnownLocation()!!.latitude
-                            longitude = getLastKnownLocation()!!.longitude
-
-                          //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
-                        }
-
-                        //checkout
-                        if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
-                            val emp = getValueByKey(requireActivity(), "username")
-                            val imName = emp + getCurrentDate("yyyyMMdd") + "out"
-                            val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-                            finalFile = File(getRealPathFromURI(tempUri)!!)
-                            binding.imgSetPic.setImageBitmap(selectedImage)
+    /*
+       override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+           super.onActivityResult(requestCode, resultCode, data)
+           if (resultCode != Activity.RESULT_CANCELED) {
 
 
-                            attendanceUpdate(
-                                emp!!, getCurrentDate("yyyy-MM-dd").toString(),
-                                getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                                att.shift_no.toString(),
-                                att.shift.toString(),
-                                File(finalFile.toString()),
-                                latitude.toString(),
-                                longitude.toString()
-                            )
-                        }
-                        //check in
-                        else {
-                            val empI = getValueByKey(requireActivity(), "username")
-                            val imName = empI + getCurrentDate("yyyyMMdd") + "in"
-
-                            val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-                            finalFile = File(getRealPathFromURI(tempUri)!!)
-                            binding.imgSetPic.setImageBitmap(selectedImage)
-
-                            attendanceEntry(
-                                empI!!,
-                                getCurrentDate("yyyy-MM-dd").toString(),
-                                getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                                att.shift_no.toString(),
-                                att.shift.toString(),
-                                File(finalFile.toString()),
-                                latitude.toString(),
-                                longitude.toString()
-                            )
-                        }
-                    } catch (e: Exception) {
-                        Utility.commonToast(requireActivity(), "Failed", e.message.toString(), 0)
-                    }
-                }else{
-                       timeWarningDialog()
-                }
-
-            }
-
-        } else {
-            Utility.commonToast(requireActivity(), "Failed", "failed to take picture", 0)
-        }
-    }
 
 
- */
+               //   if (resultCode == RESULT_OK && data != null) {
+               if (resultCode == Activity.RESULT_OK) {
+                 //  if(isTimeAutomatic(requireActivity())==true) {
+                   if(isTimeAutomatic(requireContext())==true||getDeviceTimeZone(requireContext())==true) {
+
+
+
+
+                       try {
+                           loadingAnim.show()
+                           //  val selectedImage = data.extras!!["data"] as Bitmap?
+                      val path=   getValueByKey(requireActivity(),"currentPhotoPath")
+                           val selectedImage = BitmapFactory.decodeFile(path)
+
+
+
+
+                           if (latitude == 0.0) {
+                               latitude = getLastKnownLocation()!!.latitude
+                               longitude = getLastKnownLocation()!!.longitude
+
+
+
+
+                             //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
+                           }
+
+
+
+
+                           //checkout
+                           if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
+                               val emp = getValueByKey(requireActivity(), "username")
+                               val imName = emp + getCurrentDate("yyyyMMdd") + "out"
+                               val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                               finalFile = File(getRealPathFromURI(tempUri)!!)
+                               binding.imgSetPic.setImageBitmap(selectedImage)
+
+
+
+
+
+
+
+
+                               attendanceUpdate(
+                                   emp!!, getCurrentDate("yyyy-MM-dd").toString(),
+                                   getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                                   att.shift_no.toString(),
+                                   att.shift.toString(),
+                                   File(finalFile.toString()),
+                                   latitude.toString(),
+                                   longitude.toString()
+                               )
+                           }
+                           //check in
+                           else {
+                               val empI = getValueByKey(requireActivity(), "username")
+                               val imName = empI + getCurrentDate("yyyyMMdd") + "in"
+
+
+
+
+                               val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                               finalFile = File(getRealPathFromURI(tempUri)!!)
+                               binding.imgSetPic.setImageBitmap(selectedImage)
+
+
+
+
+                               attendanceEntry(
+                                   empI!!,
+                                   getCurrentDate("yyyy-MM-dd").toString(),
+                                   getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                                   att.shift_no.toString(),
+                                   att.shift.toString(),
+                                   File(finalFile.toString()),
+                                   latitude.toString(),
+                                   longitude.toString()
+                               )
+                           }
+                       } catch (e: Exception) {
+                           Utility.commonToast(requireActivity(), "Failed", e.message.toString(), 0)
+                       }
+                   }else{
+                          timeWarningDialog()
+                   }
+
+
+
+
+               }
+
+
+
+
+           } else {
+               Utility.commonToast(requireActivity(), "Failed", "failed to take picture", 0)
+           }
+       }
+
+
+
+
+
+
+
+
+    */
+
+
+
 
     private fun getLastKnownLocation(): Location? {
         val mLocationManager: LocationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -455,6 +686,9 @@ class frag_Live_Attendance1 : Fragment() {
         }
         return bestLocation
     }
+
+
+
 
     private fun getResizedBitmap(image: Bitmap, maxSize: Int): Bitmap? {
         var width = image.width
@@ -470,6 +704,9 @@ class frag_Live_Attendance1 : Fragment() {
         return Bitmap.createScaledBitmap(image, width, height, true)
     }
 
+
+
+
     private fun getImageUri(inContext: Context, inImage: Bitmap, imageName: String): Uri? {
         // val bytes = ByteArrayOutputStream()
         // inImage.compress(Bitmap.CompressFormat.JPEG, 20, bytes)
@@ -483,6 +720,9 @@ class frag_Live_Attendance1 : Fragment() {
         )
         return Uri.parse(path)
     }
+
+
+
 
     private fun getRealPathFromURI(uri: Uri?): String? {
         var path = ""
@@ -501,14 +741,26 @@ class frag_Live_Attendance1 : Fragment() {
             Utility.commonToast(requireActivity(),"Error","Can not process image",0)
         }
 
+
+
+
         return path
     }
+
+
+
 
     private fun resizeImage(yourBitmap: Bitmap): Bitmap {
         // val resized: Bitmap
         return Bitmap.createScaledBitmap(yourBitmap, 900, 600, false)
         // rootView.imgSet.setImageBitmap(resized)
     }
+
+
+
+
+
+
 
 
     private fun openCamera() {
@@ -534,7 +786,13 @@ class frag_Live_Attendance1 : Fragment() {
         startActivityForResult(intent, 0)
     }
 
+
+
+
     private fun getLastLocation() {
+
+
+
 
         if (isLocationEnabled()) {
             if (ActivityCompat.checkSelfPermission(
@@ -574,6 +832,12 @@ class frag_Live_Attendance1 : Fragment() {
     }
 
 
+
+
+
+
+
+
     //SAVE ATTENDANCE............................................................
     private fun attendanceEntry(
         id: String,
@@ -609,9 +873,18 @@ class frag_Live_Attendance1 : Fragment() {
             }
     }
 
+
+
+
     private fun successAttEntry(res: AttendanceResponse) {
 
+
+
+
         if (res.message.equals("Attendance Entered Successfully")) {
+
+
+
 
 //TODO----------------------LOCATION TRACKING SERVICE START-----------------------
             val isTrackingEnabled = Utility.getUserInfo(requireActivity())!!.att_status
@@ -619,6 +892,9 @@ class frag_Live_Attendance1 : Fragment() {
                 storeKeyValue(requireActivity(), "Is_Location_Tracking_Running", "YES")
                 startBackgroundLocationService()
             }
+
+
+
 
             loadingAnim.dismiss()
             Utility.commonToast(
@@ -631,20 +907,38 @@ class frag_Live_Attendance1 : Fragment() {
             binding.txtInTime.text = getCurrentDate("EEE hh:mm a dd.MMM.yy")
             Utility.sendActivity(requireActivity(), "Act_Dashboard")
 
+
+
+
         } else {
             loadingAnim.dismiss()
             Utility.commonToast(requireActivity(), "Sorry", res.message.toString(), 2)
         }
     }
 
+
+
+
     private fun startBackgroundLocationService() {
+
+
+
 
         val username: String = getValueByKey(requireActivity(), "username")!!
 
+
+
+
         if (username.isNotEmpty() && !isMyServiceRunning()) {
+
+
+
 
             val intent = Intent(requireContext(), TrackingService::class.java)
             intent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
+
+
+
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 requireActivity().startForegroundService(intent)
@@ -653,6 +947,9 @@ class frag_Live_Attendance1 : Fragment() {
             }
         }
     }
+
+
+
 
     private fun isMyServiceRunning(): Boolean {
         var result = false
@@ -669,6 +966,9 @@ class frag_Live_Attendance1 : Fragment() {
         return result
     }
 
+
+
+
     private fun attendanceUpdate(
         id: String,
         attDate: String,
@@ -684,11 +984,20 @@ class frag_Live_Attendance1 : Fragment() {
                 when (it.status) {
                     Status.SUCCESS -> {
 
+
+
+
                         it.responseData?.let { res -> successAttUpdate(res) }
+
+
+
 
                     }
                     Status.LOADING -> {
                         loadingAnim.show()
+
+
+
 
                     }
                     Status.ERROR -> {
@@ -699,19 +1008,31 @@ class frag_Live_Attendance1 : Fragment() {
             }
     }
 
+
+
+
     private fun successAttUpdate(res: AttendanceResponse) {
         loadingAnim.dismiss()
         //   if (res.message.equals("Attendance Updated Successfully")) {
         if (res.code == "200") {
             Utility.removePreference(requireActivity(), "Is_Location_Tracking_Running")
 
+
+
+
             //CALL STOP SERVICE
             val intent = Intent(requireContext(), TrackingService::class.java)
             requireActivity().stopService(intent)
 
+
+
+
             //  Utility.commonToast(requireActivity(), "Successful ", "Check Out Completed", 1)
             binding.btnSubmitCheckout.visibility = View.GONE
             binding.txtOutTime.text = Utility.getCurrentDate("EEE hh:mm:ss a dd.MMM.yy")
+
+
+
 
             Utility.commonToast(
                 requireActivity(),
@@ -727,6 +1048,15 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
+
     //todo for manual attendence
     fun isTimeAutomatic(c: Context): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -737,8 +1067,17 @@ class frag_Live_Attendance1 : Fragment() {
     }
 
 
+
+
+
+
+
+
     private fun timeWarningDialog(
     ) {
+
+
+
 
         val v: View = layoutInflater.inflate(R.layout.time_warning, null)
         val warningDialog = Dialog(v.context, android.R.style.Theme_Light_NoTitleBar_Fullscreen)
@@ -754,25 +1093,43 @@ class frag_Live_Attendance1 : Fragment() {
         }
     }
 
-//todo new camera
+
+
+
+    //todo new camera
     fun captureImage() {
-    when {
-        ContextCompat.checkSelfPermission(
-            requireContext(), Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED -> {
-            dispatchTakePictureIntent()
-        }
-
-        shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
-            showCameraPermissionRationale()
-        }
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                dispatchTakePictureIntent()
+            }
 
 
-        else -> {
-            requestPermissions()
+
+
+            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
+                showCameraPermissionRationale()
+            }
+
+
+
+
+
+
+
+
+            else -> {
+                requestPermissions()
+            }
         }
     }
-}
+
+
+
+
+
+
 
 
     private fun showCameraPermissionRationale() {
@@ -780,81 +1137,144 @@ class frag_Live_Attendance1 : Fragment() {
             .setMessage("This app needs the Camera permission to take pictures.")
             .setPositiveButton("OK") { _, _ ->
 
+
+
+
             }.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }.create().show()
     }
 
 
 
-/*
-    private fun dispatchTakePictureIntent() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePictureIntent.resolveActivity(requireContext().packageManager) != null) {
-            // Create the File where the photo should go
-            val photoFile: File? = try {
-                createImageFile()
-            } catch (ex: IOException) {
-                // Handle error
-                null
-            }
 
-            // Continue only if the File was successfully created
-            photoFile?.also {
-                val photoURI: Uri = FileProvider.getUriForFile(
-                    requireContext(),
-                    "com.crowncement.tecnicalsupport.fileprovider",
-                    it
-                )
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
-        } else {
-            // Handle the case where no camera app is available
-        }
-    }
 
- */
+
+
+
+
+
+
+
+    /*
+       private fun dispatchTakePictureIntent() {
+           val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+           if (takePictureIntent.resolveActivity(requireContext().packageManager) != null) {
+               // Create the File where the photo should go
+               val photoFile: File? = try {
+                   createImageFile()
+               } catch (ex: IOException) {
+                   // Handle error
+                   null
+               }
+
+
+
+
+               // Continue only if the File was successfully created
+               photoFile?.also {
+                   val photoURI: Uri = FileProvider.getUriForFile(
+                       requireContext(),
+                       "com.crowncement.tecnicalsupport.fileprovider",
+                       it
+                   )
+                   takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                   startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+               }
+           } else {
+               // Handle the case where no camera app is available
+           }
+       }
+
+
+
+
+    */
+
+
+
+
+
+
+
+
+
 
 
 
     //todo works for every device except 15
 
+
+
+
     private fun dispatchTakePictureIntent() {
         if(Build.VERSION.SDK_INT >= 15){
-        try {
+            try {
 
 
-            val photoFile: File? = try {
-                createImageFile()
-            } catch (ex: IOException) {
-                null
+
+
+
+
+
+
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    null
+                }
+
+
+
+
+                photoFile?.also {
+
+
+
+
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        requireContext(),
+                        "com.crowncement.TsSalesTracking.fileprovider",
+                        it
+                    )
+
+
+
+
+                    //  takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    //  startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+
+
+
+
+                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+                }
+
+
+
+
+            } catch (e: Exception) {
+
+
+
+
+                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_LONG).show()
+
+
+
+
+
+
+
+
             }
 
-            photoFile?.also {
-
-                val photoURI: Uri = FileProvider.getUriForFile(
-                    requireContext(),
-                    "com.crowncement.TsSalesTracking.fileprovider",
-                    it
-                )
-
-                //  takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                //  startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-            }
-
-        } catch (e: Exception) {
-
-            Toast.makeText(requireActivity(), e.message, Toast.LENGTH_LONG).show()
 
 
-        }
 
         }
         else{
-               Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                 context?.let {
                     takePictureIntent.resolveActivity(it.packageManager)?.also {
                         val photoFile: File? = try {
@@ -863,13 +1283,22 @@ class frag_Live_Attendance1 : Fragment() {
                             null
                         }
 
+
+
+
                         photoFile?.also {
+
+
+
 
                             val photoURI: Uri = FileProvider.getUriForFile(
                                 requireContext(),
                                 "com.crowncement.TsSalesTracking.fileprovider",
                                 it
                             )
+
+
+
 
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
@@ -882,7 +1311,55 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -902,27 +1379,8 @@ class frag_Live_Attendance1 : Fragment() {
             SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir: File = getOutputDirectory()
 
-        return File.createTempFile(
-            "JPEG_${timeStamp}_bill_", /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
-        ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
-            currentPhotoPath = absolutePath
-            Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
-
-        }
-    }
 
 
-
-   /*
-    @Throws(IOException::class)
-    private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp: String =
-            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val storageDir: File = getOutputDirectory()
 
         return File.createTempFile(
             "JPEG_${timeStamp}_bill_", /* prefix */
@@ -933,11 +1391,63 @@ class frag_Live_Attendance1 : Fragment() {
             currentPhotoPath = absolutePath
             Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
 
+
+
+
         }
     }
 
 
-    */
+
+
+
+
+
+
+
+
+
+
+    /*
+     @Throws(IOException::class)
+     private fun createImageFile(): File {
+         // Create an image file name
+         val timeStamp: String =
+             SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+         val storageDir: File = getOutputDirectory()
+
+
+
+
+         return File.createTempFile(
+             "JPEG_${timeStamp}_bill_", /* prefix */
+             ".jpg", /* suffix */
+             storageDir /* directory */
+         ).apply {
+             // Save a file: path for use with ACTION_VIEW intents
+             currentPhotoPath = absolutePath
+             Utility.storeKeyValue(requireActivity(),"currentPhotoPath",currentPhotoPath)
+
+
+
+
+         }
+     }
+
+
+
+
+
+
+
+
+     */
+
+
+
+
+
+
 
 
     private fun getOutputDirectory(): File {
@@ -949,28 +1459,52 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
+
     fun compressImage(imagePath: String, maxSizeKB: Int = 50): File {
         // First decode with inJustDecodeBounds=true to check dimensions
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
         BitmapFactory.decodeFile(imagePath, options)
 
+
+
+
         // Calculate inSampleSize (power of 2) to reduce memory usage
         options.inSampleSize = calculateInSampleSize(options, 960, 960)
         options.inJustDecodeBounds = false
 
+
+
+
         // Decode bitmap with inSampleSize set
         var bitmap = BitmapFactory.decodeFile(imagePath, options)
+
+
+
 
         // Compress with quality adjustment
         var outputStream = ByteArrayOutputStream()
         var quality = 50 // Start with 90% quality
+
+
+
 
         do {
             outputStream.reset() // Clear the output stream
             bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
             quality -= 5 // Reduce quality by 5% each iteration
         } while (outputStream.toByteArray().size > maxSizeKB * 960 && quality > 10)
+
+
+
 
         // If still too large, resize further
         if (outputStream.toByteArray().size > maxSizeKB * 960) {
@@ -991,6 +1525,9 @@ class frag_Live_Attendance1 : Fragment() {
         )
     }
 
+
+
+
     private fun convertBitmapToFile(imageBitmap: Bitmap): File {
         val wrapper = ContextWrapper(requireContext())
         var file = wrapper.getDir("collection", Context.MODE_PRIVATE)
@@ -1003,9 +1540,18 @@ class frag_Live_Attendance1 : Fragment() {
     }
 
 
+
+
+
+
+
+
     private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
         val (height: Int, width: Int) = options.run { outHeight to outWidth }
         var inSampleSize = 1
+
+
+
 
         if (height > reqHeight || width > reqWidth) {
             val halfHeight: Int = height / 2
@@ -1015,8 +1561,17 @@ class frag_Live_Attendance1 : Fragment() {
             }
         }
 
+
+
+
         return inSampleSize
     }
+
+
+
+
+
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -1024,206 +1579,372 @@ class frag_Live_Attendance1 : Fragment() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
 
-                Log.e("IMAGE", "Image saved to $currentPhotoPath")
+            Log.e("IMAGE", "Image saved to $currentPhotoPath")
+
 
             try{
                 currentPhotoPath = Utility.getValueByKey(requireActivity(),
                     "currentPhotoPath").toString()
-            val imgFile = compressImage(currentPhotoPath)
-
-            if (imgFile.exists()) {
-                val imageSize = (imgFile.length() / 1024.0)
-               // Toast.makeText(requireActivity(), imageSize.toString(), Toast.LENGTH_LONG).show()
-              //  finalFile.add(imgFile)
-                finalFile = imgFile
-            }
-
-            val bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
-            binding.imgSetPic.setImageBitmap(bitmap)
+                val imgFile = compressImage(currentPhotoPath)
 
 
-            if (latitude == 0.0) {
-                latitude = getLastKnownLocation()!!.latitude
-                longitude = getLastKnownLocation()!!.longitude
-
-                //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
-            }
-
-            if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
-                val emp = getValueByKey(requireActivity(), "username")
-                val imName = emp + getCurrentDate("yyyyMMdd") + "out"
-              //  val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-             //   finalFile = File(getRealPathFromURI(tempUri)!!)
-              //  binding.imgSetPic.setImageBitmap(selectedImage)
 
 
-                attendanceUpdate(
-                    emp!!, getCurrentDate("yyyy-MM-dd").toString(),
-                    getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                    att.shift_no.toString(),
-                    att.shift.toString(),
-                    File(finalFile.toString()),
-                    latitude.toString(),
-                    longitude.toString()
-                )
-            }
-
-
-            //checkout
-            if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
-                val emp = getValueByKey(requireActivity(), "username")
-                val imName = emp + getCurrentDate("yyyyMMdd") + "out"
-               // val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-               // finalFile = File(getRealPathFromURI(tempUri)!!)
-               // binding.imgSetPic.setImageBitmap(selectedImage)
-
-
-                attendanceUpdate(
-                    emp!!, getCurrentDate("yyyy-MM-dd").toString(),
-                    getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                    att.shift_no.toString(),
-                    att.shift.toString(),
-                    File(finalFile.toString()),
-                    latitude.toString(),
-                    longitude.toString()
-                )
-
-            }
-            //check in
-            else {
-                val empI = getValueByKey(requireActivity(), "username")
-                val imName = empI + getCurrentDate("yyyyMMdd") + "in"
-
-              //  val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-             //   finalFile = File(getRealPathFromURI(tempUri)!!)
-               // binding.imgSetPic.setImageBitmap(selectedImage)
-//todo here will check the lat lon with the login lat lon
-                val loginlat = Utility.getUserInfo(requireActivity())!!.attLat
-                val loginlon = Utility.getUserInfo(requireActivity())!!.attLon
-
-                if (loginlat != null) {
-                    if (loginlon != null) {
-                        exactLocationRestriction(loginlat,loginlon)
-                    }
+                if (imgFile.exists()) {
+                    val imageSize = (imgFile.length() / 1024.0)
+                    // Toast.makeText(requireActivity(), imageSize.toString(), Toast.LENGTH_LONG).show()
+                    //  finalFile.add(imgFile)
+                    finalFile = imgFile
                 }
 
-/*
-                attendanceEntry(
-                    empI!!,
-                    getCurrentDate("yyyy-MM-dd").toString(),
-                    getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                    att.shift_no.toString(),
-                    att.shift.toString(),
-                    File(finalFile.toString()),
-                    latitude.toString(),
-                    longitude.toString()
-                )
 
- */
+
+
+                val bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+                binding.imgSetPic.setImageBitmap(bitmap)
+
+
+
+
+
+
+
+
+                if (latitude == 0.0) {
+                    latitude =  getLastKnownLocation()!!.latitude
+                    longitude = getLastKnownLocation()!!.longitude
+
+
+
+
+                    //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
+                }
+
+
+                /*
+                               if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
+                                   val emp = getValueByKey(requireActivity(), "username")
+                                   val imName = emp + getCurrentDate("yyyyMMdd") + "out"
+                                   //  val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                                   //   finalFile = File(getRealPathFromURI(tempUri)!!)
+                                   //  binding.imgSetPic.setImageBitmap(selectedImage)
+
+
+
+
+
+
+
+
+                                   attendanceUpdate(
+                                       emp!!, getCurrentDate("yyyy-MM-dd").toString(),
+                                       getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                                       att.shift_no.toString(),
+                                       att.shift.toString(),
+                                       File(finalFile.toString()),
+                                       latitude.toString(),
+                                       longitude.toString()
+                                   )
+                               }
+
+
+                */
+
+
+
+
+//todo new
+                getFreshLocation {
+
+
+                    if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
+
+
+                        val emp = getValueByKey(requireActivity(), "username")
+
+
+                        attendanceUpdate(
+                            emp!!,
+                            getCurrentDate("yyyy-MM-dd").toString(),
+                            getCurrentDate("yyyy-MM-dd HH:mm:ss") + ".000",
+                            att.shift_no.toString(),
+                            att.shift.toString(),
+                            File(finalFile.toString()),
+                            latitude.toString(),
+                            longitude.toString()
+                        )
+
+
+                    } else {
+
+
+                        val loginlat = Utility.getUserInfo(requireActivity())!!.attLat
+                        val loginlon = Utility.getUserInfo(requireActivity())!!.attLon
+
+
+                        if (loginlat != null && loginlon != null) {
+                            exactLocationRestriction(loginlat, loginlon)
+                        } else {
+                            Toast.makeText(requireContext(),
+                                "Login location not found",
+                                Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+//todo my code start
+                /*
+                //checkout
+                if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
+                    val emp = getValueByKey(requireActivity(), "username")
+                    val imName = emp + getCurrentDate("yyyyMMdd") + "out"
+                    // val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                    // finalFile = File(getRealPathFromURI(tempUri)!!)
+                    // binding.imgSetPic.setImageBitmap(selectedImage)
+
+
+
+
+
+
+
+
+                    attendanceUpdate(
+                        emp!!, getCurrentDate("yyyy-MM-dd").toString(),
+                        getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                        att.shift_no.toString(),
+                        att.shift.toString(),
+                        File(finalFile.toString()),
+                        latitude.toString(),
+                        longitude.toString()
+                    )
+
+
+
+
+                }
+                //check in
+                else {
+                    val empI = getValueByKey(requireActivity(), "username")
+                    val imName = empI + getCurrentDate("yyyyMMdd") + "in"
+
+
+
+
+                    //  val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                    //   finalFile = File(getRealPathFromURI(tempUri)!!)
+                    // binding.imgSetPic.setImageBitmap(selectedImage)
+ //todo here will check the lat lon with the login lat lon
+                    val loginlat = Utility.getUserInfo(requireActivity())!!.attLat
+                    val loginlon = Utility.getUserInfo(requireActivity())!!.attLon
+
+
+
+
+                    if (loginlat != null) {
+                        if (loginlon != null) {
+                            exactLocationRestriction(loginlat,loginlon)
+                        }
+                    }
+
+
+
+
+                    /*
+                                   attendanceEntry(
+                                       empI!!,
+                                       getCurrentDate("yyyy-MM-dd").toString(),
+                                       getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                                       att.shift_no.toString(),
+                                       att.shift.toString(),
+                                       File(finalFile.toString()),
+                                       latitude.toString(),
+                                       longitude.toString()
+                                   )
+
+
+
+
+                    */
+                }
+
+
+                 */
+//todo my code end
+
+
             }
-
-        }
 
             catch (e: Exception) {
 
-            Utility.commonToast(requireActivity(),e.message.toString(), e.message.toString(), 0)
+
+                Utility.commonToast(requireActivity(),e.message.toString(), e.message.toString(), 0)
+            }
 
         }
 
-
-
-        }
 
         else {
             Toast.makeText(requireActivity(), "ERROR in image processing", Toast.LENGTH_LONG).show()
         }
 
 
+
+
+
+
+
+
     }
+
+
+
 
 //todo
 
 
-/*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != Activity.RESULT_CANCELED) {
-
-            //   if (resultCode == RESULT_OK && data != null) {
-            if (resultCode == Activity.RESULT_OK) {
-              //  if(isTimeAutomatic(requireActivity())==true) {
-                if(isTimeAutomatic(requireContext())==true||getDeviceTimeZone(requireContext())==true) {
-
-                    try {
-                        loadingAnim.show()
-                        //  val selectedImage = data.extras!!["data"] as Bitmap?
-                   val path=   getValueByKey(requireActivity(),"currentPhotoPath")
-                        val selectedImage = BitmapFactory.decodeFile(path)
-
-                        if (latitude == 0.0) {
-                            latitude = getLastKnownLocation()!!.latitude
-                            longitude = getLastKnownLocation()!!.longitude
-
-                          //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
-                        }
-
-                        //checkout
-                        if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
-                            val emp = getValueByKey(requireActivity(), "username")
-                            val imName = emp + getCurrentDate("yyyyMMdd") + "out"
-                            val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-                            finalFile = File(getRealPathFromURI(tempUri)!!)
-                            binding.imgSetPic.setImageBitmap(selectedImage)
-
-
-                            attendanceUpdate(
-                                emp!!, getCurrentDate("yyyy-MM-dd").toString(),
-                                getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                                att.shift_no.toString(),
-                                att.shift.toString(),
-                                File(finalFile.toString()),
-                                latitude.toString(),
-                                longitude.toString()
-                            )
-                        }
-                        //check in
-                        else {
-                            val empI = getValueByKey(requireActivity(), "username")
-                            val imName = empI + getCurrentDate("yyyyMMdd") + "in"
-
-                            val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-                            finalFile = File(getRealPathFromURI(tempUri)!!)
-                            binding.imgSetPic.setImageBitmap(selectedImage)
-
-                            attendanceEntry(
-                                empI!!,
-                                getCurrentDate("yyyy-MM-dd").toString(),
-                                getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                                att.shift_no.toString(),
-                                att.shift.toString(),
-                                File(finalFile.toString()),
-                                latitude.toString(),
-                                longitude.toString()
-                            )
-                        }
-                    } catch (e: Exception) {
-                        Utility.commonToast(requireActivity(), "Failed", e.message.toString(), 0)
-                    }
-                }else{
-                       timeWarningDialog()
-                }
-
-            }
-
-        } else {
-            Utility.commonToast(requireActivity(), "Failed", "failed to take picture", 0)
-        }
-    }
 
 
 
 
- */
+
+
+    /*
+       override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+           super.onActivityResult(requestCode, resultCode, data)
+           if (resultCode != Activity.RESULT_CANCELED) {
+
+
+
+
+               //   if (resultCode == RESULT_OK && data != null) {
+               if (resultCode == Activity.RESULT_OK) {
+                 //  if(isTimeAutomatic(requireActivity())==true) {
+                   if(isTimeAutomatic(requireContext())==true||getDeviceTimeZone(requireContext())==true) {
+
+
+
+
+                       try {
+                           loadingAnim.show()
+                           //  val selectedImage = data.extras!!["data"] as Bitmap?
+                      val path=   getValueByKey(requireActivity(),"currentPhotoPath")
+                           val selectedImage = BitmapFactory.decodeFile(path)
+
+
+
+
+                           if (latitude == 0.0) {
+                               latitude = getLastKnownLocation()!!.latitude
+                               longitude = getLastKnownLocation()!!.longitude
+
+
+
+
+                             //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
+                           }
+
+
+
+
+                           //checkout
+                           if (!(att.intime!!.isEmpty()) && !(att.intime.equals(""))) {
+                               val emp = getValueByKey(requireActivity(), "username")
+                               val imName = emp + getCurrentDate("yyyyMMdd") + "out"
+                               val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                               finalFile = File(getRealPathFromURI(tempUri)!!)
+                               binding.imgSetPic.setImageBitmap(selectedImage)
+
+
+
+
+
+
+
+
+                               attendanceUpdate(
+                                   emp!!, getCurrentDate("yyyy-MM-dd").toString(),
+                                   getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                                   att.shift_no.toString(),
+                                   att.shift.toString(),
+                                   File(finalFile.toString()),
+                                   latitude.toString(),
+                                   longitude.toString()
+                               )
+                           }
+                           //check in
+                           else {
+                               val empI = getValueByKey(requireActivity(), "username")
+                               val imName = empI + getCurrentDate("yyyyMMdd") + "in"
+
+
+
+
+                               val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
+                               finalFile = File(getRealPathFromURI(tempUri)!!)
+                               binding.imgSetPic.setImageBitmap(selectedImage)
+
+
+
+
+                               attendanceEntry(
+                                   empI!!,
+                                   getCurrentDate("yyyy-MM-dd").toString(),
+                                   getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                                   att.shift_no.toString(),
+                                   att.shift.toString(),
+                                   File(finalFile.toString()),
+                                   latitude.toString(),
+                                   longitude.toString()
+                               )
+                           }
+                       } catch (e: Exception) {
+                           Utility.commonToast(requireActivity(), "Failed", e.message.toString(), 0)
+                       }
+                   }else{
+                          timeWarningDialog()
+                   }
+
+
+
+
+               }
+
+
+
+
+           } else {
+               Utility.commonToast(requireActivity(), "Failed", "failed to take picture", 0)
+           }
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    */
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1232,6 +1953,9 @@ class frag_Live_Attendance1 : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
     }
+
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -1251,74 +1975,146 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ///////////////////////////////////////////////////////////////////////////
     //todo for 150m check
 
+
+
+
     @SuppressLint("SuspiciousIndentation")
     fun exactLocationRestriction(destinationLat:Double, destinationLon:Double){
-       // getLastLocations()
+        // getLastLocations()
+
+
+
 
         if (latitude == 0.0) {
             latitude = getLastKnownLocation()!!.latitude
             longitude = getLastKnownLocation()!!.longitude
+
+
+
 
             //  getBaseMessage(requireActivity(),"","LOCATION",R.drawable.ic_baseline_error_orange,0)
         }
         val distance=getDistance(destinationLat,destinationLon,latitude,longitude)
         val disInMeter= String.format("%.2f", distance)
 
+
+
+
         val empI = getValueByKey(requireActivity(), "username")
         val imName = empI + getCurrentDate("yyyyMMdd") + "in"
         val fence_distance = Utility.getUserInfo(requireActivity())!!.fence_distance
 
-       // val loginlon = Utility.getUserInfo(requireActivity())!!.attLat
-       // if(siteinfo.siteImage.toString()!=""){
-            if(distance>=1000){
+
+
+
+        // val loginlon = Utility.getUserInfo(requireActivity())!!.attLat
+        // if(siteinfo.siteImage.toString()!=""){
+        if(distance>=1000){
             //    binding.txtDestination.visibility=View.GONE
 
-              //  QuickVisitDialog()
-
-                attendanceEntry(
-                    empI!!,
-                    getCurrentDate("yyyy-MM-dd").toString(),
-                    getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
-                    att.shift_no.toString(),
-                    att.shift.toString(),
-                    File(finalFile.toString()),
-                    latitude.toString(),
-                    longitude.toString()
-                )
 
 
-                //addQuickVisit(selectedCustomer)
-            }
 
-            else{
-                val mess="Your are $disInMeter meter away from your residence .Now your current location is $latitude,$longitude  & your residence's location is" +
-                        "$destinationLat,$destinationLon , please go to 1 kilometre  away from your residence & try again."
-              //  binding.txtDefaultMessage1.text= mess
-                val showDialog:Dialog= distanceWarning(requireActivity(),Dialog(requireContext()),mess)
-                showDialog.show()
-           // val showDialog:Dialog= distanceWarning(requireActivity(),Dialog(requireContext()),"mess")
-                showDialog.show()
+            //  QuickVisitDialog()
 
-            }
 
-        }
 
-        /*
-        else{
 
-            Utility.getBaseMessage(requireActivity(),
-                "Warning ",
-                "Please add site image first then try to give quick visit. ",
-                R.drawable.error_white,
-                0
+            attendanceEntry(
+                empI!!,
+                getCurrentDate("yyyy-MM-dd").toString(),
+                getCurrentDate("yyyy-MM-dd HH:mm:ss").toString() + ".000",
+                att.shift_no.toString(),
+                att.shift.toString(),
+                File(finalFile.toString()),
+                latitude.toString(),
+                longitude.toString()
             )
 
+
+
+
+
+
+
+
+            //addQuickVisit(selectedCustomer)
         }
 
-         */
+
+
+
+        else{
+            val mess="Your are $disInMeter meter away from your residence .Now your current location is $latitude,$longitude  & your residence's location is" +
+                    "$destinationLat,$destinationLon , please go to 1 kilometre  away from your residence & try again."
+            //  binding.txtDefaultMessage1.text= mess
+            val showDialog:Dialog= distanceWarning(requireActivity(),Dialog(requireContext()),mess)
+            showDialog.show()
+            // val showDialog:Dialog= distanceWarning(requireActivity(),Dialog(requireContext()),"mess")
+            showDialog.show()
+
+
+
+
+        }
+
+
+
+
+    }
+
+
+
+
+    /*
+    else{
+
+
+
+
+        Utility.getBaseMessage(requireActivity(),
+            "Warning ",
+            "Please add site image first then try to give quick visit. ",
+            R.drawable.error_white,
+            0
+        )
+
+
+
+
+    }
+
+
+
+
+     */
+
+
+
+
+
+
 
 
     fun distanceWarning(activity: Activity, dialog: Dialog, mess: String): Dialog {
@@ -1328,6 +2124,9 @@ class frag_Live_Attendance1 : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val message = mView.findViewById<TextView>(R.id.txtDefaultMessage1)
         val try_again = mView.findViewById<Button>(R.id.try_again)
+
+
+
 
         message.text = mess
         dialog.setContentView(mView)
@@ -1348,6 +2147,12 @@ class frag_Live_Attendance1 : Fragment() {
     }
 
 
+
+
+
+
+
+
     fun getDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
         val R = 6371e3 // radius of Earth in meters
         val dLat = Math.toRadians(lat2 - lat1)
@@ -1357,10 +2162,105 @@ class frag_Live_Attendance1 : Fragment() {
                 sin(dLon / 2).pow(2.0)
         val c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
+
+
+
         return R * c
     }
 
+
+
+
+    //todo location new
+    @SuppressLint("MissingPermission")
+    private fun getFreshLocation(onLocationReady: () -> Unit) {
+
+
+        if (!isLocationEnabled()) {
+            requestDeviceLocationSettings()
+            return
+        }
+
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions()
+            return
+        }
+
+
+        loadingAnim.show()
+
+
+        mFusedLocationClient.getCurrentLocation(
+            com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY,
+            null
+        ).addOnSuccessListener { location ->
+
+
+            if (location != null) {
+                latitude = location.latitude
+                longitude = location.longitude
+
+
+                Log.d(TAG, "FRESH LOCATION: $latitude | $longitude")
+
+
+                onLocationReady()
+            } else {
+                loadingAnim.dismiss()
+                Toast.makeText(requireContext(),
+                    "Unable to get current location",
+                    Toast.LENGTH_LONG).show()
+            }
+
+
+        }.addOnFailureListener {
+            loadingAnim.dismiss()
+            Toast.makeText(requireContext(),
+                "Location failed",
+                Toast.LENGTH_LONG).show()
+        }
     }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

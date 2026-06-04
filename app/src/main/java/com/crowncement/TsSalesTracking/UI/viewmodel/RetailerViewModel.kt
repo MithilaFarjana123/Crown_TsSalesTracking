@@ -40,6 +40,8 @@ class RetailerViewModel : ViewModel() {
     private var SaveSaleBPTsNewSiteMutableLiveData: MutableLiveData<Resource<saveSaleBPNewSiteResponce>>? =null
     private var updateSaleBPTsNewSiteMutableLiveData: MutableLiveData<Resource<updateSaleBPNewSiteResponce>>? =null
 
+    private var OpprtsiteVrfSaveMutableLiveData: MutableLiveData<Resource<SiteVerificationSaveResponce>>? =null
+
 
     private var uploadTSSiteCoverMutableLiveData: MutableLiveData<Resource<saveTSSiteImgResponce>>? =null
     private var GetTSSiteInfoMutableLiveData: MutableLiveData<Resource<GetTSSiteInfoResponce>>? =null
@@ -248,6 +250,17 @@ class RetailerViewModel : ViewModel() {
         saveTSOtherCustomerMutableLiveData = RetailerRepository.saveNewOtherCustomer(user, type,value)
         return saveTSOtherCustomerMutableLiveData!!
     }
+
+
+    //todo siteverification
+    fun OpprtsiteVrfSave(
+        user: String,
+        value: String
+    ): MutableLiveData<Resource<SiteVerificationSaveResponce>> {
+        OpprtsiteVrfSaveMutableLiveData = RetailerRepository.opprtsiteVrfSave(user, value)
+        return OpprtsiteVrfSaveMutableLiveData!!
+    }
+
 
 
     ////todo ts GetSalesOthPartner

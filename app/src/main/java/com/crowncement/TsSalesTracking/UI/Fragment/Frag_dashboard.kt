@@ -459,7 +459,6 @@ class Frag_dashboard : Fragment() {
         actualMovDialog.show()
 
 
-
         btnAdd.setOnClickListener {
 
             if (selectedRouteList.size > 0) {

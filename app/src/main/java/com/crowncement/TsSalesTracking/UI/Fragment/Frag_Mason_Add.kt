@@ -922,17 +922,28 @@ class Frag_Mason_Add : Fragment() {
             )
         } else if (cardFile.size == 0 || nidfinalFileInKB > 200) {
             result = false
-            Utility.getBaseMessage(
-                requireActivity(),
-                "Nid card size exceed expected max file size 200 KB ",
-                "After compression your file size is   " + String.format(
-                    "%.2f",
-                    nidfinalFileInKB
-                ) + " KB",
+            if (cardFile.size == 0){
+                Utility.getBaseMessage(
+                    requireActivity(),
+                    "Nid card is required ",
+                    "Please attach nid card",
 
-                R.drawable.error_white,
-                0
-            )
+                    R.drawable.error_white,
+                    0
+                )
+            }else {
+                Utility.getBaseMessage(
+                    requireActivity(),
+                    "Nid card size exceed expected max file size 200 KB ",
+                    "After compression your file size is   " + String.format(
+                        "%.2f",
+                        nidfinalFileInKB
+                    ) + " KB",
+
+                    R.drawable.error_white,
+                    0
+                )
+            }
         } else {
             result = true
         }

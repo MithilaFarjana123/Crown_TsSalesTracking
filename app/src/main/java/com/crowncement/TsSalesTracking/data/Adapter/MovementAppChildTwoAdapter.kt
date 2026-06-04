@@ -60,9 +60,9 @@ class MovementAppChildTwoAdapter(
         setFieldValue(holder.binding.txtRouteInfoDe, routeInfo.rtLong.toString())
 
         if (planStatus != "Approved") {
-            holder.binding.imgApStat.setBackgroundResource(R.drawable.ic_dot_orange)
+            holder.binding.imgApStat.setBackgroundResource(R.drawable.ic_error)
         } else {
-            holder.binding.imgApStat.setBackgroundResource(R.drawable.ic_dot_green)
+            holder.binding.imgApStat.setBackgroundResource(R.drawable.ic_checked_green)
         }
 
     }

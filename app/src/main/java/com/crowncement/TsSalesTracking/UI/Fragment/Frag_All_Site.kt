@@ -519,7 +519,6 @@ class Frag_All_Site : Fragment() {
                     override fun OnClick(v: View?, position: Int) {
 
 
-//
                         prepareSelectedtaggedSiteObject(items[position], requireActivity())
                         if(selectedCustomer=="IHBs") {
                             val navController =

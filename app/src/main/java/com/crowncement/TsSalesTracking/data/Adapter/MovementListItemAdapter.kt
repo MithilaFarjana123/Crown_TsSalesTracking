@@ -44,9 +44,10 @@ class MovementListItemAdapter(private val planList: ArrayList<MovementPlanChild2
 
         val plan = planList[position]
 
-        holder.binding.txtRouteNa.text =plan.routeName
-        holder.binding.txtRouteDetails.text = plan.rtHrc5+" > "+plan.rtLong
-
+     //   holder.binding.txtRouteNa.text =plan.routeName
+        holder.binding.txtRouteNa.text =plan.rtHrc5
+      //  holder.binding.txtRouteDetails.text = plan.rtHrc5+" > "+plan.rtLong
+        holder.binding.txtRouteDetails.text = plan.rtLong
 
         holder.binding.txtMovementNumber.text = "${position+1}"
 

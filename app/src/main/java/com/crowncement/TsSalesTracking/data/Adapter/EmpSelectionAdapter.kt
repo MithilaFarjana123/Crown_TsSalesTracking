@@ -80,7 +80,7 @@ class EmpSelectionAdapter (private val empList: ArrayList<EmpInfo>) : RecyclerVi
         }
 
         if (row_index == position) {
-            holder.binding.layoutEmp.setBackgroundColor(Color.parseColor("#00914C"))
+            holder.binding.layoutEmp.setBackgroundColor(Color.parseColor("#B10C0C"))
             holder.binding.txtEmpN.setTextColor(Color.parseColor("#ffffff"))
             holder.binding.txtEmpI.setTextColor(Color.parseColor("#ffffff"))
         } else {

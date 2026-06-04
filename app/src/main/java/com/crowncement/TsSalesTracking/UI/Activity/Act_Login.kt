@@ -47,6 +47,8 @@ class Act_Login : AppCompatActivity() {
         requestBackgroundLocationPermission()
     }
 
+
+
     private fun regularTask() {
         loadingAnim = baseLoadingAnimation(this, Dialog(this), "P l e a s e    w a i t")
 
@@ -143,6 +145,7 @@ class Act_Login : AppCompatActivity() {
 
     private fun checkAutoLogin() {
 
+        val userID : String = Utility.getValueByKey(this, "userId")!!
         val username: String = Utility.getValueByKey(this, "username")!!
         val pass: String = Utility.getValueByKey(this, "pass")!!
         val deviceId: String = Utility.getValueByKey(this, "deviceId")!!

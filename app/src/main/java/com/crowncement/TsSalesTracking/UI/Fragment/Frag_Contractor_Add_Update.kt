@@ -333,8 +333,10 @@ class Frag_Contractor_Add_Update : Fragment() {
                 if (other.nidImg.toString().contains("jpg")) {
 
                     showPDF(IMAGE_BASE_URL + other.nidImg, "")
-                } else {
-
+                }else if(other.nidImg.toString().contains("whatsapp")){
+                    showPDF(IMAGE_BASE_URL +"da/docs/x880022/Contractor/nid/"+other.partyCode+".jpg","")
+                }
+                else {
                     showPDF(PDF_VIEWER_URL + IMAGE_BASE_URL + other.nidImg, "")
                 }
 
@@ -345,6 +347,7 @@ class Frag_Contractor_Add_Update : Fragment() {
 
 
     }
+
 
 
     private fun showPDF(pdfURL: String, title: String) {
@@ -1306,7 +1309,7 @@ class Frag_Contractor_Add_Update : Fragment() {
             selectedProgram,
             nidExtension,
             "Contractor",
-            "",
+            "jpg", //todo this jpg is pass for mason to contractor registration
             binding.txtNIDNUm.text.toString(),
             "",
             "",
@@ -1464,7 +1467,6 @@ class Frag_Contractor_Add_Update : Fragment() {
                         if (res.code == "200") {
 
 
-
                             if ((picFile.isFile) && (other.partyImage=="")) {
 
                                 uploadProfilePhoto(
@@ -1477,20 +1479,8 @@ class Frag_Contractor_Add_Update : Fragment() {
                                     loadingAnim
                                 )
                             }
-                            else if ((vCardFile.isFile) && (other.busCardImg =="")) {
-                                //vcard
-                                uploadCustomerDoc(
-                                    user,
-                                    party_code,
-                                    "Contractor",
-                                    "bid",
-                                    "jpg",
-                                    cardFile,
-                                    loadingAnim,
-                                    "vcard"
-                                )
-                            }
-                            else if ((nidFile.size > 0) && (other.nidImg == "")) {
+
+                            if ((nidFile.size > 0) && (other.nidImg == "")) {
                                 nidfinalFileInKB = nidFile.get(0).length() / 1024.0
                                 nidExtension = "jpg"
                                 //nid
@@ -1506,6 +1496,21 @@ class Frag_Contractor_Add_Update : Fragment() {
                                 )
 
                             }
+
+                            if ((vCardFile.isFile) && (other.busCardImg =="")) {
+                                //vcard
+                                uploadCustomerDoc(
+                                    user,
+                                    party_code,
+                                    "Contractor",
+                                    "bid",
+                                    "jpg",
+                                    cardFile,
+                                    loadingAnim,
+                                    "vcard"
+                                )
+                            }
+
                             else {
 
                                 Utility.getBaseMessage(
@@ -1516,12 +1521,9 @@ class Frag_Contractor_Add_Update : Fragment() {
                                     1
                                 )
 
-
-
+                                val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+                                navController.navigate(R.id.nav_contractor_database)
                             }
-                            val navController =
-                                requireActivity().findNavController(R.id.nav_host_fragment)
-                            navController.navigate(R.id.nav_contractor_database)
 
                         }
                         else if(res.code=="500"){
@@ -1682,7 +1684,9 @@ class Frag_Contractor_Add_Update : Fragment() {
                                             R.drawable.ic_checked_green,
                                             1
                                         )
-                                    } else {
+                                    }
+
+                                    else {
                                         Utility.getBaseMessage(
                                             requireActivity(),
                                             "Successful",
@@ -1888,6 +1892,7 @@ class Frag_Contractor_Add_Update : Fragment() {
 
             if (other.nidImg != "") {
                 binding.imgNidFile.setImageDrawable(null)
+
                 binding.txtNidFileName.text = other.nidImg.toString().split("/").last()
                 binding.imgNidFile.setBackgroundResource(R.drawable.ic_attached_pdf)
                 binding.imgNidFile.scaleType = ImageView.ScaleType.FIT_CENTER
@@ -2148,404 +2153,6 @@ class Frag_Contractor_Add_Update : Fragment() {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         startActivityForResult(intent, VCARD_PIC_CAMERA_REQ_CODE)
     }
-
-//todo old picture
-   /*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        super.onActivityResult(requestCode, resultCode, data)
-        try {
-
-            if (resultCode == Activity.RESULT_OK) {
-                cardFile = ArrayList()
-                nidFile = ArrayList()
-                when (requestCode) {
-
-                    PRO_PIC_CAMERA_REQ_CODE -> {
-
-                        if (profilePhotoPath != "") {
-                            //val selectedImage = BitmapFactory.decodeFile(profilePhotoPath)
-                            profilePhotoPath =
-                                Utility.getValueByKey(requireActivity(), "currentPhotoPath")
-                                    .toString()
-                            selectedImage = BitmapFactory.decodeFile(profilePhotoPath)
-
-                            val emp =
-                                Utility.getValueByKey(requireActivity(), "username").toString()
-                            val imName = emp + Utility.getCurrentDate("yyyyMMdd")
-                            val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-                            uri = tempUri!!
-                            Log.e("prealPath", getRealPathFromURI(tempUri)!!)
-                            prealPath = getRealPathFromURI(tempUri)!!
-                            picFile = File(getRealPathFromURI(tempUri)!!)
-
-                            GlobalScope.launch {
-
-                                // picFile = Compressor.compress(requireContext(), picFile)
-
-                                picFile =
-                                    Compressor.compress(requireContext(), picFile) {
-                                        resolution(1280, 720)
-                                        quality(80)
-                                        format(Bitmap.CompressFormat.JPEG)
-                                        size(204_800) // 200 KB
-                                    }
-                            }
-
-                            Glide.with(requireActivity())
-                                .load(picFile)
-                                //  .override(reqWidth, reqHeight) // Resize to desired dimensions
-                                .into(binding.imgCoProfile)
-                            // binding.imgCoProfile.setImageBitmap(selectedImage)
-
-                            proPicExtension =
-                                ImagePathUtils.getRealPath(requireContext(), tempUri).toString()
-                                    .split(".").last()
-                        } else {
-
-                            Utility.getBaseMessage(
-                                requireActivity(),
-                                "Failed",
-                                "Failed to capture contractor image",
-                                R.drawable.error_white,
-                                2
-                            )
-
-                        }
-
-                    }
-
-                    PRO_PIC_ATTACH_REQUEST_CODE -> {
-
-                        if (data!!.data != null) {
-                            val imagePath: String = data.data!!.path!!
-                            val imgUri: Uri = data.data!!
-
-                            val path: File =
-                                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                            try {
-
-                                GlobalScope.launch {
-
-
-                                    picFile =
-                                        Compressor.compress(requireContext(), picFile) {
-                                            resolution(1280, 720)
-                                            quality(80)
-                                            format(Bitmap.CompressFormat.JPEG)
-                                            size(204_800) // 200 KB
-                                        }
-
-                                }
-                                picFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
-                                    createFileFromImageUri(requireContext(), imgUri)!!
-                                } else {
-                                    path.mkdirs()
-                                    File(ImagePathUtils.getRealPath(requireContext(), imgUri)!!)
-                                }
-                                //get file extension
-                                proPicExtension =
-                                    ImagePathUtils.getRealPath(requireContext(), imgUri).toString()
-                                        .split(".").last()
-                                //Set image to view
-                                val bitmap = BitmapFactory.decodeStream(
-                                    requireContext().contentResolver.openInputStream(imgUri)
-                                )
-                                //  binding.imgCoProfile.setImageBitmap(bitmap)
-
-
-                                Glide.with(requireActivity())
-                                    .load(picFile)
-                                    //  .override(reqWidth, reqHeight) // Resize to desired dimensions
-                                    .into(binding.imgCoProfile)
-
-                            } catch (e: Exception) {
-                                Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                    .show()
-                            }
-
-                        } else {
-                            Utility.getBaseMessage(
-                                requireActivity(),
-                                "Failed",
-                                "Failed to attach profile picture",
-                                R.drawable.error_white,
-                                2
-                            )
-                        }
-
-
-                    }
-
-//                todo for attach nid from geraly
-
-                    NID_ATTACH_REQUEST_CODE -> {
-
-                        if (data?.clipData != null) {
-                            val count = data.clipData!!.itemCount
-
-                            for (i in 0 until count) {
-                                val imageUri: Uri = data.clipData!!.getItemAt(i).uri
-
-                                val path: File =
-                                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                                try {
-                                    path.mkdirs()
-                                    val file =
-                                        File(
-                                            ImagePathUtils.getRealPath(
-                                                requireContext(),
-                                                imageUri
-                                            )!!
-                                        )
-                                    nuri = imageUri!!
-                                    nidSelectionType = "attach"
-                                    nidfinalFile = file
-                                    GlobalScope.launch {
-
-
-                                        nidfinalFile =
-                                            Compressor.compress(requireContext(), nidfinalFile) {
-                                                resolution(1280, 720)
-                                                quality(80)
-                                                format(Bitmap.CompressFormat.JPEG)
-                                                size(204_800) // 200 KB
-                                            }
-
-                                    }
-                                    Utility.saveFileToSharedPreferences(
-                                        requireContext(),
-                                        nidfinalFile, "conNidAttach"
-                                    )
-
-                                    nidFile.add(nidfinalFile)
-
-                                    nidfinalFileInKB = nidFile.get(0).length() / 1024.0
-                                    // nidfinalFile.length() / 1024.0
-
-                                    nidExtension =
-                                        ImagePathUtils.getRealPath(requireContext(), imageUri)
-                                            .toString().split(".")[1]
-                                    Log.e("extension", "onActivityResult: $nidExtension")
-                                    // val selectedImage =   data.clipData!!.getItemAt(i).uri as Bitmap?
-
-                                    // setImage(file, binding.imgNidFile)
-                                    Glide.with(requireActivity())
-                                        .load(nidfinalFile)
-                                        //  .override(reqWidth, reqHeight) // Resize to desired dimensions
-                                        .into(binding.imgNidFile)
-
-                                } catch (e: Exception) {
-                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                        .show()
-                                }
-                            }
-
-                        } else if (data?.data != null) {
-                            val imagePath: String = data.data!!.path!!
-                            val imgUri: Uri = data.data!!
-
-
-                            val path: File =
-                                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                            try {
-
-                                val file = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
-                                    createFileFromImageUri(requireContext(), imgUri)!!
-                                } else {
-                                    path.mkdirs()
-                                    File(ImagePathUtils.getRealPath(requireContext(), imgUri)!!)
-                                }
-                                nuri = imgUri!!
-                                nidSelectionType == "attach"
-                                nidfinalFile = file
-                                GlobalScope.launch {
-
-                                    //     nidfinalFile = Compressor.compress(requireContext(), nidfinalFile)
-
-                                    nidfinalFile =
-                                        Compressor.compress(requireContext(), nidfinalFile) {
-                                            resolution(1280, 720)
-                                            quality(80)
-                                            format(Bitmap.CompressFormat.JPEG)
-                                            size(204_800) // 200 KB
-                                        }
-                                }
-                                Utility.saveFileToSharedPreferences(
-                                    requireContext(),
-                                    nidfinalFile, "conNidAttach"
-                                )
-                                nidFile.add(nidfinalFile)
-                                nidfinalFileInKB = nidFile.get(0).length() / 1024.0
-
-
-                                nidExtension = "jpg"
-                                //Set image to view
-
-                                Glide.with(requireActivity())
-                                    .load(nidfinalFile)
-                                    //  .override(reqWidth, reqHeight) // Resize to desired dimensions
-                                    .into(binding.imgNidFile)
-
-                                //   binding.imgNidFile.setImageURI(Uri.fromFile(nidfinalFile))
-
-                            } catch (e: Exception) {
-                                Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                    .show()
-                            }
-                        } else {
-                            Utility.getBaseMessage(
-                                requireActivity(),
-                                "Failed",
-                                "Please select minimum one photo ",
-                                R.drawable.error_white,
-                                2
-                            )
-                        }
-                    }
-
-                    /*
-                    NID_ATTACH_REQUEST_CODE -> {
-
-                        if (data!!.data != null) {
-                            val uri: Uri = data!!.data!!
-                            val uriString = uri.toString()
-                            val myFile = FileUtility().from(requireContext().applicationContext, uri)
-
-                            //Get File name
-                            var displayName: String? = null
-                            if (uriString.startsWith("content://")) {
-                                var cursor: Cursor? = null
-                                try {
-                                    cursor =
-                                        requireActivity().contentResolver.query(uri, null, null, null, null)
-                                    if (cursor != null && cursor.moveToFirst()) {
-
-                                        // displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
-                                        displayName = cursor.getString(with(cursor) {
-                                            getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                                        })
-                                    }
-                                } finally {
-                                    cursor!!.close()
-                                }
-                            } else if (uriString.startsWith("file://")) {
-                                displayName = myFile!!.name
-                            }
-                            //  nidFile = myFile!!
-                            nidFile.add(myFile!!)
-                            binding.imgNidFile.setImageDrawable(null)
-
-                            binding.txtNidFileName.text = displayName
-
-                            binding.imgNidFile.setBackgroundResource(R.drawable.ic_attached_pdf)
-                            binding.imgNidFile.scaleType = ImageView.ScaleType.FIT_CENTER
-
-                        } else {
-
-                            Utility.getBaseMessage(
-                                requireActivity(),
-                                "Failed",
-                                "Failed to attach NID file",
-                                R.drawable.error_white,
-                                2
-                            )
-                        }
-
-                    }
-
-                     */
-
-                    VCARD_PIC_CAMERA_REQ_CODE -> {
-
-                        if (visitingCardPhotoPath != "") {
-                            visitingCardPhotoPath =
-                                Utility.getValueByKey(
-                                    requireActivity(),
-                                    "currentVisitingCardFilePath"
-                                )
-                                    .toString()
-                            vselectedImage = BitmapFactory.decodeFile(visitingCardPhotoPath)
-                            //val selectedImage = BitmapFactory.decodeFile(visitingCardPhotoPath)
-                            val emp =
-                                Utility.getValueByKey(requireActivity(), "username").toString()
-                            val imName = emp + Utility.getCurrentDate("yyyyMMdd")
-                            val tempUri = getImageUri(requireContext(), vselectedImage!!, imName)
-                            Log.e("vrealPath", getRealPathFromURI(tempUri)!!)
-                            vuri = tempUri!!
-                            vrealPath = getRealPathFromURI(tempUri)!!
-
-                            vCardFile = File(getRealPathFromURI(tempUri)!!)
-
-                            GlobalScope.launch {
-
-                                //  vCardFile = Compressor.compress(requireContext(), vCardFile)
-
-                                vCardFile =
-                                    Compressor.compress(requireContext(), vCardFile) {
-                                        resolution(1280, 720)
-                                        quality(80)
-                                        format(Bitmap.CompressFormat.JPEG)
-                                        size(204_800) // 200 KB
-                                    }
-                            }
-
-                            cardFile.add(vCardFile)
-                            Glide.with(requireActivity())
-                                .load(vselectedImage)
-                                //  .override(reqWidth, reqHeight) // Resize to desired dimensions
-                                .into(binding.imgConVisitingCard)
-                            //  binding.imgConVisitingCard.setImageBitmap(selectedImage)
-                            proPicExtension =
-                                ImagePathUtils.getRealPath(requireContext(), tempUri).toString()
-                                    .split(".").last()
-                        } else {
-                            Utility.getBaseMessage(
-                                requireActivity(),
-                                "Failed",
-                                "Sorry, failed to process visiting card",
-                                R.drawable.error_white,
-                                2
-                            )
-                        }
-                    }
-
-                    else -> {
-                        Utility.getBaseMessage(
-                            requireActivity(),
-                            "Failed",
-                            "Sorry, Failed to process data",
-                            R.drawable.error_white,
-                            2
-                        )
-                    }
-                }
-
-
-            } else {
-                Utility.getBaseMessage(
-                    requireActivity(),
-                    "Failed",
-                    "Sorry, failed to selection document",
-                    R.drawable.error_white,
-                    2
-                )
-            }
-
-        } catch (e: Exception) {
-            Utility.getBaseMessage(
-                requireActivity(),
-                "আপনার ফোনের স্টোরেজ ভর্তি হয়ে গেছে!",
-                "ক্রাউন টাইটান অ্যাপস দিয়ে আজকের তোলা কিছু ছবি মুছে ফেলুন এবং ৮ জিবি জায়গা ফাঁকা করুন।",
-                R.drawable.error_white,
-                2
-            )
-        }
-
-    }
-
-
-    */
 
 
     private fun setImage(imgFile: File, v: ImageView) {
@@ -3094,155 +2701,7 @@ class Frag_Contractor_Add_Update : Fragment() {
 
                     }
 
-/*
-                    NID_ATTACH_REQUEST_CODE -> {
 
-                        if (data?.clipData != null) {
-                            val count = data.clipData!!.itemCount
-
-                            for (i in 0 until count) {
-                                val imageUri: Uri = data.clipData!!.getItemAt(i).uri
-                                val path: File =
-                                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                                try {
-                                    path.mkdirs()
-                                    val file =
-                                        File(
-                                            ImagePathUtils.getRealPath(
-                                                requireContext(),
-                                                imageUri
-                                            )!!
-                                        )
-                                    nuri = imageUri!!
-                                    nidSelectionType = "attach"
-                                    nidfinalFile = file
-                                    
-
-                                    var imguri = ImagePathUtils.getRealPath(requireContext(), imageUri)
-                                    val imgFile = compressImage(imguri.toString())
-
-/*
-                                    GlobalScope.launch {
-
-
-                                        nidfinalFile =
-                                            Compressor.compress(requireContext(), nidfinalFile) {
-                                                resolution(1280, 720)
-                                                quality(80)
-                                                format(Bitmap.CompressFormat.JPEG)
-                                                size(204_800) // 200 KB
-                                            }
-
-                                    }
-
- */
-
-                                    if (imgFile.exists()) {
-                                        val imageSize = (imgFile.length() / 1024.0)
-                                        // Toast.makeText(requireActivity(), imageSize.toString(), Toast.LENGTH_LONG).show()
-                                        //  finalFile.add(imgFile)
-                                        nidfinalFile = imgFile
-                                    }
-                                    Utility.saveFileToSharedPreferences(
-                                        requireContext(),
-                                        nidfinalFile,
-                                        "conNidAttach"
-                                    )
-
-                                    nidFile.add(nidfinalFile)
-
-                                    nidfinalFileInKB = nidFile.get(0).length() / 1024.0
-                                    // nidfinalFile.length() / 1024.0
-
-                                    nidExtension =
-                                        ImagePathUtils.getRealPath(requireContext(), imageUri)
-                                            .toString().split(".")[1]
-                                    Log.e("extension", "onActivityResult: $nidExtension")
-                                    // val selectedImage =   data.clipData!!.getItemAt(i).uri as Bitmap?
-
-                                    // setImage(file, binding.imgNidFile)
-                                    Glide.with(requireActivity())
-                                        .load(nidfinalFile)
-                                        //  .override(reqWidth, reqHeight) // Resize to desired dimensions
-                                        .into(binding.imgNidFile)
-
-                                } catch (e: Exception) {
-                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                        .show()
-                                }
-                            }
-
-                        } else if (data?.data != null) {
-                            val imagePath: String = data.data!!.path!!
-                            val imgUri: Uri = data.data!!
-
-
-                            val path: File =
-                                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                            try {
-
-                                val file = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
-                                    createFileFromImageUri(requireContext(), imgUri)!!
-                                } else {
-                                    path.mkdirs()
-                                    File(ImagePathUtils.getRealPath(requireContext(), imgUri)!!)
-                                }
-                                nuri = imgUri!!
-                                nidSelectionType == "attach"
-                               // nidfinalFile = file
-                                /*
-                                GlobalScope.launch {
-
-                                    //     nidfinalFile = Compressor.compress(requireContext(), nidfinalFile)
-
-                                    nidfinalFile =
-                                        Compressor.compress(requireContext(), nidfinalFile) {
-                                            resolution(1280, 720)
-                                            quality(80)
-                                            format(Bitmap.CompressFormat.JPEG)
-                                            size(204_800) // 200 KB
-                                        }
-                                }
-
-                                 */
-
-                                val imgFile = compressImage(imgUri.toString())
-                                nidfinalFile = imgFile
-
-                                Utility.saveFileToSharedPreferences(
-                                    requireContext(),
-                                    nidfinalFile, "conNidAttach"
-                                )
-                                nidFile.add(nidfinalFile)
-                                nidfinalFileInKB = nidFile.get(0).length() / 1024.0
-
-
-                                nidExtension = "jpg"
-                                //Set image to view
-
-                                Glide.with(requireActivity())
-                                    .load(nidfinalFile)
-                                    //  .override(reqWidth, reqHeight) // Resize to desired dimensions
-                                    .into(binding.imgNidFile)
-
-                                //   binding.imgNidFile.setImageURI(Uri.fromFile(nidfinalFile))
-
-                            } catch (e: Exception) {
-                                Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                    .show()
-                            }
-                        } else {
-                            Utility.getBaseMessage(
-                                requireActivity(),
-                                "Failed",
-                                "Please select minimum one photo ",
-                                R.drawable.error_white,
-                                2
-                            )
-                        }
-                    }
-
- */
 
 
                     NID_ATTACH_REQUEST_CODE -> {
@@ -3276,28 +2735,7 @@ class Frag_Contractor_Add_Update : Fragment() {
                                         nidfinalFileInKB.toString(), Toast.LENGTH_SHORT).show()
                                     nidSelectionType = "attach"
 
-                                 //   val imgFile = compressImage(currentPhotoPath)
 
-                                  //  var imguri = ImagePathUtils.getRealPath(requireContext(), imageUri)
-                                  //  val imgFile = compressImage(imguri.toString())
-
-                                   // nidfinalFile = imgFile
-
-                                    /*
-                                    GlobalScope.launch {
-
-                                        nomNidFinalFile =
-                                            Compressor.compress(requireContext(), nomNidFinalFile) {
-                                                resolution(1280, 720)
-                                                quality(80)
-                                                format(Bitmap.CompressFormat.JPEG)
-                                                size(204_800) // 200 KB
-                                            }
-
-                                        // nomNidFinalFile= Compressor.compress(requireContext(), nomNidFinalFile)
-                                    }
-
-                                     */
 
                                     Utility.saveFileToSharedPreferences(requireContext(),
                                         nidfinalFile,"NidAttach")
@@ -3312,9 +2750,13 @@ class Frag_Contractor_Add_Update : Fragment() {
                                         .skipMemoryCache(true)
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .into(binding.imgNidFile)
+                                    /*
                                     nidExtension =
                                         ImagePathUtils.getRealPath(requireContext(), imageUri)
                                             .toString().split(".")[1]
+
+                                     */
+                                    nidExtension = "jpg"
                                     Log.e("extension", "onActivityResult: $nidExtension")
                                     // val selectedImage =   data.clipData!!.getItemAt(i).uri as Bitmap?
                                     // setImage(file, binding.imgMNomNidFile)
@@ -3358,8 +2800,12 @@ class Frag_Contractor_Add_Update : Fragment() {
                                 Utility.saveFileToSharedPreferences(requireContext(),
                                     nidfinalFile,"nomNidAttach")
                                 nidFile.add(nidfinalFile)
+                                nidExtension = "jpg"
+                                /*
                                 nidExtension = ImagePathUtils.getRealPath(requireContext(), imgUri)
                                     .toString().split(".")[1]
+
+                                 */
 
 
                                 Glide

@@ -152,6 +152,8 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/txtUMasonname"
+                                android:focusable="false"
+                                android:editable="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent"
@@ -175,6 +177,8 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/txtUMMobile"
+                                android:focusable="false"
+                                android:editable="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent"

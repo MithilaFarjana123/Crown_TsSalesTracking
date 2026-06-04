@@ -52,7 +52,7 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="gone"
-        app:backgroundTint="@color/crown_icon_color"
+        app:backgroundTint="@color/titan_theme_color"
         app:icon="@drawable/ic_check_green"
         app:iconTint="@color/white"
         app:tint="@color/white" />

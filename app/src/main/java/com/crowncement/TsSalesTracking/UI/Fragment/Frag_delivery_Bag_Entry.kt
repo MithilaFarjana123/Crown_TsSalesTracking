@@ -550,6 +550,7 @@ class Frag_delivery_Bag_Entry : Fragment() {
         }
 
          */
+
         binding.acThana.setOnItemClickListener { parent, _, position, _ ->
 
             if (position > 0) {
@@ -573,8 +574,8 @@ class Frag_delivery_Bag_Entry : Fragment() {
             }
         }
 
-
     }
+
 
     private fun getDistrictList(country: String, division: String) {
         retailerViewModel.getDistrictInfo(country, division).observe(requireActivity()) {
@@ -945,6 +946,8 @@ class Frag_delivery_Bag_Entry : Fragment() {
         // Add the default hint at the top
         filtered.add(0, "Select Division")
 
+
+
         // Build and set the adapter
         val adapter = ArrayAdapter(
             requireContext(),
@@ -954,7 +957,12 @@ class Frag_delivery_Bag_Entry : Fragment() {
         ac.setAdapter(adapter)
 
         // Optionally, show the hint as the initial text without filtering it out
-        ac.setText("Select Division", false) // false prevents AutoComplete’s filter :contentReference[oaicite:1]{index=1}
+        ac.setText("Select Division", false)
+        // false prevents AutoComplete’s filter :contentReference[oaicite:1]{index=1}
+
+        if(division!=""){
+            ac.setText(division,false)
+        }
 
         adapter.notifyDataSetChanged()
     }

@@ -20,19 +20,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/plan"/>
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:src="@drawable/plan"/>-->
 
             <!--            app:mcv_firstDayOfWeek="sunday"-->
+
+
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 app:mcv_firstDayOfWeek="friday"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_marginTop="-40dp"
-                app:mcv_selectionColor="@color/crown_icon_color"
+                app:mcv_selectionColor="@color/titan_theme_color"
                 app:mcv_headerTextAppearance="@style/CalendarViewWeekDayTextAppearance"
                 app:mcv_dateTextAppearance="@style/CalendarViewTextAppearance"
                 />
@@ -77,6 +78,8 @@
                 android:layout_marginBottom="10dp"
                 tools:listitem="@layout/movement_plan_list_item" />
 
+
+
             <TextView
                 android:id="@+id/txtErMessage"
                 android:layout_width="match_parent"
@@ -108,7 +111,7 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="gone"
-        app:backgroundTint="@color/crown_icon_color"
+        app:backgroundTint="@color/titan_theme_color"
         app:icon="@drawable/add_calendar"
         app:iconTint="@color/white"
         app:tint="@color/white" />

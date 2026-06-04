@@ -120,7 +120,7 @@ class Act_Offline_Attendance : AppCompatActivity() {
         val attPhoto = BitmapFactory.decodeFile(attInfo.AttImagePath)
         binding.imgOfflineAtt.setImageBitmap(attPhoto)
 //todo set this data after location check
-        /*
+
 
         val inTime = Utility.changeDateFormat(attInfo.AttTime, "yyyy-MM-dd HH:mm:ss", "hh:mm a")
         binding.txtOfflineTime.text = inTime.toString()
@@ -145,10 +145,9 @@ class Act_Offline_Attendance : AppCompatActivity() {
             }
         }
 
-         */
-
 
     }
+
 
     private fun getTodayAttendance(activity: Activity): OfflineAttendance {
         val attInfo: OfflineAttendance = AppRoomDatabase
@@ -370,6 +369,7 @@ class Act_Offline_Attendance : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @OptIn(DelicateCoroutinesApi::class)
     private fun saveAttIntoInternalDb(offlineAttData: OfflineAttendance) {
         GlobalScope.launch {
@@ -382,6 +382,33 @@ class Act_Offline_Attendance : AppCompatActivity() {
                 com.crowncement.TsSalesTracking.R.drawable.ic_checked_green,
                 1
             )
+
+            //todo set intime
+            val inTime = Utility.changeDateFormat(offlineAttData.AttTime, "yyyy-MM-dd HH:mm:ss", "hh:mm a")
+            binding.txtOfflineTime.setText(inTime.toString())
+            binding.txtAttDate.text = Utility.getCurrentDate("dd").toString()
+            binding.txtAttMonthYear.text = Utility.getCurrentDate("MMM-yyyy").toString()
+            binding.txtAttDay.text = Utility.getCurrentDate("EEE").toString()
+
+            val time1 = LocalTime.parse(Utility.changeDateFormat(inTime, "hh:mm a", "HH:mm:ss"))
+            val time2 = LocalTime.parse("09:16:00")
+            val comparisonResult = time1.compareTo(time2)
+            when {
+                comparisonResult < 0 -> {
+                    println("$time1 is earlier than $time2")
+                    binding.txtOffAttStatus.setTextColor(Color.parseColor("#00914C"))
+                }
+
+                comparisonResult > 0 -> {
+                    println("$time1 is later than $time2")
+                    binding.txtOffAttStatus.setTextColor(Color.parseColor("#FC9E14"))
+                }
+
+                else -> {
+                    binding.txtOffAttStatus.setTextColor(Color.parseColor("#00914C"))
+                }
+            }
+
         }
     }
 
@@ -430,12 +457,49 @@ class Act_Offline_Attendance : AppCompatActivity() {
     }
 
     //TODO------------------------------------------------------------------------------------CAMERA END
-
+/*
     private fun isLocationEnabled(): Boolean {
         val locationManager: LocationManager =
             this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
+
+ */
+    //todo for android 12 problem fix
+    private fun isLocationEnabled(): Boolean {
+        val locationManager =
+            getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            locationManager.isLocationEnabled
+        } else {
+            locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                    locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        }
+    }
+
+//todo for android 12
+    private fun getGeoLocation() {
+
+        if (!isLocationEnabled()) {
+            Utility.commonToast(this, "Location Off", "Please turn ON your location", 0)
+            return
+        }
+
+        val locationHelper = LocationHelper(this)
+        val location = locationHelper.getCurrentLocation()
+
+        if (location != null) {
+            latitude = location.latitude
+            longitude = location.longitude
+
+            captureImage()
+        } else {
+            Utility.commonToast(this, "Location Error", "Unable to fetch location. Please wait and try again.", 0)
+        }
+    }
+
+/*
     private fun getGeoLocation() {
         val locationHelper = LocationHelper(this)
         val location = locationHelper.getCurrentLocation()
@@ -458,6 +522,7 @@ class Act_Offline_Attendance : AppCompatActivity() {
             Utility.commonToast(this, "Location off", "Turn on your location ", 0)
         }
     }
+    */
 
     //TODO------------------------------------------------------------------------------------Location Starts
 

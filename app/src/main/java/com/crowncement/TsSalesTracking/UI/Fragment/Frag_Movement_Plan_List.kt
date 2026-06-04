@@ -1,6 +1,7 @@
 package com.crowncement.TsSalesTracking.UI.Fragment
 
 import android.app.Dialog
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -146,8 +147,22 @@ class Frag_Movement_Plan_List : Fragment() {
                             planList = arrayListOf()
                             planList.addAll(res.data)
                             appStatus = res.plnStatus.toString()
+                            var plnStatus = res.plnStatus.toString()
                             if (res.plnStatus == "Approved") {
+                                binding.listStatus.setText("Your movement plan has been approved.")
+                                binding.listStatus.setTextColor(Color.parseColor("#007D4C"))
+
                                 binding.fabSubmit.visibility = View.GONE
+                            }else if (res.plnStatus == "" ){
+                                binding.listStatus.setText("Please submit your movement plan.")
+
+                            }else if(res.plnStatus == "Submitted"){
+                                binding.listStatus.setText("Your movement plan is not approved yet.")
+                                binding.fabSubmit.visibility = View.GONE
+
+                                binding.listStatus.setTextColor(Color.parseColor("#FC9E14"))
+
+
                             }
 
                             loadMovementDateInfo(res.data,res.plnStatus.toString())

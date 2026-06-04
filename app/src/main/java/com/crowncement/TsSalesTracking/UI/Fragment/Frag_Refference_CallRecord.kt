@@ -1577,9 +1577,18 @@ class Frag_Refference_CallRecord : Fragment(),
             //  var quickvisitinfo = convertQuickVisitInfo(requireActivity())!!
 
             //  var mov_doc = quickvisitinfo.moveDoc.toString()
-            // var mov_row = quickvisitinfo.moveRow.toString()
-            val directComprecordData = prepareOtherCustomerSiteData()
-            TSCallCompMoveDirectSave(empI, directComprecordData,dialog)
+            // var mov_row = quickvisitinfo.moveRow.toString()if
+            if(SELECTED_RETAILER_ID.isNotEmpty()&&SELECTED_RETAILER_ID.isNotEmpty()) {
+                val directComprecordData = prepareOtherCustomerSiteData()
+                TSCallCompMoveDirectSave(empI, directComprecordData, dialog)
+                Toast.makeText(requireActivity(), "retailer  id :"+ SELECTED_RETAILER_ID
+                        +" Dealer  id :"+ SELECTED_DEALER_ID
+                    , Toast.LENGTH_SHORT).show()
+            }else{
+
+                Toast.makeText(requireActivity(), "Failed retailer  id :"+ SELECTED_RETAILER_ID
+                    +" Dealer  id :"+ SELECTED_DEALER_ID
+                    , Toast.LENGTH_SHORT).show()            }
 
 
             //  val tagedCallrecordData = prepareOtherCustomerSiteData()
@@ -1699,8 +1708,8 @@ class Frag_Refference_CallRecord : Fragment(),
             follow_up_reason,
             "jpg",
             "",
-            "",
-            "",
+            SELECTED_DEALER_ID,
+            SELECTED_RETAILER_ID,
             binding.acRCallSiteStatus.text.toString()
         )
 
@@ -1753,6 +1762,7 @@ class Frag_Refference_CallRecord : Fragment(),
 
                             //   else{
                             // Toast.makeText(requireContext(), "File missing ", Toast.LENGTH_LONG).show()
+
                             Utility.getBaseMessage(
                                 requireActivity(),
                                 "Successful",

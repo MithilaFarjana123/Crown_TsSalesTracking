@@ -42,7 +42,6 @@ import java.util.jar.Manifest
 class Frag_delivery_Bag_Entry_Child : Fragment() {
 
 
-
     private var _binding: FragDeliveryBagEntryChildBinding? = null
     private val binding get() = _binding!!
 
@@ -80,6 +79,15 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
             requireActivity(), Dialog(requireActivity()), "P l e a s e    w a i t"
         )
         savedCalldata = ArrayList()
+
+      /*  binding.txtRdeliveryOrderQuantity.apply {
+            isFocusable = true
+            isFocusableInTouchMode = true
+            isCursorVisible = true
+            keyListener = android.text.method.DigitsKeyListener.getInstance("0123456789")
+        }
+
+       */
 
         binding.txtRCallDeliveryDate.setOnClickListener {
             showConditionalDatePicker()
@@ -119,7 +127,7 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
 
                                 siteInfoLists = res.data
                                 var sitedata = siteInfoLists.get(0)
-                            //    binding.siteID.setText(sitedata.siteId.toString())
+                              //  binding.siteID.setText(sitedata.siteId.toString())
 
 
                                 if(sitedata.lastDelDate.toString().equals("2999-12-31")){
@@ -348,7 +356,6 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
        }
 
        else {
-
            result = true
        }
 
@@ -379,7 +386,7 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
 
 
 
-
+//todo test
     private fun getSalesMoveCall(
         site_id: String
     ) {
@@ -428,15 +435,27 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
                     }
                     Status.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                        if(it.message=="500") {
-                            Utility.getBaseMessage(
+                       // if(it.message=="500") {
+
+                        Utility.commonToast(requireActivity(),
+                            "warning",
+                            "Please check any delivery bag is pending to your reporting boss",
+                            0)
+
+                        
+/*
+                        Utility.getBaseMessage(
                                 requireActivity(),
                                 "Warning",
                                 "Please check any delivery bag is pending to your reporting boss",
                                 R.drawable.ic_checked_green,
-                                1
+                                2
                             )
-                        }
+
+ */
+                    //    }
+
+
                         loadingAnim.dismiss()
 
                     }

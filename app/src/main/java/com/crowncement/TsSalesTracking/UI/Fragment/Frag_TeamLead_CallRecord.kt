@@ -1,5 +1,8 @@
 package com.crowncement.TsSalesTracking.UI.Fragment
 
+import android.app.Activity
+import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,14 +11,35 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.AdapterView
+import android.widget.LinearLayout
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.crowncement.TsSalesTracking.R
 import com.crowncement.TsSalesTracking.UI.viewmodel.RetailerViewModel
 import com.crowncement.TsSalesTracking.UI.viewmodelfactory.RetailerViewModelFactory
+import com.crowncement.TsSalesTracking.common.Status
+import com.crowncement.TsSalesTracking.common.Utility
+import com.crowncement.TsSalesTracking.data.Model.GetBPSiteInfoResponceChild
+import com.crowncement.TsSalesTracking.data.Model.GetSiteSumInfoChild
+import com.crowncement.TsSalesTracking.data.Model.GetTSSiteInfoChild
 import com.crowncement.TsSalesTracking.data.Model.OtherCustomerChild
+import com.crowncement.TsSalesTracking.data.Model.SiteVerificationData
 import com.crowncement.TsSalesTracking.databinding.FragTeamLeadCallRecordBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.Objects
 
 
 class Frag_TeamLead_CallRecord : Fragment() {
@@ -26,15 +50,22 @@ class Frag_TeamLead_CallRecord : Fragment() {
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
     var nextVisitDate =""
+    lateinit var siteinfo: GetTSSiteInfoChild
+    lateinit var loadingAnim: Dialog
 
 
     var division = ""
     var district = ""
     var thana = ""
     var selectedCustomer = ""
-    lateinit var other: OtherCustomerChild
+  //  lateinit var other: OtherCustomerChild
 
+    lateinit var other: GetTSSiteInfoChild
 
+    lateinit var siteInfoLists: ArrayList<GetSiteSumInfoChild>
+
+    private lateinit var spinnerStatus: Spinner
+    private lateinit var layoutMismatchFields: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +89,63 @@ class Frag_TeamLead_CallRecord : Fragment() {
         RetailerViewModelFactory()
         setupViewModel()
 
+        loadingAnim = Utility.baseLoadingAnimation(
+            requireActivity(),
+            Dialog(requireActivity()),
+            "P l e a s e    w a i t"
+        )
+
         val cldr = Calendar.getInstance()
         val day = cldr[Calendar.DAY_OF_MONTH]
         val month = cldr[Calendar.MONTH]+1
         val year = cldr[Calendar.YEAR]
         nextVisitDate = "$year-$month-$day"
+
+        layoutMismatchFields = view.findViewById(R.id.layoutMismatchFields)
+
+        spinnerStatus = view.findViewById(R.id.spinnerStatus)
+        spinnerStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedValue = parent?.getItemAtPosition(position).toString()
+
+                // Show hidden fields only if "Information Mismatch" is selected
+                if (selectedValue == "Information Mismatch") {
+                    layoutMismatchFields.visibility = View.VISIBLE
+                } else {
+                    layoutMismatchFields.visibility = View.GONE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+      //  val etActualDate = binding.findViewById<TextInputEditText>(R.id.etActualDate)
+
+        other = convertOtherInfo(requireActivity())!!
+        getSiteSummeryInfo( other.siteNumber.toString(),"","")
+
+        binding.etActualDate.setOnClickListener {
+            // 1. Build the date picker
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select Delivery Date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+
+            // 2. Show the picker
+            datePicker.show(parentFragmentManager, "DATE_PICKER")
+            // 3. Handle the result
+            datePicker.addOnPositiveButtonClickListener { selection ->
+                // Convert the selection (Long) to a readable string
+                val sdf = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+                val dateString = sdf.format(Date(selection))
+                binding.etActualDate.setText(dateString)
+            }
+        }
+        siteinfo = convertOtherSiteInfo(requireActivity())!!
+     //   SiteCode = siteinfo.siteNumber.toString()
+
+        getOtherCustomerListforTagged(siteinfo.siteNumber.toString(),"")
+
 
         onclickListener()
 
@@ -75,11 +158,20 @@ class Frag_TeamLead_CallRecord : Fragment() {
                 .get(RetailerViewModel::class.java)
     }
 
+    private fun convertOtherInfo(activity: Activity): GetTSSiteInfoChild? {
+        val prefs = activity.getSharedPreferences(activity.packageName, Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = prefs.getString("selectedSiteInfo", "")
+        return gson.fromJson(json, GetTSSiteInfoChild::class.java)
+    }
 
      fun onclickListener(){
-        binding.btnVerify.setOnClickListener{
-            if(validation()){
-              //  confirmationDialog()
+        binding.btnSubmit.setOnClickListener{
+            if(binding.spinnerStatus.selectedItem.toString()=="OK"){
+                confirmationDialog()
+            }
+            else if(validation()){
+                confirmationDialog()
             }
         }
     }
@@ -105,206 +197,90 @@ class Frag_TeamLead_CallRecord : Fragment() {
 
     }
 
-/*
-    private fun confirmationDialog() {
-        val v: View = layoutInflater.inflate(R.layout.add_ts_party_site_comfirmation, null)
-        val dialog = BottomSheetDialog(requireContext())
-        Objects.requireNonNull(dialog.window)
-            ?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-
-        val btnCancelR: MaterialButton = v.findViewById(R.id.btnCancelR)
-        val btnConfirmR: MaterialButton = v.findViewById(R.id.btnConfirmR)
-        val cancel: TextView = v.findViewById(R.id.cancelR)
-        val txtCDialogTitle: TextView = v.findViewById(R.id.txtCDialogTitle)
-        val txtBody: TextView = v.findViewById(R.id.txtBody)
-
-        //   var oth =retailerSetupInfo.split(",")[0]
-        var oth = ""
-
-        val customertype = Utility.getValueByKey(requireActivity(), "selectedCustomer")
-        oth = customertype.toString()
-
-        if (oth != "Retailer") {
-            txtCDialogTitle.text = "$oth call record "
-            txtBody.text = "Do you want to give call record of this  $oth!"
-        }
-        dialog.setContentView(v)
-        dialog.setCancelable(true)
-        dialog.show()
-
-        cancel.setOnClickListener {
-            dialog.hide()
-        }
-
-        btnCancelR.setOnClickListener {
-            dialog.hide()
-
-        }
-
-        btnConfirmR.setOnClickListener {
-            //todo
-            val empI = Utility.getValueByKey(requireActivity(), "username").toString()
-
-            //   validationForCall()
-
-
-
-            if (latitude == 0.0) {
-                latitude = getLastKnownLocation()!!.latitude
-                longitude = getLastKnownLocation()!!.longitude
-            }
-            //todo need to add shared pref
-
-            //  var quickvisitinfo = convertQuickVisitInfo(requireActivity())!!
-
-            //  var mov_doc = quickvisitinfo.moveDoc.toString()
-            // var mov_row = quickvisitinfo.moveRow.toString()
-            val directComprecordData = prepareOtherCustomerSiteData()
-            TSCallCompMoveDirectSave(empI, directComprecordData,dialog)
-
-
-            //  val tagedCallrecordData = prepareOtherCustomerSiteData()
-            //  TSCallMove4Tag(empI, directCallrecordData,dialog)
-            //  TSCallMove4Tag(empI, mov_doc, mov_row, tagedCallrecordData, dialog)
-        }
-
-
-    }
-
-
-    private fun convertOtherInfo(activity: Activity): OtherCustomerChild? {
+    private fun convertOtherSiteInfo(activity: Activity): GetTSSiteInfoChild? {
         val prefs = activity.getSharedPreferences(activity.packageName, Context.MODE_PRIVATE)
         val gson = Gson()
-        val json = prefs.getString("selectedOther", "")
-        return gson.fromJson(json, OtherCustomerChild::class.java)
+        val json = prefs.getString("selectedtaggedSite", "")
+        return gson.fromJson(json, GetTSSiteInfoChild::class.java)
     }
 
-    private fun getLastKnownLocation(): Location? {
-        val mLocationManager: LocationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val providers: List<String> = mLocationManager.getProviders(true)
-        var bestLocation: Location? = null
-        for (provider in providers) {
-            val location = mLocationManager!!.getLastKnownLocation(provider) ?: continue
-            if (bestLocation == null || location.accuracy < bestLocation.accuracy) {
-                bestLocation = location
-            }
+
+    private fun getOtherCustomerListforTagged(
+        xparty: String,
+        xCode: String
+    ) {
+        if(isAdded) {
+            retailerViewModel.GetBPSiteInfoList(xparty)
+                .observe(requireActivity()) {
+                    when (it.status) {
+
+                        Status.LOADING -> {
+
+                        }
+
+                        Status.SUCCESS -> {
+
+                            it.responseData?.let { res ->
+
+                                val otherCustomerList: ArrayList<GetBPSiteInfoResponceChild> =
+                                    res.data
+
+                                for (index in res.data) {
+                                    if(index.partyType.toString()=="IHBs"){
+
+                                    }else if(index.partyType.toString()=="Contractor"){
+                                        _binding?.tvContractor?.setText("Contractor : "+index.partyName+" ( "+index.partyCode+" ) ")
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "conCode", index.partyCode)
+                                        }
+                                        //   Utility.storeKeyValue(requireActivity(),"conCode",index.partyCode)
+
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "conName", index.partyName)
+                                        }
+
+
+                                    }else if(index.partyType.toString()=="Engineer"){
+                                        _binding?.tvEngineer?.setText("Engineer : "+index.partyName+" ( "+index.partyCode+" ) ")
+
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "engCode", index.partyCode)
+                                        }
+
+
+                                        activity?.let {
+                                            Utility.storeKeyValue(it, "engName", index.partyName)
+                                        }
+
+
+                                    }else{
+
+
+                                    }
+
+
+                                }
+
+                            }
+                        //    loadingAnim.dismiss()
+                        }
+
+                        Status.ERROR -> {
+
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                         //   loadingAnim.dismiss()
+
+                        }
+
+                    }
+
+                }
+
         }
-        return bestLocation
+
     }
 
-    private fun prepareOtherCustomerSiteData(): String {
 
-        var emp = Utility.getValueByKey(requireActivity(), "username").toString()
-
-        division = Utility.getValueByKey(requireActivity(), "selectedDivision").toString()
-        district = Utility.getValueByKey(requireActivity(), "selectedDistrict").toString()
-        thana = Utility.getValueByKey(requireActivity(), "selectedThana").toString()
-
-        //   other = convertOtherInfo(requireActivity())!!
-        selectedCustomer = Utility.getValueByKey(requireActivity(), "selectedCustomer").toString()
-        //   rootView.directTcall_partycode.setText(other.partyCode.toString())
-
-        other = convertOtherInfo(requireActivity())!!
-
-        //    rootView.directTcall_partycode.setText(other.partyCode.toString())
-
-        var converTionstatus = binding.acRCallConversionStatus.text.toString()
-        var cementType = ""
-        var deliveryQty = 0
-        var tentivive_delivery_or_datebefore_Convertion=""
-        var responsible_trade_salesPerson =""
-        var reason_of_noAchv = ""
-        var follow_up_reason = ""
-
-        //for yes
-        if(converTionstatus=="Yes"){
-            cementType = binding.acRCallCementType.text.toString()
-            deliveryQty = binding.txtRdeliveryOrderQuantity.text.toString().toInt()
-            //   var currentDate = Utility.getCurrentDate("yyyy-MM-dd").toString()
-            //   binding.txtRCallDeliveryDate.setText(currentDate)
-            //  binding.layoutRCallDeliveryDate.visibility = View.GONE
-            // tentivive_delivery_or_datebefore_Convertion = currentDate
-            tentivive_delivery_or_datebefore_Convertion = deliveryDate
-            responsible_trade_salesPerson = binding.txtRPartSiteResPerson.text.toString()
-            reason_of_noAchv = ""
-            follow_up_reason = ""
-
-        }else if(converTionstatus=="No"){
-
-            cementType = ""
-            deliveryQty = 0
-            tentivive_delivery_or_datebefore_Convertion = ""
-            responsible_trade_salesPerson = ""
-            reason_of_noAchv = binding.acRSiteNoAchReason.text.toString()
-            follow_up_reason = ""
-
-        }else if(converTionstatus=="Already converted site"){
-
-            cementType = ""
-            if(binding.txtRdeliveryQuantity.text.toString().isEmpty()){
-                deliveryQty = 0
-            }else{
-                deliveryQty = binding.txtRdeliveryQuantity.text.toString().toInt()
-            }
-            responsible_trade_salesPerson = ""
-            reason_of_noAchv = ""
-            //   tentivive_delivery_or_datebefore_Convertion = ""
-            tentivive_delivery_or_datebefore_Convertion = beforeConversinDate
-            follow_up_reason = binding.acRCallFollowUp.text.toString()
-        }
-
-
-        val OtherCustomerdirectcallinfo =  OtherCustomerdirectcallinfo(
-            other.partyCode.toString(),
-            siteinfo.siteNumber.toString(),
-            "Bangladesh",
-            division,
-            district,
-            thana,
-            "",
-            selectedCustomer,
-            "",
-            "",
-            other.contactPerson.toString(),
-            other.partyName.toString(),
-            other.partyMobile.toString(),
-            other.partyAdd1.toString(),
-            latitude,
-            longitude,
-            "Reference Call",
-            emp,
-            binding.txtVerificationInfo.text.toString(),
-            binding.txtRSiteAddTopic.text.toString(),
-            "",
-            cementType,
-            deliveryQty,
-            responsible_trade_salesPerson,
-            reason_of_noAchv,
-            "",
-            converTionstatus,
-            nextVisitDate,
-            tentivive_delivery_or_datebefore_Convertion,
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            follow_up_reason,
-            "jpg",
-            "",
-            "",
-            "",
-            binding.acRCallSiteStatus.text.toString()
-
-        )
-
-        val gson = Gson()
-        return gson.toJson(OtherCustomerdirectcallinfo)
-    }
-    
- */
 
 
     //toolbar home
@@ -326,5 +302,197 @@ class Frag_TeamLead_CallRecord : Fragment() {
     }
 
 
+    private fun getSiteSummeryInfo(siteId: String, fDate: String, tDate: String) {
+        retailerViewModel.getSiteSumInfo(siteId, fDate, tDate)
+            .observe(requireActivity()) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        it.responseData?.let { res ->
+
+                            if (res.code == "200") {
+
+                                siteInfoLists = res.data
+                                var sitedata = siteInfoLists.get(0)
+                                //  binding.siteID.setText(sitedata.siteId.toString())
+                                if(sitedata.firstDelDate.toString().equals("2999-12-31")){
+                                    //   binding.lDeldate.setText("Last delivery date :  ")
+                                }else{
+                                    var fastdeldate =  Utility.changeDateFormat(
+                                        sitedata.firstDelDate.toString(),
+                                        "yyyy-MM-dd",
+                                        "MMM, dd yyyy"
+                                    )
+                                    binding.tvFirstDelivery.setText(fastdeldate)
+
+                                }
+                                if(sitedata.lastDelDate.toString().equals("2999-12-31")){
+                                 //   binding.lDeldate.setText("Last delivery date :  ")
+                                }else{
+                                    var lastdate =  Utility.changeDateFormat(
+                                        sitedata.lastDelDate.toString(),
+                                        "yyyy-MM-dd",
+                                        "MMM, dd yyyy"
+                                    )
+                                    binding.tvLastDelivery.setText(lastdate)
+
+                                }
+
+
+                             //   binding.lDelQty.setText("Last Delivery quantity : "+sitedata.noOfLastDel.toString())
+
+                                //  binding.totalNumDelivary.setText(sitedata.noOfDel.toString())
+
+
+                            } else {
+                                //  binding.siteID.setText("0")
+                            //    binding.lDeldate.setText("Last delivery date : ")
+
+                            //    binding.lDelQty.setText("Last Delivery quantity : "+"0")
+
+
+                                // binding.rvMealList.visibility = View.GONE
+                            }
+
+
+                        }
+                    }
+
+                    Status.LOADING -> {
+
+                    }
+                    Status.ERROR -> {
+
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+    }
+
+
+
+    private fun confirmationDialog() {
+        val v: View = layoutInflater.inflate(R.layout.add_retailer_confirmation, null)
+        val dialog = BottomSheetDialog(requireContext())
+        Objects.requireNonNull(dialog.window)
+            ?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+
+        val btnCancelR: MaterialButton = v.findViewById(R.id.btnCancelR)
+        val btnConfirmR: MaterialButton = v.findViewById(R.id.btnConfirmR)
+        val cancel: TextView = v.findViewById(R.id.cancelR)
+        val txtCDialogTitle: TextView = v.findViewById(R.id.txtCDialogTitle)
+        val txtBody: TextView = v.findViewById(R.id.txtBody)
+
+
+            txtCDialogTitle.text = "Site Verification"
+            txtBody.text = "Are you sure , you want to add this new site !"
+
+        dialog.setContentView(v)
+        dialog.setCancelable(true)
+        dialog.show()
+
+        cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnCancelR.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnConfirmR.setOnClickListener {
+
+            val empI = Utility.getValueByKey(requireActivity(), "username").toString()
+
+
+
+            val varificationData = preparevarificationData()
+            saveVarificationData(empI,varificationData, dialog)
+
+
+        }
+
+
+    }
+
+
+    private fun preparevarificationData(): String {
+
+        val userId = Utility.getValueByKey(requireActivity(),"userId").toString()
+
+        var qty = 0
+        if(binding.etActualQty.text.toString().isNotEmpty()){
+            qty = binding.etActualQty.text.toString().toInt()
+
+        }
+        val varificationData = SiteVerificationData(
+            siteinfo.siteNumber.toString(),
+            binding.spinnerStatus.selectedItem.toString(),
+            userId,
+            binding.etTagInfo.text.toString(),
+            binding.etActualDate.text.toString(),
+            qty,
+            binding.txtVerificationInfo.text.toString()
+        )
+
+        val gson = Gson()
+        return gson.toJson(varificationData)
+    }
+
+
+    private fun saveVarificationData(user: String, value: String, dialog: Dialog) {
+        dialog.dismiss()
+
+        loadingAnim.show()
+
+        retailerViewModel.OpprtsiteVrfSave(user, value)
+            .observe(requireActivity()) {
+                when (it.status) {
+                    Status.LOADING -> {
+
+                    }
+
+                    Status.SUCCESS -> {
+
+                        it.responseData?.let { res ->
+                            loadingAnim.dismiss()
+
+                            if (res.code == "200") {
+
+                                Utility.getBaseMessage(
+                                    requireActivity(),
+                                    "Successful",
+                                    res.message.toString(),
+                                    R.drawable.ic_checked_green,
+                                    1
+                                )
+
+                                val navController =
+                                    requireActivity().findNavController(R.id.nav_host_fragment)
+                                navController.navigate(R.id.nav_demo_Site_Home)
+
+                            } else {
+                                loadingAnim.dismiss()
+
+                                Utility.getBaseMessage(
+                                    requireActivity(),
+                                    "Error",
+                                    res.message.toString(),
+                                    R.drawable.error_white,
+                                    0
+                                )
+                            }
+                        }
+                    }
+
+                    Status.ERROR -> {
+                        loadingAnim.dismiss()
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+    }
+
+
 
 }
+
+

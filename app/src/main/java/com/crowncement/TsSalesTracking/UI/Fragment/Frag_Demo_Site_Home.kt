@@ -274,7 +274,7 @@ class Frag_Demo_Site_Home : Fragment() {
             dialog.dismiss()
 
         }
-        
+
     }
 
 
@@ -684,14 +684,14 @@ class Frag_Demo_Site_Home : Fragment() {
         }
 
 
-        binding.carddemoSiteVerfication.visibility = View.GONE
+   //     binding.carddemoSiteVerfication.visibility = View.GONE
 
         binding.carddemoSiteVerfication.setOnClickListener {
             val userInfo: Data = Utility.getUserInfo(requireActivity())!!
 
             exactLocationRestrictionSitevarification(siteSavedlatitude,siteSavedlongitude,userInfo)
-         //   val navController = requireActivity().findNavController(R.id.nav_host_fragment)
-          //  navController.navigate(R.id.nav_teamlead_Visit)
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.nav_teamlead_Visit)
 
         }
 
@@ -713,9 +713,6 @@ class Frag_Demo_Site_Home : Fragment() {
         }
 
     }
-
-
-
 
 
     @SuppressLint("MissingInflatedId")
@@ -740,6 +737,8 @@ class Frag_Demo_Site_Home : Fragment() {
 
 
        */
+
+
         dialog.setContentView(v)
         dialog.setCancelable(true)
         dialog.show()
@@ -933,86 +932,6 @@ class Frag_Demo_Site_Home : Fragment() {
         startActivityForResult(intent, 0)
     }
 
-    /*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != Activity.RESULT_CANCELED) {
-
-            //  if (resultCode == Activity.RESULT_OK && data != null) {
-            if (resultCode == Activity.RESULT_OK) {
-                //   val selectedImage = data.extras!!["data"] as Bitmap?
-                val selectedImage = BitmapFactory.decodeFile(currentPhotoPath)
-                val emp = Utility.getValueByKey(requireActivity(), "username").toString()
-                val imName = emp + Utility.getCurrentDate("yyyyMMdd") + "out"
-                val tempUri = getImageUri(requireContext(), selectedImage!!, imName)
-                finalFile = File(getRealPathFromURI(tempUri)!!)
-                retailerSetupInfo =
-                    Utility.getValueByKey(requireActivity(), "RetailerSetupInfo").toString()
-
-                binding.imgSiteHomeCover.setImageBitmap(selectedImage)
-
-                val type = Utility.getValueByKey(requireActivity(), "acCustomer").toString()
-                if (latitude > 0.0) {
-
-
-                    uploadTSSiteCover(
-                        user,
-                        SiteCode,
-                        retailerSetupInfo.split(",")[0],
-                        latitude.toString(),
-                        longitude.toString(),
-                        finalFile,
-                        loadingAnim
-                    )
-                } else {
-                    prepareLocation()
-                    getLastLocation()
-                    if (latitude != 0.0) {
-                        uploadTSSiteCover(
-                            user,
-                            SiteCode,
-                            retailerSetupInfo.split(",")[0],
-                            latitude.toString(),
-                            longitude.toString(),
-                            finalFile,
-                            loadingAnim
-                        )
-                    }
-                    //THIS SCOPE FOR BELOW ANDROID 7
-                    else {
-                        Utility.commonToast(
-                            requireActivity(),
-                            "Failed",
-                            "Location reset successfully\n try to take picture again",
-                            0
-                        )
-                        //latitude = getLastKnownLocation()!!.latitude
-                        //longitude = getLastKnownLocation()!!.longitude
-                        getLastLocations()
-                        //LOCATION Green LIGHT
-                        if (latitude != 0.0) {
-                            binding.locationStatus.visibility = View.VISIBLE
-                            uploadTSSiteCover(
-                                user,
-                                SiteCode,
-                                retailerSetupInfo.split(",")[0],
-                                latitude.toString(),
-                                longitude.toString(),
-                                finalFile,
-                                loadingAnim
-                            )
-                        }
-                    }
-                }
-            }
-
-        } else {
-            Utility.commonToast(requireActivity(), "Failed", "failed to upload shop cover photo", 0)
-        }
-    }
-
-
-     */
 
 
     ///todo for image upload

@@ -58,9 +58,9 @@ public class MovementRouteAdapter(
         txtRouteDisc = convertView!!.findViewById(R.id.txtRouteDisc)
 
         txtRoute.text       = itemList[position].split(":")[0]
-        txtRouteDisc.text   = itemList[position].split(":")[1]
+      //  txtRouteDisc.text   = itemList[position].split(":")[1]
 
-
+        txtRouteDisc.text   = "All areas of "+itemList[position].split(":")[0]
 
 //        convertView.setOnClickListener {
 //            row_index = position

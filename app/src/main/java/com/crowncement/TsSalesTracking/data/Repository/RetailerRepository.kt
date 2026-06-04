@@ -740,7 +740,40 @@ object RetailerRepository {
         return otherCusAdd
     }
 
+//todo fun siteverification
 
+    fun opprtsiteVrfSave(
+        userID: String,
+        values: String
+    ): MutableLiveData<Resource<SiteVerificationSaveResponce>> {
+
+        val user = RequestBody.create("application/json".toMediaTypeOrNull(), userID)
+        val infos = RequestBody.create("application/json".toMediaTypeOrNull(), values)
+
+        val otherCusAdd: MutableLiveData<Resource<SiteVerificationSaveResponce>> = MutableLiveData<Resource<SiteVerificationSaveResponce>>()
+
+        try {
+            val service: GetDataService = RetrofitClientInstance.retrofitInstanceTS.create(
+                GetDataService::class.java
+            )
+            service.OpprtsiteVrfSave(user, infos)
+                ?.toObservable()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
+                    { response ->
+                        otherCusAdd.postValue(Resource.success(response))
+                    },
+                    { error ->
+                        otherCusAdd.postValue(Resource.error(error.message.toString(), null))
+                    },
+                )
+
+        } catch (e: Exception) {
+            Log.e("RetailerRepository", "otherCusAdd: " + e.message)
+        }
+        return otherCusAdd
+    }
 
 
     //todo GetSalesOthPartner

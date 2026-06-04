@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="2dp"
     android:layout_marginBottom="5dp"
     >
 
@@ -21,23 +21,24 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.02"
+                android:layout_weight="0.01"
                 android:background="@color/titan_theme_color" />
 
 
 
+
         <LinearLayout
-            android:layout_marginTop="5dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
+            android:padding="5dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtRouteInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" Route#03 Khilgaon"
+                android:text=" Movement Location List"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -45,18 +46,19 @@
                 android:id="@+id/txtRouteInfoDe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text=" Goran bashabo manda komolapur" />
 
         </LinearLayout>
 
+
         <ImageView
             android:id="@+id/imgApStat"
-            android:layout_weight="0.05"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            />
+            android:layout_weight="0.1"
+            android:padding="5dp" />
 
     </LinearLayout>
 

@@ -267,6 +267,7 @@ class Frag_Movement_Plan_Entry : Fragment() {
 
     }
 
+
     private fun addRouteBottomSheet(selDate: String) {
 
         var selectedRow = -1
@@ -582,6 +583,7 @@ class Frag_Movement_Plan_Entry : Fragment() {
 
 
                         }
+
 
 //                        else {
 //                            Utility.getBaseMessage(

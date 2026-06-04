@@ -95,6 +95,8 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
         //    Manifest.permission.POST_NOTIFICATIONS
     )
 
+    private var isRegularTaskStarted = false
+
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     var PERMISSION_ALL = 1
     var SPECIAL_PERMISSION_CODE = 2
@@ -193,6 +195,7 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
         showMessage(isConnected)
     }
 
+
     override fun onResume() {
 
         ConnectivityReceiver.connectivityReceiverListener = this
@@ -203,6 +206,9 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
 
         super.onResume()
     }
+
+
+
 
     private fun requestDeviceLocationSettings() {
         val locationRequest = LocationRequest.create().apply {
@@ -1021,5 +1027,8 @@ class Act_Splash_Screen : AppCompatActivity(), ConnectivityReceiver.Connectivity
         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
         return dateFormat.format(Date())
     }
+
+
+
 
 }

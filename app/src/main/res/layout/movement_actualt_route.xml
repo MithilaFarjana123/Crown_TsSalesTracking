@@ -53,7 +53,7 @@
             android:layout_marginBottom="5dp"
             android:text="Submit Actual Movement"
             app:cornerRadius="0dp"
-            app:strokeColor="@color/crown_icon_color" />
+            app:strokeColor="@color/titan_theme_color" />
 
         <GridView
             android:id="@+id/idAcGRV"

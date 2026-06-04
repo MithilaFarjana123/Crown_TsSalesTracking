@@ -713,6 +713,8 @@ fun CarReqEntList(
         @Part("pln_mn") pln_mn: RequestBody
     ): Flowable<MovementPlanResponse>?
 
+
+
     @Multipart
     @POST("EmpActMovePlanList")
     fun movementActualPlanList(
@@ -902,6 +904,16 @@ fun CarReqEntList(
         @Part("bp_type") fdate: RequestBody,
         @Part("profile_info") tdate: RequestBody
     ): Flowable<SaveNewPartyResponce>?
+
+    //todo siteverificationsave
+    @Multipart
+    @POST("OpprtsiteVrfSave")
+    fun OpprtsiteVrfSave(
+        @Part("user_id") user_id: RequestBody,
+        @Part("site_info") siteInfo: RequestBody
+    ): Flowable<SiteVerificationSaveResponce>?
+
+
 
     //todo GetSalesOthPartner ts
     @Multipart
