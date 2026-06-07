@@ -123,7 +123,6 @@ class Frag_TeamLead_CallRecord : Fragment() {
 
         other = convertOtherInfo(requireActivity())!!
         getSiteSummeryInfo( other.siteNumber.toString(),"","")
-
         binding.etActualDate.setOnClickListener {
             // 1. Build the date picker
             val datePicker = MaterialDatePicker.Builder.datePicker()

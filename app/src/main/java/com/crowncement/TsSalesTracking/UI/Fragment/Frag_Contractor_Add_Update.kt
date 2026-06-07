@@ -1467,8 +1467,8 @@ class Frag_Contractor_Add_Update : Fragment() {
                         if (res.code == "200") {
 
 
-                            if ((picFile.isFile) && (other.partyImage=="")) {
-
+                         //   if ((picFile.isFile) && (other.partyImage=="")) {
+                        if (picFile.isFile){
                                 uploadProfilePhoto(
                                     user,
                                     partyCode,
@@ -1868,7 +1868,7 @@ class Frag_Contractor_Add_Update : Fragment() {
             binding.createDate.setText("Registration Date : " + other.partyOpenDate)
 
 
-
+/*
             if (other.partyImage != "") {
                 Glide
                     .with(this)
@@ -1879,6 +1879,23 @@ class Frag_Contractor_Add_Update : Fragment() {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(binding.imgCoProfile)
             }
+
+ */
+            if (other.partyImage != "") {
+                Glide
+                    .with(this)
+                    .load(EndPoint.IMAGE_BASE_URL + other.partyImage)
+                    .error(R.drawable.default_user_image)
+                    .fitCenter()
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(binding.imgCoProfile)
+            } else {
+                // CHANGE: don't load via Glide, just set placeholder directly
+                // so no async Glide request can overwrite a newly captured image
+                binding.imgCoProfile.setImageResource(R.drawable.default_user_image)
+            }
+
             if (other.busCardImg != "") {
                 Glide
                     .with(this)
@@ -2675,7 +2692,7 @@ class Frag_Contractor_Add_Update : Fragment() {
 
             try{
                 when (requestCode) {
-
+/*
                     PRO_PIC_CAMERA_REQ_CODE -> {
 
                         val imgFile = compressImage(currentPhotoPath)
@@ -2701,7 +2718,26 @@ class Frag_Contractor_Add_Update : Fragment() {
 
                     }
 
+ */
 
+                    PRO_PIC_CAMERA_REQ_CODE -> {
+
+                        val imgFile = compressImage(currentPhotoPath)
+
+                        if (imgFile.exists()) {
+                            picFile = imgFile
+                        }
+
+                        // ADD THIS: clear Glide's pending/ongoing request on this view first
+                        Glide.with(this).clear(binding.imgCoProfile)
+
+                        val bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+                        binding.imgCoProfile.setImageBitmap(bitmap)
+
+                        if (latitude == 0.0) {
+                            getLastLocation()
+                        }
+                    }
 
 
                     NID_ATTACH_REQUEST_CODE -> {
