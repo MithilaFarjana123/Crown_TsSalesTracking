@@ -1480,7 +1480,8 @@ class Frag_Contractor_Add_Update : Fragment() {
                                 )
                             }
 
-                            if ((nidFile.size > 0) && (other.nidImg == "")) {
+                       //     if ((nidFile.size > 0) && (other.nidImg == "")) {
+                            if (nidFile.size > 0) {
                                 nidfinalFileInKB = nidFile.get(0).length() / 1024.0
                                 nidExtension = "jpg"
                                 //nid
@@ -1497,8 +1498,9 @@ class Frag_Contractor_Add_Update : Fragment() {
 
                             }
 
-                            if ((vCardFile.isFile) && (other.busCardImg =="")) {
+                         //   if ((vCardFile.isFile) && (other.busCardImg =="")) {
                                 //vcard
+                            if (vCardFile.isFile) {
                                 uploadCustomerDoc(
                                     user,
                                     party_code,

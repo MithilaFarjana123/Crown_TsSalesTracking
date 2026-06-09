@@ -1069,7 +1069,17 @@ class Frag_Mason_Add : Fragment() {
 
                 Status.ERROR -> {
                     loadingAnim.dismiss()
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    if(it.message=="500") {
+                        Utility.getBaseMessage(
+                            requireActivity(),
+                            "Warning",
+                            "Please search with the mobile number in the Dashboard is there any other party is enlisted with this number.",
+                            R.drawable.error_white,
+                            0
+                        )
+                       // Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+
                 }
             }
         }
