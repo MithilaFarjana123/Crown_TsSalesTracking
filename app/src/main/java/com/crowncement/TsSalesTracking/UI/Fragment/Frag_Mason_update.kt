@@ -190,6 +190,8 @@ class Frag_Mason_update : Fragment() {
     private var NID_CAMERA_REQ_CODE = 130
     private var NOM_NID_CAMERA_REQ_CODE = 131
     private var NID_ATTACH_REQUEST_CODE = 200
+    private var PRO_PIC_ATTACH_REQUEST_CODE = 1
+
 
     // FIX 2: Track if user has taken a new photo so we don't overwrite with server image
     private var isNewProPicSelected = false
@@ -390,6 +392,11 @@ class Frag_Mason_update : Fragment() {
 
             captureImage(PRO_PIC_CAMERA_REQ_CODE)
         }
+
+        binding.takeGUImage.setOnClickListener {
+            openGalleryForProfilePic()
+        }
+
 
         binding.addUMNidCamera.setOnClickListener {
             if (other.nidImg.toString().isEmpty()) {
@@ -868,7 +875,7 @@ class Frag_Mason_update : Fragment() {
                     loadingAnim.dismiss()
                     it.responseData?.let { res ->
                         if (res.code == "200") {
-                            if (other.partyImage.toString().isEmpty() && finalFile.isFile) {
+                            if ( finalFile.isFile) {
                                 uploadCoverPhoto(
                                     user, partyCode, "Mason",
                                     latitude.toString(), longitude.toString(),
@@ -1169,6 +1176,63 @@ class Frag_Mason_update : Fragment() {
         }
     }
 
+
+    fun compressImage(imagePath: String, maxSizeKB: Int = 50): File {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(imagePath, options)
+
+        // Calculate inSampleSize (power of 2) to reduce memory usage
+        options.inSampleSize = calculateInSampleSize(options, 960, 960)
+        options.inJustDecodeBounds = false
+
+        // Decode bitmap with inSampleSize set
+        var bitmap = BitmapFactory.decodeFile(imagePath, options)
+
+        // Compress with quality adjustment
+        var outputStream = ByteArrayOutputStream()
+        var quality = 50 // Start with 90% quality
+
+        do {
+            outputStream.reset() // Clear the output stream
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+            quality -= 5 // Reduce quality by 5% each iteration
+        } while (outputStream.toByteArray().size > maxSizeKB * 960 && quality > 10)
+
+        // If still too large, resize further
+        if (outputStream.toByteArray().size > maxSizeKB * 960) {
+            val scaleFactor =
+                Math.sqrt((maxSizeKB * 960).toDouble() / outputStream.toByteArray().size)
+            val newWidth = (bitmap.width * scaleFactor).toInt()
+            val newHeight = (bitmap.height * scaleFactor).toInt()
+            bitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
+            outputStream.reset()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream)
+        }
+        return convertBitmapToFile(
+            BitmapFactory.decodeByteArray(
+                outputStream.toByteArray(),
+                0,
+                outputStream.toByteArray().size
+            )
+        )
+    }
+
+    private fun convertBitmapToFile(imageBitmap: Bitmap): File {
+        val wrapper = ContextWrapper(requireContext())
+        var file = wrapper.getDir("collection", Context.MODE_PRIVATE)
+        file = File(file, "${UUID.randomUUID()}.jpg")
+        val stream: OutputStream = FileOutputStream(file)
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream)
+        stream.flush()
+        stream.close()
+        return file
+    }
+
+
+
+
     // ===================== ACTIVITY RESULT =====================
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -1183,40 +1247,73 @@ class Frag_Mason_update : Fragment() {
             when (requestCode) {
 
                 PRO_PIC_CAMERA_REQ_CODE -> {
-                    var imgFile = File("")
-
-                    Log.d("CAMERA_RESULT", "PRO_PIC path = $currentPhotoPath")
-
                     if (currentPhotoPath.isEmpty() || !File(currentPhotoPath).exists()) {
                         Toast.makeText(requireActivity(), "Image file not found", Toast.LENGTH_SHORT).show()
                         return
-                    }else{
-                        imgFile = compressImageToUnder200KB(currentPhotoPath)!!
+                    }
 
-                        val bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
-                        if (bitmap != null) {
-                            binding.imgUMason.post {
-                                binding.imgUMason.setImageBitmap(bitmap)
-                            }
+                    val imgFile = compressImageToUnder200KB(currentPhotoPath) ?: run {
+                        Toast.makeText(requireActivity(), "Compression failed", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+
+                    // Set flag FIRST so Glide listener can never overwrite after this point
+                    isNewProPicSelected = true
+
+                    // Cancel any in-flight Glide request on this view immediately
+                    Glide.with(this).clear(binding.imgUMason)
+
+                    finalFile = imgFile
+                    finalFileInKB = finalFile.length() / 1024.0
+                    Log.d("FILE_SIZE", "Pro pic size: $finalFileInKB KB")
+
+                    val bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+                    if (bitmap != null) {
+                        binding.imgUMason.post {
+                            binding.imgUMason.setImageBitmap(bitmap)
                         }
                     }
 
-
-                    // FIX 5: Compress FIRST, then display — never call setPreviouslySaveValueForUpdate again
-                    if (imgFile != null && imgFile.exists()) {
-                        finalFile = imgFile
-                        finalFileInKB = finalFile.length() / 1024.0
-                        Log.d("FILE_SIZE", "Pro pic size: $finalFileInKB KB")
-
-                        // FIX 6: Mark new photo selected so server image is never loaded again
-                        isNewProPicSelected = true
-
-
+                    if (latitude == 0.0) getLastLocation()
+                }
+                
+                PRO_PIC_ATTACH_REQUEST_CODE -> {
+                    val imgUri: Uri = if (data?.clipData != null) {
+                        data.clipData!!.getItemAt(0).uri
                     } else {
-                        Toast.makeText(requireActivity(), "Compression failed", Toast.LENGTH_SHORT).show()
+                        data?.data ?: return
                     }
 
-                    if (latitude == 0.0) getLastLocation()
+                    try {
+                        val file = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
+                            createFileFromImageUri(requireContext(), imgUri)!!
+                        } else {
+                            val path = ImagePathUtils.getRealPath(requireContext(), imgUri) ?: return
+                            File(path)
+                        }
+
+                        val compressedFile = compressImage(file.absolutePath, 200)
+
+                        // Set flag FIRST so Glide listener won't overwrite
+                        isNewProPicSelected = true
+
+                        // Cancel any pending Glide request on this view
+                        Glide.with(this).clear(binding.imgUMason)
+
+                        finalFile = compressedFile
+                        finalFileInKB = finalFile.length() / 1024.0
+                        prealPath = finalFile.absolutePath
+
+                        val bitmap = BitmapFactory.decodeFile(finalFile.absolutePath)
+                        binding.imgUMason.post {
+                            binding.imgUMason.setImageBitmap(bitmap)
+                        }
+
+                        if (latitude == 0.0) getLastLocation()
+
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "Failed to load image: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
                 }
 
                 NID_CAMERA_REQ_CODE -> {
@@ -1691,4 +1788,25 @@ class Frag_Mason_update : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    //add profile image from gallery
+
+    private fun openGalleryForProfilePic() {
+        if (Build.VERSION.SDK_INT < 19) {
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(
+                Intent.createChooser(intent, "Choose Picture"),
+                PRO_PIC_ATTACH_REQUEST_CODE
+            )
+        } else {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
+            startActivityForResult(intent, PRO_PIC_ATTACH_REQUEST_CODE)
+        }
+    }
+
+
 }

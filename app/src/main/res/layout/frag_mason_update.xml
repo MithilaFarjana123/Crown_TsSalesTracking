@@ -80,7 +80,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-
                     <LinearLayout
                         android:layout_weight="0.3"
                         android:layout_width="0dp"
@@ -88,23 +87,33 @@
                         android:orientation="horizontal"
                         android:padding="10dp">
 
+
+
                         <View
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.1" />
+                            android:layout_weight="0.05" />
+                        <ImageView
+                            android:id="@+id/takeGUImage"
+                            android:layout_width="19dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center|bottom"
+                            android:layout_weight="0.25"
+                            android:src="@drawable/image_placeholder" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/imgUMason"
-                            android:layout_width="0dp"
-                            android:layout_height="120dp"
-                            android:layout_weight="0.8"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:layout_weight="1.5"
                             android:src="@drawable/mason"
                             app:civ_border_color="#CCCCCC"
                             app:civ_border_width="1dp" />
 
+
                         <ImageView
                             android:id="@+id/takeUMImage"
-                            android:layout_width="0dp"
+                            android:layout_width="19dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center|bottom"
                             android:layout_marginLeft="-20dp"
@@ -117,6 +126,45 @@
                             android:layout_weight="0.1" />
 
                     </LinearLayout>
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_weight="0.3"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:padding="10dp">-->
+
+<!--                        <View-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_weight="0.1" />-->
+
+<!--                        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                            android:id="@+id/imgUMason"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="120dp"-->
+<!--                            android:layout_weight="0.8"-->
+<!--                            android:src="@drawable/mason"-->
+<!--                            app:civ_border_color="#CCCCCC"-->
+<!--                            app:civ_border_width="1dp" />-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/takeUMImage"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_gravity="center|bottom"-->
+<!--                            android:layout_marginLeft="-20dp"-->
+<!--                            android:layout_weight="0.25"-->
+<!--                            android:src="@drawable/ic_baseline_add_a_photo" />-->
+
+<!--                        <View-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_weight="0.1" />-->
+
+<!--                    </LinearLayout>-->
+
+
 
                     <LinearLayout
                         android:layout_weight="0.8"
