@@ -760,6 +760,15 @@ class Frag_Mason_Add : Fragment() {
 
         }
 
+
+        binding.takeMImage.setOnClickListener {
+            captureImage(PRO_PIC_CAMERA_REQ_CODE)
+        }
+
+        binding.takeGImage.setOnClickListener {
+            openGalleryForProfilePic()
+        }
+
         /*
                 binding.pdfAddMNID.setOnClickListener {
                     binding.imgMNidFile.setBackgroundResource(0)
@@ -1084,6 +1093,7 @@ class Frag_Mason_Add : Fragment() {
             }
         }
     }
+
 
 
     private fun deletePictureFile(path : String): Boolean {
@@ -2160,6 +2170,43 @@ class Frag_Mason_Add : Fragment() {
 
                     }
 
+                    PRO_PIC_ATTACH_REQUEST_CODE -> {
+                        val imgUri: Uri = if (data?.clipData != null) {
+                            data.clipData!!.getItemAt(0).uri
+                        } else {
+                            data?.data ?: return
+                        }
+
+                        try {
+                            val file = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
+                                createFileFromImageUri(requireContext(), imgUri)!!
+                            } else {
+                                val path = ImagePathUtils.getRealPath(requireContext(), imgUri) ?: return
+                                File(path)
+                            }
+
+                            val compressedFile = compressImage(file.absolutePath, 200)
+                            finalFile = compressedFile
+                            finalFileInKB = finalFile.length() / 1024.0
+                            prealPath = finalFile.absolutePath
+
+                            val bitmap = BitmapFactory.decodeFile(finalFile.absolutePath)
+                            binding.imgMason.setImageBitmap(bitmap)
+
+                            if (latitude == 0.0) {
+                                getLastLocation()
+                            }
+
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Failed to load image: ${e.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+                    
 /*
                     VCARD_PIC_CAMERA_REQ_CODE -> {
 
@@ -2885,6 +2932,8 @@ class Frag_Mason_Add : Fragment() {
 
                     //
 
+
+
 //todo for nom attach nid
                     Nom_Attach_REQUEST_CODE -> {
 
@@ -3243,6 +3292,28 @@ class Frag_Mason_Add : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+//add profile image from gallery
+
+    private fun openGalleryForProfilePic() {
+        if (Build.VERSION.SDK_INT < 19) {
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(
+                Intent.createChooser(intent, "Choose Picture"),
+                PRO_PIC_ATTACH_REQUEST_CODE
+            )
+        } else {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
+            startActivityForResult(intent, PRO_PIC_ATTACH_REQUEST_CODE)
+        }
+    }
+
+
+
+
 
 }
 
