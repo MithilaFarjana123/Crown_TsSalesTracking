@@ -1276,7 +1276,7 @@ class Frag_Mason_update : Fragment() {
 
                     if (latitude == 0.0) getLastLocation()
                 }
-                
+
                 PRO_PIC_ATTACH_REQUEST_CODE -> {
                     val imgUri: Uri = if (data?.clipData != null) {
                         data.clipData!!.getItemAt(0).uri
@@ -1446,6 +1446,8 @@ class Frag_Mason_update : Fragment() {
      * Compresses image file to strictly under 200KB.
      * Keeps reducing quality and resolution until target is met.
      */
+
+
     private fun compressImageToUnder200KB(imagePath: String): File? {
         return try {
             val maxBytes = 200 * 1024 // 200 KB in bytes

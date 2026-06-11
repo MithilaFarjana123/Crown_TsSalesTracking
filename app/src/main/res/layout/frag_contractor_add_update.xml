@@ -81,6 +81,14 @@
 <!--                    android:visibility="gone"-->
 <!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
 <!--                    android:src="@drawable/ic_restart" />-->
+                <ImageView
+                    android:id="@+id/imgtakeProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_weight="0.25"
+                    android:src="@drawable/image_placeholder" />
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -100,6 +108,9 @@
                     android:layout_marginLeft="-20dp"
                     android:layout_weight="0.25"
                     android:src="@drawable/ic_baseline_add_a_photo" />
+
+
+
 
                 <View
                     android:layout_width="0dp"

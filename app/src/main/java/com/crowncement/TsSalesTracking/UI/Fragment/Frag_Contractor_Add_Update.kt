@@ -249,6 +249,10 @@ class Frag_Contractor_Add_Update : Fragment() {
 
         }
 
+        binding.imgtakeProfile.setOnClickListener {
+            openGalleryForProfilePic()
+        }
+
         binding.imgAddNID.setOnClickListener {
             //openNIDPDFFile()
             openGalleryForImages()
@@ -1551,6 +1555,9 @@ class Frag_Contractor_Add_Update : Fragment() {
     }
 
 
+
+
+/*
     private fun uploadProfilePhoto(
         user_id: String,
         party_code: String,
@@ -1576,6 +1583,7 @@ class Frag_Contractor_Add_Update : Fragment() {
                             try {
                                 if (res.code == "200") {
                                     loading.dismiss()
+                                    loadingAnim.dismiss()
                                     deletePictureFile(prealPath)
 
                                     if (nidFile.size > 0) {
@@ -1648,6 +1656,108 @@ class Frag_Contractor_Add_Update : Fragment() {
                 }
             }
     }
+
+ */
+
+
+    private fun uploadProfilePhoto(
+        user_id: String,
+        party_code: String,
+        party_type: String,
+        party_lat: String,
+        party_lon: String,
+        party_image: File,
+        loading: Dialog
+    ) {
+        retailerViewModel.uploadCover(
+            user_id,
+            party_code,
+            party_type,
+            party_lat,
+            party_lon,
+            party_image
+        )
+            .observe(requireActivity()) {
+                when (it.status) {
+                    Status.SUCCESS -> {
+
+                        it.responseData?.let { res ->
+                            try {
+                                if (res.code == "200") {
+                                    loading.dismiss()
+                                    loadingAnim.dismiss()
+                                    deletePictureFile(prealPath)
+
+                                    if (nidFile.size > 0) {
+                                        uploadCustomerDoc(
+                                            user_id,
+                                            party_code,
+                                            "Contractor",
+                                            "nid",
+                                            "jpg",
+                                            nidFile,
+                                            loading,
+                                            "nid"
+                                        )
+                                    } else if (cardFile.size > 0) {
+                                        uploadCustomerDoc(
+                                            user_id,
+                                            party_code,
+                                            "Contractor",
+                                            "bid",
+                                            "jpg",
+                                            cardFile,
+                                            loading,
+                                            "vcard"
+                                        )
+                                    } else {
+                                        // Nothing else to upload — dismiss and navigate
+                                        loading.dismiss()
+                                        loadingAnim.dismiss()
+                                        Utility.getBaseMessage(
+                                            requireActivity(),
+                                            if (binding.btnAddContractor.text.toString() == "Update Contractor") "Updated" else "Successful",
+                                            if (binding.btnAddContractor.text.toString() == "Update Contractor") "Contractor updated successfully" else "Contractor added successfully",
+                                            R.drawable.ic_checked_green,
+                                            1
+                                        )
+                                        val navController =
+                                            requireActivity().findNavController(R.id.nav_host_fragment)
+                                        navController.navigate(R.id.nav_contractor_database)
+                                    }
+
+                                } else {
+                                    loading.dismiss()
+                                    loadingAnim.dismiss()
+                                    Utility.getBaseMessage(
+                                        requireActivity(),
+                                        "Warning",
+                                        res.message.toString(),
+                                        R.drawable.error_white,
+                                        0
+                                    )
+                                }
+
+                            } catch (e: Exception) {
+                                loading.dismiss()
+                                loadingAnim.dismiss()
+                                Log.e("Contractor Add", "Error: " + e.message)
+                            }
+
+                        }
+                    }
+
+                    Status.LOADING -> {}
+
+                    Status.ERROR -> {
+                        loading.dismiss()
+                        loadingAnim.dismiss()
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+    }
+
 
 
     private fun uploadCustomerDoc(
@@ -2741,6 +2851,45 @@ class Frag_Contractor_Add_Update : Fragment() {
                         }
                     }
 
+                    PRO_PIC_ATTACH_REQUEST_CODE -> {
+                        Glide.with(this).clear(binding.imgCoProfile)
+
+                        val imgUri: Uri = if (data?.clipData != null) {
+                            data.clipData!!.getItemAt(0).uri
+                        } else {
+                            data?.data ?: return
+                        }
+
+                        try {
+                            val file = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
+                                createFileFromImageUri(requireContext(), imgUri)!!
+                            } else {
+                                val path = ImagePathUtils.getRealPath(requireContext(), imgUri) ?: return
+                                File(path)
+                            }
+
+                            val compressedFile = compressImage(file.absolutePath, 200)
+                            picFile = compressedFile
+                           // finalFileInKB = picFile.length() / 1024.0
+                            prealPath = picFile.absolutePath
+
+                            val bitmap = BitmapFactory.decodeFile(picFile.absolutePath)
+                            binding.imgCoProfile.setImageBitmap(bitmap)
+
+                            if (latitude == 0.0) {
+                                getLastLocation()
+                            }
+
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Failed to load image: ${e.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+
 
                     NID_ATTACH_REQUEST_CODE -> {
 
@@ -2934,4 +3083,28 @@ class Frag_Contractor_Add_Update : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
+
+    //add profile image from gallery
+
+    private fun openGalleryForProfilePic() {
+        if (Build.VERSION.SDK_INT < 19) {
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(
+                Intent.createChooser(intent, "Choose Picture"),
+                PRO_PIC_ATTACH_REQUEST_CODE
+            )
+        } else {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
+            startActivityForResult(intent, PRO_PIC_ATTACH_REQUEST_CODE)
+        }
+    }
+
+
+
 }
