@@ -160,7 +160,7 @@ class Frag_TeamLead_CallRecord : Fragment() {
     private fun convertOtherInfo(activity: Activity): GetTSSiteInfoChild? {
         val prefs = activity.getSharedPreferences(activity.packageName, Context.MODE_PRIVATE)
         val gson = Gson()
-        val json = prefs.getString("selectedSiteInfo", "")
+        val json = prefs.getString("selectedtaggedSite", "")
         return gson.fromJson(json, GetTSSiteInfoChild::class.java)
     }
 

@@ -853,6 +853,8 @@ class Act_Offline_Attendance : AppCompatActivity() {
 
 
  */
+
+
         //  loadingAnim.dismiss()
         val distance=getDistance(destinationLat,destinationLon,latitude,longitude)
         val disInMeter= String.format("%.2f", distance)

@@ -944,6 +944,8 @@ class Frag_Contractor_Add_Update : Fragment() {
         removeUIErrorSign(binding.layoutConPresentAdd)
         //parmanent add
         removeUIErrorSign(binding.layoutPerAddress)
+        //nid
+        removeUIErrorSign(binding.layoutNIDNUm)
         //mobile 1
         removeUIErrorSign(binding.layoutCMo1)
         //mobile 2
@@ -1006,7 +1008,13 @@ class Frag_Contractor_Add_Update : Fragment() {
         } else if (binding.txtPerAddress.text.toString().isEmpty()) {
             result = false
             setError(binding.layoutPerAddress, "Provide contractor permanent  address")
-        } else if (binding.txtMobile1.text.toString()
+        }
+        else if(binding.txtNIDNUm.text.toString().isEmpty()){
+            result = false
+            setError(binding.layoutNIDNUm, "Provide nid number")
+        }
+
+        else if (binding.txtMobile1.text.toString()
                 .isEmpty() || binding.txtMobile1.text.toString().length != 11
         ) {
             result = false
@@ -1101,6 +1109,8 @@ class Frag_Contractor_Add_Update : Fragment() {
         removeUIErrorSign(binding.layoutConPresentAdd)
         //parmanent add
         removeUIErrorSign(binding.layoutPerAddress)
+        //nid num
+        removeUIErrorSign(binding.layoutNIDNUm)
         //mobile 1
         removeUIErrorSign(binding.layoutCMo1)
         //mobile 2
@@ -1180,7 +1190,11 @@ class Frag_Contractor_Add_Update : Fragment() {
         } else if (binding.txtConCrown.text.toString().isEmpty()) {
             result = false
             setError(binding.layoutCCrown, "Provide no of crown site")
-        } else if ((other.partyImage.toString() == "" && !picFile.isFile) || picFileInKB > 200) {
+        }else if(binding.txtNIDNUm.text.toString().isEmpty()){
+            result = false
+            setError(binding.layoutNIDNUm, "Provide nid number")
+        }
+        else if ((other.partyImage.toString() == "" && !picFile.isFile) || picFileInKB > 200) {
             result = false
             Utility.getBaseMessage(
                 requireActivity(),

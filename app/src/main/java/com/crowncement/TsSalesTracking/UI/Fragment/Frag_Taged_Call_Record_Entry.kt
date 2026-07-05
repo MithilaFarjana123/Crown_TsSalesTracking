@@ -192,66 +192,7 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
 
         _binding = FragTagedCallRecordEntryBinding.inflate(inflater, container, false)
 
-        /*
-                RetailerViewModelFactory()
 
-                setupViewModel()
-                loadingAnim = Utility.baseLoadingAnimation(
-                    requireActivity(), Dialog(requireActivity()), "P l e a s e    w a i t"
-                )
-
-                retailerLists = ArrayList()
-                dealerLists = ArrayList()
-                otherCustomerLists = ArrayList()
-                discurtionDatalist = ArrayList()
-
-                val emp = Utility.getValueByKey(requireActivity(), "username").toString()
-                //todo next visit date
-                val cldr = Calendar.getInstance()
-                val day = cldr[Calendar.DAY_OF_MONTH]
-                val month = cldr[Calendar.MONTH]+1
-                val year = cldr[Calendar.YEAR]
-                nextVisitDate = "$year-$month-$day"
-                var d = nextVisitDate
-
-                prepare_spinner()
-                mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-                prepareLocation()
-                getLastLocation()
-                binding.tconYes.visibility = View.GONE
-                binding.tconNo.visibility = View.GONE
-                binding.tconBeforeConverted.visibility = View.GONE
-                binding.layoutTdeliverydealerCode.visibility = View.GONE
-                binding.layoutTdeliveryRetailerCode.visibility = View.GONE
-                binding.layoutTTBeforeCondate.visibility = View.GONE
-
-
-                getDiscurtionTopic("TS Discussion Topic")
-
-
-                // other = convertOtherInfo(requireActivity())!!
-                binding.txtTCallEMP.setText(emp)
-                binding.layoutTCallEMP.setVisibility(View.GONE)
-        /*
-                if (rootView.txtTPartSiteResPerson.text.isNullOrEmpty()) {
-                    rootView.txtTPartSiteResPerson.setText("E")
-                    rootView.txtTPartSiteResPerson.setSelection(rootView.txtTPartSiteResPerson.length())
-                }
-
-         */
-
-
-
-                //Get selected item info
-                quickvisitinfo = convertQuickVisitInfo(requireActivity())!!
-
-                setSiteCoverImage()
-
-
-
-
-                onclickListener()
-        */
 
         return binding.root
     }
@@ -345,24 +286,7 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
         type = quickvisitinfo.siteVisitStatus.toString()
    //     type = "Already converted site"
         prepareProjectConversionType(binding.acTCallConversionStatus,type)
-      //  Yes
-         //  prepareProjectConversionType(binding.acTCallConversionStatus,"")
 
-        /*
-        if(type.isNotEmpty()){
-            if (type.equals("Yes")){
-                updateVisibility(1)
-            }else if (type.equals("No")){
-                updateVisibility(2)
-            }else if (type.equals("Already converted site")){
-                updateVisibility(3)
-            }else{
-                updateVisibility(0)
-
-            }
-        }
-
-         */
 
     }
 
@@ -449,28 +373,6 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
     fun prepare_spinner() {
         //  prepareVisitType(rootView.acTCallVistype)
         prepareCementType(binding.acTCallCementType)
-
-
-
-        //   prepareProjectConversionType(binding.acTCallConversionStatus,type)
-
-//        if(type.isNotEmpty()){
-//            if (type.equals("Yes")){
-//                updateVisibility(1)
-//            }else if (type.equals("No")){
-//                updateVisibility(2)
-//            }else if (type.equals("Already converted site")){
-//                updateVisibility(3)
-//            }else{
-//                updateVisibility(0)
-//
-//            }
-//        }
-
-
-
-
-
 
         prepareProjectSiteStatusType(binding.acTCallSiteStatus)
 
@@ -757,103 +659,10 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
         }
 
 
-        /*
-                binding.txtTCallDeliveryDate.setOnClickListener {
-
-                    val cldr = Calendar.getInstance()
-                    val day = cldr[Calendar.DAY_OF_MONTH]
-                    val month = cldr[Calendar.MONTH]
-                    val year = cldr[Calendar.YEAR]
-                    picker = DatePickerDialog(
-                        requireContext(),
-                        { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
-                            val monthNumber = monthOfYear + 1
-                            val selectedDate = "$year1-$monthNumber-$dayOfMonth"
-                            deliveryDate = selectedDate
-                            binding.txtTCallDeliveryDate.setText(
-                                Utility.changeDateFormat(
-                                    selectedDate,
-                                    "yyyy-MM-dd",
-                                    "dd MMM yyyy"
-                                )
-                            )
-
-
-                        }, year, month, day
-                    )
-                    picker.show()
-                }
-        */
-
-
-        /*
-        binding.txtTCallDeliveryDate.setOnClickListener {
-            val cldr = Calendar.getInstance()
-            val day = cldr[Calendar.DAY_OF_MONTH]
-            val month = cldr[Calendar.MONTH]
-            val year = cldr[Calendar.YEAR]
-
-            // Create the DatePickerDialog
-            picker = DatePickerDialog(
-                requireContext(),
-                { _: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
-                    val monthNumber = monthOfYear + 1
-                    val selectedDate = "$year1-$monthNumber-$dayOfMonth"
-                    deliveryDate = selectedDate
-                    binding.txtTCallDeliveryDate.setText(
-                        Utility.changeDateFormat(
-                            selectedDate,
-                            "yyyy-MM-dd",
-                            "dd MMM yyyy"
-                        )
-                    )
-                },
-                year, month, day
-            )
-
-            // Calculate 10 days back from today
-            val minDateCalendar = Calendar.getInstance()
-            minDateCalendar.add(Calendar.DAY_OF_YEAR, -10)
-            picker.datePicker.minDate = minDateCalendar.timeInMillis
-
-            picker.show()
-        }
-
-
-         */
-
         binding.txtTBeforeCondate.setOnClickListener {
             showConditionalDatePickerforbeforeconversion()
         }
 
-        /*
-        binding.txtTBeforeCondate.setOnClickListener {
-
-            val cldr = Calendar.getInstance()
-            val day = cldr[Calendar.DAY_OF_MONTH]
-            val month = cldr[Calendar.MONTH]
-            val year = cldr[Calendar.YEAR]
-            picker = DatePickerDialog(
-                requireContext(),
-                { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
-                    val monthNumber = monthOfYear + 1
-                    val selectedDate = "$year1-$monthNumber-$dayOfMonth"
-                    beforeConversinDate = selectedDate
-                    binding.txtTBeforeCondate.setText(
-                        Utility.changeDateFormat(
-                            selectedDate,
-                            "yyyy-MM-dd",
-                            "dd MMM yyyy"
-                        )
-                    )
-
-
-                }, year, month, day
-            )
-            picker.show()
-        }
-
-         */
 
         binding.btnSavedemoTCallRecord.setOnClickListener {
 
@@ -901,33 +710,6 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
             }
         }
 
-        //TODO EMP ID AUTO TEXT
-        /*
-        rootView.txtTPartSiteResPerson.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-
-                if (s.toString().isEmpty()) {
-                    rootView.txtTPartSiteResPerson.setText("E")
-                    rootView.txtTPartSiteResPerson.setSelection(rootView.txtTPartSiteResPerson.length())
-                }
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                if (s.toString().length == 3) {
-                    val givenText = rootView.txtTPartSiteResPerson.text.toString() + "-"
-                    rootView.txtTPartSiteResPerson.setText(givenText)
-                    rootView.txtTPartSiteResPerson.setSelection(rootView.txtTPartSiteResPerson.length())
-                }
-            }
-        })
-
-
-         */
 
     }
 
@@ -1334,7 +1116,6 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
             SELECTED_DEALER_ID,
             SELECTED_RETAILER_ID,
             binding.acTCallSiteStatus.text.toString()
-
 
         )
 

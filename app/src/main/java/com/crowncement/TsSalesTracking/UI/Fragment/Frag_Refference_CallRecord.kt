@@ -2073,10 +2073,12 @@ class Frag_Refference_CallRecord : Fragment(),
 
 
         else if(binding.txtRdeliveryOrderQuantity.text.toString().isEmpty()||
-            binding.txtRdeliveryOrderQuantity.text.toString().toInt()<50){
+            (binding.txtRdeliveryOrderQuantity.text.toString().toInt()<50 &&
+            binding.txtRdeliveryOrderQuantity.text.toString().toInt()>=5000)
+            ){
             result = false
             binding.layoutRdeliveryOrderQuantity.isErrorEnabled = true
-            binding.layoutRdeliveryOrderQuantity.error = "Delivery order quantity is must be greater than 50"
+            binding.layoutRdeliveryOrderQuantity.error = "Delivery order quantity must be in between 50 to 5000"
 
         }
         /*

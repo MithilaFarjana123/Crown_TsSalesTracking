@@ -13,15 +13,15 @@
         android:orientation="vertical">
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:scaleType="fitXY"
-            app:lottie_rawRes="@raw/delivery"/>
+<!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="150dp"-->
+<!--            app:lottie_autoPlay="true"-->
+<!--            app:lottie_loop="true"-->
+<!--            android:scaleType="fitXY"-->
+<!--            app:lottie_rawRes="@raw/delivery"/>-->
 
-        
+
         <androidx.cardview.widget.CardView
             android:id="@+id/basicSiteInfo"
             android:visibility="gone"
@@ -82,7 +82,8 @@
                     <TextView
                         android:id="@+id/siteCode"
                         android:layout_weight="0.5"
-                        android:layout_width="0dp"                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Site Code:"
                         android:textColor="#979A9A"
@@ -219,131 +220,120 @@
         </androidx.cardview.widget.CardView>
 
 
-<!--        <ScrollView-->
+<!--        <androidx.core.widget.NestedScrollView-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:fillViewport="true">-->
-
-            <androidx.core.widget.NestedScrollView
+<!--            android:layout_height="wrap_content"-->
+<!--            android:descendantFocusability="beforeDescendants"-->
+<!--            android:focusableInTouchMode="true">-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:background="@color/gray_four"
+                    android:orientation="horizontal">
 
 
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/gray_four"
-                        android:orientation="horizontal">
-
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
-                            android:padding="5dp"
-                            android:text="Delivery Information"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/black" />
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layoutRdeliveryOrderQuantity"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        app:boxStrokeErrorColor="@color/orange"
-                        app:endIconMode="clear_text"
-                        app:errorIconTint="@color/orange"
-                        app:errorTextColor="@color/orange"
-                        app:startIconDrawable="@drawable/ic_delivery">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtRdeliveryOrderQuantity"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:digits="0123456789"
-                            android:inputType="number"
-                            android:hint="Delivery order Quantity"/>
-
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layoutRCallDeliveryDate"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        app:endIconMode="clear_text"
-                        app:boxStrokeErrorColor="@color/orange"
-                        app:errorIconTint="@color/orange"
-                        app:errorTextColor="@color/orange"
-                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtRCallDeliveryDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:hint="Delivery date" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnSavedemoRCallRecord"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="Submit "
-                        app:cornerRadius="0dp"
-                        android:textColor="@color/titan_theme_color"
-                        app:strokeColor="@color/titan_theme_color" />
-
-
+                        android:layout_weight="0.9"
+                        android:padding="5dp"
+                        android:text="Delivery Information"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
 
-            </androidx.core.widget.NestedScrollView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
 
 
-<!--        <ScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:fillViewport="true">-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutRdeliveryOrderQuantity"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:endIconMode="clear_text"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/ic_delivery">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtRdeliveryOrderQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:importantForAutofill="no"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:clickable="true"
+                        android:cursorVisible="true"
+                        android:hint="Delivery order Quantity"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutRCallDeliveryDate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:endIconMode="clear_text"
+                    app:boxStrokeErrorColor="@color/orange"
+                    app:errorIconTint="@color/orange"
+                    app:errorTextColor="@color/orange"
+                    app:startIconDrawable="@drawable/baseline_calendar_month_24">
 
-<!--    </ScrollView>-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtRCallDeliveryDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:hint="Delivery date" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSavedemoRCallRecord"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Submit "
+                    app:cornerRadius="0dp"
+                    android:textColor="@color/titan_theme_color"
+                    app:strokeColor="@color/titan_theme_color" />
+
+
+
+            </LinearLayout>
+
+
+<!--        </androidx.core.widget.NestedScrollView>-->
 
 
     </LinearLayout>
