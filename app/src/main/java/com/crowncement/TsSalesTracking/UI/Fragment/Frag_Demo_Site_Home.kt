@@ -55,6 +55,8 @@ import com.crowncement.TsSalesTracking.common.Utility
 import com.crowncement.TsSalesTracking.data.API.EndPoint
 import com.crowncement.TsSalesTracking.data.Model.Data
 import com.crowncement.TsSalesTracking.data.Model.GetBPSiteInfoResponceChild
+import com.crowncement.TsSalesTracking.data.Model.GetSiteVrfInfo
+import com.crowncement.TsSalesTracking.data.Model.GetSiteVrfInfoChild
 import com.crowncement.TsSalesTracking.data.Model.GetTSSiteInfoChild
 import com.crowncement.TsSalesTracking.data.Model.LatLngList
 import com.crowncement.TsSalesTracking.data.Model.OtherCustomerChild
@@ -219,6 +221,7 @@ class Frag_Demo_Site_Home : Fragment() {
         prepareBasicInfo()
 
         getOtherCustomerListforTagged(siteinfo.siteNumber.toString(),"")
+        getSiteVrfInfo(siteinfo.siteNumber.toString())
      ///////   siteNumber
 
 
@@ -1777,6 +1780,57 @@ class Frag_Demo_Site_Home : Fragment() {
             }
     }
 
+
+    //todo site verification list
+
+    private fun getSiteVrfInfo(
+        site_id: String
+    ) {
+        loadingAnim.show()
+        if(isAdded) {
+            retailerViewModel.GetSiteVrfInfo(site_id)
+                .observe(requireActivity()) {
+                    when (it.status) {
+
+                        Status.LOADING -> {
+
+                        }
+
+                        Status.SUCCESS -> {
+
+                            it.responseData?.let { res ->
+
+                                val vrfList: ArrayList<GetSiteVrfInfoChild> = res.data
+                                if(res.code=="404"){
+                                    binding.carddemoSiteVerfication.visibility = View.VISIBLE
+                                    binding.siteVerifyIcon.visibility = View.GONE
+
+                                }
+                                else if (res.code=="200"){
+                                    if(vrfList.isNotEmpty()&&
+                                        ((vrfList.get(0).status=="OK")||(vrfList.get(0).status=="Information Mismatch"))){
+                                        binding.carddemoSiteVerfication.visibility = View.GONE
+                                        binding.siteVerifyIcon.visibility = View.VISIBLE
+
+                                    }
+                                }
+
+
+
+                            }
+                            loadingAnim.dismiss()
+                        }
+
+                        Status.ERROR -> {
+
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                            loadingAnim.dismiss()
+
+                        }
+                    }
+                }
+        }
+    }
 
 
     //todo site lat lon list

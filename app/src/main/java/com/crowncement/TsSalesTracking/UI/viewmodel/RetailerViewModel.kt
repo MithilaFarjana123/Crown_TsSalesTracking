@@ -41,7 +41,7 @@ class RetailerViewModel : ViewModel() {
     private var updateSaleBPTsNewSiteMutableLiveData: MutableLiveData<Resource<updateSaleBPNewSiteResponce>>? =null
 
     private var OpprtsiteVrfSaveMutableLiveData: MutableLiveData<Resource<SiteVerificationSaveResponce>>? =null
-
+    private var getSiteVrfInfoMutableLiveData: MutableLiveData<Resource<GetSiteVrfInfo>>? =null
 
     private var uploadTSSiteCoverMutableLiveData: MutableLiveData<Resource<saveTSSiteImgResponce>>? =null
     private var GetTSSiteInfoMutableLiveData: MutableLiveData<Resource<GetTSSiteInfoResponce>>? =null
@@ -259,6 +259,15 @@ class RetailerViewModel : ViewModel() {
     ): MutableLiveData<Resource<SiteVerificationSaveResponce>> {
         OpprtsiteVrfSaveMutableLiveData = RetailerRepository.opprtsiteVrfSave(user, value)
         return OpprtsiteVrfSaveMutableLiveData!!
+    }
+
+
+    //todo site verification list
+    fun GetSiteVrfInfo(
+        site_id: String
+    ): MutableLiveData<Resource<GetSiteVrfInfo>> {
+        getSiteVrfInfoMutableLiveData = RetailerRepository.getSiteVrfInfo(site_id)
+        return getSiteVrfInfoMutableLiveData!!
     }
 
 

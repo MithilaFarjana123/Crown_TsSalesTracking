@@ -347,8 +347,6 @@ class Frag_Site_Entry : Fragment() {
     }
 
 
-
-
     //todo spinner
     private fun prepareType(ac: AutoCompleteTextView) {
 
@@ -2745,7 +2743,6 @@ class Frag_Site_Entry : Fragment() {
 
 
 
-
             }
         }
 
@@ -2930,9 +2927,7 @@ class Frag_Site_Entry : Fragment() {
     }
 
 
-
-
-    private fun getDivisionList(value: String,acDivision:AutoCompleteTextView) {
+    private fun getDivisionList(value: String, acDivision: AutoCompleteTextView) {
         retailerViewModel.getDivisionInfo(value).observe(requireActivity()) {
             when (it.status) {
 
@@ -2949,9 +2944,10 @@ class Frag_Site_Entry : Fragment() {
                     it.responseData?.let { res ->
                         divisionList = ArrayList()
                         divisionList = res.data
-                        loadDivision(acDivision, res.data,empdivisionList)
+                        loadDivision(acDivision, res.data, empdivisionList)
                     }
                 }
+
                 Status.ERROR -> {
 
 
@@ -2962,7 +2958,6 @@ class Frag_Site_Entry : Fragment() {
             }
         }
     }
-
 
 
 

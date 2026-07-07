@@ -775,6 +775,38 @@ object RetailerRepository {
         return otherCusAdd
     }
 
+    //todo site verification list
+    fun getSiteVrfInfo(
+        site_id: String
+    ): MutableLiveData<Resource<GetSiteVrfInfo>> {
+
+        val site_id = RequestBody.create("application/json".toMediaTypeOrNull(), site_id)
+
+        val verificationInfo: MutableLiveData<Resource<GetSiteVrfInfo>> = MutableLiveData<Resource<GetSiteVrfInfo>>()
+
+        try {
+            val service: GetDataService = RetrofitClientInstance.retrofitInstanceTS.create(
+                GetDataService::class.java
+            )
+            service.GetSiteVrfInfo(site_id)
+                ?.toObservable()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
+                    { response ->
+                        verificationInfo.postValue(Resource.success(response))
+                    },
+                    { error ->
+                        verificationInfo.postValue(Resource.error(error.message.toString(), null))
+                    },
+                )
+
+        } catch (e: Exception) {
+            Log.e("RetailerRepository", "Verification Info: " + e.message)
+        }
+        return verificationInfo
+    }
+
 
     //todo GetSalesOthPartner
     fun GetSalesOthPartner(
@@ -1054,6 +1086,10 @@ object RetailerRepository {
         }
         return otherCusAdd
     }
+
+    //todo site verification list
+
+
 
 
     //todo for tag quickvisit to site callrecord

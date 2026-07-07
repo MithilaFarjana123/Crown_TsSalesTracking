@@ -914,6 +914,13 @@ fun CarReqEntList(
     ): Flowable<SiteVerificationSaveResponce>?
 
 
+    //todo site verification list
+    @Multipart
+    @POST("GetSiteVrfInfo")
+    fun GetSiteVrfInfo(
+        @Part("site_id") site_id: RequestBody
+    ): Flowable<GetSiteVrfInfo>?
+
 
     //todo GetSalesOthPartner ts
     @Multipart
@@ -1006,7 +1013,6 @@ fun CarReqEntList(
         @Part("xparty") xparty: RequestBody
 
     ): Flowable<GetBPSiteInfoResponce>?
-
 
 
 
