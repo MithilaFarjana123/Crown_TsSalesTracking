@@ -70,5 +70,6 @@ data class GetBPSiteInfoResponceChild(
     @SerializedName("ihb_add"           ) var ihbAdd           : String? = "",
     @SerializedName("ihb_mobile"        ) var ihbMobile        : String? = ""
 
+  //  @SerializedName("site_image"        ) var siteImage        : String? = "",
 
     )

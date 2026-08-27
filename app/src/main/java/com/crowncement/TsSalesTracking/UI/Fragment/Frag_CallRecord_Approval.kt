@@ -258,13 +258,16 @@ class Frag_CallRecord_Approval : Fragment() {
                                     binding.rvcallapp,
                                     binding.txtAttAuthNoData
                                 )
-                                Utility.getBaseMessage(
-                                    requireActivity(),
-                                    "Sorry, No data for approve",
-                                    res.message.toString(),
-                                    R.drawable.error_white,
-                                    0
-                                )
+                                if (isAdded && activity != null) {
+
+                                    Utility.getBaseMessage(
+                                        requireActivity(),
+                                        "Sorry, No data for approve",
+                                        res.message.toString(),
+                                        R.drawable.error_white,
+                                        0
+                                    )
+                                }
                             }
 
                             loadingAnim.dismiss()

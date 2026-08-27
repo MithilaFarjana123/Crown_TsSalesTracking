@@ -71,7 +71,7 @@
 
                             <TextView
                                 android:id="@+id/tvFirstDelivery"
-                                android:text=" 2026-01-10 (Qty: 50)" />
+                                android:text=" " />
                         </TableRow>
 
                         <TableRow android:paddingBottom="8dp">
@@ -83,8 +83,21 @@
 
                             <TextView
                                 android:id="@+id/tvLastDelivery"
-                                android:text=" 2026-04-12 (Qty: 30)" />
+                                android:text=" " />
                         </TableRow>
+
+                        <TableRow android:paddingBottom="8dp">
+
+                            <TextView
+                                android:text="Total Qty : "
+                                android:textStyle="bold" />
+
+
+                            <TextView
+                                android:id="@+id/tvtotalDelivery"
+                                android:text="  " />
+                        </TableRow>
+
 
                         <TableRow android:paddingBottom="8dp">
 
@@ -94,7 +107,7 @@
 
                             <TextView
                                 android:id="@+id/tvEngineer"
-                                android:text=" Engineer X" />
+                                android:text=" " />
                         </TableRow>
 
                         <TableRow android:paddingBottom="8dp">
@@ -105,7 +118,7 @@
 
                             <TextView
                                 android:id="@+id/tvContractor"
-                                android:text=" Contractor y" />
+                                android:text=" " />
                         </TableRow>
 
 <!--                        <TableRow android:paddingBottom="8dp">-->

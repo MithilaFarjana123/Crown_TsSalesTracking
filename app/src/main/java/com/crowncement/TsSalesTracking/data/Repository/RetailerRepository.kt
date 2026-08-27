@@ -1029,7 +1029,7 @@ object RetailerRepository {
         val otherCusAdd: MutableLiveData<Resource<GetTSSiteInfoResponce>> = MutableLiveData<Resource<GetTSSiteInfoResponce>>()
 
         try {
-            val service: GetDataService = RetrofitClientInstance.retrofitInstanceTS.create(
+            val service: GetDataService = RetrofitClientInstance.retrofitInstanceTSSite.create(
                 GetDataService::class.java
             )
             service.GetTSSiteInfo(xhrc1, xhrc2,xhrc3,xhrc4)
@@ -1089,7 +1089,38 @@ object RetailerRepository {
 
     //todo site verification list
 
+    fun getSiteDetails(
+        xparty: String
+    ): MutableLiveData<Resource<GetBPSiteInfoResponce>> {
 
+        val xparty = RequestBody.create("application/json".toMediaTypeOrNull(), xparty)
+
+
+
+        val otherCusAdd: MutableLiveData<Resource<GetBPSiteInfoResponce>> = MutableLiveData<Resource<GetBPSiteInfoResponce>>()
+
+        try {
+            val service: GetDataService = RetrofitClientInstance.retrofitInstanceTSSite.create(
+                GetDataService::class.java
+            )
+            service.GetSiteDetails(xparty)
+                ?.toObservable()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
+                    { response ->
+                        otherCusAdd.postValue(Resource.success(response))
+                    },
+                    { error ->
+                        otherCusAdd.postValue(Resource.error(error.message.toString(), null))
+                    },
+                )
+
+        } catch (e: Exception) {
+            Log.e("RetailerRepository", "otherCusAdd: " + e.message)
+        }
+        return otherCusAdd
+    }
 
 
     //todo for tag quickvisit to site callrecord

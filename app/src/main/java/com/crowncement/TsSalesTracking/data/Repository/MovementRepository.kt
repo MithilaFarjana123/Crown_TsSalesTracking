@@ -108,6 +108,37 @@ object MovementRepository {
         return movementList
     }
 
+
+    //todo individual employee route
+    fun getTSMovLocationList(
+        user_id: String
+
+    ): MutableLiveData<Resource<GetTSMovLocationResponce>> {
+        val username = RequestBody.create("application/json".toMediaTypeOrNull(), user_id)
+
+        val movementList: MutableLiveData<Resource<GetTSMovLocationResponce>> = MutableLiveData<Resource<GetTSMovLocationResponce>>()
+        try {
+            val service: GetDataService = RetrofitClientInstance.retrofitInstanceTSSite.create(
+                GetDataService::class.java
+            )
+            service.GetTSMovLocation(username)
+                ?.toObservable()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
+                    { response ->
+                        movementList.postValue(Resource.success(response))
+                    },
+                    { error ->
+                        movementList.postValue(Resource.error(error.message.toString(), null))
+                    },
+                )
+        } catch (e: Exception) {
+            Log.e("MovementRepository", "movementList ERROR: " + e.message)
+        }
+        return movementList
+    }
+
     fun movementAcPlanList(
         user_id: String,
         mYear: String,

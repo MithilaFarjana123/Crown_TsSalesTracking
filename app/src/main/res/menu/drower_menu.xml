@@ -215,10 +215,15 @@
             android:title="Submit Movement Plan" />
 
 
+
+
+
         <item
             android:icon="@drawable/baseline_arrow_forward_gray"
             android:id="@+id/nav_app_movement_plan"
             android:title="Approve Movement Plan" />
+
+
  </group>
 
 
@@ -249,6 +254,16 @@
             android:icon="@drawable/baseline_arrow_forward_gray"
             android:id="@+id/nav_emp_work_sum"
             android:title="Employee's Work Summary " />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_current_movement_plan"
+            android:title="Current Month Plan (Self)" />
+
+        <item
+            android:icon="@drawable/baseline_arrow_forward_gray"
+            android:id="@+id/nav_current_app_movement_plan"
+            android:title="Employee Movement Plan " />
 
         <item
             android:icon="@drawable/baseline_arrow_forward_gray"

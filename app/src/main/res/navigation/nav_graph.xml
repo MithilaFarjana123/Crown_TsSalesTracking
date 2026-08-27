@@ -55,6 +55,16 @@
             android:id="@+id/action_nav_dashboard_to_nav_app_movement_plan"
             app:destination="@id/nav_app_movement_plan" />
 
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_current_movement_plan"
+            app:destination="@id/nav_current_movement_plan" />
+
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_current_app_movement_plan"
+            app:destination="@id/nav_current_app_movement_plan" />
+
+
         <action
             android:id="@+id/action_nav_dashboard_to_nav_movement_plan_list"
             app:destination="@id/nav_movement_plan_list" />
@@ -322,6 +332,18 @@
         android:label="Movement Plan Approve"
         tools:layout="@layout/frag_approve_movement_plan"/>
 
+    <fragment
+        android:id="@+id/nav_current_app_movement_plan"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Current_Higherarchy_Movementlist"
+        android:label="Employee Movement Plan"
+        tools:layout="@layout/frag_current_higherarchy_movementlist"/>
+
+
+    <fragment
+        android:id="@+id/nav_current_movement_plan"
+        android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Currentmonth_Movementlist"
+        android:label="Current Month Plan (Self)"
+        tools:layout="@layout/frag_currentmonth_movementlist"/>
 
     <fragment
         android:id="@+id/nav_movement_plan_list"
@@ -435,7 +457,7 @@
         android:id="@+id/nav_taged_Call_Record_Entry"
         android:name="com.crowncement.TsSalesTracking.UI.Fragment.Frag_Taged_Call_Record_Entry"
         android:label="Call Record"
-        tools:layout="@layout/frag_taged_call__record_entry"/>
+        tools:layout="@layout/frag_taged_call_record_entry"/>
 
     <fragment
         android:id="@+id/nav_demo_Site_Home"

@@ -35,7 +35,7 @@ import kotlin.collections.ArrayList
 
 class Frag_Approve_Movement_Plan : Fragment() {
  //   lateinit var rootView: View
- private var _binding: FragApproveMovementPlanBinding? = null
+    private var _binding: FragApproveMovementPlanBinding? = null
     private val binding get() = _binding!!
 
     lateinit var movementViewModel: MovementViewModel

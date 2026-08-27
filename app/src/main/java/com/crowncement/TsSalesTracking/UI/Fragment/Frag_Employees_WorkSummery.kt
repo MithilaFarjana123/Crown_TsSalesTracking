@@ -127,9 +127,9 @@ class Frag_Employees_WorkSummery : Fragment() {
         user = Utility.getValueByKey(requireActivity(), "username").toString()
         check = "monthlyData"
         idForBreadCram = user
-       // var timePeriod = Utility.getAttendancePeriod().split(",")
-      //  fromDate = timePeriod[0]
-      //  toDate = timePeriod[1]
+        // var timePeriod = Utility.getAttendancePeriod().split(",")
+        //  fromDate = timePeriod[0]
+        //  toDate = timePeriod[1]
 
         allvisitlist =  ArrayList()
 
@@ -138,14 +138,17 @@ class Frag_Employees_WorkSummery : Fragment() {
         val month = cldr[Calendar.MONTH]+1
         val year = cldr[Calendar.YEAR]
         var lastdayofMonth =  getDaysInMonth(year.toInt(),month.toInt())
-        fromDate = "$year-$month-01"
-        toDate = "$year-$month-$lastdayofMonth"
+
+        // FIX: zero-pad month/day so the string always matches "yyyy-MM-dd"
+        // (previously "$year-$month-01" produced e.g. "2026-8-01" for single digit months)
+        fromDate = String.format(Locale.US, "%04d-%02d-01", year, month)
+        toDate = String.format(Locale.US, "%04d-%02d-%02d", year, month, lastdayofMonth)
 
 
         getSiteSummeryInfo(user, fromDate,toDate)
 
 
-         //   getSiteSummeryInfo(user, timePeriod[0], timePeriod[1])
+        //   getSiteSummeryInfo(user, timePeriod[0], timePeriod[1])
         //   attApproveList(user, Utility.getCurrentDate("yyyy-MM-dd").toString())
 
         zonalJuniorList(user, getCurrentDate("yyyy-MM-dd HH:mm:ss").toString())
@@ -273,9 +276,9 @@ class Frag_Employees_WorkSummery : Fragment() {
                         dataList[position].empId.toString(),
                         getCurrentDate("yyyy-MM-dd HH:mm:ss").toString()
                     )
-                  //  getDaysInMonth(2025,6)
-                  //  fromDate = getDaysInMonth(2025,6).toString()
-                 //   toDate = getDaysInMonth(2025,6).toString()
+                    //  getDaysInMonth(2025,6)
+                    //  fromDate = getDaysInMonth(2025,6).toString()
+                    //   toDate = getDaysInMonth(2025,6).toString()
                     getSiteSummeryInfo(
                         dataList[position].empId.toString(),
                         fromDate, toDate
@@ -310,14 +313,23 @@ class Frag_Employees_WorkSummery : Fragment() {
         val txtErrorSearch = v.findViewById<TextView>(R.id.txtErrorSearch)
 
         btnSearchAtt.setText("Search")
-        fromDate = ""
-        toDate = ""
+
+        // FIX: use LOCAL temp variables for the dates picked inside this dialog.
+        // Previously this assigned directly to the class-level `fromDate`/`toDate`,
+        // which are shared with the rest of the fragment. If the user opened this
+        // dialog and closed it (via imgClosesSearch) without picking both dates,
+        // the class-level fromDate/toDate stayed blank ("") permanently. The next
+        // time getSiteSummeryInfo()/successWorkList() ran (e.g. from a breadcrumb
+        // or employee click), Utility.changeDateFormat("") was called and threw
+        // the NullPointerException seen in the crash log.
+        var tempFromDate = ""
+        var tempToDate = ""
 
         dialog.setContentView(v)
         dialog.setCancelable(true)
         dialog.show()
 
-        imgClosesSearch.setOnClickListener { dialog.hide() }
+        imgClosesSearch.setOnClickListener { dialog.dismiss() }
 
         txtFrSearchDate.setOnClickListener {
             layoutSearchF.isErrorEnabled = false
@@ -330,9 +342,10 @@ class Frag_Employees_WorkSummery : Fragment() {
                 requireContext(),
                 { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
                     val monthNumber = monthOfYear + 1
-                    val selectedDate = "$year1-$monthNumber-$dayOfMonth"
-                    fromDate = String.format("%04d-%02d-%02d", year1, monthNumber, dayOfMonth)
-                   // fromDate = selectedDate
+                    val selectedDate = String.format(
+                        Locale.US, "%04d-%02d-%02d", year1, monthNumber, dayOfMonth
+                    )
+                    tempFromDate = selectedDate
                     txtFrSearchDate.setText(
                         Utility.changeDateFormat(
                             selectedDate,
@@ -358,36 +371,16 @@ class Frag_Employees_WorkSummery : Fragment() {
                 requireContext(),
                 { view1: DatePicker?, year1: Int, monthOfYear: Int, dayOfMonth: Int ->
                     val monthNumber = monthOfYear + 1
-                    val selectedDate = "$year1-$monthNumber-$dayOfMonth"
-                 //   toDate = selectedDate
-                    toDate = String.format("%04d-%02d-%02d", year1, monthNumber, dayOfMonth)
+                    val selectedDate = String.format(
+                        Locale.US, "%04d-%02d-%02d", year1, monthNumber, dayOfMonth
+                    )
+                    tempToDate = selectedDate
                     txtTSearchDate.setText(
                         Utility.changeDateFormat(
                             selectedDate,
                             "yyyy-MM-dd",
                             "dd-MMM-yyyy"
                         ))
-
-
-                    /*
-                    if (isGraterThan30Days(fromDate, toDate)) {
-                        txtErrorSearch.visibility = View.VISIBLE
-                        txtFrSearchDate.setText("")
-                        txtTSearchDate.setText("")
-                    } else {
-                        txtErrorSearch.visibility = View.GONE
-                        txtTSearchDate.setText(
-                            Utility.changeDateFormat(
-                                selectedDate,
-                                "yyyy-MM-dd",
-                                "dd-MMM-yyyy"
-                            )
-                        )
-                    }
-
-
-                     */
-
 
                     check = "searchByDate"
                 }, year, month, day
@@ -400,8 +393,12 @@ class Frag_Employees_WorkSummery : Fragment() {
 
         btnSearchAtt.setOnClickListener {
 
-            if ((fromDate != "") && (toDate != "")) {
-                // getUserAttList(user, fromDate, toDate)
+            if ((tempFromDate != "") && (tempToDate != "")) {
+
+                // Only now do we commit the picked dates to the shared class fields.
+                fromDate = tempFromDate
+                toDate = tempToDate
+
                 if (breadCramList.size > 1) {
                     idForBreadCram = breadCramList[breadCramList.size - 1]
                 }
@@ -411,12 +408,10 @@ class Frag_Employees_WorkSummery : Fragment() {
 
                 getSiteSummeryInfo(
                     idForBreadCram,
-                    // breadCramList.get(breadCramList.size-1).toString(),
                     fromDate,
                     toDate
                 )
 
-                // getUserAttList("E00-005445", fromDate, toDate)
                 dialog.dismiss()
             } else {
                 when {
@@ -474,7 +469,7 @@ class Frag_Employees_WorkSummery : Fragment() {
                     )
                     getSiteSummeryInfo(breadCramList[position], fromDate, toDate)
 
-                   // val itemsToRemove = listOf(breadCramList[position], breadCramList[(breadCramList.size - 1)])
+                    // val itemsToRemove = listOf(breadCramList[position], breadCramList[(breadCramList.size - 1)])
                     for (i in breadCramList.size-1 downTo  breadCramList.indexOf(idForBreadCram)+1) {
                         // Do things
                         breadCramList.removeAt(i)
@@ -578,26 +573,35 @@ class Frag_Employees_WorkSummery : Fragment() {
         noData: LottieAnimationView
 
     ) {
-     //   loadingAnim.show()
+        //   loadingAnim.show()
         if (res.code.equals("200") && (res.data.size > 0)) {
             noData.visibility = View.GONE
             binding.empWorkSumly.root.visibility = View.VISIBLE
 
-           // var id = breadCramList.get(breadCramList.size-1)
+            // var id = breadCramList.get(breadCramList.size-1)
 
             layout.heading.setText("Employee's Work Summery ( "+id+" )")
-            var f =  Utility.changeDateFormat(
-                fromDate,
-                "yyyy-MM-dd",
-                "MMM, dd yyyy"
-            )
-            var t = Utility.changeDateFormat(
-                toDate,
-                "yyyy-MM-dd",
-                "MMM, dd yyyy"
-            )
 
-            layout.dateofData.setText("From Date : "+f +"    |    To Date : "+t)
+            // FIX: guard against blank fromDate/toDate before calling changeDateFormat.
+            // This was the direct cause of the NullPointerException in the crash log:
+            // Utility.changeDateFormat("") was being called because fromDate/toDate had
+            // been left blank by the search dialog (see fix in searchDate() above).
+            if (fromDate.isNotBlank() && toDate.isNotBlank()) {
+                var f = Utility.changeDateFormat(
+                    fromDate,
+                    "yyyy-MM-dd",
+                    "MMM, dd yyyy"
+                )
+                var t = Utility.changeDateFormat(
+                    toDate,
+                    "yyyy-MM-dd",
+                    "MMM, dd yyyy"
+                )
+
+                layout.dateofData.setText("From Date : "+f +"    |    To Date : "+t)
+            } else {
+                layout.dateofData.setText("")
+            }
 
             layout.SiteNo.setText(res.data.get(0).noOfSite.toString())
             layout.ibhsNo.setText(res.data.get(0).noOfIhbEntry.toString())
@@ -606,7 +610,7 @@ class Frag_Employees_WorkSummery : Fragment() {
             layout.MasonNo.setText(res.data.get(0).noOfMason.toString())
             layout.convSiteNo.setText(res.data.get(0).noOfSiteConv.toString())
             layout.delBagNo.setText(res.data.get(0).noOfBagsConsump.toString())
-         //   layout.directSalesVol.setText(res.data.get(0).noOfBagsConsump.toString())
+            //   layout.directSalesVol.setText(res.data.get(0).noOfBagsConsump.toString())
 
             layout.totalcompNo.setText(res.data.get(0).noOfCompHand.toString())
 
@@ -617,15 +621,15 @@ class Frag_Employees_WorkSummery : Fragment() {
 
             //todo new
 
-/*
-            if(check=="monthlyData"){
-                callsitesum(layout.noSiteVis)
-            }else if(check=="searchByDate"){
-                //todo for search date by date
-                searchCallSiteSum(layout.noSiteVis)
-            }
+            /*
+                        if(check=="monthlyData"){
+                            callsitesum(layout.noSiteVis)
+                        }else if(check=="searchByDate"){
+                            //todo for search date by date
+                            searchCallSiteSum(layout.noSiteVis)
+                        }
 
- */
+             */
 
 
 
@@ -691,11 +695,11 @@ class Frag_Employees_WorkSummery : Fragment() {
                         it.responseData?.let { res ->
 
                             if (res.code == "200" && res.data.size > 0) {
-                              //  allvisitlist = ArrayList()
+                                //  allvisitlist = ArrayList()
                                 if (res.data.get(0).moveStat!!.isNotEmpty()){
                                     allvisitlist.addAll(res.data)
                                 }
-                              //  siteVisNum.setText(allvisitlist.size.toString())
+                                //  siteVisNum.setText(allvisitlist.size.toString())
                             }
 
 
@@ -719,7 +723,7 @@ class Frag_Employees_WorkSummery : Fragment() {
                             }
                         }
 
-                   //     loadingAnim.dismiss()
+                        //     loadingAnim.dismiss()
 
                     }
 
@@ -729,7 +733,7 @@ class Frag_Employees_WorkSummery : Fragment() {
                     }
 
                     Status.ERROR -> {
-                     //   binding.layoutVisit.visibility = View.GONE
+                        //   binding.layoutVisit.visibility = View.GONE
                         loadingAnim.dismiss()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
@@ -761,7 +765,7 @@ class Frag_Employees_WorkSummery : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAllDatesInCurrentMonth(): ArrayList<String> {
-     //   val dateList = ArrayList<String>() // make sure it's initialized
+        //   val dateList = ArrayList<String>() // make sure it's initialized
         val currentDate = LocalDate.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 

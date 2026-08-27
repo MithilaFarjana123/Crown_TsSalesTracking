@@ -359,6 +359,16 @@ class RetailerViewModel : ViewModel() {
         return GetBPSiteInfoMutableLiveData!!
     }
 
+    //todo
+    //todo get taggedsite
+
+    fun GetSiteDetails(
+        xparty: String
+    ): MutableLiveData<Resource<GetBPSiteInfoResponce>> {
+        GetBPSiteInfoMutableLiveData = RetailerRepository.getSiteDetails(xparty)
+        return GetBPSiteInfoMutableLiveData!!
+    }
+
 
     //todo ts call record
     fun TSCallMove4Tag(

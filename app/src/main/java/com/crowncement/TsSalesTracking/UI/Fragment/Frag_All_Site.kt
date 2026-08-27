@@ -71,7 +71,6 @@ class Frag_All_Site : Fragment() {
 
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
-    //  var retailerSetupInfo = ""
     var division = ""
     var district = ""
     var thana = ""
@@ -80,17 +79,18 @@ class Frag_All_Site : Fragment() {
     lateinit var otherCustomertaggedLists: ArrayList<GetBPSiteInfoResponceChild>
 
     lateinit var siteitemAdapter: SiteItemAdapter
-    lateinit var siteitemtaggedAdapter : SiteTaggedItemAdapter
+    lateinit var siteitemtaggedAdapter: SiteTaggedItemAdapter
     lateinit var loadingAnim: Dialog
 
+    // guards against dismiss() being called on a dialog that isn't showing / view already destroyed
+    private var isLoaderShowing = false
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
 
         _binding = FragAllSiteBinding.inflate(inflater, container, false)
-
-
 
         return binding.root
     }
@@ -100,8 +100,6 @@ class Frag_All_Site : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        // Use binding safely
-        // rootView =  inflater.inflate(R.layout.frag_all_site, container, false)
         RetailerViewModelFactory()
         setupViewModel()
         binding.fabAddNewSite.visibility = View.GONE
@@ -112,11 +110,7 @@ class Frag_All_Site : Fragment() {
 
         getPreviouslyStoredValue()
 
-        // mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        // prepareLocation()
-        // getLastLocation()
         selectedCustomer = Utility.getValueByKey(requireActivity(), "selectedCustomer").toString()
-        //  other = convertOtherInfo(requireActivity())!!
         other = convertOtherInfo(requireActivity())!!
         loadingAnim = Utility.baseLoadingAnimation(
             requireActivity(),
@@ -124,37 +118,31 @@ class Frag_All_Site : Fragment() {
             "P l e a s e    w a i t"
         )
 
-        // loadingAnim.show()
-        if(selectedCustomer=="IHBs"){
+        if (selectedCustomer == "IHBs") {
             binding.fabAddNewSite.visibility = View.VISIBLE
-          //  binding.fabAddNewSite.setText("ADD NEW")
-        }else{
+        } else {
             binding.fabAddNewSite.visibility = View.GONE
-           // binding.fabAddNewSite.setText("ADD NEW")
-
         }
 
-        //todo
+        // show the loader right before the network call starts
+        showLoader()
+
         getOtherCustomerListforTagged(
             other.partyCode.toString(),
             selectedCustomer
         )
 
-        siteList =  ArrayList()
+        siteList = ArrayList()
         binding.fabAddNewSite.setOnClickListener {
-
             val navController = requireActivity().findNavController(R.id.nav_host_fragment)
-            // navController.navigate(R.id.nav_retiler_home)
             navController.navigate(R.id.nav_demo_siteentry)
         }
         binding.searchAllsite.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
-
                 if (query.isNotEmpty()) {
                     filter(query)
                 }
-
                 return false
             }
 
@@ -169,62 +157,84 @@ class Frag_All_Site : Fragment() {
     }
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
-        // Clear ViewBinding reference
+        // make sure we never leak the dialog / call methods on a dead view
+        if (isLoaderShowing) {
+            hideLoader()
+        }
         _binding = null
     }
 
+
+    // --- Loader helpers -------------------------------------------------------------------
+
+    private fun showLoader() {
+        if (isAdded && !loadingAnim.isShowing) {
+            loadingAnim.show()
+            isLoaderShowing = true
+        }
+    }
+
+    /**
+     * Dismisses the loader only after the RecyclerView passed in has finished its
+     * current layout pass, so the dialog and the rendered rows disappear/appear together
+     * instead of the dialog closing a frame (or more) earlier.
+     */
+    private fun hideLoaderAfterRender(rv: RecyclerView) {
+        rv.post {
+            hideLoader()
+        }
+    }
+
+    private fun hideLoader() {
+        if (::loadingAnim.isInitialized && loadingAnim.isShowing) {
+            loadingAnim.dismiss()
+        }
+        isLoaderShowing = false
+    }
 
 
     private fun filter(text: String) {
 
         if (text.isNotEmpty()) {
 
-           if (otherCustomertaggedLists.size > 0) {
-                        val filteredlist = java.util.ArrayList<GetBPSiteInfoResponceChild>()
-                        for (item in otherCustomertaggedLists) {
-                            if (item.partyName!!.lowercase(Locale.getDefault())
-                                    .contains(text.lowercase(Locale.getDefault())) ||
-                                item.siteNumber!!.lowercase(Locale.getDefault())
-                                    .contains(text.lowercase(Locale.getDefault())) ||
-                                item.siteAdd!!.lowercase(Locale.getDefault())
-                                    .contains(text.lowercase(Locale.getDefault()))
-                            ) {
-                                filteredlist.add(item)
-                            }
-                        }
-                        if (filteredlist.isEmpty()) {
-                            Utility.getBaseMessage(
-                                requireActivity(),
-                                "Sorry",
-                                "No site found",
-                                R.drawable.error_white,
-                                0
-                            )
-                            binding.rdDemoAllSite.adapter = null
-                        } else {
-
-                            prepareOtherListfortagged(binding.rdDemoAllSite, filteredlist, selectedCustomer)
-
-                        }
-
+            if (otherCustomertaggedLists.size > 0) {
+                val filteredlist = java.util.ArrayList<GetBPSiteInfoResponceChild>()
+                for (item in otherCustomertaggedLists) {
+                    if (item.partyName!!.lowercase(Locale.getDefault())
+                            .contains(text.lowercase(Locale.getDefault())) ||
+                        item.siteNumber!!.lowercase(Locale.getDefault())
+                            .contains(text.lowercase(Locale.getDefault())) ||
+                        item.siteAdd!!.lowercase(Locale.getDefault())
+                            .contains(text.lowercase(Locale.getDefault()))
+                    ) {
+                        filteredlist.add(item)
                     }
-           else {
-                        Utility.getBaseMessage(
-                            requireActivity(),
-                            "Sorry",
-                            "No data found",
-                            R.drawable.error_white,
-                            2
-                        )
-                    }
+                }
+                if (filteredlist.isEmpty()) {
+                    Utility.getBaseMessage(
+                        requireActivity(),
+                        "Sorry",
+                        "No site found",
+                        R.drawable.error_white,
+                        0
+                    )
+                    binding.rdDemoAllSite.adapter = null
+                } else {
+                    prepareOtherListfortagged(binding.rdDemoAllSite, filteredlist, selectedCustomer)
+                }
 
-
+            } else {
+                Utility.getBaseMessage(
+                    requireActivity(),
+                    "Sorry",
+                    "No data found",
+                    R.drawable.error_white,
+                    2
+                )
+            }
         }
-
-
     }
 
 
@@ -268,7 +278,6 @@ class Frag_All_Site : Fragment() {
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
                     requestPermissions()
-
                 }
                 mFusedLocationClient.lastLocation.addOnCompleteListener(requireActivity()) { task ->
                     val location: Location? = task.result
@@ -280,7 +289,6 @@ class Frag_All_Site : Fragment() {
                         longitude = location.longitude
 
                         Log.e("Add Customer", "Latitude: $latitude | Longitude:$longitude")
-
                     }
                 }
             } else {
@@ -304,7 +312,6 @@ class Frag_All_Site : Fragment() {
         val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
 
         task.addOnSuccessListener {
-
             requestPermissions()
         }
 
@@ -316,7 +323,6 @@ class Frag_All_Site : Fragment() {
                         100
                     )
                 } catch (sendEx: IntentSender.SendIntentException) {
-                    // Ignore the error.
                     Log.e(
                         "Frag Add Cus",
                         "requestDeviceLocationSettings: " + sendEx.message.toString()
@@ -348,19 +354,10 @@ class Frag_All_Site : Fragment() {
                 requireContext(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED &&
-
             ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
-
-            &&
-
-            ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-
         ) {
             return true
         }
@@ -399,16 +396,16 @@ class Frag_All_Site : Fragment() {
             longitude = mLastLocation.longitude
 
             Log.e("New Customer", "latitude: $latitude longitude:  $longitude")
-
         }
     }
 
     private fun getLastKnownLocation(): Location? {
-        val mLocationManager: LocationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val mLocationManager: LocationManager =
+            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val providers: List<String> = mLocationManager.getProviders(true)
         var bestLocation: Location? = null
         for (provider in providers) {
-            val location = mLocationManager!!.getLastKnownLocation(provider) ?: continue
+            val location = mLocationManager.getLastKnownLocation(provider) ?: continue
             if (bestLocation == null || location.accuracy < bestLocation.accuracy) {
                 bestLocation = location
             }
@@ -441,11 +438,9 @@ class Frag_All_Site : Fragment() {
     private fun getPreviouslyStoredValue() {
         user = Utility.getValueByKey(requireActivity(), "username").toString()
         selectedCustomer = Utility.getValueByKey(requireActivity(), "selectedCustomer").toString()
-      //  retailerSetupInfo = Utility.getValueByKey(requireActivity(), "RetailerSetupInfo").toString()
         division = Utility.getValueByKey(requireActivity(), "selectedDivision").toString()
         district = Utility.getValueByKey(requireActivity(), "selectedDistrict").toString()
         thana = Utility.getValueByKey(requireActivity(), "selectedThana").toString()
-
     }
 
 
@@ -455,46 +450,46 @@ class Frag_All_Site : Fragment() {
         xCode: String
     ) {
 
-            retailerViewModel.GetBPSiteInfoList(xparty)
-                .observe(requireActivity()) {
-                    when (it.status) {
+        retailerViewModel.GetSiteDetails(xparty)
+            .observe(requireActivity()) {
+                when (it.status) {
 
-                        Status.LOADING -> {
+                    Status.LOADING -> {
+                        // keep loader visible, nothing to do here
+                    }
 
-                        }
+                    Status.SUCCESS -> {
 
-                        Status.SUCCESS -> {
+                        it.responseData?.let { res ->
 
-                            it.responseData?.let { res ->
+                            val otherCustomerList: ArrayList<GetBPSiteInfoResponceChild> = res.data
+                            otherCustomertaggedLists = otherCustomerList
+                            totalnumofsite = otherCustomerList.size
+                            _binding?.partyname?.setText(xCode + " name : " + other.partyName.toString())
+                            _binding?.totalMason?.setText(totalnumofsite.toString())
 
-                                val otherCustomerList: ArrayList<GetBPSiteInfoResponceChild> =
-                                    res.data
-                                otherCustomertaggedLists = otherCustomerList
-                                totalnumofsite = otherCustomerList.size
-                                _binding?.partyname?.setText(xCode+ " name : "+ other.partyName.toString())
-                                _binding?.totalMason?.setText(totalnumofsite.toString())
-
-
-                                _binding?.let { binding ->
-                                    prepareOtherListfortagged(
-                                        binding.rdDemoAllSite,
-                                        otherCustomerList,
-                                        xCode
-                                    )
-                                }
+                            _binding?.let { binding ->
+                                prepareOtherListfortagged(
+                                    binding.rdDemoAllSite,
+                                    otherCustomerList,
+                                    xCode
+                                )
+                            } ?: run {
+                                // view already destroyed, nothing left to render — just clear the loader
+                                hideLoader()
                             }
-                            loadingAnim.dismiss()
-                        }
-
-                        Status.ERROR -> {
-
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                            loadingAnim.dismiss()
+                        } ?: run {
+                            // no data payload at all -> nothing will trigger the post{} callback, so dismiss now
+                            hideLoader()
                         }
                     }
+
+                    Status.ERROR -> {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        hideLoader()
+                    }
                 }
-
-
+            }
     }
 
 
@@ -505,10 +500,9 @@ class Frag_All_Site : Fragment() {
     ) {
 
         if (items.size > 0) {
-            //   rootView.txtNoDealerInfo.visibility = View.GONE
             rv.visibility = View.VISIBLE
             siteitemtaggedAdapter = SiteTaggedItemAdapter(items, type)
-            if(isAdded) {
+            if (isAdded) {
                 val manager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 rv.layoutManager = manager
@@ -518,20 +512,24 @@ class Frag_All_Site : Fragment() {
                     SiteTaggedItemAdapter.OnAdapterItemClickListener {
                     override fun OnClick(v: View?, position: Int) {
 
-
                         prepareSelectedtaggedSiteObject(items[position], requireActivity())
-                        if(selectedCustomer=="IHBs") {
+                        if (selectedCustomer == "IHBs") {
                             val navController =
                                 requireActivity().findNavController(R.id.nav_host_fragment)
-                            // navController.navigate(R.id.nav_retiler_home)
                             navController.navigate(R.id.nav_demo_Site_Home)
                         }
                     }
                 })
+
+                // dismiss the loader only once this RecyclerView has actually laid itself out
+                hideLoaderAfterRender(rv)
+            } else {
+                hideLoader()
             }
         } else {
             rv.visibility = View.GONE
-            //    rootView.txtNoDealerInfo.visibility = View.VISIBLE
+            // empty list -> nothing to render, so dismiss right away
+            hideLoader()
         }
     }
 
@@ -559,22 +557,17 @@ class Frag_All_Site : Fragment() {
                 when (it.status) {
 
                     Status.LOADING -> {
-
                     }
 
                     Status.SUCCESS -> {
-
                         it.responseData?.let { res ->
-
                             val otherCustomerList: ArrayList<GetTSSiteInfoChild> = res.data
                             otherCustomerLists = otherCustomerList
                             prepareOtherList(binding.rdDemoAllSite, otherCustomerList, xCode)
                         }
                     }
                     Status.ERROR -> {
-
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-
                     }
                 }
             }
@@ -588,7 +581,6 @@ class Frag_All_Site : Fragment() {
     ) {
 
         if (items.size > 0) {
-         //   rootView.txtNoDealerInfo.visibility = View.GONE
             rv.visibility = View.VISIBLE
             siteitemAdapter = SiteItemAdapter(items, type)
 
@@ -602,17 +594,15 @@ class Frag_All_Site : Fragment() {
 
                     prepareSelectedSiteObject(items[position], requireActivity())
 
-                    if(selectedCustomer =="IHBs") {
+                    if (selectedCustomer == "IHBs") {
                         val navController =
                             requireActivity().findNavController(R.id.nav_host_fragment)
-                        // navController.navigate(R.id.nav_retiler_home)
                         navController.navigate(R.id.nav_demo_Site_Home)
                     }
                 }
             })
         } else {
             rv.visibility = View.GONE
-        //    rootView.txtNoDealerInfo.visibility = View.VISIBLE
         }
     }
 
@@ -626,15 +616,6 @@ class Frag_All_Site : Fragment() {
     }
 
 
-
-
-
-
-
-
-
-
-
     ////location
 
     //toolbar home
@@ -645,7 +626,6 @@ class Frag_All_Site : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {
-                //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
                 val navController =
                     requireActivity().findNavController(R.id.nav_host_fragment)
                 navController.navigate(R.id.nav_dashboard)
@@ -654,7 +634,5 @@ class Frag_All_Site : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-
 
 }

@@ -2073,12 +2073,12 @@ class Frag_Refference_CallRecord : Fragment(),
 
 
         else if(binding.txtRdeliveryOrderQuantity.text.toString().isEmpty()||
-            (binding.txtRdeliveryOrderQuantity.text.toString().toInt()<50 &&
-            binding.txtRdeliveryOrderQuantity.text.toString().toInt()>=5000)
-            ){
+            binding.txtRdeliveryOrderQuantity.text.toString().toInt()<50 ||
+            binding.txtRdeliveryOrderQuantity.text.toString().toInt()>3000)
+            {
             result = false
             binding.layoutRdeliveryOrderQuantity.isErrorEnabled = true
-            binding.layoutRdeliveryOrderQuantity.error = "Delivery order quantity must be in between 50 to 5000"
+            binding.layoutRdeliveryOrderQuantity.error = "Delivery order quantity must be in between 50 to 3000"
 
         }
         /*
@@ -2214,10 +2214,11 @@ class Frag_Refference_CallRecord : Fragment(),
         //todo changed
 
         if(binding.txtRdeliveryQuantity.text.toString().isNotEmpty()
-            && binding.txtRdeliveryQuantity.text.toString().toInt()<50){
+            &&( binding.txtRdeliveryQuantity.text.toString().toInt()<50||
+            binding.txtRdeliveryQuantity.text.toString().toInt()>3000)){
             result = false
             binding.layoutRdeliveryQuantity.isErrorEnabled = true
-            binding.layoutRdeliveryQuantity.error = "Delivery order quantity is must be greater than 50"
+            binding.layoutRdeliveryQuantity.error = "Delivery order quantity is must be in between 50 to 3000"
         }
 
         else if((SELECTED_DEALER_ID=="")
@@ -2447,6 +2448,24 @@ class Frag_Refference_CallRecord : Fragment(),
         noAchivementTypeList.add("Credit Issue")
         noAchivementTypeList.add("Dealer/Retailer Influenced to other brand ")
         noAchivementTypeList.add("Quality Issue")
+        //new
+        noAchivementTypeList.add("Rate Higher Than Competitor")
+        noAchivementTypeList.add("Dealer/Retailer Influenced to Competitor Brand")
+        noAchivementTypeList.add("Engineer Influenced to Competitor Brand")
+        noAchivementTypeList.add("Contractor/mason Influenced to Competitor brand")
+        noAchivementTypeList.add("Pre Approved Other Brand(LGC/IP Project)")
+        noAchivementTypeList.add("Credit Facility Issue")
+        noAchivementTypeList.add("Special Discount Issue")
+        noAchivementTypeList.add("Competitor Promotional Offer")
+        noAchivementTypeList.add("Work-Specific Brand Preference")
+        noAchivementTypeList.add("Out of Dealer/Retail Coverage ")
+        noAchivementTypeList.add("Advanced Paid to other Brand")
+        noAchivementTypeList.add("One-Stop Purchase Preference")
+        noAchivementTypeList.add("Iconic Project Brand Influence")
+        noAchivementTypeList.add("Quality Perception")
+        noAchivementTypeList.add("Reference/Work-of-Month Influence")
+        noAchivementTypeList.add("Specific Brand Dominance")
+
         noAchivementTypeList.add("Others")
 
 

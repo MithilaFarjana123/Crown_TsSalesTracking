@@ -1328,50 +1328,6 @@ class frag_Live_Attendance1 : Fragment() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Throws(IOException::class)
     private fun createImageFile(): File {
         // Create an image file name

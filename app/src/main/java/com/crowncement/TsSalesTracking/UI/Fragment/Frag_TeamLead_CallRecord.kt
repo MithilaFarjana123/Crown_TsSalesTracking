@@ -352,7 +352,7 @@ class Frag_TeamLead_CallRecord : Fragment() {
         xCode: String
     ) {
         if(isAdded) {
-            retailerViewModel.GetBPSiteInfoList(xparty)
+            retailerViewModel.GetSiteDetails(xparty)
                 .observe(requireActivity()) {
                     when (it.status) {
 
@@ -456,6 +456,7 @@ class Frag_TeamLead_CallRecord : Fragment() {
                                 siteInfoLists = res.data
                                 var sitedata = siteInfoLists.get(0)
                                 //  binding.siteID.setText(sitedata.siteId.toString())
+                                binding.tvtotalDelivery.setText(sitedata.noOfDel.toString())
                                 if(sitedata.firstDelDate.toString().equals("2999-12-31")){
                                     //   binding.lDeldate.setText("Last delivery date :  ")
                                 }else{
@@ -464,7 +465,7 @@ class Frag_TeamLead_CallRecord : Fragment() {
                                         "yyyy-MM-dd",
                                         "MMM, dd yyyy"
                                     )
-                                    binding.tvFirstDelivery.setText(fastdeldate)
+                                    binding.tvFirstDelivery.setText(fastdeldate+"(Qty: "+sitedata.noOfFirstDel.toString()+")")
 
                                 }
                                 if(sitedata.lastDelDate.toString().equals("2999-12-31")){
@@ -475,7 +476,7 @@ class Frag_TeamLead_CallRecord : Fragment() {
                                         "yyyy-MM-dd",
                                         "MMM, dd yyyy"
                                     )
-                                    binding.tvLastDelivery.setText(lastdate)
+                                    binding.tvLastDelivery.setText(lastdate+"(Qty: "+sitedata.noOfLastDel.toString()+")")
 
                                 }
 

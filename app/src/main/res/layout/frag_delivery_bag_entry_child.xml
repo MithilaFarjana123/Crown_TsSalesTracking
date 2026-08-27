@@ -281,6 +281,7 @@
                         android:inputType="number"
                         android:importantForAutofill="no"
                         android:focusable="true"
+                        android:maxLength="4"
                         android:focusableInTouchMode="true"
                         android:clickable="true"
                         android:cursorVisible="true"

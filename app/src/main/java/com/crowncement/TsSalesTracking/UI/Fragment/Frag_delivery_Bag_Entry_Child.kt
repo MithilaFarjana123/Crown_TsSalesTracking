@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -17,6 +18,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.crowncement.TsSalesTracking.R
@@ -34,240 +36,164 @@ import com.google.android.material.button.MaterialButton
 import com.google.gson.Gson
 import java.util.Calendar
 import java.util.Objects
+import java.util.jar.Manifest
 
 
 class Frag_delivery_Bag_Entry_Child : Fragment() {
 
-    // ---------------------------------------------------------------------
-    // View binding
-    // ---------------------------------------------------------------------
+
     private var _binding: FragDeliveryBagEntryChildBinding? = null
     private val binding get() = _binding!!
 
-    // ---------------------------------------------------------------------
-    // State
-    // ---------------------------------------------------------------------
-    private var other: GetTSSiteInfoChild? = null
+    lateinit var other: GetTSSiteInfoChild
     lateinit var retailerViewModel: RetailerViewModel
 
     lateinit var loadingAnim: Dialog
     var selectedDate = ""
     lateinit var siteInfoLists: ArrayList<GetSiteSumInfoChild>
-    var savedCalldata: ArrayList<GetSalesMoveCallChild> = ArrayList()
+
+    lateinit var savedCalldata: ArrayList<GetSalesMoveCallChild>
 
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
 
-
-    // ---------------------------------------------------------------------
-    // Lifecycle
-    // ---------------------------------------------------------------------
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         _binding = FragDeliveryBagEntryChildBinding.inflate(inflater, container, false)
+
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
+
         RetailerViewModelFactory()
         setupViewModel()
-
         loadingAnim = Utility.baseLoadingAnimation(
             requireActivity(), Dialog(requireActivity()), "P l e a s e    w a i t"
         )
         savedCalldata = ArrayList()
 
+        /*  binding.txtRdeliveryOrderQuantity.apply {
+              isFocusable = true
+              isFocusableInTouchMode = true
+              isCursorVisible = true
+              keyListener = android.text.method.DigitsKeyListener.getInstance("0123456789")
+          }
+
+         */
+
         binding.txtRCallDeliveryDate.setOnClickListener {
             showConditionalDatePicker()
         }
 
-        // Guarded: convertOtherInfo can legitimately return null (e.g. cleared
-        // SharedPreferences after the app was killed in the background) — we
-        // must not crash with !! here, we bail out gracefully instead.
-        val fetchedSite = convertOtherInfo(requireActivity())
-        if (fetchedSite == null) {
-            Utility.commonToast(
-                requireActivity(),
-                "warning",
-                "Site info not found, please go back and select the site again",
-                0
-            )
-            if (isAdded) {
-                requireActivity().findNavController(R.id.nav_host_fragment).navigateUp()
-            }
-            return
-        }
-        other = fetchedSite
 
-        getSalesMoveCall(other!!.siteNumber.toString())
-        getSiteSummeryInfo(other!!.siteNumber.toString(), "", "")
+        other = convertOtherInfo(requireActivity())!!
+        getSalesMoveCall(other.siteNumber.toString())
+
+        getSiteSummeryInfo( other.siteNumber.toString(),"","")
+
 
         binding.btnSavedemoRCallRecord.setOnClickListener {
             if (delValidation()) {
-                if (savedCalldata.size > 0) {
+                if(savedCalldata.size>0) {
+
                     confirmationDialog()
-                } else {
-                    Utility.commonToast(requireActivity(), "warning", "Necessary Data Not Found", 0)
+
+                }else{
+                    Utility.commonToast(requireActivity(),"warning","Necessary Data Not Found",0)
                 }
+
             }
         }
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Clear ViewBinding reference so no late callback can touch a dead view
-        _binding = null
     }
 
 
-    // ---------------------------------------------------------------------
-    // Network calls — ALL observers now use viewLifecycleOwner
-    // ---------------------------------------------------------------------
     private fun getSiteSummeryInfo(siteId: String, fDate: String, tDate: String) {
         retailerViewModel.getSiteSumInfo(siteId, fDate, tDate)
-            .observe(viewLifecycleOwner) {
+            .observe(requireActivity()) {
                 when (it.status) {
                     Status.SUCCESS -> {
                         it.responseData?.let { res ->
-                            _binding?.let { binding ->
-                                if (res.code == "200" && res.data.isNotEmpty()) {
-                                    siteInfoLists = res.data
-                                    val sitedata = siteInfoLists[0]
 
-                                    if (sitedata.lastDelDate.toString() == "2999-12-31") {
-                                        binding.lDeldate.text = "Last delivery date :  "
-                                    } else {
-                                        val lastdate = Utility.changeDateFormat(
-                                            sitedata.lastDelDate.toString(),
-                                            "yyyy-MM-dd",
-                                            "MMM, dd yyyy"
-                                        )
-                                        binding.lDeldate.text = "Last delivery date : $lastdate"
-                                    }
-
-                                    binding.lDelQty.text =
-                                        "Last Delivery quantity : " + sitedata.noOfLastDel.toString()
-                                } else {
-                                    binding.lDeldate.text = "Last delivery date : "
-                                    binding.lDelQty.text = "Last Delivery quantity : 0"
-                                }
-                            }
-                        }
-                    }
-                    Status.LOADING -> {}
-                    Status.ERROR -> {
-                        if (isAdded) Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
-    }
-
-    private fun getSalesMoveCall(site_id: String) {
-        retailerViewModel.getSalesMoveCall(site_id)
-            .observe(viewLifecycleOwner) {
-                when (it.status) {
-                    Status.LOADING -> {}
-                    Status.SUCCESS -> {
-                        it.responseData?.let { res ->
                             if (res.code == "200") {
-                                savedCalldata = res.data
 
-                                _binding?.let { binding ->
-                                    if (savedCalldata.size > 0) {
-                                        val first = savedCalldata[0]
-                                        binding.basicSiteInfo.visibility = View.VISIBLE
-                                        binding.siteCode.text = "Site Code : " + first.siteId.toString()
-                                        binding.partyCode.text = "Party Code : " + first.partyId.toString()
-                                        binding.ConversionStatus.text =
-                                            "Conversion Status : " + first.siteConvStat.toString()
-                                    } else {
-                                        binding.basicSiteInfo.visibility = View.GONE
-                                    }
+                                siteInfoLists = res.data
+                                var sitedata = siteInfoLists.get(0)
+                                //  binding.siteID.setText(sitedata.siteId.toString())
+
+
+                                if(sitedata.lastDelDate.toString().equals("2999-12-31")){
+                                    binding.lDeldate.setText("Last delivery date :  ")
+                                }else{
+                                    var lastdate =  Utility.changeDateFormat(
+                                        sitedata.lastDelDate.toString(),
+                                        "yyyy-MM-dd",
+                                        "MMM, dd yyyy"
+                                    )
+                                    binding.lDeldate.setText("Last delivery date : "+lastdate)
+
                                 }
+
+
+                                binding.lDelQty.setText("Last Delivery quantity : "+sitedata.noOfLastDel.toString())
+
+                                //  binding.totalNumDelivary.setText(sitedata.noOfDel.toString())
+
+
+                            } else {
+                                //  binding.siteID.setText("0")
+                                binding.lDeldate.setText("Last delivery date : ")
+
+                                binding.lDelQty.setText("Last Delivery quantity : "+"0")
+
+
+                                // binding.rvMealList.visibility = View.GONE
                             }
+
+
                         }
-                        if (loadingAnim.isShowing) loadingAnim.dismiss()
+                    }
+                    Status.LOADING -> {
+
                     }
                     Status.ERROR -> {
-                        if (isAdded) {
-                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                            Utility.commonToast(
-                                requireActivity(),
-                                "warning",
-                                "Please check any delivery bag is pending to your reporting boss",
-                                0
-                            )
-                        }
-                        if (loadingAnim.isShowing) loadingAnim.dismiss()
+
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
                 }
             }
     }
 
-    private fun TSCallCompMoveDirectSave(user: String, value: String, dialog: Dialog) {
-        dialog.dismiss()
-        loadingAnim = Utility.baseLoadingAnimation(
-            requireActivity(), Dialog(requireActivity()), "P l e a s e    w a i t"
-        )
-        loadingAnim.show()
 
-        retailerViewModel.TSCallMoveDirectSave(user, value).observe(viewLifecycleOwner) {
-            when (it.status) {
-                Status.LOADING -> {}
-                Status.SUCCESS -> {
-                    it.responseData?.let { res ->
-                        if (res.code == "200") {
-                            Utility.getBaseMessage(
-                                requireActivity(), "Successful", "Bag Submission completed",
-                                R.drawable.ic_checked_green, 1
-                            )
-                            if (loadingAnim.isShowing) loadingAnim.dismiss()
-
-                            if (isAdded) {
-                                val navController =
-                                    requireActivity().findNavController(R.id.nav_host_fragment)
-                                navController.navigate(R.id.nav_deliveryBagEntry)
-                            }
-                        } else {
-                            if (loadingAnim.isShowing) loadingAnim.dismiss()
-                            Utility.getBaseMessage(
-                                requireActivity(), "Error", res.message.toString(),
-                                R.drawable.error_white, 0
-                            )
-                        }
-                    }
-                }
-                Status.ERROR -> {
-                    if (loadingAnim.isShowing) loadingAnim.dismiss()
-                    if (isAdded) Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-    }
-
-
-    // ---------------------------------------------------------------------
-    // Date picker
-    // ---------------------------------------------------------------------
     private fun showConditionalDatePicker() {
         val today = Calendar.getInstance()
         val year = today.get(Calendar.YEAR)
         val month = today.get(Calendar.MONTH)
         val day = today.get(Calendar.DAY_OF_MONTH)
 
+
+
+        //  val day = 10
+
+
         val dialog = DatePickerDialog(requireContext(), { _, selYear, selMonth, selDay ->
-            selectedDate = "$selYear-${selMonth + 1}-$selDay"
-            _binding?.txtRCallDeliveryDate?.setText(
-                Utility.changeDateFormat(selectedDate, "yyyy-MM-dd", "dd MMM yyyy")
+            // Handle selected date here
+            selectedDate="$selYear-${selMonth + 1}-$selDay"
+
+            binding.txtRCallDeliveryDate.setText(
+                Utility.changeDateFormat(
+                    selectedDate,
+                    "yyyy-MM-dd",
+                    "dd MMM yyyy"
+                )
             )
         }, year, month, day)
 
@@ -275,24 +201,23 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
         val maxCal = Calendar.getInstance()
 
         if (day <= 10) {
+            // Allow from previous month 1st to today
             minCal.set(Calendar.DAY_OF_MONTH, 1)
             minCal.add(Calendar.MONTH, -1)
             maxCal.set(Calendar.DAY_OF_MONTH, day)
         } else {
+            // Restrict to current month only
             minCal.set(Calendar.DAY_OF_MONTH, 1)
             maxCal.set(Calendar.DAY_OF_MONTH, day)
         }
 
+        // Apply date bounds
         dialog.datePicker.minDate = minCal.timeInMillis
         dialog.datePicker.maxDate = maxCal.timeInMillis
 
         dialog.show()
     }
 
-
-    // ---------------------------------------------------------------------
-    // Confirmation bottom sheet
-    // ---------------------------------------------------------------------
     private fun confirmationDialog() {
         val v: View = layoutInflater.inflate(R.layout.add_ts_party_site_comfirmation, null)
         val dialog = BottomSheetDialog(requireContext())
@@ -305,111 +230,271 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
         val txtCDialogTitle: TextView = v.findViewById(R.id.txtCDialogTitle)
         val txtBody: TextView = v.findViewById(R.id.txtBody)
 
+        //   var oth =retailerSetupInfo.split(",")[0]
+        var oth = ""
+
+        val customertype = Utility.getValueByKey(requireActivity(), "selectedCustomer")
+        oth = customertype.toString()
+
+
         txtCDialogTitle.text = "Delivery Quantity Submission"
         txtBody.text = "Do you want to Submit this Quantity?"
+
 
         dialog.setContentView(v)
         dialog.setCancelable(true)
         dialog.show()
 
-        cancel.setOnClickListener { dialog.hide() }
-        btnCancelR.setOnClickListener { dialog.hide() }
+        cancel.setOnClickListener {
+            dialog.hide()
+        }
+
+        btnCancelR.setOnClickListener {
+            dialog.hide()
+
+        }
 
         btnConfirmR.setOnClickListener {
+            //todo
             val empI = Utility.getValueByKey(requireActivity(), "username").toString()
 
+
             if (latitude == 0.0) {
-                getLastKnownLocation()?.let {
-                    latitude = it.latitude
-                    longitude = it.longitude
-                }
+                latitude = getLastKnownLocation()!!.latitude
+                longitude = getLastKnownLocation()!!.longitude
             }
 
             val directComprecordData = prepareOtherCustomerSiteData()
-            if (directComprecordData != null) {
-                TSCallCompMoveDirectSave(empI, directComprecordData, dialog)
-            } else {
-                dialog.dismiss()
-                Utility.commonToast(requireActivity(), "warning", "Missing data, please try again", 0)
+            TSCallCompMoveDirectSave(empI, directComprecordData,dialog)
+
+
+
+        }
+
+
+    }
+
+
+    private fun TSCallCompMoveDirectSave(
+        user: String,
+        value: String,
+        dialog: Dialog
+    ) {
+        dialog.dismiss()
+        loadingAnim = Utility.baseLoadingAnimation(
+            requireActivity(),
+            Dialog(requireActivity()),
+            "P l e a s e    w a i t"
+        )
+        loadingAnim.show()
+
+        retailerViewModel.TSCallMoveDirectSave(user, value).observe(requireActivity()) {
+            when (it.status) {
+                Status.LOADING -> {
+
+                }
+                Status.SUCCESS -> {
+
+                    it.responseData?.let { res ->
+
+                        if (res.code == "200") {
+
+
+                            Utility.getBaseMessage(
+                                requireActivity(),
+                                "Successful",
+                                "Bag Submission completed",
+                                R.drawable.ic_checked_green,
+                                1
+                            )
+                            loadingAnim.dismiss()
+
+                            val navController =
+                                requireActivity().findNavController(R.id.nav_host_fragment)
+                            navController.navigate(R.id.nav_deliveryBagEntry)
+
+
+                        } else {
+                            loadingAnim.dismiss()
+
+                            Utility.getBaseMessage(
+                                requireActivity(),
+                                "Error",
+                                res.message.toString(),
+                                R.drawable.error_white,
+                                0
+                            )
+                        }
+                    }
+                }
+                Status.ERROR -> {
+                    loadingAnim.dismiss()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
 
 
-    // ---------------------------------------------------------------------
-    // Validation
-    // ---------------------------------------------------------------------
-    private fun delValidation(): Boolean {
-        val b = _binding ?: return false
-        var result: Boolean
-        b.layoutRdeliveryOrderQuantity.isErrorEnabled = false
-        b.layoutRdeliveryOrderQuantity.error = null
-        b.layoutRCallDeliveryDate.isErrorEnabled = false
-        b.layoutRCallDeliveryDate.error = null
+    private fun delValidation():Boolean{
+        var result = false
+        binding.layoutRdeliveryOrderQuantity.isErrorEnabled = false
+        binding.layoutRdeliveryOrderQuantity.error = null
+        binding.layoutRCallDeliveryDate.isErrorEnabled = false
+        binding.layoutRCallDeliveryDate.error = null
 
-        val qtyText = b.txtRdeliveryOrderQuantity.text.toString()
-        val qty = qtyText.toIntOrNull()
+        if (binding.txtRdeliveryOrderQuantity.text.toString().isEmpty()||
+            binding.txtRdeliveryOrderQuantity.text.toString().toInt()<50){
+            result = false
+            binding.layoutRdeliveryOrderQuantity.isErrorEnabled = true
+            binding.layoutRdeliveryOrderQuantity.error = "Delivery order quantity is must be greater than 50"
 
-        if (qtyText.isEmpty() || qty == null || qty < 50 || qty > 5000) {
+        }else if(binding.txtRCallDeliveryDate.text.toString().isEmpty()){
             result = false
-            b.layoutRdeliveryOrderQuantity.isErrorEnabled = true
-            b.layoutRdeliveryOrderQuantity.error = "Delivery order quantity must be in between 50 to 5000"
-        } else if (b.txtRCallDeliveryDate.text.toString().isEmpty()) {
-            result = false
-            b.layoutRCallDeliveryDate.isErrorEnabled = true
-            b.layoutRCallDeliveryDate.error = "Delivery date is required"
-        } else {
+            binding.layoutRCallDeliveryDate.isErrorEnabled = true
+            binding.layoutRCallDeliveryDate.error = "Delivery date is required"
+        }
+
+        else {
             result = true
         }
 
+
+
         return result
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 
     private fun setupViewModel() {
+
         retailerViewModel =
             ViewModelProviders.of(this.requireActivity(), RetailerViewModelFactory())
                 .get(RetailerViewModel::class.java)
     }
 
     private fun convertOtherInfo(activity: Activity): GetTSSiteInfoChild? {
-        return try {
-            val prefs = activity.getSharedPreferences(activity.packageName, Context.MODE_PRIVATE)
-            val json = prefs.getString("selectedSiteInfo", null) ?: return null
-            Gson().fromJson(json, GetTSSiteInfoChild::class.java)
-        } catch (e: Exception) {
-            null
-        }
+        val prefs = activity.getSharedPreferences(activity.packageName, Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = prefs.getString("selectedSiteInfo", "")
+        return gson.fromJson(json, GetTSSiteInfoChild::class.java)
     }
 
-    private fun prepareOtherCustomerSiteData(): String? {
-        if (savedCalldata.isEmpty()) return null
-        val currentSite = other ?: convertOtherInfo(requireActivity()) ?: return null
-        other = currentSite
 
-        val emp = Utility.getValueByKey(requireActivity(), "username").toString()
-        val division = Utility.getValueByKey(requireActivity(), "selectedDivision").toString()
-        val district = Utility.getValueByKey(requireActivity(), "selectedDistrict").toString()
-        val thana = Utility.getValueByKey(requireActivity(), "selectedThana").toString()
-        val selectedCustomer = Utility.getValueByKey(requireActivity(), "selectedCustomer").toString()
 
-        val first = savedCalldata[0]
-        var conversionStatus = first.siteConvStat.toString()
+    //todo test
+    private fun getSalesMoveCall(
+        site_id: String
+    ) {
+        retailerViewModel.getSalesMoveCall(site_id)
+            .observe(requireActivity()) {
+                when (it.status) {
 
-        if (latitude == 0.0) {
-            getLastKnownLocation()?.let {
-                latitude = it.latitude
-                longitude = it.longitude
+                    Status.LOADING -> {
+
+                    }
+
+                    Status.SUCCESS -> {
+
+                        it.responseData?.let { res ->
+
+                            /////////
+                            if (res.code == "200") {
+
+
+                                savedCalldata = ArrayList()
+
+
+
+                                savedCalldata = res.data
+                                if (savedCalldata.size > 0) {
+                                    binding.basicSiteInfo.visibility = View.VISIBLE
+                                    binding.siteCode.setText("Site Code : " + savedCalldata.get(0).siteId.toString())
+                                    binding.partyCode.setText("Party Code : " + savedCalldata.get(0).partyId.toString())
+                                    binding.ConversionStatus.setText(
+                                        "Conversion Status : " + savedCalldata.get(
+                                            0
+                                        ).siteConvStat.toString()
+                                    )
+                                    //   binding.contact.setText("Contact : "+savedCalldata.get(0).partyContact.toString())
+                                } else {
+
+                                    binding.basicSiteInfo.visibility = View.GONE
+
+                                }
+
+                            }
+
+
+                        }
+                        loadingAnim.dismiss()
+                    }
+                    Status.ERROR -> {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                        // if(it.message=="500") {
+
+                        Utility.commonToast(requireActivity(),
+                            "warning",
+                            "Please check any delivery bag is pending to your reporting boss",
+                            0)
+
+
+                        /*
+                                                Utility.getBaseMessage(
+                                                        requireActivity(),
+                                                        "Warning",
+                                                        "Please check any delivery bag is pending to your reporting boss",
+                                                        R.drawable.ic_checked_green,
+                                                        2
+                                                    )
+
+                         */
+                        //    }
+
+
+                        loadingAnim.dismiss()
+
+                    }
+
+                }
+
             }
+
+    }
+
+
+    private fun prepareOtherCustomerSiteData(): String {
+
+        var emp = Utility.getValueByKey(requireActivity(), "username").toString()
+
+        var division = Utility.getValueByKey(requireActivity(), "selectedDivision").toString()
+        var district = Utility.getValueByKey(requireActivity(), "selectedDistrict").toString()
+        var thana = Utility.getValueByKey(requireActivity(), "selectedThana").toString()
+
+        var selectedCustomer = Utility.getValueByKey(requireActivity(), "selectedCustomer").toString()
+
+        other = convertOtherInfo(requireActivity())!!
+
+        var conversionStatus = savedCalldata.get(0).siteConvStat.toString()
+        if (latitude == 0.0) {
+            latitude = getLastKnownLocation()!!.latitude
+            longitude = getLastKnownLocation()!!.longitude
         }
 
-        conversionStatus = if (conversionStatus == "Yes") "Already converted site" else conversionStatus
+        if(conversionStatus=="Yes"){
+            conversionStatus = "Already converted site"
+        }else {
+            conversionStatus = savedCalldata.get(0).siteConvStat.toString()
+        }
 
-        val qtyText = _binding?.txtRdeliveryOrderQuantity?.text?.toString()
-        val qty = qtyText?.toIntOrNull() ?: return null
 
-        val data = OtherCustomerdirectcallinfo(
-            first.partyId.toString(),
-            first.siteId.toString(),
+        val OtherCustomerdirectcallinfo =  OtherCustomerdirectcallinfo(
+            savedCalldata.get(0).partyId.toString(),
+            savedCalldata.get(0).siteId.toString(),
             "Bangladesh",
             division,
             district,
@@ -418,20 +503,20 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
             selectedCustomer,
             "",
             "",
-            first.partyContact,
-            first.partyName,
-            first.partyMobile.toString(),
+            savedCalldata.get(0).partyContact,
+            savedCalldata.get(0).partyName,
+            savedCalldata.get(0).partyMobile.toString(),
             "",
             latitude,
             longitude,
             "Reference Call",
             emp,
-            first.discussTop.toString(),
-            first.discussSubTopic.toString(),
-            first.siteRefBy.toString(),
-            first.cemType.toString(),
-            qty,
-            first.respOff.toString(),
+            savedCalldata.get(0).discussTop.toString(),
+            savedCalldata.get(0).discussSubTopic.toString(),
+            savedCalldata.get(0).siteRefBy.toString(),
+            savedCalldata.get(0).cemType.toString(),
+            binding.txtRdeliveryOrderQuantity.text.toString().toInt(),
+            savedCalldata.get(0).respOff.toString(),
             "",
             "",
             conversionStatus,
@@ -445,14 +530,17 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
             "",
             "",
             "jpg",
-            first.movStatus.toString(),
-            first.dealerId.toString(),
-            first.retailerId.toString(),
-            first.siteCurrStatus.toString(),
-        )
+            savedCalldata.get(0).movStatus.toString(),
+            savedCalldata.get(0).dealerId.toString(),
+            savedCalldata.get(0).retailerId.toString(),
+            savedCalldata.get(0).siteCurrStatus.toString(),
 
-        return Gson().toJson(data)
+            )
+
+        val gson = Gson()
+        return gson.toJson(OtherCustomerdirectcallinfo)
     }
+
 
     private fun getLastKnownLocation(): Location? {
         return try {
@@ -469,15 +557,30 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
             bestLocation
         } catch (e: SecurityException) {
             null
-        } catch (e: Exception) {
-            null
         }
     }
 
 
-    // ---------------------------------------------------------------------
-    // Toolbar
-    // ---------------------------------------------------------------------
+
+    /*
+        private fun getLastKnownLocation(): Location? {
+            val mLocationManager: LocationManager =
+                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val providers: List<String> = mLocationManager.getProviders(true)
+            var bestLocation: Location? = null
+            for (provider in providers) {
+                val location = mLocationManager!!.getLastKnownLocation(provider) ?: continue
+                if (bestLocation == null || location.accuracy < bestLocation.accuracy) {
+                    bestLocation = location
+                }
+            }
+            return bestLocation
+        }
+
+     */
+
+
+    //toolbar home
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu, menu)
     }
@@ -485,13 +588,14 @@ class Frag_delivery_Bag_Entry_Child : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {
-                if (isAdded) {
-                    val navController = requireActivity().findNavController(R.id.nav_host_fragment)
-                    navController.navigate(R.id.nav_dashboard)
-                }
+                //  Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                val navController =
+                    requireActivity().findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_dashboard)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }

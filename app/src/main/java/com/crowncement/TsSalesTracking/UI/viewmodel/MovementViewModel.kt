@@ -19,6 +19,9 @@ class MovementViewModel : ViewModel() {
     private var approveMonthlyMovementMutableLiveData: MutableLiveData<Resource<CommonSaveResponse>>?= null
     private var actualMovementPlanMutableLiveData: MutableLiveData<Resource<ActualPlnResponse>>?= null
 
+    private var GetTSMovLocationMutableLiveData: MutableLiveData<Resource<GetTSMovLocationResponce>>?= null
+
+
     fun getRoute(user_id: String): MutableLiveData<Resource<MovRouteResponse>>? {
         getEmpRouteMutableLiveData = MovementRepository.getEmpRouteList(user_id)
         return getEmpRouteMutableLiveData
@@ -32,6 +35,12 @@ class MovementViewModel : ViewModel() {
     fun movementPlanList(user_id: String,year: String,month: String): MutableLiveData<Resource<MovementPlanResponse>>? {
         movementListMutableLiveData = MovementRepository.movementPlanList(user_id,year,month)
         return movementListMutableLiveData
+    }
+
+    //
+    fun GetTSMovLocationList(user_id: String): MutableLiveData<Resource<GetTSMovLocationResponce>>? {
+        GetTSMovLocationMutableLiveData = MovementRepository.getTSMovLocationList(user_id)
+        return GetTSMovLocationMutableLiveData
     }
 
     fun movementAcPlanList(user_id: String,year: String,month: String): MutableLiveData<Resource<MovementPlanResponse>>? {

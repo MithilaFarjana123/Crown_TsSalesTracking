@@ -595,6 +595,25 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
         noAchivementTypeList.add("Credit Issue")
         noAchivementTypeList.add("Dealer/Retailer Influenced to other brand ")
         noAchivementTypeList.add("Quality Issue")
+
+        //new
+        noAchivementTypeList.add("Rate Higher Than Competitor")
+        noAchivementTypeList.add("Dealer/Retailer Influenced to Competitor Brand")
+        noAchivementTypeList.add("Engineer Influenced to Competitor Brand")
+        noAchivementTypeList.add("Contractor/mason Influenced to Competitor brand")
+        noAchivementTypeList.add("Pre Approved Other Brand(LGC/IP Project)")
+        noAchivementTypeList.add("Credit Facility Issue")
+        noAchivementTypeList.add("Special Discount Issue")
+        noAchivementTypeList.add("Competitor Promotional Offer")
+        noAchivementTypeList.add("Work-Specific Brand Preference")
+        noAchivementTypeList.add("Out of Dealer/Retail Coverage ")
+        noAchivementTypeList.add("Advanced Paid to other Brand")
+        noAchivementTypeList.add("One-Stop Purchase Preference")
+        noAchivementTypeList.add("Iconic Project Brand Influence")
+        noAchivementTypeList.add("Quality Perception")
+        noAchivementTypeList.add("Reference/Work-of-Month Influence")
+        noAchivementTypeList.add("Specific Brand Dominance")
+
         noAchivementTypeList.add("Others")
 
 
@@ -815,10 +834,13 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
             binding.layoutTCallClientType.error = "Cement Type is required"
         }
         else if(binding.txtTdeliveryOrderQuantity.text.toString().isEmpty()||
-            binding.txtTdeliveryOrderQuantity.text.toString().toInt()<50){
+            binding.txtTdeliveryOrderQuantity.text.toString().toInt()<50 ||
+            binding.txtTdeliveryOrderQuantity.text.toString().toInt()>3000
+
+            ){
             result = false
             binding.layoutTdeliveryOrderQuantity.isErrorEnabled = true
-            binding.layoutTdeliveryOrderQuantity.error = "Delivery order quantity is must be greater than 50"
+            binding.layoutTdeliveryOrderQuantity.error = "Delivery order quantity is must be in between 50 to 3000"
 
         }
 
@@ -923,11 +945,13 @@ class Frag_Taged_Call_Record_Entry : Fragment(),
         else if(
 
             (binding.txtTBdeliveryQuantity.text.toString().isNotEmpty()
-                    && binding.txtTBdeliveryQuantity.text.toString().toInt()<50)
+                    && (binding.txtTBdeliveryQuantity.text.toString().toInt()<50||
+                    binding.txtTBdeliveryQuantity.text.toString().toInt()>3000)
+                            )
         ){
             result = false
             binding.layoutTdeliveryQuantity.isErrorEnabled = true
-            binding.layoutTdeliveryQuantity.error = "Delivery order quantity is must be greater than 50"
+            binding.layoutTdeliveryQuantity.error = "Delivery order quantity is must be in between 50 to 3000"
         }
         //
         else if(binding.txtTBeforeCondate.text.toString().isEmpty()

@@ -48,14 +48,14 @@ class Frag_Movement_Plan_Entry : Fragment() {
 
     private val TAG = "Movement_Plan_Entry"
 
- //   lateinit var rootView: View
-
+    //   lateinit var rootView: View
 
 
     private var _binding: FragMovementPlanBinding? = null
     private val binding get() = _binding!!
 
     lateinit var empRouteList: ArrayList<String>
+    lateinit var empIndividualRouteList : ArrayList<String>
     var selectedRouteList: ArrayList<String> = ArrayList()
     var processedRouteList: ArrayList<String> = ArrayList()
 
@@ -80,38 +80,38 @@ class Frag_Movement_Plan_Entry : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-      //  rootView = inflater.inflate(R.layout.frag_movement_plan, container, false)
+        //  rootView = inflater.inflate(R.layout.frag_movement_plan, container, false)
         _binding = FragMovementPlanBinding.inflate(inflater, container, false)
 
-/*
+        /*
 
-        loadingAnim = Utility.baseLoadingAnimation(
-            requireActivity(),
-            Dialog(requireActivity()),
-            "P l e a s e    w a i t"
-        )
-
-
-        user = Utility.getValueByKey(requireActivity(), "username")!!
-
-        MovementViewModelFactory()
-        CommonViewModelFactory()
-        setupViewModel()
-
-        prepareCalendar()
-        onDateSelectListener()
-
-        //Get Holiday List
-        val mo = Utility.getCurrentDate("MM")!!.toInt() + 1
-        val year = Utility.getCurrentDate("yyyy")!!.toInt()
-        getHolidayList(user, year.toString(), mo.toString())
+                loadingAnim = Utility.baseLoadingAnimation(
+                    requireActivity(),
+                    Dialog(requireActivity()),
+                    "P l e a s e    w a i t"
+                )
 
 
-        binding.fabAddMo.setOnClickListener {
-            val coD = Utility.changeDateFormat(selectedDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
-            addRouteBottomSheet(coD.toString())
-        }
-*/
+                user = Utility.getValueByKey(requireActivity(), "username")!!
+
+                MovementViewModelFactory()
+                CommonViewModelFactory()
+                setupViewModel()
+
+                prepareCalendar()
+                onDateSelectListener()
+
+                //Get Holiday List
+                val mo = Utility.getCurrentDate("MM")!!.toInt() + 1
+                val year = Utility.getCurrentDate("yyyy")!!.toInt()
+                getHolidayList(user, year.toString(), mo.toString())
+
+
+                binding.fabAddMo.setOnClickListener {
+                    val coD = Utility.changeDateFormat(selectedDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
+                    addRouteBottomSheet(coD.toString())
+                }
+        */
 
         return binding.root
     }
@@ -137,6 +137,7 @@ class Frag_Movement_Plan_Entry : Fragment() {
 
         prepareCalendar()
         onDateSelectListener()
+        holidayList = ArrayList()
 
         //Get Holiday List
         val mo = Utility.getCurrentDate("MM")!!.toInt() + 1
@@ -202,31 +203,7 @@ class Frag_Movement_Plan_Entry : Fragment() {
 
     private fun onDateSelectListener() {
 
-//        rootView.calender.setOnDateChangeListener { v, year, month, day ->
-//
-//            val currentMonth = month + 1
-//            da = ""
-//            mo = ""
-//            da = day.toString()
-//            mo = currentMonth.toString()
-//
-//            if (day < 10) {
-//                da = ("0$day")
-//            }
-//            if (mo.toInt() < 10) {
-//                mo = ("0$mo")
-//            }
-//
-//            val date = "$da.$mo.$year"
-//            selectedDate = "$year-$mo-$da"
-//
-//            rootView.txtMovDate.text = date
-//            val convDate = Utility.changeDateFormat(rootView.txtMovDate.text.toString(), "dd.MM.yyyy", "EEE, dd MMM yyyy").toString()
-//            rootView.txtMovDate.text = convDate
-//
-//            sortSelectedDateData(selectedDate)
-//
-//        }
+
 
         binding.calendarView.setOnDateChangedListener { widget, date, selected ->
             val sDate = Utility.changeDateFormat(
@@ -421,7 +398,7 @@ class Frag_Movement_Plan_Entry : Fragment() {
             CommonViewModelFactory()
         )[CommonViewModel::class.java]
     }
-
+/*
     private fun getEmpRoute(
         empID: String, idGRV: GridView, context: Context
     ) {
@@ -432,6 +409,8 @@ class Frag_Movement_Plan_Entry : Fragment() {
                     it.responseData?.let { res ->
 
                         if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            GetTSMovLocationList(empID,idGRV,context)
 
                             empRouteList = ArrayList()
                             for (item in res.data) {
@@ -464,6 +443,242 @@ class Frag_Movement_Plan_Entry : Fragment() {
         }
     }
 
+
+    /////////
+    private fun GetTSMovLocationList(
+        empID: String, idGRV: GridView, context: Context
+    ) {
+        movementViewModel.GetTSMovLocationList(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+
+                    it.responseData?.let { res ->
+
+                        if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            //  Toast.makeText(requireContext(), res.data.size, Toast.LENGTH_LONG).show()
+
+                            empIndividualRouteList = ArrayList()
+                            for (item in res.data) {
+                                empRouteList.add(item.xroute + ":" + item.xrow + ":" + item.zact)
+                            }
+
+                            //   loadRoute(idGRV, context)
+
+                        } else {
+
+                            Utility.commonToast(
+                                requireActivity(),
+                                "No route plan found",
+                                res.message.toString(),
+                                2
+                            )
+                        }
+                    }
+                }
+
+                Status.LOADING -> {
+
+                }
+
+                Status.ERROR -> {
+
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+ */
+
+
+/*
+    private fun getEmpRoute(
+        empID: String, idGRV: GridView, context: Context
+    ) {
+        movementViewModel.getRoute(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+
+                    it.responseData?.let { res ->
+
+                        if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            empRouteList = ArrayList()
+                            for (item in res.data) {
+                                empRouteList.add(item.routeNo + ":" + item.routeName + ":" + item.routeCode)
+                            }
+
+                            // Don't call loadRoute here anymore.
+                            // Wait for empIndividualRouteList before filtering & loading.
+                            GetTSMovLocationList(empID, idGRV, context)
+
+                        } else {
+
+                            Utility.commonToast(
+                                requireActivity(),
+                                "No route plan found",
+                                res.message.toString(),
+                                2
+                            )
+                        }
+                    }
+                }
+
+                Status.LOADING -> {
+
+                }
+
+                Status.ERROR -> {
+
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+
+
+    private fun GetTSMovLocationList(
+        empID: String, idGRV: GridView, context: Context
+    ) {
+        movementViewModel.GetTSMovLocationList(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.responseData?.let { res ->
+                        if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            empIndividualRouteList = ArrayList()
+                            for (item in res.data) {
+                                empIndividualRouteList.add(item.xroute + ":" + item.xrow + ":" + item.zact)
+                            }
+
+
+                             empRouteList = filterMatchingRoutes()
+
+                            loadRoute(idGRV, context)
+
+                        } else {
+                            Utility.commonToast(
+                                requireActivity(),
+                                "No route plan found",
+                                res.message.toString(),
+                                2
+                            )
+                        }
+                    }
+                }
+                Status.LOADING -> {}
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+ */
+
+    private fun getEmpRoute(
+        empID: String, idGRV: GridView, context: Context
+    ) {
+        movementViewModel.getRoute(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+
+                    it.responseData?.let { res ->
+
+                        if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            empRouteList = ArrayList()
+                            for (item in res.data) {
+                                empRouteList.add(item.routeNo + ":" + item.routeName + ":" + item.routeCode)
+                            }
+
+                            // Fetch individual routes to check against empRouteList
+                            GetTSMovLocationList(empID, idGRV, context)
+
+                        } else {
+
+                            Utility.commonToast(
+                                requireActivity(),
+                                "No route plan found",
+                                res.message.toString(),
+                                2
+                            )
+                        }
+                    }
+                }
+
+                Status.LOADING -> {
+
+                }
+
+                Status.ERROR -> {
+
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+
+    private fun GetTSMovLocationList(
+        empID: String, idGRV: GridView, context: Context
+    ) {
+        movementViewModel.GetTSMovLocationList(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.responseData?.let { res ->
+                        if (res.code.toString() == "200" && !res.data.isNullOrEmpty()) {
+
+                            empIndividualRouteList = ArrayList()
+                            for (item in res.data) {
+                                empIndividualRouteList.add(item.xroute + ":" + item.xrow + ":" + item.zact)
+                            }
+
+                            // Filter matching routes when location list is present
+                            empRouteList = filterMatchingRoutes()
+                            loadRoute(idGRV, context)
+
+                        } else {
+                            // If location list response is empty, fallback to full getEmpRoute response
+                            loadRoute(idGRV, context)
+                        }
+                    }
+                }
+                Status.LOADING -> {}
+                Status.ERROR -> {
+                    // Fallback to getEmpRoute list in case of network error
+                    loadRoute(idGRV, context)
+                }
+            }
+        }
+    }
+
+
+
+
+    private fun filterMatchingRoutes(): ArrayList<String> {
+        val filteredList = ArrayList<String>()
+
+        for (routeItem in empRouteList) {
+            val routeNo = routeItem.trim().split(":")[0]
+
+            for (indItem in empIndividualRouteList) {
+                val xroute = indItem.trim().split(":")[0]
+
+                if (routeNo == xroute) {
+                    filteredList.add(routeItem)
+                    break
+                }
+            }
+        }
+
+        return filteredList
+    }
+
+
+    ///////////////
     private fun confirmDialog(parentDialog: Dialog) {
         val v: View = layoutInflater.inflate(R.layout.confirm_movement_plan_dialog, null)
         val dialog = BottomSheetDialog(requireContext())

@@ -135,6 +135,7 @@ class Frag_dashboard : Fragment() {
     var user = ""
     lateinit var loadingAnim: Dialog
     lateinit var imageList: ArrayList<String>
+    lateinit var empIndividualRouteList : ArrayList<String>
 
 
     private var countLate = 0
@@ -244,7 +245,7 @@ class Frag_dashboard : Fragment() {
         onClickListener()
 
 
-      //  reminderSection()
+        //  reminderSection()
 
         offlineQuickVisitMenu()
 
@@ -283,32 +284,32 @@ class Frag_dashboard : Fragment() {
     }
 
 
-/*
-    private fun convertOfflineVisit() {
+    /*
+        private fun convertOfflineVisit() {
 
-        val v: View = layoutInflater.inflate(R.layout.convert_quick_visit, null)
-        // val dialog = BottomSheetDialog(requireContext())
-        val offlineDialog = Dialog(v.context, android.R.style.Theme_Light_NoTitleBar_Fullscreen)
-        Objects.requireNonNull(offlineDialog.window)
-            ?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            val v: View = layoutInflater.inflate(R.layout.convert_quick_visit, null)
+            // val dialog = BottomSheetDialog(requireContext())
+            val offlineDialog = Dialog(v.context, android.R.style.Theme_Light_NoTitleBar_Fullscreen)
+            Objects.requireNonNull(offlineDialog.window)
+                ?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
-        val QVCancel: TextView = v.findViewById(R.id.QVCancel)
+            val QVCancel: TextView = v.findViewById(R.id.QVCancel)
 
 
-        loadQuickVisit(getTodayOfflineQuickVisit(requireActivity()), v)
+            loadQuickVisit(getTodayOfflineQuickVisit(requireActivity()), v)
 
-        offlineDialog.setContentView(v)
-        offlineDialog.setCancelable(true)
-        offlineDialog.show()
+            offlineDialog.setContentView(v)
+            offlineDialog.setCancelable(true)
+            offlineDialog.show()
 
-        QVCancel.setOnClickListener {
+            QVCancel.setOnClickListener {
 
-            offlineDialog.dismiss()
+                offlineDialog.dismiss()
+            }
+
         }
 
-    }
-
- */
+     */
 
     /*
 
@@ -496,7 +497,7 @@ class Frag_dashboard : Fragment() {
         }
         // TODO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Add back button listener end
     }
-
+/*
     private fun getEmpRoute(
         empID: String,
         idGRV: GridView,
@@ -546,6 +547,231 @@ class Frag_dashboard : Fragment() {
         }
     }
 
+    */
+/*
+    private fun getEmpRoute(
+        empID: String,
+        idGRV: GridView,
+        context: Context,
+        dataList: ArrayList<MovementPlanChild2>,
+        chips: ChipGroup
+    ) {
+        movementViewModel.getRoute(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+
+                    it.responseData?.let { res ->
+
+                        if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            empRouteList = ArrayList()
+
+                            for (item in res.data) {
+                                val prePlanListItem =
+                                    item.routeNo + ":" + item.routeName + ":" + item.routeCode
+                                if (!checkEmpRouteExistence(prePlanListItem)) {
+                                    empRouteList.add(prePlanListItem)
+                                }
+                            }
+
+                            // Don't call loadRoute here anymore.
+                            // Wait for empIndividualRouteList before filtering & loading.
+                            GetTSMovLocationList(empID, idGRV, context,dataList,chips)
+
+                        } else {
+
+                            Utility.commonToast(
+                                requireActivity(),
+                                "No route plan found",
+                                res.message.toString(),
+                                2
+                            )
+                        }
+                    }
+                }
+
+                Status.LOADING -> {
+
+                }
+
+                Status.ERROR -> {
+
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+
+    private fun GetTSMovLocationList(
+        empID: String,
+        idGRV: GridView,
+        context: Context,
+        dataList: ArrayList<MovementPlanChild2>,
+        chips: ChipGroup
+    ) {
+        movementViewModel.GetTSMovLocationList(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.responseData?.let { res ->
+                        if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            empIndividualRouteList = ArrayList()
+                            for (item in res.data) {
+                                empIndividualRouteList.add(item.xroute + ":" + item.xrow + ":" + item.zact)
+                            }
+
+                            empRouteList = filterMatchingRoutes()
+                            loadRoute(idGRV, context, chips, dataList)
+
+//loadRoute(idGRV, context)
+
+                        } else {
+                            Utility.commonToast(
+                                requireActivity(),
+                                "No route plan found",
+                                res.message.toString(),
+                                2
+                            )
+                        }
+                    }
+                }
+                Status.LOADING -> {}
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+ */
+
+    private fun getEmpRoute(
+        empID: String,
+        idGRV: GridView,
+        context: Context,
+        dataList: ArrayList<MovementPlanChild2>,
+        chips: ChipGroup
+    ) {
+        movementViewModel.getRoute(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+
+                    it.responseData?.let { res ->
+
+                        if (res.code.toString() == "200" && res.data.size > 0) {
+
+                            empRouteList = ArrayList()
+
+                            for (item in res.data) {
+                                val prePlanListItem =
+                                    item.routeNo + ":" + item.routeName + ":" + item.routeCode
+                                if (!checkEmpRouteExistence(prePlanListItem)) {
+                                    empRouteList.add(prePlanListItem)
+                                }
+                            }
+
+                            // Fetch individual routes to check against empRouteList
+                            GetTSMovLocationList(empID, idGRV, context, dataList, chips)
+
+                        } else {
+
+                            Utility.commonToast(
+                                requireActivity(),
+                                "No route plan found",
+                                res.message.toString(),
+                                2
+                            )
+                        }
+                    }
+                }
+
+                Status.LOADING -> {
+
+                }
+
+                Status.ERROR -> {
+
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+
+    private fun GetTSMovLocationList(
+        empID: String,
+        idGRV: GridView,
+        context: Context,
+        dataList: ArrayList<MovementPlanChild2>,
+        chips: ChipGroup
+    ) {
+        movementViewModel.GetTSMovLocationList(empID)?.observe(requireActivity()) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.responseData?.let { res ->
+                        if (res.code.toString() == "200" && !res.data.isNullOrEmpty()) {
+
+                            empIndividualRouteList = ArrayList()
+                            for (item in res.data) {
+                                empIndividualRouteList.add(item.xroute + ":" + item.xrow + ":" + item.zact)
+                            }
+
+                            // If location data is present, filter matching routes and load
+                            empRouteList = filterMatchingRoutes()
+                            loadRoute(idGRV, context, chips, dataList)
+
+                        } else {
+                            // Fallback: If location list is empty or code is not 200, load unfiltered getEmpRoute list directly
+                            loadRoute(idGRV, context, chips, dataList)
+                        }
+                    } ?: run {
+                        // Handle null responseData fallback
+                        loadRoute(idGRV, context, chips, dataList)
+                    }
+                }
+                Status.LOADING -> {}
+                Status.ERROR -> {
+                    // Fallback to empRouteList on network error
+                    loadRoute(idGRV, context, chips, dataList)
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+
+    private fun filterMatchingRoutes(): ArrayList<String> {
+        val filteredList = ArrayList<String>()
+
+        for (routeItem in empRouteList) {
+            val routeNo = routeItem.trim().split(":")[0]
+
+            for (indItem in empIndividualRouteList) {
+                val xroute = indItem.trim().split(":")[0]
+
+                if (routeNo == xroute) {
+                    filteredList.add(routeItem)
+                    break
+                }
+            }
+        }
+
+        return filteredList
+    }
+
+/*
+    private fun checkEmpRouteExistence(value: String): Boolean {
+        for (item in empRouteList) {
+            if (value == item) {
+                return true
+            }
+        }
+        return false
+    }
+
+ */
+
     private fun loadRoute(
         idGRV: GridView,
         context: Context,
@@ -560,6 +786,7 @@ class Frag_dashboard : Fragment() {
             loadAlreadyAddedPlan(planList, routeChipGroup)
         }
     }
+
 
     private fun checkExistence(value: String): Boolean {
         var res = false
@@ -1085,7 +1312,7 @@ class Frag_dashboard : Fragment() {
             else {
                 //For attendance reject case
 
-              //  attendanceWarning()
+                //  attendanceWarning()
 
             }
 
@@ -1923,82 +2150,82 @@ class Frag_dashboard : Fragment() {
 
 
 
-/*
-    @SuppressLint("SuspiciousIndentation")
-    private fun startServices() {
+    /*
+        @SuppressLint("SuspiciousIndentation")
+        private fun startServices() {
 
-        //TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TOUR TRACKER SERVICE
-        val isTourRunning = Utility.getValueByKey(requireActivity(), "Tour")
-        val attStatus: Att = Utility.getAttInfo(requireActivity())!!
-        if (isTourRunning!!.isNotBlank() || attStatus.tour_start_st.toString() == "1" || attStatus.tour_exec_st.toString() == "2-Running") {
-            binding.tourStatus.visibility = View.VISIBLE
-            //Stop location service if running and then start travel tracker
-            //CALL STOP SERVICE
-//            val intent = Intent(requireContext(), TrackingService::class.java)
-//            requireActivity().stopService(intent)
+            //TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TOUR TRACKER SERVICE
+            val isTourRunning = Utility.getValueByKey(requireActivity(), "Tour")
+            val attStatus: Att = Utility.getAttInfo(requireActivity())!!
+            if (isTourRunning!!.isNotBlank() || attStatus.tour_start_st.toString() == "1" || attStatus.tour_exec_st.toString() == "2-Running") {
+                binding.tourStatus.visibility = View.VISIBLE
+                //Stop location service if running and then start travel tracker
+                //CALL STOP SERVICE
+    //            val intent = Intent(requireContext(), TrackingService::class.java)
+    //            requireActivity().stopService(intent)
 
-            if (isMyServiceRunning()) {
+                if (isMyServiceRunning()) {
 
-                val intent = Intent(requireContext(), TrackingService::class.java)
-                //  if(intent != null) {
-                requireActivity().stopService(intent)
-                //  }
+                    val intent = Intent(requireContext(), TrackingService::class.java)
+                    //  if(intent != null) {
+                    requireActivity().stopService(intent)
+                    //  }
 
-            }
-
-            if (!isTravelServiceRunning()) {
-                val intent = Intent(requireContext(), TravelTrackingService::class.java)
-                //
-                //   if (intent != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    intent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
                 }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    requireContext().startForegroundService(intent)
-                } else {
-                    requireContext().startService(intent)
+                if (!isTravelServiceRunning()) {
+                    val intent = Intent(requireContext(), TravelTrackingService::class.java)
+                    //
+                    //   if (intent != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        intent.action = Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
+                    }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        requireContext().startForegroundService(intent)
+                    } else {
+                        requireContext().startService(intent)
+                    }
+                    //
+                    //   }
+                    //
                 }
-                //
-                //   }
-                //
-            }
-        }
-
-
-
-
-        else {
-            binding.tourStatus.visibility = View.GONE
-            //CALL STOP SERVICE
-            if (isTravelServiceRunning()) {
-                val intent = Intent(requireContext(), TravelTrackingService::class.java)
-                //   if(intent != null) {
-                requireActivity().stopService(intent)
-                //   }
-
             }
 
+
+
+
+            else {
+                binding.tourStatus.visibility = View.GONE
+                //CALL STOP SERVICE
+                if (isTravelServiceRunning()) {
+                    val intent = Intent(requireContext(), TravelTrackingService::class.java)
+                    //   if(intent != null) {
+                    requireActivity().stopService(intent)
+                    //   }
+
+                }
+
+                checkingLocationTrackerStatus()
+            }
+    //TODO->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tour TRACKER SERVICE END
+
+            Utility.removePreference(requireActivity(), "acCustomer")
+            Utility.removePreference(requireActivity(), "selectedDivision")
+            Utility.removePreference(requireActivity(), "selectedDistrict")
+            Utility.removePreference(requireActivity(), "selectedThana")
+            Utility.removePreference(requireActivity(), "selectedRoute")
+            Utility.removePreference(requireActivity(), "selectedOther")
+
+
+    //TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Location Tracking Service
             checkingLocationTrackerStatus()
+    //TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Location Tracking Service END
+
+
         }
-//TODO->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tour TRACKER SERVICE END
 
-        Utility.removePreference(requireActivity(), "acCustomer")
-        Utility.removePreference(requireActivity(), "selectedDivision")
-        Utility.removePreference(requireActivity(), "selectedDistrict")
-        Utility.removePreference(requireActivity(), "selectedThana")
-        Utility.removePreference(requireActivity(), "selectedRoute")
-        Utility.removePreference(requireActivity(), "selectedOther")
-
-
-//TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Location Tracking Service
-        checkingLocationTrackerStatus()
-//TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Location Tracking Service END
-
-
-    }
-
- */
+     */
 
     private fun startServices() {
 
@@ -2035,7 +2262,7 @@ class Frag_dashboard : Fragment() {
             }
 
             checkingLocationTrackerStatus()
-            
+
         }
 //TODO->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tour TRACKER SERVICE END
         Utility.removePreference(requireActivity(), "acCustomer")
@@ -2130,7 +2357,7 @@ class Frag_dashboard : Fragment() {
         val att_status = Utility.getAttInfo(requireActivity())
         if (loc_track_status == "Yes" || isLocationEnable == "YES") {
             //   if (att_status!!.intime.toString() != "2999-12-31 00:00:00.0" && att_status.outtime == "1900-01-01 00:00:00.0")
-           // if (att_status!!.intime.toString() != "" && att_status!!.intime.toString() != "2999-12-31 00:00:00.0")
+            // if (att_status!!.intime.toString() != "" && att_status!!.intime.toString() != "2999-12-31 00:00:00.0")
             if (att_status!!.intime.toString() != "2999-12-31 00:00:00.0" && att_status.outtime == "1900-01-01 00:00:00.0") {
                 startBackgroundLocationService()
             }
@@ -2294,6 +2521,11 @@ class Frag_dashboard : Fragment() {
 
 
         binding.attSummaryChild.layAttendenceReport.setOnClickListener {
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.nav_attendance_report)
+        }
+
+        binding.basicInfo1.layAttendenceReport.setOnClickListener {
             val navController = requireActivity().findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_attendance_report)
         }
@@ -2642,7 +2874,7 @@ class Frag_dashboard : Fragment() {
     //added for back pressed
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-     //   setHasOptionsMenu(true)
+        //   setHasOptionsMenu(true)
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -2659,61 +2891,61 @@ class Frag_dashboard : Fragment() {
 
 
 
-//todo search
+    //todo search
     private fun search() {
 
-    val v: View = layoutInflater.inflate(R.layout.search_existingparty, null)
-    val dialog = BottomSheetDialog(requireActivity())
-    var picker: DatePickerDialog
-    Objects.requireNonNull(dialog.window)
-        ?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        val v: View = layoutInflater.inflate(R.layout.search_existingparty, null)
+        val dialog = BottomSheetDialog(requireActivity())
+        var picker: DatePickerDialog
+        Objects.requireNonNull(dialog.window)
+            ?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
-    val SearchParty = v.findViewById<TextInputEditText>(R.id.search_Party)
-    val exitingPartyDetails = v.findViewById<TextView>(R.id.exitingPartyDetails)
-    val imgClosesSearch =  v.findViewById<ImageView>(R.id.imgClosesSearch)
+        val SearchParty = v.findViewById<TextInputEditText>(R.id.search_Party)
+        val exitingPartyDetails = v.findViewById<TextView>(R.id.exitingPartyDetails)
+        val imgClosesSearch =  v.findViewById<ImageView>(R.id.imgClosesSearch)
 
-   // SearchParty.queryHint = "Search your party here"
+        // SearchParty.queryHint = "Search your party here"
 
-  //  getSearchByMobile(SearchParty.toString(),exitingPartyDetails)
+        //  getSearchByMobile(SearchParty.toString(),exitingPartyDetails)
 
-    SearchParty.addTextChangedListener(object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        SearchParty.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-
-            var given_num =SearchParty.text.toString()
-            if (given_num.length == 11) {
-                loadingAnim.show()
-
-                getSearchByMobile(given_num,exitingPartyDetails)
 
             }
-        }
 
-    })
-
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
 
-    dialog.setContentView(v)
-    dialog.setCancelable(true)
-    dialog.show()
+            }
 
-    imgClosesSearch.setOnClickListener { dialog.dismiss() }
+            override fun afterTextChanged(p0: Editable?) {
+
+                var given_num =SearchParty.text.toString()
+                if (given_num.length == 11) {
+                    loadingAnim.show()
+
+                    getSearchByMobile(given_num,exitingPartyDetails)
+
+                }
+            }
+
+        })
+
+
+
+        dialog.setContentView(v)
+        dialog.setCancelable(true)
+        dialog.show()
+
+        imgClosesSearch.setOnClickListener { dialog.dismiss() }
 
 
 
 
 
 
-}
+    }
 
 
     //todo getSearchByMobile
@@ -2725,14 +2957,14 @@ class Frag_dashboard : Fragment() {
 
                 Status.LOADING -> {
                     loadingAnim.dismiss()
-                   // dialog.dismiss()
+                    // dialog.dismiss()
                 }
 
                 Status.SUCCESS -> {
 
                     it.responseData?.let { res ->
                         loadingAnim.dismiss()
-                     //   dialog.dismiss()
+                        //   dialog.dismiss()
 
                         if(res.data.isNotEmpty()) {
                             exitingPartyDetails.setText(
@@ -2761,7 +2993,7 @@ class Frag_dashboard : Fragment() {
                 }
                 Status.ERROR -> {
                     loadingAnim.dismiss()
-                   // dialog.dismiss()
+                    // dialog.dismiss()
 
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
 
@@ -2774,23 +3006,23 @@ class Frag_dashboard : Fragment() {
 //override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //    setHasOptionsMenu(true)
 //}
-/*
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_home -> {
-                Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    /*
+        override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+            inflater.inflate(R.menu.toolbar_menu, menu)
         }
-    }
+
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            return when (item.itemId) {
+                R.id.action_home -> {
+                    Toast.makeText(requireContext(), "Home clicked", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
+            }
+        }
 
 
- */
+     */
 
 
 

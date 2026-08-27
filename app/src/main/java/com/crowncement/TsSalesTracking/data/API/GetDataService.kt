@@ -713,6 +713,14 @@ fun CarReqEntList(
         @Part("pln_mn") pln_mn: RequestBody
     ): Flowable<MovementPlanResponse>?
 
+    //todo individual employee route
+
+    @Multipart
+    @POST("GetTSMovLocation")
+    fun GetTSMovLocation(
+        @Part("xemp") xemp: RequestBody
+    ): Flowable<GetTSMovLocationResponce>?
+
 
 
     @Multipart
@@ -1014,7 +1022,14 @@ fun CarReqEntList(
 
     ): Flowable<GetBPSiteInfoResponce>?
 
+    //new api for get taggedsite
 
+    @Multipart
+    @POST("GetSiteDetails")
+    fun GetSiteDetails(
+        @Part("xparty") xparty: RequestBody
+
+    ): Flowable<GetBPSiteInfoResponce>?
 
     //todo ts  quickvisit save
     @Multipart
@@ -1217,6 +1232,8 @@ fun SaleBPSiteTag(
         @Part("call_trn") call_trn: RequestBody,
         @Part("rej_reas") rej_reas: RequestBody
         ): Flowable<CancelSalesCallResponce>?
+
+
 
 
 

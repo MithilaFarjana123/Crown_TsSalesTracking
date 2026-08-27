@@ -341,6 +341,15 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
         if ("nav_movement_plan_list" !in featurePermission) {
             menu.findItem(R.id.nav_movement_plan_list).isVisible = false
         }
+
+        if ("nav_current_movement_plan" !in featurePermission) {
+            menu.findItem(R.id.nav_current_movement_plan).isVisible = false
+        }
+
+        if ("nav_current_app_movement_plan" !in featurePermission) {
+            menu.findItem(R.id.nav_current_app_movement_plan).isVisible = false
+        }
+
         if ("nav_engineer_database" !in featurePermission) {
             menu.findItem(R.id.nav_engineer_database).isVisible = false
         }
@@ -786,8 +795,15 @@ class MainActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRecei
                 R.id.nav_movement_plan -> {
                     loadUI(R.id.nav_movement_plan)
                 }
+                R.id.nav_current_movement_plan -> {
+                    loadUI(R.id.nav_current_movement_plan)
+                }
+
                 R.id.nav_app_movement_plan -> {
                     loadUI(R.id.nav_app_movement_plan)
+                }
+                R.id.nav_current_app_movement_plan -> {
+                    loadUI(R.id.nav_current_app_movement_plan)
                 }
                 R.id.nav_movement_plan_list -> {
                     loadUI(R.id.nav_movement_plan_list)

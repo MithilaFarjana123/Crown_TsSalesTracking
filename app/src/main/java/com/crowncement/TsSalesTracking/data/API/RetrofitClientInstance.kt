@@ -93,6 +93,29 @@ object RetrofitClientInstance {
             return retrofit
         }
 
+    val retrofitInstanceTSSite: Retrofit
+        get() {
+            // if (!this::retrofit.isInitialized) {
+
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            val okHttpClient = OkHttpClient.Builder()
+                .readTimeout(180, TimeUnit.SECONDS)
+                .connectTimeout(180, TimeUnit.SECONDS)
+                .addInterceptor(loggingInterceptor)
+                .build()
+
+
+            retrofit = Retrofit.Builder()
+                .baseUrl(EndPoint.BASE_URL_TS_site)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .client(okHttpClient)
+                .build()
+            //    }
+            return retrofit
+        }
+
 
     val retrofitInstanceMetting: Retrofit
         get() {

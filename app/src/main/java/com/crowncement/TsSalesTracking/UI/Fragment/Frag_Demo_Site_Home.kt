@@ -1298,7 +1298,7 @@ class Frag_Demo_Site_Home : Fragment() {
         xCode: String
     ) {
         if(isAdded) {
-            retailerViewModel.GetBPSiteInfoList(xparty)
+            retailerViewModel.GetSiteDetails(xparty)
                 .observe(requireActivity()) {
                     when (it.status) {
 
